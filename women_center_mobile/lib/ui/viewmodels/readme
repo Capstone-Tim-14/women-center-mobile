@@ -1,0 +1,1 @@
+Tempat logika bisnis yang mengatur interaksi antara model dan tampilan. Setiap tampilan dapat memiliki view modelnya sendiri, seperti home_view_model.dart atau profile_view_model.dart.
