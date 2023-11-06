@@ -1,1 +1,1 @@
-//punya om david
+//punya dania
