@@ -1,0 +1,1 @@
+isi data variable nya
