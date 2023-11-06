@@ -1,1 +1,1 @@
-isi data variable nya
+Isi dengan variable data nya yaa
