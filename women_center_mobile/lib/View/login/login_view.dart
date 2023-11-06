@@ -10,9 +10,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white, // Ubah warna latar belakang aplikasi
-        body: Center(
-          child: LoginWidget(),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('Assets/images/backgroud_loginPage.jpeg'),
+                fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 260,
+                ),
+                LoginWidget(),
+                SizedBox(
+                  height: 232,
+                ),
+                DonTHaveAnAccountSignUp()
+              ],
+            ),
+          ),
         ),
       ),
     );
