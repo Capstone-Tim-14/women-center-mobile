@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/konseling/konseling_pilihan_konselor_1.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'View/login/login.dart';
 import 'View/register/register.dart';
+void main(){
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,14 +20,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)
       ),
-
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const Splashscreen(),
-      '/logim': (context) => const Login(),
-      '/register': (context) => const Register(),
-      '/onboarding': (context) => const Onboarding(),
-    }
+      initialRoute: '/',
+      routes: {
+        '/': (context) => konseling_pilihan_konselor_1(),
+        // '/': (context) => const Splashscreen(),
+        // '/logim': (context) => const Login(),
+        // '/register': (context) => const Register(),
+        // '/onboarding': (context) => const Onboarding(),
+      }
     );
   }
 }
