@@ -10,20 +10,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title:'women center',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)
-      ),
-
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const Splashscreen(),
-      '/logim': (context) => const Login(),
-      '/register': (context) => const Register(),
-      '/onboarding': (context) => const Onboarding(),
-    }
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'women center',
+        theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const Splashscreen(),
+          '/logim': (context) => const Login(),
+          '/register': (context) => const Register(),
+          '/onboarding': (context) => const Onboarding(),
+        });
   }
 }
