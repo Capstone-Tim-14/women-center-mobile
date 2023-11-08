@@ -1,5 +1,5 @@
-// PUNYA JUHARMANSAH testststt
 
+// PUNYA JUHARMANSAH 
 import 'package:flutter/material.dart';
 
 class KonselingPagePilihanPaket extends StatelessWidget {
@@ -7,6 +7,8 @@ class KonselingPagePilihanPaket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
 }
+
+//tes jcbascaiu
