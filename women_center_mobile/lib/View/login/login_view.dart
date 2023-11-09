@@ -29,7 +29,7 @@ class LoginView extends StatelessWidget {
                       height: 260,
                     ),
                     LoginWidget(),
-                    SizedBox(height: 185),
+                    SizedBox(height: 167),
                     DonTHaveAnAccountSignUp(),
                   ],
                 ),

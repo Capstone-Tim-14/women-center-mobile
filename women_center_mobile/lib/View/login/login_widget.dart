@@ -7,9 +7,10 @@ class DonTHaveAnAccountSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      // verticalDirection: VerticalDirection.up,
       children: [
         const Text(
-          "Don’t have an account?",
+          "Don’t have an account ?",
           style: TextStyle(
             color: Color(0xFFF9F5F6),
             fontSize: 12,
@@ -18,7 +19,19 @@ class DonTHaveAnAccountSignUp extends StatelessWidget {
             height: 0,
           ),
         ),
-        TextButton(onPressed: () async {}, child: const Text('Sign Up'))
+        TextButton(
+            onPressed: () async {},
+            child: const Text(
+              'Sign Up',
+              style: TextStyle(
+                color: Color(0xFFF2BED1),
+                fontSize: 12,
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
+                height: 0,
+              ),
+            ))
       ],
     );
   }
@@ -126,7 +139,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     ),
                     const SizedBox(height: 12),
                     Container(
-                      width: double.infinity,
+                      // width: double.infinity,
                       height: 68,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -145,7 +158,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ),
                           const SizedBox(height: 4),
                           Container(
-                            width: double.infinity,
+                            // width: double.infinity,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 10),
                             decoration: ShapeDecoration(
@@ -158,6 +171,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 Container(
                                   width: 345,
                                   height: 28,
+                                  margin: EdgeInsets.only(),
                                   // alignment: Alignment.center,
                                   padding: const EdgeInsets.only(),
                                   child: TextFormField(
