@@ -10,10 +10,20 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.blueGrey,
-        
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/register.png'),
+                    fit: BoxFit.cover),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
