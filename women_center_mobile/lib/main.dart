@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'women center',
-        theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
         initialRoute: '/register',
         routes: {
           // '/': (context) => const Splashscreen(),

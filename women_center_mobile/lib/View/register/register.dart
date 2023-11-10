@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/register/register_widget.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -18,10 +19,20 @@ class _RegisterState extends State<Register> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/register.png'),
+                    image: AssetImage('assets/images/registerimage.png'),
                     fit: BoxFit.cover),
               ),
             ),
+            SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RegisterWidget(),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
