@@ -17,50 +17,127 @@ class _MyWidgetState extends State<MyWidget> {
         appBar: AppBar(
           title: Text('Home3'),
         ),
-        body: Center(
-          child: Card(
-            elevation: 20,
-            margin: EdgeInsets.all(20),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0), // Mengatur sudut kartu
-            ),
-            color: Colors.pink,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: const Text('Rekomendasi Paket', style: TextStyle(fontSize: 20, color: Colors.white),),
-                ),
-                SizedBox(height: 8),
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20), // Mengatur sudut atas kiri
-                    topRight: Radius.circular(20), // Mengatur sudut atas kanan
-                  ),
-                  child: Image.asset(
-                    'Assets/images/home_3.jpg', // Ganti dengan path gambar Anda
-                    width: 328, // Sesuaikan lebar gambar sesuai kebutuhan
-                    height: 212, // Sesuaikan tinggi gambar sesuai kebutuhan
-                  ),
-                ),
-                SizedBox(height: 8),
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Isi konten di sini',
-                      style: TextStyle(color: Colors.black), // Ganti dengan konten yang diinginkan
+        body: Column(
+          children: [
+            Column(
+              children: [
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Color(0xFFF2BED1), // Warna card bagian atas 
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(height: 15),
+                        Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: const Text('Rekomendasi Paket', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white,)),
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(35),
+                            topRight: Radius.circular(35),
+                          ),
+                          child: Image.asset(
+                            'Assets/images/home_3.jpg',
+                            width: 355,
+                            height: 235,
+                          ),
+                        ),     
+                        Column(
+                          children: [
+                            Container(
+                              height:75,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFF8E8EE), // Warna card bagian bawah 
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text('Rp550.000', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFFF4518D))),
+                                  SizedBox(width: 5),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text('Pilih Paket', style: TextStyle(color: Color(0xFFF4518D)),),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color.fromRGBO(250, 181, 207, 0.855), // Warna latar belakang
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20), // Mengatur sudut tombol
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              height:50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                                color: Color(0xFFF8E8EE), // Warna card bagian bawah 
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {}, 
+                                    icon: Icon(Icons.keyboard_arrow_down, color: Color(0xFFF4518D)),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
-          ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Card(
+                  margin: EdgeInsets.all(20),
+                  color: Color(0xFFF8E8EE),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Rekomendasi Konselor', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                        SizedBox(height: 20),
+                        Column(
+                          children: [
+                            Center(
+                              child: CircleAvatar(
+                                backgroundImage: AssetImage('Assets/images/home_3_profil.jpg'), // Ganti dengan path foto profil konselor
+                                radius: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column()
+                      ],
+                      
+                    ),
+                  ),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );
