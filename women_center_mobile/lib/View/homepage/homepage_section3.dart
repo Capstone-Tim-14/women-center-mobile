@@ -139,7 +139,7 @@ class _MyWidgetState extends State<MyWidget> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('Profesional Konselor', style: TextStyle(fontSize: 12)),
+                            Text('Profesional Konselor', style: TextStyle(fontSize: 12, color: Color(0xFF646464))),
                           ],
                         ),
                       ],
