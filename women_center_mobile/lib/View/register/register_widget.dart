@@ -1,5 +1,42 @@
 import 'package:flutter/material.dart';
 
+class AlreadyHaveAccount extends StatelessWidget {
+  const AlreadyHaveAccount({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      // verticalDirection: VerticalDirection.up,
+      children: [
+        const Text(
+          "Already have an account ?",
+          style: TextStyle(
+            color: Color(0xFFF9F5F6),
+            fontSize: 12,
+            fontFamily: 'Raleway',
+            fontWeight: FontWeight.w500,
+            height: 0,
+          ),
+        ),
+        TextButton(
+            onPressed: () async {},
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                color: Color(0xFFF2BED1),
+                fontSize: 12,
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
+                height: 0,
+              ),
+            ))
+      ],
+    );
+  }
+}
+
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
 
@@ -31,7 +68,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 200),
                   const Text(
                     'Create Account',
                     style: TextStyle(
