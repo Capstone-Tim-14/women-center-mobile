@@ -149,7 +149,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Username',
+                          'Email',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
