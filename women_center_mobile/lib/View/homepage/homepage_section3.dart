@@ -110,7 +110,7 @@ class _MyWidgetState extends State<MyWidget> {
                   margin: EdgeInsets.all(20),
                   color: Color(0xFFF8E8EE),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -129,7 +129,19 @@ class _MyWidgetState extends State<MyWidget> {
                             ),
                           ],
                         ),
-                        Column()
+                        SizedBox(height: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Stanefie Russel, M.Psi., Psikolog', style: TextStyle(fontSize: 16,)),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Profesional Konselor', style: TextStyle(fontSize: 12)),
+                          ],
+                        ),
                       ],
                       
                     ),
