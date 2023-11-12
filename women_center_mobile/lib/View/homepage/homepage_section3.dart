@@ -11,6 +11,7 @@ class MyWidget extends StatefulWidget {
 
 class _MyWidgetState extends State<MyWidget> {
   double _rating = 3.0;
+  int _selectedIndex = 0;
 
   
   @override
@@ -142,7 +143,6 @@ class _MyWidgetState extends State<MyWidget> {
                           ),
                           SizedBox(height: 45),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -172,33 +172,114 @@ class _MyWidgetState extends State<MyWidget> {
                                     _rating.toString(),
                                     style: TextStyle(fontSize: 12),
                                   ),
+                                  Container(
+                                    height: 35, // Sesuaikan dengan tinggi garis yang diinginkan
+                                    width: 1, // Lebar garis
+                                    color: Colors.grey, // Warna garis
+                                    margin: EdgeInsets.symmetric(horizontal: 29), // Margin antara garis dan teks
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Senin', style: TextStyle(fontSize: 15, color: Color(0xFF1F1F1F))),
+                                          Text('09.00-15.00 WIB', style: TextStyle(fontSize: 12, color: Color(0xFF1F1F1F)))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ],
                               ),
-                              SizedBox(height: 25),
+                              Container(
+                                height: 25, // Sesuaikan dengan tinggi garis yang diinginkan
+                                width: 1, // Lebar garis
+                                color: Colors.grey, // Warna garis
+                                margin: EdgeInsets.symmetric(horizontal: 45), // Margin antara garis dan teks
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Universitas', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15))
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Universitas', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                                      Text('Indonesia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                                      Text('S2 - Psikologi', style: TextStyle(fontSize: 13, color: Color(0xFF646464))),
+                                    ],
+                                  ),
+                                  Container(
+                                    height: 52, // Sesuaikan dengan tinggi garis yang diinginkan
+                                    width: 1, // Lebar garis
+                                    color: Colors.grey, // Warna garis
+                                    margin: EdgeInsets.only(left: 77, right: 31), // Margin antara garis dan teks
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:MainAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Rabu', style: TextStyle(fontSize: 15, color: Color(0xFF1F1F1F))),
+                                          Text('09.00-15.00 WIB', style: TextStyle(fontSize: 12, color: Color(0xFF1F1F1F)))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ],
+                              ),
+                              Container(
+                                height: 25, // Sesuaikan dengan tinggi garis yang diinginkan
+                                width: 1, // Lebar garis
+                                color: Colors.grey, // Warna garis
+                                margin: EdgeInsets.symmetric(horizontal: 45), // Margin antara garis dan teks
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Indonesia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15))
+                                  Text('@stefaniersl', style: TextStyle(fontSize: 15)),
+                                  Container(
+                                    height: 52, // Sesuaikan dengan tinggi garis yang diinginkan
+                                    width: 1, // Lebar garis
+                                    color: Colors.grey, // Warna garis
+                                    margin: EdgeInsets.only(left: 72, right: 31), // Margin antara garis dan teks
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:MainAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Jumat', style: TextStyle(fontSize: 15, color: Color(0xFF1F1F1F))),
+                                          Text('09.00-21.00 WIB', style: TextStyle(fontSize: 12, color: Color(0xFF1F1F1F)))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text('S2 - Psikologi', style: TextStyle(fontSize: 13, color: Color(0xFF646464)))
-                                ],
-                              ),
-                              SizedBox(height: 25,),
-                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text('@stefaniersl', style: TextStyle(fontSize: 15))
-                                ],
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 150,
+                                height: 40,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text('Pilih Paket', style: TextStyle(color: Colors.white, fontSize: 14)),
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(244, 81, 141, 1)),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -210,6 +291,40 @@ class _MyWidgetState extends State<MyWidget> {
               )
             ],
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article_outlined),
+            label: 'Artikel',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.work_outlined),
+            label: 'karir',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.note_alt),
+            label: 'Order',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.pink,
+        unselectedItemColor: Colors.grey,
+        iconSize: 24,
+        onTap: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
         ),
       ),
     );
