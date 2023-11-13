@@ -1,59 +1,111 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class konseling_pilihan_konselor_2 extends StatelessWidget {
-  const konseling_pilihan_konselor_2({super.key});
+class KonselingPilihanKonselor2 extends StatelessWidget {
+  const KonselingPilihanKonselor2({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Project'),
       ),
-      body: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return const CardItem();
-        },
+      body: const Column(
+        children: [
+          CardData(
+            judul: 'Judul 1',
+            subtitleKiri: 'Subtitle Kiri 1',
+            subtitleKanan: 'Subtitle Kanan 1',
+            initialRating: 4.5,
+            lokasi: 'Lokasi 1',
+          ),
+          CardData(
+            judul: 'Judul 2',
+            subtitleKiri: 'Subtitle Kiri 2',
+            subtitleKanan: 'Subtitle Kanan 2',
+            initialRating: 3.5,
+            lokasi: 'Lokasi 2',
+          ),
+        ],
       ),
     );
   }
 }
 
-class CardItem extends StatelessWidget {
-  const CardItem({super.key});
+class CardData extends StatelessWidget {
+  final String judul;
+  final String subtitleKiri;
+  final String subtitleKanan;
+  final double initialRating;
+  final String lokasi;
+
+  const CardData({
+    Key? key,
+    required this.judul,
+    required this.subtitleKiri,
+    required this.subtitleKanan,
+    required this.initialRating,
+    required this.lokasi,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8.0),
       child: ListTile(
-        leading: Image.asset('assets/gambar.jpg'),
-        title: const Text('Judul'),
-        subtitle: const Row(
+        leading: Image.asset('images/XRamadhann.png'),
+        title: Text(judul),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Subtitle Kiri'),
-            Spacer(),
-            Text('Subtitle Kanan'),
+            Row(
+              children: [
+                Text(subtitleKiri),
+                const SizedBox(width: 50),
+                Text(subtitleKanan),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    RatingBar.builder(
+                      initialRating: initialRating,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemSize: 15,
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      itemBuilder: (context, _) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {},
+                    ),
+                    const SizedBox(width: 5),
+                    Text('($initialRating)'),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on,
+                          color: Colors.blue, size: 20),
+                      const SizedBox(width: 8),
+                      Text(lokasi),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
+        onTap: () {},
       ),
-    );
-  }
-}
-
-class StarRating extends StatelessWidget {
-  const StarRating({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return FlutterRatingBar(
-      initialRating: 4.5,
-      fillColor: Colors.amber,
-      borderColor: Colors.amber,
-      allowHalfRating: true,
-      onRatingUpdate: (rating) {
-        // Handle ketika rating berubah
-      },
     );
   }
 }

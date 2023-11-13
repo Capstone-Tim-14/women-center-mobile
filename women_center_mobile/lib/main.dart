@@ -4,6 +4,10 @@ import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'View/login/login.dart';
 import 'View/register/register.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
