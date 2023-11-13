@@ -28,33 +28,35 @@ class Paket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xFFF9F5F6),
-      child: Center(
-        child: const Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              "Pilih Paket Anda!",
-              style: TextStyle(
-                color: Color(0xFF1F1F1F),
-                fontWeight: FontWeight.bold,
-                fontSize: 19,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Card(
+              elevation: 5.0,
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  "Pilih Paket Anda!",
+                  style: TextStyle(
+                    color: Color(0xFF1F1F1F),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
+         Center(
+            child: Card(
+              elevation: 5.0,),
+         ),
+        ],
       ),
     );
   }
 }
 
-class PesanPaket extends StatelessWidget {
-  const PesanPaket({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      
-    );
-  }
-}
+
+
