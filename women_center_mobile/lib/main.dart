@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
           // '/': (context) => const Register(),
           '/register': (context) => const Register(),
           // '/onboarding': (context) => const Onboarding(),
+
         });
   }
 }

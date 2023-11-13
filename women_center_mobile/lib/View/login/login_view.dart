@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:women_center_mobile/View/register/register_widget.dart';
+import 'package:women_center_mobile/View/login/login_widget.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
-
-  @override
-  State<Register> createState() => _RegisterState();
+void main() {
+  runApp(LoginView());
 }
 
-class _RegisterState extends State<Register> {
+class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Stack(
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/registerimage.png'),
-                    fit: BoxFit.cover),
+                  image: AssetImage('Assets/images/backgroud_loginPage.jpeg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -28,17 +25,19 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    RegisterWidget(),
-                    SizedBox(height: 120),
-                    AlreadyHaveAccount()
+                    SizedBox(
+                      height: 260,
+                    ),
+                    LoginWidget(),
+                    SizedBox(height: 167),
+                    DonTHaveAnAccountSignUp(),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 }
-
