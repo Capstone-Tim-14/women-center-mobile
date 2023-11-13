@@ -12,6 +12,7 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   double _rating = 3.0;
   int _selectedIndex = 0;
+  bool isExpanded = false;
 
   
   @override
@@ -40,7 +41,10 @@ class _MyWidgetState extends State<MyWidget> {
                           SizedBox(height: 15),
                           Padding(
                             padding: const EdgeInsets.all(9.0),
-                            child: const Text('Rekomendasi Paket', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white,)),
+                            child: const Text(
+                              'Rekomendasi Paket',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                            ),
                           ),
                           ClipRRect(
                             borderRadius: BorderRadius.only(
@@ -52,11 +56,161 @@ class _MyWidgetState extends State<MyWidget> {
                               width: 355,
                               height: 235,
                             ),
-                          ),     
+                          ),
+                          AnimatedContainer(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.fastOutSlowIn,
+                            height: isExpanded ? 300 : 0, // Tentukan tinggi teks tambahan
+                            color: Color(0xFFF8E8EE),
+                            width: 360,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: 10),
+                                  Text('Paket Video Call', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,)),
+                                  Text('1x Sesi', style: TextStyle(fontSize: 13, color: Color(0xFFF4518D), fontWeight: FontWeight.bold)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Masa Aktif Paket Selama 2 Minggu')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Durasi Konsultasi 1jam/sesi')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Privasi di jamin 100% aman')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('1 on 1 dengan konselor')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Tes Kesehatan Mental')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Tes Kepribadian')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset('Assets/images/cek_ijo.png', scale: 4),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Tes Minat Karir')
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 3),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 2, right: 5, top: 25),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 2,
+                                          width: 320,
+                                          color: Color(0xFFF2BED1),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                           Container(
                             height: 75,
                             decoration: BoxDecoration(
-                              color: Color(0xFFF8E8EE), // Warna card bagian bawah 
+                              color: Color(0xFFF8E8EE), // Warna card bagian bawah
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,8 +218,12 @@ class _MyWidgetState extends State<MyWidget> {
                                 Text('Rp550.000', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFFF4518D))),
                                 SizedBox(width: 5),
                                 ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text('Pilih Paket', style: TextStyle(color: Color(0xFFF4518D)),),
+                                  onPressed: () {
+                                    setState(() {
+                                      isExpanded = !isExpanded;
+                                    });
+                                  },
+                                  child: Text('Pilih Paket', style: TextStyle(color: Color(0xFFF4518D))),
                                   style: ElevatedButton.styleFrom(
                                     primary: Color.fromRGBO(250, 181, 207, 0.855), // Warna latar belakang
                                     shape: RoundedRectangleBorder(
@@ -83,15 +241,22 @@ class _MyWidgetState extends State<MyWidget> {
                                 bottomLeft: Radius.circular(20),
                                 bottomRight: Radius.circular(20),
                               ),
-                              color: Color(0xFFF8E8EE), // Warna card bagian bawah 
+                              color: Color(0xFFF8E8EE), // Warna card bagian bawah
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  onPressed: () {}, 
-                                  icon: Icon(Icons.keyboard_arrow_down, color: Color(0xFFF4518D)),
-                                )
+                                  onPressed: () {
+                                    setState(() {
+                                      isExpanded = !isExpanded;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, 
+                                    color: Color(0xFFF4518D)
+                                  ),
+                                ),
                               ],
                             ),
                           ),
