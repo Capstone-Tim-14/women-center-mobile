@@ -9,7 +9,12 @@ class PilihanPaket extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F5F6),
       appBar: AppBar(
-        title: Text("Konseling"),
+        title: Text("Konseling",style: TextStyle(
+                    color: Color(0xFfF1F1F1F),
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20 ),
+          ),
         centerTitle: true,
         backgroundColor: Color(0xFFFDCEDF),
         leading: IconButton(
@@ -42,34 +47,77 @@ class PilihanPaket extends StatelessWidget {
                       "Kami memiliki paket konsultasi yang sesuai dengan setiap kebutuhan. Mulailah perubahan hari ini.",
                       style: TextStyle(
                         color: Color(0xFF1F1F1F),
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                     Paket(
                       model: PaketModel(
                         "Paket Voice Call",
                         3,
-                        ["1", "2", "3"],
+                        [
+                          "Durasi Konsultasi 1 Jam/Sesi",
+                          "1on1 Dengan Konselor",
+                          "Privasi Dijamin 100% Aman",
+                          "Tes Kesehatan Mental",
+                          "Tes Kepribadian",
+                          "Tes Minat Karir",
+                          "Masa Aktif Paket Selama 1 Minggu",
+                        ],
                         350000,
                         250000,
                       ),
                     ),
                     Paket(
                       model: PaketModel(
-                        "Paket Voice Call",
+                        "Paket Video Call",
                         3,
-                        ["1", "2", "3"],
-                        350000,
-                        250000,
+                        [
+                          "Durasi Konsultasi 1 Jam/Sesi",
+                          "1on1 Dengan Konselor",
+                          "Privasi Dijamin 100% Aman",
+                          "Tes Kesehatan Mental",
+                          "Tes Kepribadian",
+                          "Tes Minat Karir",
+                          "Masa Aktif Paket Selama 2 Minggu",
+                        ],
+                        650000,
+                        550000,
                       ),
                     ),
                     Paket(
                       model: PaketModel(
-                        "Paket Voice Call",
+                        "Paket All In One",
                         3,
-                        ["1", "2", "3"],
-                        350000,
-                        250000,
+                        [
+                          "Durasi Konsultasi 1 Jam/Sesi",
+                          "1on1 Dengan Konselor",
+                          "Privasi Dijamin 100% Aman",
+                          "Tes Kesehatan Mental",
+                          "Tes Kepribadian",
+                          "Tes Minat Karir",
+                          "Masa Aktif Paket Selama 3 Minggu",
+                        ],
+                        850000,
+                        750000,
+                      ),
+                    ),
+                    Paket(
+                      model: PaketModel(
+                        "Paket Offline",
+                        3,
+                        [
+                          "Ruang Konseling Yang Nyaman & Aman",
+                          "Langsung Bertemu Psikolog \n & Konseling Tatap Muka",
+                          "Durasi Konsultasi 2 Jam/Sesi",
+                          "1on1 Dengan Konselor",
+                          "Privasi Dijamin 100% Aman",
+                          "Tes Kesehatan Mental",
+                          "Tes Kepribadian",
+                          "Tes Minat Karir",
+                          "Masa Aktif Paket Selama 1 Minggu",
+                        ],
+                        1050000,
+                        950000,
                       ),
                     ),
                   ],
@@ -102,42 +150,78 @@ class Paket extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(model.judul),
-          Text("${model.sesi}x Sesi"),
+          Text(
+            model.judul,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text("${model.sesi}x Sesi",
+           style: TextStyle(
+                    color: Color(0xFFF4518D),
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15),
+          ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: model.daftar.length,
             itemBuilder: (context, index) {
-              return Row(
-                children: [
-                  Icon(Icons.check_circle, color: Colors.green),
-                  Text(model.daftar[index]),
-                ],
+              return Container(
+                margin: EdgeInsets.only(top: 15),
+                child: Row(
+                  children: [
+                    Icon(Icons.check_circle, color: Colors.green),
+                    SizedBox(width: 11.0),
+                    Text(
+                      model.daftar[index],
+                      style: TextStyle(
+                        fontFamily:'Raleway-medium/Medium 14' 
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           ),
           Divider(
-            indent: 20,
-            endIndent: 20,
+            indent: 10,
+            endIndent: 10,
           ),
           Text(
             "Rp.${model.hargaAsli.toString()}",
-            style: TextStyle(decoration: TextDecoration.lineThrough),
+            style: TextStyle(
+                decoration: TextDecoration.lineThrough,
+                color: Color(0xFFC9C9C9),
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold,
+                fontSize: 20),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Rp.${model.hargaDiskon.toString()}",
-                style: TextStyle(color: Color(0xFFF4518D)),
+                style: TextStyle(
+                    color: Color(0xFFF4518D),
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
               ),
               MaterialButton(
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
                 color: Color(0xFFF4518D),
-                child: Text("pesan"),
-              )
+                child: Text(
+                  "Pilih Paket",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           )
         ],
@@ -146,5 +230,4 @@ class Paket extends StatelessWidget {
   }
 }
 
-
-//t=apnggil font, textstyle, fontfamily
+//apnggil font, textstyle, fontfamily
