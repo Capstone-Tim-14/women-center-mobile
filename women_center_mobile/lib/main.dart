@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'View/login/login.dart';
@@ -21,12 +22,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)
       ),
 
-    initialRoute: '/',
+    initialRoute: '/notifikasi',
     routes: {
       '/': (context) => const Splashscreen(),
       '/logim': (context) => const Login(),
       '/register': (context) => const Register(),
       '/onboarding': (context) => const Onboarding(),
+      '/notifikasi': (context) => const HomepageNotifikasi(),
+
     }
     );
   }
