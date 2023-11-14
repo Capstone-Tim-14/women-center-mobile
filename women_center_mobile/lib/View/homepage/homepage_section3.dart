@@ -1,6 +1,7 @@
 //punya om David
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -457,39 +458,13 @@ class _MyWidgetState extends State<MyWidget> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.article_outlined),
-            label: 'Artikel',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work_outlined),
-            label: 'karir',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt),
-            label: 'Order',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.pink,
-        unselectedItemColor: Colors.grey,
-        iconSize: 24,
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+        bottomNavigationBar: MyBottomNavigationBar(
+          selectedIndex: _selectedIndex, 
+          onItemTapped: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          }
         ),
       ),
     );
