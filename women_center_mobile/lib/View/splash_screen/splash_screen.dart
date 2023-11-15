@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Spla extends StatefulWidget {
-  const Spla({super.key});
+class Splashscreen extends StatefulWidget {
+  const Splashscreen({super.key});
 
   @override
-  State<Spla> createState() => _SplaState();
+  State<Splashscreen> createState() => _SplashscreenState();
 }
 
-class _SplaState extends State<Spla> {
+class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
