@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/konseling/konseling_pilihan_konselor_1.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'View/login/login.dart';
 import 'View/register/register.dart';
+void main(){
+  runApp(const MyApp());
+}
 
 void main() {
   runApp(const MyApp());
