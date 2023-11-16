@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_widget.dart';
 
 class HomepageNotifikasi extends StatefulWidget {
   const HomepageNotifikasi({super.key});
@@ -17,6 +18,7 @@ class _HomepageNotifikasiState extends State<HomepageNotifikasi> {
         body: Stack(
           children: <Widget>[
             //Diisi sesuai tugas, jangan lupa biar ga conflict kabarin kalau misal mau nambahin sesuatu
+            NotifikasiList()
           ],
         ),
       ),
