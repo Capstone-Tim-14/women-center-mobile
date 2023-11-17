@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OnboardingPage extends StatefulWidget {
+class Onboarding extends StatefulWidget {
   @override
-  _OnboardingPageState createState() => _OnboardingPageState();
+  _OnboardingState createState() => _OnboardingState();
 }
 
-class _OnboardingPageState extends State<OnboardingPage> {
+class _OnboardingState extends State<Onboarding> {
   final List<String> topics = [
     'Hubungan dan keluarga',
     'Seni dan Kreativitas',

@@ -21,12 +21,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)
       ),
 
-    initialRoute: '/onboarding',
+    initialRoute: '/',
     routes: {
       // '/': (context) => const Splashscreen(),
       // '/logim': (context) => const Login(),
       // '/register': (context) => const Register(),
-      '/onboarding': (context) => OnboardingPage(),
+      '/onboarding': (context) => Onboarding(),
     }
     );
   }
