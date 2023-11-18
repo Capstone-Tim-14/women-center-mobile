@@ -1,6 +1,6 @@
 //punya om David
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 
 class MyWidget extends StatefulWidget {
@@ -313,26 +313,26 @@ class _MyWidgetState extends State<MyWidget> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  RatingBar.builder(
-                                    initialRating: _rating,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber, // Warna bintang yang terisi
+                                  // RatingBar.builder(
+                                  //   initialRating: _rating,
+                                  //   minRating: 1,
+                                  //   direction: Axis.horizontal,
+                                  //   allowHalfRating: true,
+                                  //   itemCount: 5,
+                                  //   itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                                  //   itemBuilder: (context, _) => Icon(
+                                  //     Icons.star,
+                                  //     color: Colors.amber, // Warna bintang yang terisi
                                       
-                                    ),
-                                    unratedColor: Colors.white, // Warna bintang yang tidak terisi
-                                    onRatingUpdate: (rating) {
-                                      setState(() {
-                                        _rating = rating;
-                                      });
-                                    },
-                                    itemSize: 18, // Ukuran bintang
-                                  ),
+                                  // //   ),
+                                  //   unratedColor: Colors.white, // Warna bintang yang tidak terisi
+                                  //   onRatingUpdate: (rating) {
+                                  //     setState(() {
+                                  //       _rating = rating;
+                                  //     });
+                                  //   },
+                                  //   itemSize: 18, // Ukuran bintang
+                                  // ),
                                   SizedBox(width: 10), // Jarak antara bintang dan teks
                                   Text(
                                     _rating.toString(),
