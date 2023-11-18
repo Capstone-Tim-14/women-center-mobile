@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:women_center_mobile/Models/paket.dart';
+import 'package:women_center_mobile/Models/paket_model/paket.dart';
+import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
 class PilihanPaket extends StatelessWidget {
   const PilihanPaket({super.key});
@@ -125,6 +126,7 @@ class PilihanPaket extends StatelessWidget {
               ),
             ),
           ),
+          // MyBottomNavigationBar(),
           //bottom Navigation Barr
         ],
       ),
