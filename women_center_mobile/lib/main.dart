@@ -1,12 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'View/homepage/homepage_section3.dart';
-import 'View/login/login.dart';
+// import 'View/login/login.dart';
 import 'View/onboarding/onboarding.dart';
 import 'View/register/register.dart';
-
-void main(){
-  runApp(const MyApp());
-}
 
 void main() {
   runApp(const MyApp());
