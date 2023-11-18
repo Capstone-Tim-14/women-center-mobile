@@ -26,10 +26,10 @@ class MyApp extends StatelessWidget {
         title: 'women center',
         initialRoute: '/register',
         routes: {
-          // '/': (context) => const Splashscreen(),
-          // '/logim': (context) => const Login(),
-          // '/': (context) => const Register(),
+          '/': (context) => const Splashscreen(),
+          '/logim': (context) => const LoginView(),
+          '/': (context) => const Register(),
           '/register': (context) => const Register(),
-          // '/onboarding': (context) => const Onboarding(),
+          '/onboarding': (context) => const Onboarding(),
   }
 }
