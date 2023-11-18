@@ -19,51 +19,49 @@ class _NotifikasiListState extends State<NotifikasiList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Today',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            'Today',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: notifikasiData.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  color: Color.fromARGB(255, 248, 232, 238),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          notifikasiData[index]['judul']!,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(notifikasiData[index]['subjudul']!),
-                        onTap: () {
-                          // Implementasikan logika ketika notifikasi diklik
-                          // Misalnya, tampilkan detail notifikasi atau lakukan aksi tertentu
-                        },
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: notifikasiData.length,
+            itemBuilder: (context, index) {
+              return Container(
+                color: const Color.fromARGB(255, 248, 232, 238),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        notifikasiData[index]['judul']!,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Divider(thickness: dividerThickness),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+                      subtitle: Text(notifikasiData[index]['subjudul']!),
+                      onTap: () {
+                        // Implementasikan logika ketika notifikasi diklik
+                        // Misalnya, tampilkan detail notifikasi atau lakukan aksi tertentu
+                      },
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Divider(thickness: dividerThickness),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
