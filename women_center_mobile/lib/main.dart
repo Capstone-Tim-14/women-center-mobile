@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'View/homepage/homepage_section3.dart';
-// import 'View/login/login.dart';
+import 'View/login/login_view.dart';
 import 'View/onboarding/onboarding.dart';
 import 'View/register/register.dart';
 
@@ -16,19 +16,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title:'women center',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)
-      ),
-
-    initialRoute: '/',
-    routes: {
-      // '/': (context) => const Splashscreen(),
-      // '/logim': (context) => const Login(),
-      // '/register': (context) => const Register(),
-      '/onboarding': (context) => Onboarding(),
-    }
+      title: 'women center',
+      initialRoute: '/login',
+      routes: {
+        '/': (context) => const Splashscreen(),
+        '/login': (context) =>  LoginView(),
+        '/register': (context) => const Register(),
+        '/onboarding': (context) => const Onboarding(),
+      },
     );
   }
 }
