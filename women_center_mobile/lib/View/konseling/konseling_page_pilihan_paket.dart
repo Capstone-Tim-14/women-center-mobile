@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/paket_model/paket.dart';
-import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
-class PilihanPaket extends StatelessWidget {
+class PilihanPaket extends StatefulWidget {
+  
   const PilihanPaket({super.key});
+
+  @override
+  State<PilihanPaket> createState() => _PilihanPaketState();
+}
+
+class _PilihanPaketState extends State<PilihanPaket> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F5F6),
-      appBar: AppBar(
-        title: Text("Konseling",style: TextStyle(
-                    color: Color(0xFfF1F1F1F),
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20 ),
-          ),
-        centerTitle: true,
-        backgroundColor: Color(0xFFFDCEDF),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            //tombol kembali mengarah ke home
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
       body: Column(
         children: [
           Expanded(
@@ -126,8 +114,6 @@ class PilihanPaket extends StatelessWidget {
               ),
             ),
           ),
-          // MyBottomNavigationBar(),
-          //bottom Navigation Barr
         ],
       ),
     );
