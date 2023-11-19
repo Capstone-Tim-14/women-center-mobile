@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'women center',
-      initialRoute: '/main_page',
+      initialRoute: '/',
       routes: {
         '/': (context) => const Splashscreen(),
         '/login': (context) => const LoginView(),
