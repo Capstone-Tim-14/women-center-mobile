@@ -1,19 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: KonselingPilihanKonselor2(),
-    );
-  }
-}
-
 class KonselingPilihanKonselor2 extends StatelessWidget {
   const KonselingPilihanKonselor2({Key? key}) : super(key: key);
 
@@ -21,7 +7,16 @@ class KonselingPilihanKonselor2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Project'),
+        backgroundColor: const Color(0xFF14FDCEDF),
+        title: const Text(
+          'Konseling',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
       ),
       body: const Column(
         children: [
@@ -64,7 +59,7 @@ class CardData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 160, // Ketinggian Card
+      height: 160,
       child: Card(
         margin: const EdgeInsets.all(8.0),
         child: Padding(
@@ -73,7 +68,7 @@ class CardData extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: 110, // Ketinggian dan lebar Gambar
+                height: 110,
                 width: 110,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -91,7 +86,7 @@ class CardData extends StatelessWidget {
                   children: [
                     Text(
                       judul,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -101,26 +96,26 @@ class CardData extends StatelessWidget {
                         Expanded(
                           child: Text(
                             subtitleKiri,
-                            style: TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ),
                         Text(
                           subtitleKanan,
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_on,
-                          color: const Color.fromARGB(255, 159, 159, 159),
+                          color: Color.fromARGB(255, 159, 159, 159),
                           size: 20,
                         ),
                         const SizedBox(width: 8),
                         Text(
                           lokasi,
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
