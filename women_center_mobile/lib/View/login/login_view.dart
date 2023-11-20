@@ -10,12 +10,16 @@ class LoginView extends StatelessWidget {
       home: Scaffold(
         body: Stack(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('Assets/images/backgroud_loginPage.jpeg'),
-                  fit: BoxFit.cover,
-                ),
+            ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.25),
+                BlendMode.srcOver, // Sesuaikan mode blend yang diinginkan
+              ),
+              child: Image.asset(
+                'Assets/images/background_loginPage.png',
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
               ),
             ),
             SingleChildScrollView(
@@ -24,10 +28,10 @@ class LoginView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 260,
+                      height: 262,
                     ),
                     LoginWidget(),
-                    SizedBox(height: 167),
+                    SizedBox(height: 135),
                     DonTHaveAnAccountSignUp(),
                   ],
                 ),
