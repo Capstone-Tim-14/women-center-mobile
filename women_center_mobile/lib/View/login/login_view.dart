@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/login/login_widget.dart';
 
-void main() {
-  runApp(LoginView());
-}
-
 class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
