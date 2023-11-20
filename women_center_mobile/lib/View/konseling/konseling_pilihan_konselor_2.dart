@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Flutter Demo',
+      home: KonselingPilihanKonselor2(),
+    );
+  }
+}
 
 class KonselingPilihanKonselor2 extends StatelessWidget {
   const KonselingPilihanKonselor2({Key? key}) : super(key: key);
@@ -13,18 +26,18 @@ class KonselingPilihanKonselor2 extends StatelessWidget {
       body: const Column(
         children: [
           CardData(
-            judul: 'Judul 1',
-            subtitleKiri: 'Subtitle Kiri 1',
-            subtitleKanan: 'Subtitle Kanan 1',
-            initialRating: 4.5,
-            lokasi: 'Lokasi 1',
+            judul: 'Stenafie Russel, M.Psi., Psikolog',
+            subtitleKiri: 'Psikolog',
+            subtitleKanan: 'Universitas Indonesia',
+            imagePath: 'Assets/images/konselor1.png',
+            lokasi: 'Jakarta',
           ),
           CardData(
-            judul: 'Judul 2',
-            subtitleKiri: 'Subtitle Kiri 2',
-            subtitleKanan: 'Subtitle Kanan 2',
-            initialRating: 3.5,
-            lokasi: 'Lokasi 2',
+            judul: 'Stenafie Russel, M.Psi., Psikolog',
+            subtitleKiri: 'Psikolog',
+            subtitleKanan: 'Universitas Indonesia',
+            imagePath: 'Assets/images/konselor2.png',
+            lokasi: 'Jakarta',
           ),
         ],
       ),
@@ -36,7 +49,7 @@ class CardData extends StatelessWidget {
   final String judul;
   final String subtitleKiri;
   final String subtitleKanan;
-  final double initialRating;
+  final String imagePath;
   final String lokasi;
 
   const CardData({
@@ -44,67 +57,79 @@ class CardData extends StatelessWidget {
     required this.judul,
     required this.subtitleKiri,
     required this.subtitleKanan,
-    required this.initialRating,
+    required this.imagePath,
     required this.lokasi,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(8.0),
-      child: ListTile(
-        leading: Image.asset('images/XRamadhann.png'),
-        title: Text(judul),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(subtitleKiri),
-                const SizedBox(width: 50),
-                Text(subtitleKanan),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    RatingBar.builder(
-                      initialRating: initialRating,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 15,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {},
-                    ),
-                    const SizedBox(width: 5),
-                    Text('($initialRating)'),
-                  ],
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.location_on,
-                          color: Colors.blue, size: 20),
-                      const SizedBox(width: 8),
-                      Text(lokasi),
-                    ],
+    return SizedBox(
+      height: 160, // Ketinggian Card
+      child: Card(
+        margin: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 110, // Ketinggian dan lebar Gambar
+                width: 110,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.cover,
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      judul,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            subtitleKiri,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                        Text(
+                          subtitleKanan,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: const Color.fromARGB(255, 159, 159, 159),
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          lokasi,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-        onTap: () {},
       ),
     );
   }
