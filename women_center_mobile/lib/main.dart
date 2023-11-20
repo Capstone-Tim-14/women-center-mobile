@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/notifikasi',
         routes: {
           '/': (context) => const Splashscreen(),
-          '/logim': (context) => const Login(),
+          '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),
           '/notifikasi': (context) => HomepageNotifikasi(),
