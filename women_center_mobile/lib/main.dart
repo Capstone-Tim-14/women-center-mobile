@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/notifikasi',
+        initialRoute: '/',
         routes: {
           '/': (context) => const Splashscreen(),
           '/login': (context) => const LoginView(),
