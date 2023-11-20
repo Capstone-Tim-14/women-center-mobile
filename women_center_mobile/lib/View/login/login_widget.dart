@@ -46,6 +46,37 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true; // Menentukan apakah password terlihat atau tidak
+  String _usernameError = '';
+  String _passwordError = '';
+
+  void _performLogin() {
+    // Kredensial yang valid (contoh sederhana)
+    final validEmail = 'rafi@gmail.com';
+    final validPassword = '123';
+
+    // Memeriksa apakah email dan password yang dimasukkan sama dengan kredensial yang valid
+    if (_emailController.text == validEmail &&
+        _passwordController.text == validPassword) {
+      // Autentikasi berhasil, lakukan tindakan setelah login (misalnya, pindah ke halaman beranda)
+      print('Login berhasil');
+      // TODO: Pindah ke halaman beranda atau lakukan tindakan setelah login
+    } else {
+      // Autentikasi gagal, atur pesan kesalahan yang sesuai
+      if (_emailController.text != validEmail) {
+        setState(() {
+          _usernameError = 'Email Tidak Terdaftar';
+          _passwordError =
+              ''; // Reset pesan error password jika sebelumnya ada pesan error
+        });
+      } else if (_passwordController.text != validPassword) {
+        setState(() {
+          _passwordError = 'Password salah';
+          _usernameError =
+              ''; // Reset pesan error username jika sebelumnya ada pesan error
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +84,14 @@ class _LoginWidgetState extends State<LoginWidget> {
       children: [
         Container(
           width: 377,
-          height: 335,
+          height: 370,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 198,
+                height: 220,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -130,13 +161,27 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       // Ganti dengan font family yang diinginkan
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
                         ],
                       ),
                     ),
+                    if (_usernameError.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5, top: 5),
+                        child: Text(
+                          _usernameError,
+                          style: const TextStyle(
+                            color: Color(0xFFFF0000),
+                            fontSize: 12,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                          ),
+                        ),
+                      ),
                     const SizedBox(height: 12),
                     Container(
                       // width: double.infinity,
@@ -171,9 +216,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 Container(
                                   width: 345,
                                   height: 28,
-                                  margin: EdgeInsets.only(),
-                                  // alignment: Alignment.center,
-                                  padding: const EdgeInsets.only(),
                                   child: TextFormField(
                                     controller: _passwordController,
                                     obscureText: _obscureText,
@@ -186,7 +228,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500),
                                       suffixIcon: IconButton(
-                                        padding: const EdgeInsets.only(),
+                                        padding: EdgeInsets.only(
+                                            top: 2, bottom: 2, left: 18),
                                         icon: Icon(
                                           _obscureText
                                               ? Icons.visibility
@@ -206,28 +249,42 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       fontFamily: 'Raleway',
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
+                    if (_passwordError.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 5),
+                        child: Text(
+                          _passwordError,
+                          style: const TextStyle(
+                            color: Color(0xFFFF0000),
+                            fontSize: 12,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 15),
               Container(
                 height: 48,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFF4518D),
+                  color: const Color(0xFFF4518D),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),
                 ),
                 child: InkWell(
                   onTap: () {
-                    print('hai');
+                    _performLogin();
                   },
                   child: const Center(
                     child: Padding(
@@ -250,6 +307,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
               Container(
                 alignment: AlignmentDirectional.centerEnd,
+                // padding: EdgeInsets.only(),
                 child: TextButton(
                   onPressed: () {},
                   child: const Text(
