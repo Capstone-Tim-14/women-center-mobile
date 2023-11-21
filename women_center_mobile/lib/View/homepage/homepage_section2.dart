@@ -16,7 +16,7 @@ class _Home2State extends State<Home2> {
     KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
   ];
 
-  ArtikelModel artikelUntukmu = ArtikelModel("Assets/images/home_3.jpg", "nama", "waktu", "keterangan");
+  ArtikelModel artikelUntukmu = ArtikelModel("Assets/images/home_3.jpg", "nama", "waktu", "keterangan", "Dian Safitri");
 
   @override
   Widget build(BuildContext context) {
