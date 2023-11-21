@@ -199,51 +199,175 @@ class _WidgetHome1State extends State<WidgetHome1> {
                 width: 10,
               ),
               Container(
-                width: 200,
+                width: 231,
                 height: 50,
-                padding: const EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(),
                 decoration: ShapeDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment(0, 12),
-                    end: Alignment(0, 9),
+                  gradient: LinearGradient(
+                    begin: Alignment(1.00, -0.07),
+                    end: Alignment(-1, 0.07),
                     colors: [Color(0xFF9747FF), Color(0xFFF4518D)],
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                      borderRadius: BorderRadius.circular(8)),
                 ),
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 14),
-                      child: Text(
-                        'Temukan dukunganmu',
-                        style: TextStyle(
-                          color: Color(0xFF1F1F1F),
-                          fontSize: 14,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.w600,
-                          height: 0.11,
-                        ),
+                    Container(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 10, right: 10),
+                            child: Text(
+                              'Temukan dukunganmu',
+                              style: TextStyle(
+                                color: Color(0xFF1F1F1F),
+                                fontSize: 14,
+                                fontFamily: 'Raleway',
+                                fontWeight: FontWeight.w600,
+                                height: 0.11,
+                              ),
+                            ),
+                          ),
+                          // const SizedBox(height: 10),
+                          Padding(
+                              padding: EdgeInsets.only(top: 20, left: 88),
+                              child: Text(
+                                'Konseling',
+                                style: TextStyle(
+                                  color: Color(0xFF4B4B4B),
+                                  fontSize: 14,
+                                  fontFamily: 'Raleway',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.11,
+                                ),
+                              ))
+                        ],
                       ),
                     ),
-                    Padding(
-                        padding: EdgeInsets.only(top: 24, left: 88),
-                        child: Text(
-                          'Konseling',
-                          style: TextStyle(
-                            color: Color(0xFF4B4B4B),
-                            fontSize: 14,
-                            fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w600,
-                            height: 0.11,
+                    const SizedBox(width: 15),
+                    Container(
+                      width: 56,
+                      height: 56,
+                      padding: const EdgeInsets.all(8),
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFF8E8EE),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        shadows: [
+                          BoxShadow(
+                            color: Color(0x19212121),
+                            blurRadius: 24,
+                            offset: Offset(0, 4),
+                            spreadRadius: 0,
+                          )
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(),
+                            child: Stack(children: []),
                           ),
-                        ))
+                        ],
+                      ),
+                    )
+                    // Container(
+                    //   width: 56,
+                    //   height: 56,
+                    //   padding: const EdgeInsets.all(2),
+                    //   decoration: ShapeDecoration(
+                    //     color: Color(0xFFF8E8EE),
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(8)),
+                    //     shadows: [
+                    //       BoxShadow(
+                    //         color: Color(0x19212121),
+                    //         blurRadius: 24,
+                    //         offset: Offset(0, 4),
+                    //         spreadRadius: 0,
+                    //       )
+                    //     ],
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     mainAxisAlignment: MainAxisAlignment.start,
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         clipBehavior: Clip.antiAlias,
+                    //         decoration: BoxDecoration(),
+                    //         child: Stack(children: []),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
-              ),
+              )
+              // Container(
+              //   width: 180,
+              //   height: 50,
+              //   padding: const EdgeInsets.only(left: 8),
+              //   decoration: ShapeDecoration(
+              //     gradient: const LinearGradient(
+              //       begin: Alignment(0, 12),
+              //       end: Alignment(0, 9),
+              //       colors: [Color(0xFF9747FF), Color(0xFFF4518D)],
+              //     ),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //     ),
+              //   ),
+              //   child: const Column(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Padding(
+              //         padding: EdgeInsets.only(top: 14),
+              //         child: Text(
+              //           'Temukan dukunganmu',
+              //           style: TextStyle(
+              //             color: Color(0xFF1F1F1F),
+              //             fontSize: 14,
+              //             fontFamily: 'Raleway',
+              //             fontWeight: FontWeight.w600,
+              //             height: 0.11,
+              //           ),
+              //         ),
+              //       ),
+              //       Padding(
+              //           padding: EdgeInsets.only(top: 24, left: 88),
+              //           child: Text(
+              //             'Konseling',
+              //             style: TextStyle(
+              //               color: Color(0xFF4B4B4B),
+              //               fontSize: 14,
+              //               fontFamily: 'Raleway',
+              //               fontWeight: FontWeight.w600,
+              //               height: 0.11,
+              //             ),
+              //           ))
+              //     ],
+              //   ),
+              // ),
+              // Container(
+
+              // )
             ],
           ),
         )
