@@ -446,7 +446,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Konfirmasi Password',
+                          'Confirm Password',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -539,22 +539,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         height: 0,
                       ),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              alignment: AlignmentDirectional.centerStart,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    color: Color(0xFFF9F5F6),
-                    fontSize: 12,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w500,
-                    height: 0,
                   ),
                 ),
               ),

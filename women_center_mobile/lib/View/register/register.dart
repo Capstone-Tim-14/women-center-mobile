@@ -29,6 +29,7 @@ class _RegisterState extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RegisterWidget(),
+                    SizedBox(height: 55),
                     AlreadyHaveAccount(),
                   ],
                 ),
