@@ -7,6 +7,7 @@ import 'View/homepage/homepage_section3.dart';
 import 'View/login/login_view.dart';
 import 'View/onboarding/onboarding.dart';
 import 'View/register/register.dart';
+import 'View/welcome_page/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
         initialRoute: '/',
         routes: {
-          '/': (context) => const Splashscreen(),
+          '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),
