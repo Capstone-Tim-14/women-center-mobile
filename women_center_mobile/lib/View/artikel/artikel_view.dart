@@ -7,21 +7,21 @@ class Artikel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      List<ArtikelModel> artikelList = [
-    ArtikelModel(
-      "assets/images/artikel.png",
-      "Nama Artikel 1",
-      "Waktu Artikel 1",
-      "Keterangan Artikel 1",
-    ),
-    ArtikelModel(
-      "assets/images/artikel2.png",
-      "Nama Artikel 2",
-      "Waktu Artikel 2",
-      "Keterangan Artikel 2",
-    ),
-    // Add more ArtikelModel objects as needed
-  ];
+    List<ArtikelModel> artikelList = [
+      ArtikelModel(
+        "assets/images/artikel2.png",
+        "Dian Safitri",
+        "2 Jam yang lalu",
+        "Tanda Kekerasan Seksual pada Anak: Wajib Dikenali",
+      ),
+      ArtikelModel(
+        "assets/images/artikel1.png",
+        "Syifa Nur Rahmawati",
+        "1 hari yang lalu",
+        "Jadi Wanita Karir, Gimana Cara Hadapi Stres?",
+      ),
+      // Add more ArtikelModel objects as needed
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink[100],

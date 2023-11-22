@@ -174,15 +174,19 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
               ),
               SizedBox(height: 10),
               //-----------------------ARTIKEL LIST-----------------------------
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  // physics: NeverScrollableScrollPhysics(),
-                  itemCount: widget.artikelList.length,
-                  itemBuilder: (context, index) {
-                    return buildArtikelCard(widget.artikelList[index]);
-                  },
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: widget.artikelList.length,
+                        itemBuilder: (context, index) {
+                          return buildArtikelCard(widget.artikelList[index]);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -193,27 +197,40 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
   }
 
   Widget buildArtikelCard(ArtikelModel artikel) {
-    return Card(
+    return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: ListTile(
-        contentPadding: EdgeInsets.all(10.0),
-        leading: Image.network(
-          artikel.gambar,
-          width: 80.0,
-          height: 80.0,
-          fit: BoxFit.cover,
-        ),
-        title: Text(artikel.nama),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Waktu: ${artikel.waktu}"),
-            Text("Keterangan: ${artikel.keterangan}"),
-          ],
-        ),
-        onTap: () {
-          // Handle tap on the card if needed
-        },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Image.asset(
+            artikel.gambar,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Oleh: ${artikel.nama}"),
+                    Text("${artikel.waktu}"),
+                  ],
+                ),
+                Text(
+                  artikel.keterangan,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(height: 5.0), // Spacer between title and subtitle
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
