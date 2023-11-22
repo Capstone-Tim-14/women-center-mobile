@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/artikel/artikel_view.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
@@ -23,13 +24,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/artikel',
         routes: {
           '/': (context) => const Splashscreen(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),
           '/notifikasi': (context) => HomepageNotifikasi(),
+          '/artikel': (context) => const Artikel(),
         });
   }
 }
