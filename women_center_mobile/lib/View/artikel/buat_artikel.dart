@@ -94,6 +94,7 @@ class _buat_artikelState extends State<buat_artikel> {
                   ]
                 ),
                 child: TextFormField(
+                  readOnly: true,
                   decoration: InputDecoration(
                     hintText: 'Upload foto disini...',
                     suffixIcon: InkWell(
