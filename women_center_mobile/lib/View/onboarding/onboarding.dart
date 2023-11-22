@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Onboarding extends StatefulWidget {
-  const Onboarding({super.key});
-
   @override
   _OnboardingState createState() => _OnboardingState();
 }
