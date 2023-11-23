@@ -269,6 +269,63 @@ class _CareerState extends State<Career> {
                     ],
                   ),
                 ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career3.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Regional Logistic Manager',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF4518D)
+                            ),
+                          ),
+                          Text(
+                            'PT. Garudafood Putra Putri Jaya, Tbk',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'North Sumatra, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               )
             ],
           ),
