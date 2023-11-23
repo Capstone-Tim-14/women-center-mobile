@@ -23,14 +23,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)
       ),
 
-    initialRoute: '/artikelku',
+    initialRoute: '/',
     routes: {
-      '/': (context) => const Splashscreen(),
+      // '/': (context) => const Splashscreen(),
+      '/': (context) => Onboarding(),
       // '/logim': (context) => const Login(),
-      '/register': (context) => const Register(),
-      '/onboarding': (context) => Onboarding(),
-      '/homepagenotif3':(context) => HomepageNotifikasi3(),
-      '/artikelku':(context) => const ArtikelKu()
+      // '/register': (context) => const Register(),
+      // '/onboarding': (context) => Onboarding(),
+      // '/homepagenotif3':(context) => HomepageNotifikasi3(),
+      // '/artikelku':(context) => const ArtikelKu()
     }
     );
   }
