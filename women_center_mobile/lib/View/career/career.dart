@@ -212,6 +212,63 @@ class _CareerState extends State<Career> {
                     ],
                   ),
                 ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career2.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Assistant Sales Banquet Manager',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF4518D)
+                            ),
+                          ),
+                          Text(
+                            'ISMAYA GROUP',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Jakarta, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               )
             ],
           ),
