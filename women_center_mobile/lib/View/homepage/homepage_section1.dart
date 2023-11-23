@@ -1,5 +1,6 @@
 //raf taufiqurahman
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'dart:ui';
 
 void main() {
@@ -7,6 +8,21 @@ void main() {
 }
 
 class HomePage1 extends StatelessWidget {
+  String getGreeting() {
+    var currentTime = DateTime.now();
+    var formattedTime = DateFormat.H().format(currentTime);
+
+    if (currentTime.hour >= 5 && currentTime.hour < 11) {
+      return 'Selamat Pagi';
+    } else if (currentTime.hour >= 11 && currentTime.hour < 15) {
+      return 'Selamat Siang';
+    } else if (currentTime.hour >= 15 && currentTime.hour < 18) {
+      return 'Selamat Sore';
+    } else {
+      return 'Selamat Malam';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,11 +39,11 @@ class HomePage1 extends StatelessWidget {
                 style: TextStyle(fontSize: 32),
               ),
               const SizedBox(width: 8),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Selamat Malam',
+                    getGreeting(),
                     style: TextStyle(
                       color: Color(0xFF636363),
                       fontSize: 16,
@@ -87,8 +103,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
         Container(
           width: 360,
           height: 145,
-          padding:
-              const EdgeInsets.only(top: 19, left: 6, right: 6, bottom: 19),
+          // padding: const EdgeInsets.only(left: 6, right: 6, bottom: 19),
           decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
@@ -111,156 +126,26 @@ class _WidgetHome1State extends State<WidgetHome1> {
               const SizedBox(
                 width: 6,
               ),
-              Container(
-                width: 74,
-                height: 106,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                decoration: ShapeDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment(0, 7),
-                    colors: [
-                      Color(0xFFF2F2F2),
-                      Color(0xFF9747FF),
-                    ],
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  shadows: const [
-                    BoxShadow(
-                      color: Color(0x19212121),
-                      blurRadius: 24,
-                      offset: Offset(0, 4),
-                      spreadRadius: 0,
-                    )
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: const Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        // textDirection: TextDirection.ltr,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 9),
-                            child: Text(
-                              'Jumat',
-                              style: TextStyle(
-                                color: Color(0xFFF4518D),
-                                fontSize: 10,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 9),
-                            child: Text(
-                              '15',
-                              style: TextStyle(
-                                color: Color(0xFFF4518D),
-                                fontSize: 40,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 14,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 9),
-                            child: Text(
-                              'September',
-                              style: TextStyle(
-                                color: Color(0xFFF4518D),
-                                fontSize: 10,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w400,
-                                height: 0.18,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                width: 231,
-                height: 50,
-                padding: const EdgeInsets.only(),
-                decoration: ShapeDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment(1.00, -0.07),
-                    end: Alignment(-1, 0.07),
-                    colors: [Color(0xFF9747FF), Color(0xFFF4518D)],
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 10, right: 10),
-                            child: Text(
-                              'Temukan dukunganmu',
-                              style: TextStyle(
-                                color: Color(0xFF1F1F1F),
-                                fontSize: 14,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w600,
-                                height: 0.11,
-                              ),
-                            ),
-                          ),
-                          // const SizedBox(height: 10),
-                          Padding(
-                              padding: EdgeInsets.only(top: 20, left: 88),
-                              child: Text(
-                                'Konseling',
-                                style: TextStyle(
-                                  color: Color(0xFF4B4B4B),
-                                  fontSize: 14,
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.11,
-                                ),
-                              ))
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    Container(
-                      width: 56,
-                      height: 56,
-                      padding: const EdgeInsets.all(8),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 19, left: 6),
+                    child: Container(
+                      width: 74,
+                      height: 106,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF8E8EE),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment(0, 7),
+                          colors: [
+                            Color(0xFFF2F2F2),
+                            Color(0xFF9747FF),
+                          ],
+                        ),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
-                        shadows: [
+                        shadows: const [
                           BoxShadow(
                             color: Color(0x19212121),
                             blurRadius: 24,
@@ -269,438 +154,295 @@ class _WidgetHome1State extends State<WidgetHome1> {
                           )
                         ],
                       ),
-                      child: Row(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: 40,
-                            height: 40,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(),
-                            child: Stack(children: []),
-                          ),
-                        ],
-                      ),
-                    )
-                    // Container(
-                    //   width: 56,
-                    //   height: 56,
-                    //   padding: const EdgeInsets.all(2),
-                    //   decoration: ShapeDecoration(
-                    //     color: Color(0xFFF8E8EE),
-                    //     shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(8)),
-                    //     shadows: [
-                    //       BoxShadow(
-                    //         color: Color(0x19212121),
-                    //         blurRadius: 24,
-                    //         offset: Offset(0, 4),
-                    //         spreadRadius: 0,
-                    //       )
-                    //     ],
-                    //   ),
-                    //   child: Row(
-                    //     mainAxisSize: MainAxisSize.min,
-                    //     mainAxisAlignment: MainAxisAlignment.start,
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //         clipBehavior: Clip.antiAlias,
-                    //         decoration: BoxDecoration(),
-                    //         child: Stack(children: []),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                  ],
-                ),
-              )
-              // Container(
-              //   width: 180,
-              //   height: 50,
-              //   padding: const EdgeInsets.only(left: 8),
-              //   decoration: ShapeDecoration(
-              //     gradient: const LinearGradient(
-              //       begin: Alignment(0, 12),
-              //       end: Alignment(0, 9),
-              //       colors: [Color(0xFF9747FF), Color(0xFFF4518D)],
-              //     ),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(8),
-              //     ),
-              //   ),
-              //   child: const Column(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Padding(
-              //         padding: EdgeInsets.only(top: 14),
-              //         child: Text(
-              //           'Temukan dukunganmu',
-              //           style: TextStyle(
-              //             color: Color(0xFF1F1F1F),
-              //             fontSize: 14,
-              //             fontFamily: 'Raleway',
-              //             fontWeight: FontWeight.w600,
-              //             height: 0.11,
-              //           ),
-              //         ),
-              //       ),
-              //       Padding(
-              //           padding: EdgeInsets.only(top: 24, left: 88),
-              //           child: Text(
-              //             'Konseling',
-              //             style: TextStyle(
-              //               color: Color(0xFF4B4B4B),
-              //               fontSize: 14,
-              //               fontFamily: 'Raleway',
-              //               fontWeight: FontWeight.w600,
-              //               height: 0.11,
-              //             ),
-              //           ))
-              //     ],
-              //   ),
-              // ),
-              // Container(
-
-              // )
-            ],
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class Frame427319114 extends StatefulWidget {
-  @override
-  _Frame427319114State createState() => _Frame427319114State();
-}
-
-class _Frame427319114State extends State<Frame427319114> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: 328,
-            height: 145,
-            padding:
-                const EdgeInsets.only(top: 19, left: 6, right: 7, bottom: 19),
-            decoration: ShapeDecoration(
-              color: const Color(0xFFF8E8EE),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              shadows: const [
-                BoxShadow(
-                  color: Color(0x19212121),
-                  blurRadius: 24,
-                  offset: Offset(0, 4),
-                  spreadRadius: 0,
-                )
-              ],
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: double.infinity,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 74,
-                        height: 106,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: ShapeDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment(0.00, -1.00),
-                            end: Alignment(0, 1),
-                            colors: [
-                              Color(0xFFF4518D),
-                              Color(0xFFF2F2F2),
-                              Color(0xFF9747FF)
-                            ],
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    child: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Jumat',
-                                          style: TextStyle(
-                                            color: Color(0xFFF4518D),
-                                            fontSize: 10,
-                                            fontFamily: 'Raleway',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                          ),
-                                        ),
-                                      ],
+                            child: const Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              // textDirection: TextDirection.ltr,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 9),
+                                  child: Text(
+                                    'Jumat',
+                                    style: TextStyle(
+                                      color: Color(0xFFF4518D),
+                                      fontSize: 10,
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
                                     ),
                                   ),
-                                  const Text(
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 9),
+                                  child: Text(
                                     '15',
                                     style: TextStyle(
                                       color: Color(0xFFF4518D),
-                                      fontSize: 48,
+                                      fontSize: 40,
                                       fontFamily: 'Raleway',
                                       fontWeight: FontWeight.w600,
                                       height: 0,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                SizedBox(
+                                  height: 14,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 9),
+                                  child: Text(
+                                    'September',
+                                    style: TextStyle(
+                                      color: Color(0xFFF4518D),
+                                      fontSize: 10,
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.18,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const Text(
-                              'November',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFFF4518D),
-                                fontSize: 10,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w400,
-                                height: 0.18,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      Container(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                children: [
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // Navigasi ke halaman baru ketika kontainer 1 ditekan
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => NewPage()),
+                          );
+                        },
+                        child: Stack(
+                          clipBehavior: Clip.none,
                           children: [
-                            Container(
-                              width: 231,
-                              height: 50,
-                              padding: const EdgeInsets.only(left: 8),
-                              decoration: ShapeDecoration(
-                                gradient: const LinearGradient(
-                                  begin: Alignment(1.00, -0.07),
-                                  end: Alignment(-1, 0.07),
-                                  colors: [
-                                    Color(0xFF9747FF),
-                                    Color(0xFFF4518D)
+                            // Container 1
+                            Padding(
+                              padding: const EdgeInsets.only(top: 19),
+                              child: Container(
+                                width: 250,
+                                height: 50,
+                                decoration: ShapeDecoration(
+                                  gradient: const LinearGradient(
+                                    begin: Alignment(1.00, -0.07),
+                                    end: Alignment(-1, 0.07),
+                                    colors: [
+                                      Color(0xFF9747FF),
+                                      Color(0xFFF4518D),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 12, top: 17),
+                                      child: Text(
+                                        'Temukan dukunganmu',
+                                        style: TextStyle(
+                                          color: Color(0xFF1F1F1F),
+                                          fontSize: 14,
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.11,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 100, top: 22),
+                                      child: Text(
+                                        'Konseling',
+                                        style: TextStyle(
+                                          color: Color(0xFF4B4B4B),
+                                          fontSize: 14,
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.11,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            // Container 2 (hijau)
+                            Positioned(
+                              left: 194,
+                              top: 16,
+                              child: Container(
+                                width: 56,
+                                height: 56,
+                                padding: const EdgeInsets.all(8),
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFF8E8EE),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: Color(0x19212121),
+                                      blurRadius: 24,
+                                      offset: Offset(0, 4),
+                                      spreadRadius: 0,
+                                    )
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 40,
+                                      height: 40,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(),
+                                      child: Image.asset(
+                                        'Assets/images/note_alt.png', // Ganti dengan path gambar Anda
+                                        width: 24, // Sesuaikan ukuran gambar
+                                        height: 24, // Sesuaikan ukuran gambar
+                                        fit: BoxFit
+                                            .cover, // Atur jenis tampilan gambar
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    child: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          'Temukan dukunganmu',
-                                          style: TextStyle(
-                                            color: Color(0xFF1F1F1F),
-                                            fontSize: 14,
-                                            fontFamily: 'Raleway',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.11,
-                                          ),
-                                        ),
-                                        SizedBox(height: 4),
-                                        Text(
-                                          'Konseling',
-                                          style: TextStyle(
-                                            color: Color(0xFF4B4B4B),
-                                            fontSize: 14,
-                                            fontFamily: 'Raleway',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.11,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigasi ke halaman baru ketika kontainer 1 ditekan
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => NewPage()),
+                          );
+                        },
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            // Container 1
+                            Padding(
+                              padding: const EdgeInsets.only(),
+                              child: Container(
+                                width: 250,
+                                height: 50,
+                                decoration: ShapeDecoration(
+                                  gradient: const LinearGradient(
+                                    begin: Alignment(1.00, -0.07),
+                                    end: Alignment(-1, 0.07),
+                                    colors: [
+                                      Color(0xFF9747FF),
+                                      Color(0xFFF4518D),
+                                    ],
                                   ),
-                                  const SizedBox(width: 15),
-                                  Container(
-                                    padding: const EdgeInsets.all(8),
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFFF8E8EE),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: const Column(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 69, top: 15),
+                                      child: Text(
+                                        'Masih bingung soal karir ?',
+                                        style: TextStyle(
+                                          color: Color(0xFF1F1F1F),
+                                          fontSize: 14,
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.11,
+                                        ),
                                       ),
-                                      shadows: const [
-                                        BoxShadow(
-                                          color: Color(0x19212121),
-                                          blurRadius: 24,
-                                          offset: Offset(0, 4),
-                                          spreadRadius: 0,
-                                        )
-                                      ],
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 40,
-                                          height: 40,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(),
-                                          child: const Stack(
-                                            children: [],
-                                          ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 22),
+                                      child: Text(
+                                        'Women Center',
+                                        style: TextStyle(
+                                          color: Color(0xFF4B4B4B),
+                                          fontSize: 14,
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.11,
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 7),
-                            Container(
-                              height: 50,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    height: 50,
-                                    padding: const EdgeInsets.only(right: 8),
-                                    decoration: ShapeDecoration(
-                                      gradient: const LinearGradient(
-                                        begin: Alignment(-1.00, -0.08),
-                                        end: Alignment(1, 0.08),
-                                        colors: [
-                                          Color(0xFFFF5BCD),
-                                          Color(0xFF9747FF)
-                                        ],
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(8),
-                                          decoration: ShapeDecoration(
-                                            color: const Color(0xFFF8E8EE),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            shadows: const [
-                                              BoxShadow(
-                                                color: Color(0x19212121),
-                                                blurRadius: 24,
-                                                offset: Offset(0, 4),
-                                                spreadRadius: 0,
-                                              )
-                                            ],
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: 40,
-                                                height: 40,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration:
-                                                    const BoxDecoration(),
-                                                child: const Stack(
-                                                  children: [],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Container(
-                                          child: const Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Masih bingung soal karir ?',
-                                                style: TextStyle(
-                                                  color: Color(0xFF1F1F1F),
-                                                  fontSize: 13,
-                                                  fontFamily: 'Raleway',
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 0.13,
-                                                ),
-                                              ),
-                                              SizedBox(height: 4),
-                                              Text(
-                                                'Women Center AI',
-                                                style: TextStyle(
-                                                  color: Color(0xFF4B4B4B),
-                                                  fontSize: 12,
-                                                  fontFamily: 'Raleway',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0.14,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                            // Container 2 (hijau)
+                            Positioned(
+                              top: -3,
+                              child: Container(
+                                width: 56,
+                                height: 56,
+                                padding: const EdgeInsets.all(8),
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFF8E8EE),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                ],
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: Color(0x19212121),
+                                      blurRadius: 24,
+                                      offset: Offset(0, 4),
+                                      spreadRadius: 0,
+                                    )
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 40,
+                                      height: 40,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(),
+                                      child: Image.asset(
+                                        'Assets/images/mdi_work.png', // Ganti dengan path gambar Anda
+                                        width: 24, // Sesuaikan ukuran gambar
+                                        height: 24, // Sesuaikan ukuran gambar
+                                        fit: BoxFit
+                                            .cover, // Atur jenis tampilan gambar
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -708,195 +450,29 @@ class _Frame427319114State extends State<Frame427319114> {
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-//kode keemapt
-
-class CustomWidget extends StatelessWidget {
+class NewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 328,
-      height: 145,
-      padding: const EdgeInsets.only(top: 19, left: 6, right: 7, bottom: 19),
-      decoration: ShapeDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment(0.00, -1.00),
-          end: Alignment(0, 1),
-          colors: [Color(0xFFF4518D), Color(0xFFF2F2F2), Color(0xFF9747FF)],
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        shadows: const [
-          BoxShadow(
-            color: Color(0x19212121),
-            blurRadius: 24,
-            offset: Offset(0, 4),
-            spreadRadius: 0,
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('New Page'),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: const Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Jumat',
-                              style: TextStyle(
-                                color: Color(0xFFF4518D),
-                                fontSize: 10,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Text(
-                        '15',
-                        style: TextStyle(
-                          color: Color(0xFFF4518D),
-                          fontSize: 48,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Text(
-                  'November',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFFF4518D),
-                    fontSize: 10,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w400,
-                    height: 0.18,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: const Center(
+        child: Text(
+          'Halaman Baru',
+          style: TextStyle(fontSize: 24),
+        ),
       ),
     );
   }
 }
-
-//kode ketiga
-// CustomWidget(),
-// Container(
-//   height: double.infinity,
-//   child: Row(
-//     mainAxisSize: MainAxisSize.min,
-//     mainAxisAlignment: MainAxisAlignment.start,
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       Container(
-//         width: 74,
-//         height: 106,
-//         padding: const EdgeInsets.symmetric(vertical: 10),
-//         decoration: ShapeDecoration(
-//           gradient: LinearGradient(
-//             begin: Alignment(0.00, -1.00),
-//             end: Alignment(0, 1),
-//             colors: const [
-//               Color(0xFFF4518D),
-//               Color(0xFFF2F2F2),
-//               Color(0xFF9747FF)
-//             ],
-//           ),
-//           shape: RoundedRectangleBorder(
-//             borderRadius: BorderRadius.circular(8),
-//           ),
-//         ),
-//         child: Column(
-//           mainAxisSize: MainAxisSize.min,
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             Container(
-//               child: Column(
-//                 mainAxisSize: MainAxisSize.min,
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Container(
-//                     child: Column(
-//                       mainAxisSize: MainAxisSize.min,
-//                       mainAxisAlignment: MainAxisAlignment.start,
-//                       crossAxisAlignment:
-//                           CrossAxisAlignment.start,
-//                       children: const [
-//                         Text(
-//                           'Jumat',
-//                           style: TextStyle(
-//                             color: Color(0xFFF4518D),
-//                             fontSize: 10,
-//                             fontFamily: 'Raleway',
-//                             fontWeight: FontWeight.w400,
-//                             height: 0,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                   Text(
-//                     '15',
-//                     style: TextStyle(
-//                       color: Color(0xFFF4518D),
-//                       fontSize: 48,
-//                       fontFamily: 'Raleway',
-//                       fontWeight: FontWeight.w600,
-//                       height: 0,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             Text(
-//               'November',
-//               textAlign: TextAlign.center,
-//               style: TextStyle(
-//                 color: Color(0xFFF4518D),
-//                 fontSize: 10,
-//                 fontFamily: 'Raleway',
-//                 fontWeight: FontWeight.w400,
-//                 height: 0.18,
-//               ),
-//             ),
-//           ],
-//         ),
-//       )
-//     ],
-//   ),
-// ),
