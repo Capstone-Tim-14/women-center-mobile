@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../bottomnavigationbar/bottom_navigation_bar.dart';
+
 class Career extends StatefulWidget {
   @override
   _CareerState createState() => _CareerState();
@@ -14,14 +16,13 @@ class _CareerState extends State<Career> {
   Color _textColor3 = Color.fromARGB(255, 245, 67, 132);
   Color _warna4 = Color.fromARGB(255, 240, 192, 209);
   Color _textColor4 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna5 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor5 = Color.fromARGB(255, 245, 67, 132);
   Color _warna6 = Color.fromARGB(255, 240, 192, 209);
   Color _textColor6 = Color.fromARGB(255, 245, 67, 132);
   Color _warna7 = Color.fromARGB(255, 240, 192, 209);
   Color _textColor7 = Color.fromARGB(255, 245, 67, 132);
   Color _warna8 = Color.fromARGB(255, 240, 192, 209);
   Color _textColor8 = Color.fromARGB(255, 245, 67, 132);
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -326,10 +327,394 @@ class _CareerState extends State<Career> {
                     ],
                   ),
                 ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career5.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Data Engineer - Senior Manager',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF4518D)
+                            ),
+                          ),
+                          Text(
+                            'Gojek',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Jakarta, Jakarta, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career4.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFF4518D),
+                              ),
+                              children: [
+                                TextSpan(text: 'Data Product Manager Intern -\n'),
+                                TextSpan(text: 'Business Intelligence'),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            'Shopee',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Jakarta, Jakarta, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(height: 15),
+              Divider(),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Other job",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career2.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Assistant Sales Banquet Manager',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF4518D)
+                            ),
+                          ),
+                          Text(
+                            'ISMAYA GROUP',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Jakarta, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career4.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFF4518D),
+                              ),
+                              children: [
+                                TextSpan(text: 'Data Product Manager Intern -\n'),
+                                TextSpan(text: 'Business Intelligence'),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            'Shopee',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Jakarta, Jakarta, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career5.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Data Engineer - Senior Manager',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF4518D)
+                            ),
+                          ),
+                          Text(
+                            'Gojek',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Jakarta, Jakarta, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Divider(),
+              SizedBox(height: 7),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 61,
+                        height: 61,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/career3.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Regional Logistic Manager',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF4518D)
+                            ),
+                          ),
+                          Text(
+                            'PT. Garudafood Putra Putri Jaya, Tbk',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'North Sumatra, Indonesia (On Site)',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            '20 Aug 2023',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Positioned(
+                bottom: 16.0,
+                left: 16.0,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    // Handle button press
+                  },
+                  backgroundColor: Colors.pink, // Customize the button color
+                  child: Text(
+                    'Open Center',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
               )
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        selectedIndex: _selectedIndex, 
+        onItemTapped: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        }
       ),
     );
   }
