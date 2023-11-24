@@ -45,7 +45,10 @@ class RegisterWidget extends StatefulWidget {
 }
 
 class _RegisterWidgetState extends State<RegisterWidget> {
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastnameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmpasswordController =
@@ -68,7 +71,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 200),
+                  const SizedBox(height: 170),
                   const Text(
                     'Create Account',
                     style: TextStyle(
@@ -80,6 +83,111 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     ),
                   ),
                   const SizedBox(height: 12),
+                  //------------------------ FIRST NAME & LAST NAME ----------------------------
+                  Container(
+                    width: double.infinity,
+                    // height: 68,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //-------------FIRST NAME------------
+                        Container(
+                          width: 180,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'First Name',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Raleway',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Container(
+                                width: double.infinity,
+                                height: 48,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: TextFormField(
+                                  controller: _firstnameController,
+                                  decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "First Name",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontFamily: 'Raleway',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500)),
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Raleway'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        //---------------LAST NAME-----------------
+                        Container(
+                          width: 180,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Last Name',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Raleway',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Container(
+                                width: double.infinity,
+                                height: 48,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)),
+                                    color: Colors.white),
+                                child: TextFormField(
+                                  controller: _lastnameController,
+                                  decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Last Name",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontFamily: 'Raleway',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500)),
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Raleway',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 12),
                   //------------------------ USERNAME ----------------------------
                   Container(
                     width: double.infinity,
@@ -119,6 +227,65 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                   decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Masukkan Username",
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: 'Raleway',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Raleway',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  //------------------------ PHONE NUMBER ----------------------------
+                  Container(
+                    width: double.infinity,
+                    height: 68,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Phone Number',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 250,
+                                height: 28,
+                                child: TextFormField(
+                                  controller: _phoneController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Masukkan nomor telpon",
                                     hintStyle: TextStyle(
                                       color: Colors.grey,
                                       fontFamily: 'Raleway',
@@ -279,7 +446,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Konfirmasi Password',
+                          'Confirm Password',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -372,22 +539,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         height: 0,
                       ),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              alignment: AlignmentDirectional.centerStart,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    color: Color(0xFFF9F5F6),
-                    fontSize: 12,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w500,
-                    height: 0,
                   ),
                 ),
               ),
