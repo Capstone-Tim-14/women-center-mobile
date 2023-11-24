@@ -17,7 +17,9 @@ class _DetailJobState extends State<DetailJob> {
         backgroundColor: Colors.pink[100],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+
+          },
         ),
         title: Center(
           child: Text(
@@ -140,6 +142,45 @@ class _DetailJobState extends State<DetailJob> {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start, 
+                    children: [
+                      SizedBox(width: 3),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle button tap
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xFFF4518D), // Warna latar belakang tombol
+                              onPrimary: Colors.white, // Warna teks tombol
+                            ),
+                            child: Text('Visit Linkedln', style: TextStyle(fontSize: 16)),
+                          ),
+                          SizedBox(width: 5),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle button tap
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: Color(0xFFF4518D),
+                              elevation: 0,
+                              side: const BorderSide(
+                                width: 1.0,
+                                color: Color(0xFFF4518D)
+                              )
+                            ),
+                            child: Text('Save', style: TextStyle(fontSize: 16)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
