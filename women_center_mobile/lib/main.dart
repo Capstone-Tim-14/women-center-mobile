@@ -17,12 +17,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'women center',
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
         '/': (context) => const Splashscreen(),
         '/login': (context) =>  LoginView(),
         '/register': (context) => const Register(),
-        '/onboarding': (context) => const Onboarding(),
+        '/onboarding': (context) => Onboarding(),
       },
     );
   }
