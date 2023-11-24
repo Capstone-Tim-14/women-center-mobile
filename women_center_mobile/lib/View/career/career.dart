@@ -690,22 +690,22 @@ class _CareerState extends State<Career> {
                   ),
                 ],
               ),
-              Positioned(
-                bottom: 16.0,
-                left: 16.0,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    // Handle button press
-                  },
-                  backgroundColor: Colors.pink, // Customize the button color
-                  child: Text(
-                    'Open Center',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ),
-              )
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle button tap
+        },
+        backgroundColor: const Color.fromARGB(255, 245, 63, 126),
+        shape: CircleBorder(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Open', style: TextStyle(color: Colors.white)),
+            Text('Center', style: TextStyle(color: Colors.white)),
+          ],
         ),
       ),
       bottomNavigationBar: MyBottomNavigationBar(

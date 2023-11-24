@@ -25,11 +25,12 @@ class MyApp extends StatelessWidget {
 
     initialRoute: '/',
     routes: {
-      '/': (context) => const Splashscreen(),
+      // '/': (context) => const Splashscreen(),
+      '/': (context) => Career(),
       // '/logim': (context) => const Login(),
-      '/register': (context) => const Register(),
-      '/onboarding': (context) => Onboarding(),
-      '/homepagenotif3':(context) => HomepageNotifikasi3()
+      // '/register': (context) => const Register(),
+      // '/onboarding': (context) => Onboarding(),
+      // '/homepagenotif3':(context) => HomepageNotifikasi3()
     }
     );
   }
