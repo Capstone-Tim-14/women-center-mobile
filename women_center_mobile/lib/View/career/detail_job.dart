@@ -193,6 +193,7 @@ class _DetailJobState extends State<DetailJob> {
                 margin: EdgeInsets.all(24.0),
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
+                  // padding: EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -270,7 +271,80 @@ class _DetailJobState extends State<DetailJob> {
                   ],
                 ),
               ),
-            )
+            ),
+            Center(
+              child: Card(
+                color: Color(0xFFF8E8EE),
+                margin: EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('About the Job', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Company Description : PT OS Selnajaya Indonesia merupakan Perusahaan yang mengembangkan Jasa yang terkait sumber daya manusia secara komprehensif. Perusahaan ini tergabung ke dalam frup internasional outsourcing INC. Yang berkantor pusat di Tokyo dan tercatat dalam Bursa Efek Tokyo.',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Job Description:',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              '       Based on position and experience',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: FractionallySizedBox(
+                        widthFactor: 1.00,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 17.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Handle button tap
+                            },
+                            child: Text('See More'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFFDCEDF),
+                              minimumSize: Size(double.infinity, 48), // Lebar tombol mengisi card penuh
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12.0), // Mengotak bagian bawah kiri
+                                  bottomRight: Radius.circular(12.0), // Mengotak bagian bawah kanan
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
