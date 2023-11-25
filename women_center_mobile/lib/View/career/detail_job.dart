@@ -189,7 +189,7 @@ class _DetailJobState extends State<DetailJob> {
             ),
             Center(
               child: Card(
-                elevation: 5.0,
+                color: Color(0xFFF8E8EE),
                 margin: EdgeInsets.all(24.0),
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
@@ -229,7 +229,62 @@ class _DetailJobState extends State<DetailJob> {
                   ),
                 ),
               ),
+            ),
+            Card(
+              color: Color(0xFFF8E8EE),
+              margin: EdgeInsets.all(24.0),
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Set alert for similar jobs',
+                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8.0),
+                        Text(
+                          'Engineer, Jakarta, Indonesia',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Handle button tap
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        foregroundColor: Color(0xFFF4518D),
+                        elevation: 0,
+                        side: const BorderSide(
+                          width: 1.0,
+                          color: Color(0xFFF4518D)
+                        )
+                      ),
+                      child: Text('Set Alert', style: TextStyle(fontSize: 16)),
+                    )
+                  ],
+                ),
+              ),
             )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle button tap
+        },
+        backgroundColor: const Color.fromARGB(255, 245, 63, 126),
+        shape: CircleBorder(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Open', style: TextStyle(color: Colors.white)),
+            Text('Center', style: TextStyle(color: Colors.white)),
           ],
         ),
       ),
