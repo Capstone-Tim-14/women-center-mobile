@@ -4,6 +4,7 @@ import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 // import 'View/login/login.dart';
+import 'View/career/career.dart';
 import 'View/register/register.dart';
 
 
