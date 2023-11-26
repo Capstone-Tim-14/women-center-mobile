@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_tabBar.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
+// import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 
 class Payment2 extends StatefulWidget {
   const Payment2({super.key});
@@ -10,6 +15,25 @@ class Payment2 extends StatefulWidget {
 class _Payment2State extends State<Payment2> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(255, 249, 245, 246),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 253, 206, 223),
+          title: Text('Pembayaran'),
+          // bottom: TabBarPayment(), // Use TabBarPayment directly
+        ),
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // PaymentWidget2(),
+              // HomePage()
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
