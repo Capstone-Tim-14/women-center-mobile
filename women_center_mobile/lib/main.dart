@@ -7,9 +7,9 @@ import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
-import 'View/login/login.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
+import 'View/login/login_view.dart';
 import 'View/register/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     initialRoute: '/',
     routes: {
       '/': (context) => const Splashscreen(),
-      '/login': (context) => const Login(),
+      '/login': (context) => const LoginView(),
       '/register': (context) => const Register(),
       '/onboarding': (context) => Onboarding(),
       '/homepagenotif3':(context) => HomepageNotifikasi3(),
