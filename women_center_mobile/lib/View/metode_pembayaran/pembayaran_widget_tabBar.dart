@@ -107,18 +107,23 @@ class _HomePageState extends State<HomePage>
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(left: 23, right: 23),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Pilih Pembayaran',
-                  style: TextStyle(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 23, right: 23),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Pilih Pembayaran',
+                      style: TextStyle(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           TabBar(
             controller: _tabController,
@@ -131,6 +136,9 @@ class _HomePageState extends State<HomePage>
                 _currentTabIndex = index;
               });
             },
+            labelPadding: EdgeInsets.only(left: 20),
+            labelStyle: TextStyle(fontSize: 16),
+            unselectedLabelStyle: TextStyle(fontSize: 14),
           ),
           Expanded(
             child: TabBarView(
@@ -148,24 +156,18 @@ class _HomePageState extends State<HomePage>
 
   Widget _mBanking() {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('M-Banking'),
-      ),
-      body: Center(
-        child: Text('Pembayaran bank'),
+      body: Container(
+        padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
+        child: Text('//ambil dari api?'),
       ),
     );
   }
 
   Widget _atm() {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('ATM'),
-      ),
-      body: Center(
-        child: Text('ATM'),
+      body: Container(
+        padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
+        child: Text('Ambil dariApi?'),
       ),
     );
   }

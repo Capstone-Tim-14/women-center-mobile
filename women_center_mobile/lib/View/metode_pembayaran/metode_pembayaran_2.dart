@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_tabBar.dart';
-import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget.dart';
 import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 // import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 
