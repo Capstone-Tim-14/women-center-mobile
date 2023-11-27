@@ -31,7 +31,7 @@ class _artikelKonselorState extends State<artikelKonselor> {
           )),
           automaticallyImplyLeading: false,
         ),
-        body: const SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
@@ -39,6 +39,18 @@ class _artikelKonselorState extends State<artikelKonselor> {
                   height: 17,
                 ),
                 Search(),
+                SizedBox(
+                  height: 20,
+                ),
+                StatusContainer(),
+                SizedBox(
+                  height: 25,
+                ),
+                CustomButton(),
+                SizedBox(
+                  height: 25,
+                ),
+                ArtikelCardScrollable(),
               ],
             ),
           ),
