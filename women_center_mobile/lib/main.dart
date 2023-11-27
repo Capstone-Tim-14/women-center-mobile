@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
+import 'package:women_center_mobile/View/homepage/homepage_view.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/onboarding': (context) => const Onboarding(),
           '/notifikasi': (context) => HomepageNotifikasi(),
           '/artikel2': (context) => const Artikel2(),
+          '/homepageview':(context) => const HomepageSection(),
         });
   }
 }
