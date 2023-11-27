@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:women_center_mobile/View/register/register_widget.dart';
 
 class Register extends StatefulWidget {
@@ -17,10 +18,9 @@ class _RegisterState extends State<Register> {
         body: Stack(
           children: <Widget>[
             Container(
-              decoration:
-                  BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/register2.png'),
+                    image: AssetImage('Assets/images/register2.png'),
                     fit: BoxFit.cover),
               ),
             ),

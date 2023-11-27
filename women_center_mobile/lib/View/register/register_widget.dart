@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
   const AlreadyHaveAccount({super.key});
@@ -54,6 +55,25 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final TextEditingController _confirmpasswordController =
       TextEditingController();
   bool _obscureText = true;
+  final Dio _dio = Dio();
+  // Dio dio = Dio();
+  // dio.options.headers["Access-Control-Allow-Origin"] = "*";
+
+  Future<Response> register(String firstname, String lastname, String username,
+      String phone, String email, String password) {
+    return _dio.post(
+      'http://api-ferminacare.tech/api/v1/users/register',
+      data: {
+        "first_name": firstname,
+        "last_name": lastname,
+        "username": username,
+        "email": email,
+        "password": password,
+        "phone_number": phone,
+        "address": "null"
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -522,8 +542,20 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
               ),
               child: InkWell(
-                onTap: () {
-                  print('sukses');
+                onTap: () async {
+                  var response = await register(
+                      _firstnameController.text,
+                      _lastnameController.text,
+                      _usernameController.text,
+                      _phoneController.text,
+                      _emailController.text,
+                      _passwordController.text);
+                  if (response.statusCode == 201) {
+                    Navigator.pushNamed(context, '/login');
+                    print(response.statusCode);
+                  } else {
+                    // maka akan keluar notifikasi
+                  }
                 },
                 child: const Center(
                   child: Padding(
