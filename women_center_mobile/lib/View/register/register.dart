@@ -17,9 +17,10 @@ class _RegisterState extends State<Register> {
         body: Stack(
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
+              decoration:
+                  BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/registerimage.png'),
+                    image: AssetImage('assets/images/register2.png'),
                     fit: BoxFit.cover),
               ),
             ),
