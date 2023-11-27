@@ -28,10 +28,16 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor:
-            Colors.pink.shade200, // Set the background color to pink
-        title: Text('Pembayaran'),
+        backgroundColor: Colors.pink.shade200,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {},
+        ),
+        title: Text(
+          'Pembayaran',
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -149,6 +155,30 @@ class _HomePageState extends State<HomePage>
               ],
             ),
           ),
+          SizedBox(height: 20),
+          //--------------------BUTTOM SELESAI -----------------
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8, left: 23, right: 23),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.pink[300],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                    ),
+                    child: Text(
+                      'Selesai',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
