@@ -60,6 +60,9 @@ flutter:
   assets:
     - Assets/images/
     - Assets/images/backgroud_loginPage.jpeg
+    - Assets/images/pic_artikel1.png
+    - Assets/images/pic_artikel2.png
+    - Assets/images/pic_artikel3.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
