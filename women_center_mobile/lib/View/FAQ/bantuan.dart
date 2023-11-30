@@ -171,7 +171,7 @@ class _FAQState extends State<FAQ> {
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                        'Teks tambahan di sini...',
+                        'Aplikasi konseling wanita menyediakan fitur-fitur seperti konseling online, konseling telepon, dan konseling chat. Selain itu, aplikasi ini juga menyediakan artikel-artikel tentang kesehatan mental dan kesehatan wanita.',
                         style: TextStyle(fontSize: 14),
                       ),
                     ),
