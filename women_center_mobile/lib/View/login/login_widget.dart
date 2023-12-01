@@ -1,5 +1,8 @@
 //Rafi Taufiqurahman Create LoginWidget
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/Models/login_model/model_login.dart';
+import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/ViewModel/api_login/login_api.dart';
 
 //widget tidak punya akun
 class DonTHaveAnAccountSignUp extends StatelessWidget {
@@ -7,7 +10,6 @@ class DonTHaveAnAccountSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      // verticalDirection: VerticalDirection.up,
       children: [
         const Text(
           "Don’t have an account ?",
@@ -46,37 +48,9 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true; // Menentukan apakah password terlihat atau tidak
-  String _usernameError = '';
-  String _passwordError = '';
+  String _massageError = '';
 
-  void _performLogin() {
-    // Kredensial yang valid (contoh sederhana)
-    final validEmail = 'rafi@gmail.com';
-    final validPassword = '123';
-
-    // Memeriksa apakah email dan password yang dimasukkan sama dengan kredensial yang valid
-    if (_emailController.text == validEmail &&
-        _passwordController.text == validPassword) {
-      // Autentikasi berhasil, lakukan tindakan setelah login (misalnya, pindah ke halaman beranda)
-      print('Login berhasil');
-      // TODO: Pindah ke halaman beranda atau lakukan tindakan setelah login
-    } else {
-      // Autentikasi gagal, atur pesan kesalahan yang sesuai
-      if (_emailController.text != validEmail) {
-        setState(() {
-          _usernameError = 'Email Tidak Terdaftar';
-          _passwordError =
-              ''; // Reset pesan error password jika sebelumnya ada pesan error
-        });
-      } else if (_passwordController.text != validPassword) {
-        setState(() {
-          _passwordError = 'Password salah';
-          _usernameError =
-              ''; // Reset pesan error username jika sebelumnya ada pesan error
-        });
-      }
-    }
-  }
+  final LoginViewModel _loginViewModel = LoginViewModel(); //import login api
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +65,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 220,
+                height: 240,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -168,11 +142,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ],
                       ),
                     ),
-                    if (_usernameError.isNotEmpty)
+                    if (_massageError.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(left: 5, top: 5),
                         child: Text(
-                          _usernameError,
+                          'Email $_massageError',
                           style: const TextStyle(
                             color: Color(0xFFFF0000),
                             fontSize: 12,
@@ -256,11 +230,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ],
                       ),
                     ),
-                    if (_passwordError.isNotEmpty)
+                    if (_massageError.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(top: 5, left: 5),
                         child: Text(
-                          _passwordError,
+                          'Password $_massageError',
                           style: const TextStyle(
                             color: Color(0xFFFF0000),
                             fontSize: 12,
@@ -284,7 +258,30 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    _performLogin();
+                    //ambil data dari Controller
+                    String email = _emailController.text;
+                    String password = _passwordController.text;
+
+                    // Buat objek LoginData dari input pengguna
+                    LoginData loginData =
+                        LoginData(email: email, password: password);
+                    _loginViewModel
+                        .loginUser(loginData)
+                        .then((isLoginSuccessful) {
+                      if (isLoginSuccessful) {
+                        print('ke halaman on boarding');
+                        Navigator.pushNamed(context, '/onboarding');
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => Onboarding()),
+                        // );
+                      } else {
+                        // Tampilkan pesan kesalahan jika login gagal
+                        setState(() {
+                          _massageError = 'salah';
+                        });
+                      }
+                    });
                   },
                   child: const Center(
                     child: Padding(
@@ -329,3 +326,33 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 }
+
+
+// void _performLogin() {
+  //   // Kredensial yang valid (contoh sederhana)
+  //   final validEmail = 'rafi@gmail.com';
+  //   final validPassword = '123';
+
+  //   // Memeriksa apakah email dan password yang dimasukkan sama dengan kredensial yang valid
+  //   if (_emailController.text == validEmail &&
+  //       _passwordController.text == validPassword) {
+  //     // Autentikasi berhasil, lakukan tindakan setelah login (misalnya, pindah ke halaman beranda)
+  //     print('Login berhasil');
+  //     // TODO: Pindah ke halaman beranda atau lakukan tindakan setelah login
+  //   } else {
+  //     // Autentikasi gagal, atur pesan kesalahan yang sesuai
+  //     if (_emailController.text != validEmail) {
+  //       setState(() {
+  //         _usernameError = 'Email Tidak Terdaftar';
+  //         _passwordError =
+  //             ''; // Reset pesan error password jika sebelumnya ada pesan error
+  //       });
+  //     } else if (_passwordController.text != validPassword) {
+  //       setState(() {
+  //         _passwordError = 'Password salah';
+  //         _usernameError =
+  //             ''; // Reset pesan error username jika sebelumnya ada pesan error
+  //       });
+  //     }
+  //   }
+  // }
