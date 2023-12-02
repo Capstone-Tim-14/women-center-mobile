@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/konseling/konseling_pilihan_konselor_2.dart';
 import 'package:women_center_mobile/View/artikel/artikel_view.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/View/register/register_widget.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
@@ -13,7 +15,12 @@ import 'View/register/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => RegisterProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
