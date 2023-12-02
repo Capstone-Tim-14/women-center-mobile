@@ -6,6 +6,7 @@ import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi
 import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/View/profil_page/profil_page.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        initialRoute: '/register',
+        initialRoute: '/profil_user',
         routes: {
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           '/homepagenotif3': (context) => HomepageNotifikasi3(),
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),
+          '/profil_user':(context) => ProfilPage(),
         });
   }
 }
