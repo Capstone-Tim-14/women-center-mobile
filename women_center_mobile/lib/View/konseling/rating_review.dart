@@ -23,15 +23,25 @@ class _ReviewState extends State<Review> {
       ),
       home: Scaffold(
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-          child: Column(
-            children: [
-              ImageContainer(),
-              SizedBox(height: 40),
-              DonwoldHasilTes(),
-              SizedBox(height: 24),
-              Kolom(),
-            ],
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ImageContainer(),
+                  const SizedBox(height: 40),
+                  DonwoldHasilTes(),
+                  const SizedBox(height: 24),
+                  Kolom(),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Button()
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -56,7 +66,7 @@ class ImageContainer extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.circular(10), // Ubah sesuai kebutuhan
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage(
                       'Assets/images/centang_ijo.png'), // Ganti dengan URL gambar Anda
                   fit: BoxFit.cover, // Sesuaikan dengan kebutuhan
@@ -64,8 +74,8 @@ class ImageContainer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 35),
-          Text(
+          const SizedBox(height: 35),
+          const Text(
             '''     Terimakasih Telah 
  Melakukan Konseling!''',
             style: TextStyle(
@@ -95,7 +105,7 @@ class DonwoldHasilTes extends StatelessWidget {
             color: Colors.white,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            shadows: [
+            shadows: const [
               BoxShadow(
                 color: Color(0x1E000000),
                 blurRadius: 6,
@@ -109,7 +119,7 @@ class DonwoldHasilTes extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Download Hasil Tes',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -125,8 +135,8 @@ class DonwoldHasilTes extends StatelessWidget {
                 width: 24,
                 height: 24,
                 clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(),
-                child: Stack(children: [
+                decoration: const BoxDecoration(),
+                child: const Stack(children: [
                   Positioned.fill(
                     child: Icon(
                       Icons.download_sharp,
@@ -162,7 +172,7 @@ class _KolomState extends State<Kolom> {
             color: Colors.white,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            shadows: [
+            shadows: const [
               BoxShadow(
                 color: Color(0x1E000000),
                 blurRadius: 6,
@@ -194,7 +204,7 @@ class _KolomState extends State<Kolom> {
                             width: 42,
                             height: 42,
                             decoration: ShapeDecoration(
-                              image: DecorationImage(
+                              image: const DecorationImage(
                                 image: NetworkImage(
                                     "https://via.placeholder.com/42x42"),
                                 fit: BoxFit.fill,
@@ -205,7 +215,7 @@ class _KolomState extends State<Kolom> {
                             ),
                           ),
                           const SizedBox(width: 12),
-                          Text(
+                          const Text(
                             'Stenafie Russel, M.Psi., Psikolog',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -229,7 +239,7 @@ class _KolomState extends State<Kolom> {
                         children: [
                           Container(
                             height: 36,
-                            child: Column(
+                            child: const Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -245,7 +255,7 @@ class _KolomState extends State<Kolom> {
                                     height: 0,
                                   ),
                                 ),
-                                const SizedBox(height: 6),
+                                SizedBox(height: 6),
                                 SizedBox(
                                   width: 302,
                                   child: Text(
@@ -279,40 +289,40 @@ class _KolomState extends State<Kolom> {
                                   width: 32,
                                   height: 32,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(),
-                                  child: Stack(children: []),
+                                  decoration: const BoxDecoration(),
+                                  child: const Stack(children: []),
                                 ),
                                 const SizedBox(width: 24),
                                 Container(
                                   width: 32,
                                   height: 32,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(),
-                                  child: Stack(children: []),
+                                  decoration: const BoxDecoration(),
+                                  child: const Stack(children: []),
                                 ),
                                 const SizedBox(width: 24),
                                 Container(
                                   width: 32,
                                   height: 32,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(),
-                                  child: Stack(children: []),
+                                  decoration: const BoxDecoration(),
+                                  child: const Stack(children: []),
                                 ),
                                 const SizedBox(width: 24),
                                 Container(
                                   width: 32,
                                   height: 32,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(),
-                                  child: Stack(children: []),
+                                  decoration: const BoxDecoration(),
+                                  child: const Stack(children: []),
                                 ),
                                 const SizedBox(width: 24),
                                 Container(
                                   width: 32,
                                   height: 32,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(),
-                                  child: Stack(children: []),
+                                  decoration: const BoxDecoration(),
+                                  child: const Stack(children: []),
                                 ),
                               ],
                             ),
@@ -333,7 +343,7 @@ class _KolomState extends State<Kolom> {
                   children: [
                     Container(
                       height: 50,
-                      child: Column(
+                      child: const Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -349,7 +359,7 @@ class _KolomState extends State<Kolom> {
                               height: 0,
                             ),
                           ),
-                          const SizedBox(height: 6),
+                          SizedBox(height: 6),
                           SizedBox(
                             width: 303,
                             child: Text(
@@ -370,36 +380,95 @@ class _KolomState extends State<Kolom> {
                     Container(
                       width: 303,
                       height: 122,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 10),
+                      // padding: const EdgeInsets.symmetric(
+                      //     horizontal: 16, vertical: 10),
+                      padding: const EdgeInsets.only(left: 10),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF5F5F5),
+                        color: const Color(0xFFF5F5F5),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
-                      child: Column(
+                      child: const Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Isi komentar anda disini...',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF939393),
-                              fontSize: 12,
-                              fontFamily: 'Raleway',
-                              fontWeight: FontWeight.w400,
-                              height: 0.14,
+                          TextField(
+                            maxLines: 5, // Menentukan jumlah baris maksimum
+                            decoration: InputDecoration(
+                              hintText: 'Isi komentar anda disini...',
+                              hintStyle: TextStyle(
+                                color: Color(0xFF939393),
+                                fontSize: 12,
+                                fontFamily: 'Raleway',
+                                fontWeight: FontWeight.w400,
+                                height: 0.14,
+                              ),
+                              border: InputBorder.none,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Button extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 345,
+          height: 40,
+          clipBehavior: Clip.antiAlias,
+          decoration: ShapeDecoration(
+            color: const Color(0xFFF4518D),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Kirim Review',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                          height: 0.10,
+                          letterSpacing: 0.10,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
