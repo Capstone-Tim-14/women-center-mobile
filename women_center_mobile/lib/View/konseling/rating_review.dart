@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 void main(List<String> args) {
   runApp(const Review());
 }
@@ -32,7 +34,7 @@ class _ReviewState extends State<Review> {
                 children: [
                   ImageContainer(),
                   const SizedBox(height: 40),
-                  DonwoldHasilTes(),
+                  DownloadHasilTes(),
                   const SizedBox(height: 24),
                   Kolom(),
                   const SizedBox(
@@ -92,7 +94,7 @@ class ImageContainer extends StatelessWidget {
   }
 }
 
-class DonwoldHasilTes extends StatelessWidget {
+class DownloadHasilTes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -103,8 +105,9 @@ class DonwoldHasilTes extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           decoration: ShapeDecoration(
             color: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
             shadows: const [
               BoxShadow(
                 color: Color(0x1E000000),
@@ -131,20 +134,28 @@ class DonwoldHasilTes extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 121),
-              Container(
-                width: 24,
-                height: 24,
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(),
-                child: const Stack(children: [
-                  Positioned.fill(
-                    child: Icon(
-                      Icons.download_sharp,
-                      color: Colors
-                          .black, // Sesuaikan dengan warna yang diinginkan
-                    ),
+              GestureDetector(
+                onTap: () {
+                  // Fungsi yang akan dijalankan saat ikon diklik
+                  // Misalnya, tampilkan pesan atau jalankan fungsi download
+                  print('Ikon Download diklik!');
+                },
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: const BoxDecoration(),
+                  child: const Stack(
+                    children: [
+                      Positioned.fill(
+                        child: Icon(
+                          Icons.download_sharp,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                ]),
+                ),
               ),
             ],
           ),
@@ -425,56 +436,71 @@ class _KolomState extends State<Kolom> {
 class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 345,
-          height: 40,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xFFF4518D),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
-            ),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Kirim Review',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          height: 0.10,
-                          letterSpacing: 0.10,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        _showSuccessMessage(context);
+      },
+      child: Container(
+        width: 345,
+        height: 40,
+        clipBehavior: Clip.antiAlias,
+        decoration: ShapeDecoration(
+          color: const Color(0xFFF4518D),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
           ),
         ),
-      ],
+        child: Center(
+          child: Text(
+            'Kirim Review',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w500,
+              height: 1.0,
+              letterSpacing: 0.10,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showSuccessMessage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          child: Container(
+            width: 272,
+            height: 104,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: Text(
+                'Berhasil Memberikan Rating & Review',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF1E1E1E),
+                  fontSize: 16,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w700,
+                  height: 1.0,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
