@@ -134,7 +134,8 @@ class _EditProfileState extends State<EditProfile> {
               usernameController: _usernameController,
               firstnameController: _firstnameController,
               lastnameController: _lastnameController,
-              tanggalController: _tanggalController,
+              tanggalController: DateTime
+                  .now(), // Provide a default date or use any DateTime value
             ),
           ),
           SizedBox(height: 30),
