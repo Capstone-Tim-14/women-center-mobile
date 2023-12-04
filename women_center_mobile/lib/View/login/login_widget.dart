@@ -270,11 +270,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                         .then((isLoginSuccessful) {
                       if (isLoginSuccessful) {
                         print('ke halaman on boarding');
-                        Navigator.pushNamed(context, '/onboarding');
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => Onboarding()),
-                        // );
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Onboarding()),
+                        );
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal
                         setState(() {
