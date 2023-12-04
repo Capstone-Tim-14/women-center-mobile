@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
@@ -23,6 +25,14 @@ class _CareerState extends State<Career> {
   Color _warna8 = Color.fromARGB(255, 240, 192, 209);
   Color _textColor8 = Color.fromARGB(255, 245, 67, 132);
   int _selectedIndex = 0;
+  late JobViewModel _jobViewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _jobViewModel = Provider.of<JobViewModel>(context, listen: false);
+    _jobViewModel.fetchJobs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,294 +169,97 @@ class _CareerState extends State<Career> {
               ),
               SizedBox(height: 7),
               Divider(),
+              // Consumer<JobViewModel>(
+              //   builder: (context, jobViewModel, child) {
+              //     if (jobViewModel.jobs.isEmpty) {
+              //       return Container(); // Tidak menampilkan apa-apa jika jobs kosong
+              //     } else {
+              //       return ListView.builder(
+              //         itemCount: jobViewModel.jobs.length,
+              //         itemBuilder: (context, index) {
+              //           final job = jobViewModel.jobs[index];
+              //           return ListTile(
+              //             title: Text(job.title),
+              //             subtitle: Text(job.companyName),
+              //             leading: Image.network(job.logo),
+              //             onTap: () {
+              //               // Add logic when item is tapped
+              //             },
+              //           );
+              //         },
+              //       );
+              //     }
+              //   },
+              // ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career1.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Enginner',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'PT OS SELNAJAYA INDONESIA',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '23 Jun 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career2.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Assistant Sales Banquet Manager',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'ISMAYA GROUP',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career3.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Regional Logistic Manager',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'PT. Garudafood Putra Putri Jaya, Tbk',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'North Sumatra, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career5.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Data Engineer - Senior Manager',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'Gojek',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career4.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFF4518D),
+                  // Widget Consumer yang menampilkan daftar pekerjaan
+                  Consumer<JobViewModel>(
+                    builder: (context, jobViewModel, child) {
+                      if (jobViewModel.jobs.isEmpty) {
+                        // Menampilkan indikator loading jika data masih dimuat
+                        return CircularProgressIndicator(); 
+                      } else {
+                        // Menampilkan data pekerjaan
+                        final job = jobViewModel.jobs[0];
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 61,
+                              height: 61,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(job.logo), // Menggunakan logo dari data pekerjaan
+                                  fit: BoxFit.cover,
+                                ),
                               ),
+                            ),
+                            SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextSpan(text: 'Data Product Manager Intern -\n'),
-                                TextSpan(text: 'Business Intelligence'),
+                                Text(
+                                  job.title, // Menggunakan title dari data pekerjaan
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFF4518D),
+                                  ),
+                                ),
+                                Text(
+                                  job.companyName, // Menggunakan companyName dari data pekerjaan
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  job.location, // Menggunakan location dari data pekerjaan
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Text(
+                                  job.publishedAt, // Menggunakan publishedAt dari data pekerjaan
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    color: Colors.grey,
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                          Text(
-                            'Shopee',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
+                          ],
+                        );
+                      }
+                    },
+                  ),
                 ],
               ),
+              Divider(),
+              SizedBox(height: 7),
               SizedBox(height: 15),
               Divider(),
               Align(
@@ -459,237 +272,6 @@ class _CareerState extends State<Career> {
                 ),
               ),
               SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career2.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Assistant Sales Banquet Manager',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'ISMAYA GROUP',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career4.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFF4518D),
-                              ),
-                              children: [
-                                TextSpan(text: 'Data Product Manager Intern -\n'),
-                                TextSpan(text: 'Business Intelligence'),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            'Shopee',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career5.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Data Engineer - Senior Manager',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'Gojek',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Jakarta, Jakarta, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(),
-              SizedBox(height: 7),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 61,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/career3.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Regional Logistic Manager',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFF4518D)
-                            ),
-                          ),
-                          Text(
-                            'PT. Garudafood Putra Putri Jaya, Tbk',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'North Sumatra, Indonesia (On Site)',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            '20 Aug 2023',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
             ],
           ),
         ),
