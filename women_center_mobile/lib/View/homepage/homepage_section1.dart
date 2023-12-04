@@ -1,7 +1,9 @@
-//raf taufiqurahman
+//rafi taufiqurahman
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui';
+
+import 'package:women_center_mobile/View/homepage/1.dart';
 
 void main() {
   runApp(HomePage1());
@@ -31,52 +33,55 @@ class HomePage1 extends StatelessWidget {
           backgroundColor: Colors.white, // Warna latar belakang AppBar putih
           elevation: 3.3,
           toolbarHeight: 70, // Bayangan hitam di bawah AppBar
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '👋',
-                style: TextStyle(fontSize: 32),
-              ),
-              const SizedBox(width: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    getGreeting(),
-                    style: TextStyle(
-                      color: Color(0xFF636363),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Raleway',
-                      height: 0,
-                    ),
-                  ),
-                  Text(
-                    'Sherly Prameswari',
-                    style: TextStyle(
-                      color:
-                          Color(0xFF0B0B0B), // Ubah warna sesuai kebutuhan Anda
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Raleway',
-                      height: 0,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 140,
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications_none_outlined,
-                  color: Color(0xFF0B0B0B),
-                  size: 29,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 7),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '👋',
+                  style: TextStyle(fontSize: 32),
                 ),
-                onPressed: () {},
-              ),
-            ],
+                const SizedBox(width: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      getGreeting(),
+                      style: const TextStyle(
+                        color: Color(0xFF636363),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Raleway',
+                        height: 0,
+                      ),
+                    ),
+                    const Text(
+                      'Sherly Prameswari',
+                      style: TextStyle(
+                        color: Color(
+                            0xFF0B0B0B), // Ubah warna sesuai kebutuhan Anda
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Raleway',
+                        height: 0,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 140,
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.notifications_none_outlined,
+                    color: Color(0xFF0B0B0B),
+                    size: 29,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
         ),
         body: const Center(
@@ -128,6 +133,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
               ),
               Column(
                 children: [
+                  // AnimatedSlideColumn()
                   Padding(
                     padding: const EdgeInsets.only(top: 19, left: 6),
                     child: Container(
