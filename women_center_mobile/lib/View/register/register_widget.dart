@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
+import 'dart:async';
 
 class RegisterProvider extends ChangeNotifier {
   bool _isRegistered = false;
@@ -34,19 +35,28 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final Dio _dio = Dio();
 
   Future<Response> register(String firstname, String lastname, String username,
-      String phone, String email, String password) {
-    return _dio.post(
-      'http://api-ferminacare.tech/api/v1/users/register',
-      data: {
-        "first_name": firstname,
-        "last_name": lastname,
-        "username": username,
-        "email": email,
-        "password": password,
-        "phone_number": phone,
-        "address": "null"
-      },
-    );
+      String phone, String email, String password) async {
+    try {
+      print('cek method regis');
+      Response response = await _dio.post(
+        'http://api-ferminacare.tech/api/v1/users/register',
+        data: {
+          "first_name": firstname,
+          "last_name": lastname,
+          "username": username,
+          "email": email,
+          "password": password,
+          "phone_number": phone,
+          "address": "null"
+        },
+      );
+      return response;
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      // You can handle the exception as per your application's requirements.
+      // For now, you can rethrow the exception or return an error response.
+      throw Exception("Failed to register user: $error");
+    }
   }
 
   Future<bool> isUsernameEmailAvailable(String username, String email) async {
@@ -88,8 +98,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   ),
                   child: InkWell(
                     onTap: () async {
+                      print('cek tab');
                       if (_formKey.currentState!.validate()) {
+                        print('cek validasi');
+                        // ... Your previous code ...
+
                         try {
+                          print('cek respon1');
                           var response = await register(
                             _firstnameController.text,
                             _lastnameController.text,
@@ -98,14 +113,17 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             _emailController.text,
                             _passwordController.text,
                           );
-
+                          // Move print statement here
+                          print('cek register');
                           if (response.statusCode == 201) {
+                            print('cek respon2');
                             Provider.of<RegisterProvider>(context,
                                     listen: false)
                                 .register();
                             Navigator.pushNamed(context, '/login');
                             print(response.statusCode);
                           } else if (response.statusCode == 409) {
+                            print('eror 409');
                             final errorMessage = response.data['message'];
                             // Show SnackBar for conflict (e.g., email already exists)
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -124,7 +142,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             _usernameController.text,
                             _emailController.text,
                           );
-
+                          print('chek data email $isAvailable');
                           if (!isAvailable) {
                             // Show SnackBar if username or email is not available
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -138,7 +156,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         } catch (error) {
                           // Handle general errors during the request
                           print("Error: $error");
+                          if (error is DioError) {
+                            print("DioError details: ${error.response?.data}");
+                          }
                         }
+
                       }
                     },
                     child: const Center(
