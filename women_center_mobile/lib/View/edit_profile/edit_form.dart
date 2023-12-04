@@ -1,122 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class MyForm extends StatefulWidget {
-  @override
-  _MyFormState createState() => _MyFormState();
-}
+class FormWidgetProfile extends StatelessWidget {
+  final TextEditingController usernameController;
+  final TextEditingController firstnameController;
+  final TextEditingController lastnameController;
+  final TextEditingController tanggalController;
 
-class _MyFormState extends State<MyForm> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  FormWidgetProfile({
+    required this.usernameController,
+    required this.firstnameController,
+    required this.lastnameController,
+    required this.tanggalController,
+  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomTextField(
-            borderColor: Colors.pink,
-            controller: usernameController,
-            hintText: 'Username',
-          ),
-          SizedBox(height: 16),
-          CustomTextField(
-            borderColor: Colors.pink,
-            controller: firstNameController,
-            hintText: 'First Name',
-          ),
-          SizedBox(height: 16),
-          CustomTextField(
-            borderColor: Colors.pink,
-            controller: lastNameController,
-            hintText: 'Last Name',
-          ),
-          SizedBox(height: 16),
-          CustomTextFieldWithCalendarIcon(
-            borderColor: Colors.pink,
-            controller: dateController,
-            hintText: 'Tanggal',
-          ),
-        ],
-      ),
+  Future<DateTime?> _selectDate(BuildContext context) async {
+    DateTime currentDate = DateTime.now();
+    return await showDatePicker(
+      context: context,
+      initialDate: tanggalController.text.isNotEmpty
+          ? DateTime.parse(tanggalController.text)
+          : currentDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
     );
   }
-}
-
-class CustomTextField extends StatelessWidget {
-  final Color borderColor;
-  final TextEditingController controller;
-  final String hintText;
-
-  const CustomTextField({
-    Key? key,
-    required this.borderColor,
-    required this.controller,
-    required this.hintText,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor),
+    return Column(
+      children: [
+        TextFormField(
+          controller: usernameController,
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+          ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor),
+        SizedBox(height: 16),
+        TextFormField(
+          controller: firstnameController,
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class CustomTextFieldWithCalendarIcon extends StatelessWidget {
-  final Color borderColor;
-  final TextEditingController controller;
-  final String hintText;
-
-  const CustomTextFieldWithCalendarIcon({
-    Key? key,
-    required this.borderColor,
-    required this.controller,
-    required this.hintText,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor),
+        SizedBox(height: 16),
+        TextFormField(
+          controller: lastnameController,
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+          ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor),
+        SizedBox(height: 16),
+        TextFormField(
+          controller: tanggalController,
+          readOnly:
+              true, // Make the text field read-only to prevent manual input
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.pink),
+            ),
+            suffixIcon: GestureDetector(
+              onTap: () async {
+                // Function to show date picker
+                DateTime? picked = await _selectDate(context);
+                if (picked != null) {
+                  // Set the selected date to the text field
+                  tanggalController.text =
+                      DateFormat('yyyy-MM-dd').format(picked);
+                }
+              },
+              child: Icon(Icons.date_range, color: Colors.pink),
+            ),
+          ),
         ),
-        suffixIcon: IconButton(
-          icon: Icon(Icons.calendar_today),
-          onPressed: () {
-            showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2101),
-            ).then((selectedDate) {
-              if (selectedDate != null) {
-                controller.text =
-                    selectedDate.toLocal().toString().split(' ')[0];
-              }
-            });
-          },
-        ),
-      ),
+      ],
     );
   }
 }

@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_form.dart';
-import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
-import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 
 class CustomShapeClipper extends CustomClipper<Path> {
   @override
@@ -30,9 +25,10 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  bool isNotificationEnabled = true;
-  Color iconColor = const Color(0xFFF4518D);
-  int _selectedIndex = 0;
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _firstnameController = TextEditingController();
+  TextEditingController _lastnameController = TextEditingController();
+  TextEditingController _tanggalController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +52,7 @@ class _EditProfileState extends State<EditProfile> {
                   const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 3.0),
               child: Text(
                 'Edit Profil',
-                style: GoogleFonts.roboto(
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -66,8 +62,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons
-                .ios_share_rounded), // Ganti dengan ikon notifikasi yang diinginkan
+            icon: Icon(Icons.ios_share_rounded),
             onPressed: () {
               // Aksi yang ingin diambil ketika tombol notifikasi ditekan
             },
@@ -100,7 +95,7 @@ class _EditProfileState extends State<EditProfile> {
                   SizedBox(height: 8),
                   Text(
                     'Sherly Prameswari',
-                    style: GoogleFonts.roboto(
+                    style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -108,7 +103,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   Text(
                     'sherly.prameswari@gmail.com',
-                    style: GoogleFonts.roboto(
+                    style: TextStyle(
                       fontSize: 14,
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
@@ -118,11 +113,29 @@ class _EditProfileState extends State<EditProfile> {
               ),
             ),
           ),
-          Card(
-            margin:
-                EdgeInsets.only(top: 1.0, bottom: 3.0, right: 16.0, left: 16.0),
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: MyForm(),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 7,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: FormWidgetProfile(
+              usernameController: _usernameController,
+              firstnameController: _firstnameController,
+              lastnameController: _lastnameController,
+              tanggalController: _tanggalController,
+            ),
           ),
           SizedBox(height: 30),
           Align(
@@ -146,25 +159,6 @@ class _EditProfileState extends State<EditProfile> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: MyBottomNavigationBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: (index) {
-          setState(() {
-            _selectedIndex = index;
-            if (_selectedIndex == 0) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomepageNotifikasi()));
-            } else if (_selectedIndex == 1) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomepageNotifikasi3()));
-            }
-          });
-        },
       ),
     );
   }
