@@ -1,5 +1,6 @@
 //rafi taufiqurahman
 import 'package:flutter/material.dart';
+import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui';
 
@@ -27,65 +28,97 @@ class HomePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white, // Warna latar belakang AppBar putih
-          elevation: 3.3,
-          toolbarHeight: 70, // Bayangan hitam di bawah AppBar
-          title: Padding(
-            padding: const EdgeInsets.only(top: 7),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  '👋',
-                  style: TextStyle(fontSize: 32),
-                ),
-                const SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      getGreeting(),
-                      style: const TextStyle(
-                        color: Color(0xFF636363),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Raleway',
-                        height: 0,
-                      ),
+    return GlassApp(
+      theme: GlassThemeData(
+          blur: 1,
+          linearGradient: LinearGradient(
+            colors: [
+              Colors.white.withOpacity(0.5),
+              Colors.white.withOpacity(0.5)
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          )),
+      home: MaterialApp(
+        home: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            toolbarHeight: 70,
+            flexibleSpace: ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                    sigmaX: 20, sigmaY: 30), // Ubah nilai untuk tingkat blur
+                child: Container(
+                  color: Colors.white
+                      .withOpacity(0.1), // Warna latar belakang AppBar
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 68, left: 19),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          '👋',
+                          style: TextStyle(fontSize: 32),
+                        ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              getGreeting(),
+                              style: const TextStyle(
+                                color: Color(0xFF636363),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Raleway',
+                                height: 0,
+                              ),
+                            ),
+                            const Text(
+                              'Sherly Prameswari',
+                              style: TextStyle(
+                                color: Color(
+                                    0xFF0B0B0B), // Ubah warna sesuai kebutuhan Anda
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Raleway',
+                                height: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 140,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.notifications_none_outlined,
+                            color: Color(0xFF0B0B0B),
+                            size: 29,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
-                    const Text(
-                      'Sherly Prameswari',
-                      style: TextStyle(
-                        color: Color(
-                            0xFF0B0B0B), // Ubah warna sesuai kebutuhan Anda
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Raleway',
-                        height: 0,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 140,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.notifications_none_outlined,
-                    color: Color(0xFF0B0B0B),
-                    size: 29,
                   ),
-                  onPressed: () {},
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-        body: const Center(
-          child: WidgetHome1(),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 100,
+                  ),
+                  WidgetHome1(),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -104,7 +137,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 25),
+        const SizedBox(height: 40),
         Container(
           width: 360,
           height: 145,
@@ -482,3 +515,89 @@ class NewPage extends StatelessWidget {
     );
   }
 }
+
+// AppBar(
+//  backgroundColor: Colors.transparent,
+//  elevation: 0,
+//  title: Text('Home'),
+//  actions: [
+//    Container(
+//      height: 40,
+//      width: 40,
+//      alignment: Alignment.center,
+//      decoration: BoxDecoration(
+//        boxShadow: [
+//          BoxShadow(
+//            blurRadius: 7,
+//            spreadRadius: 3,
+//            color: Colors.white.withOpacity(0.2),
+//          ),
+//        ],
+//        shape: BoxShape.circle,
+//        color: Colors.white.withOpacity(0.1),
+//      ),
+//      child: Icon(Icons.search, size: 20),
+//    ),
+//  ],
+// )
+
+
+
+///
+///
+ // appBar: AppBar(
+          //   backgroundColor: Colors.white
+          //       .withOpacity(0.1), // Warna latar belakang AppBar putih
+          //   elevation: 3.3,
+          //   toolbarHeight: 70,
+          //   title: Padding(
+          //     padding: const EdgeInsets.only(top: 7),
+          //     child: Row(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         const Text(
+          //           '👋',
+          //           style: TextStyle(fontSize: 32),
+          //         ),
+          //         const SizedBox(width: 8),
+          //         Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: [
+          //             Text(
+          //               getGreeting(),
+          //               style: const TextStyle(
+          //                 color: Color(0xFF636363),
+          //                 fontSize: 16,
+          //                 fontWeight: FontWeight.w500,
+          //                 fontFamily: 'Raleway',
+          //                 height: 0,
+          //               ),
+          //             ),
+          //             const Text(
+          //               'Sherly Prameswari',
+          //               style: TextStyle(
+          //                 color: Color(
+          //                     0xFF0B0B0B), // Ubah warna sesuai kebutuhan Anda
+          //                 fontSize: 16,
+          //                 fontWeight: FontWeight.w700,
+          //                 fontFamily: 'Raleway',
+          //                 height: 0,
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //         const SizedBox(
+          //           width: 140,
+          //         ),
+          //         IconButton(
+          //           icon: const Icon(
+          //             Icons.notifications_none_outlined,
+          //             color: Color(0xFF0B0B0B),
+          //             size: 29,
+          //           ),
+          //           onPressed: () {},
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),

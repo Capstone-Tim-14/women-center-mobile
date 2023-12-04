@@ -96,3 +96,49 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         body: CustomScrollView(
+//           slivers: <Widget>[
+//             SliverAppBar(
+//               backgroundColor: Colors.transparent,
+//               floating: true,
+//               pinned: true,
+//               snap: false,
+//               elevation: 0, // Menghilangkan shadow
+//               flexibleSpace: LayoutBuilder(
+//                 builder: (BuildContext context, BoxConstraints constraints) {
+//                   return FlexibleSpaceBar(
+//                     title: Text('Judul App Bar'),
+//                     centerTitle: true,
+//                   );
+//                 },
+//               ),
+//             ),
+//             SliverList(
+//               delegate: SliverChildBuilderDelegate(
+//                 (BuildContext context, int index) {
+//                   return ListTile(
+//                     title: Text('Item $index'),
+//                   );
+//                 },
+//                 childCount: 50, // Ganti dengan jumlah konten Anda
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
