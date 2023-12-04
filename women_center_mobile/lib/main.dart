@@ -6,6 +6,7 @@ import 'package:women_center_mobile/View/artikel/artikel_view.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
+import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
@@ -16,12 +17,15 @@ import 'View/register/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key});
 
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,5 +47,6 @@ class MyApp extends StatelessWidget {
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),
         });
+
   }
 }
