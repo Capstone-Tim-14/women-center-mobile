@@ -170,28 +170,6 @@ class _CareerState extends State<Career> {
               ),
               SizedBox(height: 7),
               Divider(),
-              // Consumer<JobViewModel>(
-              //   builder: (context, jobViewModel, child) {
-              //     if (jobViewModel.jobs.isEmpty) {
-              //       return Container(); // Tidak menampilkan apa-apa jika jobs kosong
-              //     } else {
-              //       return ListView.builder(
-              //         itemCount: jobViewModel.jobs.length,
-              //         itemBuilder: (context, index) {
-              //           final job = jobViewModel.jobs[index];
-              //           return ListTile(
-              //             title: Text(job.title),
-              //             subtitle: Text(job.companyName),
-              //             leading: Image.network(job.logo),
-              //             onTap: () {
-              //               // Add logic when item is tapped
-              //             },
-              //           );
-              //         },
-              //       );
-              //     }
-              //   },
-              // ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

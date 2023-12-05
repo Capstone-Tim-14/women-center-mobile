@@ -14,7 +14,7 @@ class JobViewModel extends ChangeNotifier {
         Uri.parse('https://api-ferminacare.tech/api/v1/careers'),
         headers: {
           'Authorization':
-              'Bearer Isi token'
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDE4MDk1MzZ9.sWtpzP6BIkHH5vcI9OQb72FWIzD0zr1Y8YJAlmNbZ9s'
         },
       );
 
