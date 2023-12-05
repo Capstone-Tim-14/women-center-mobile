@@ -205,13 +205,12 @@ class _CareerState extends State<Career> {
                         // Menampilkan data pekerjaan dengan ListView.separated
                         return ListView.separated(
                           shrinkWrap: true,
-                          itemCount: jobViewModel.jobs.length,
-                          separatorBuilder: (context, index) => Divider(), // Menambahkan Divider di antara setiap item
+                          itemCount: jobViewModel.jobs.length, 
+                          separatorBuilder: (context, index) => Divider(),
                           itemBuilder: (context, index) {
                             final job = jobViewModel.jobs[index];
                             return GestureDetector(
                               onTap: () {
-                                // Logika yang dijalankan saat item ditekan
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
