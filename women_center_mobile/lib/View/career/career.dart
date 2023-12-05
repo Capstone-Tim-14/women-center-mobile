@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:women_center_mobile/View/career/detail_job.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
@@ -201,61 +202,73 @@ class _CareerState extends State<Career> {
                         // Menampilkan indikator loading jika data masih dimuat
                         return CircularProgressIndicator();
                       } else {
-                        // Menampilkan data pekerjaan dengan ListView.builder
-                        return ListView.builder(
+                        // Menampilkan data pekerjaan dengan ListView.separated
+                        return ListView.separated(
                           shrinkWrap: true,
                           itemCount: jobViewModel.jobs.length,
+                          separatorBuilder: (context, index) => Divider(), // Menambahkan Divider di antara setiap item
                           itemBuilder: (context, index) {
                             final job = jobViewModel.jobs[index];
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 61,
-                                  height: 61,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(job.logo), // Menggunakan logo dari data pekerjaan
-                                      fit: BoxFit.cover,
+                            return GestureDetector(
+                              onTap: () {
+                                // Logika yang dijalankan saat item ditekan
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailJob(),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 61,
+                                    height: 61,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(job.logo), // Menggunakan logo dari data pekerjaan
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(width: 15.0), // Jarak antara gambar dan teks
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      job.title, // Menggunakan title dari data pekerjaan
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFFF4518D),
+                                  SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        job.title, // Menggunakan title dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFFF4518D),
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      job.companyName, // Menggunakan companyName dari data pekerjaan
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.black,
+                                      Text(
+                                        job.companyName, // Menggunakan companyName dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      job.location, // Menggunakan location dari data pekerjaan
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.grey,
+                                      Text(
+                                        job.location, // Menggunakan location dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      job.publishedAt, // Menggunakan publishedAt dari data pekerjaan
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.grey,
+                                      Text(
+                                        job.publishedAt, // Menggunakan publishedAt dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         );
@@ -265,9 +278,6 @@ class _CareerState extends State<Career> {
                 ],
               ),
               Divider(),
-              SizedBox(height: 7),
-              SizedBox(height: 15),
-              Divider(),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -276,6 +286,91 @@ class _CareerState extends State<Career> {
                     fontSize: 16.0,
                   ),
                 ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Widget Consumer yang menampilkan daftar pekerjaan
+                  Consumer<JobViewModel>(
+                    builder: (context, jobViewModel, child) {
+                      if (jobViewModel.jobs.isEmpty) {
+                        // Menampilkan indikator loading jika data masih dimuat
+                        return CircularProgressIndicator();
+                      } else {
+                        // Menampilkan data pekerjaan dengan ListView.separated
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          itemCount: jobViewModel.jobs.length,
+                          separatorBuilder: (context, index) => Divider(), // Menambahkan Divider di antara setiap item
+                          itemBuilder: (context, index) {
+                            final job = jobViewModel.jobs[index];
+                            return GestureDetector(
+                              onTap: () {
+                                // Logika yang dijalankan saat item ditekan
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailJob(),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 61,
+                                    height: 61,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(job.logo), // Menggunakan logo dari data pekerjaan
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 15.0), // Jarak antara gambar dan teks
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        job.title, // Menggunakan title dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFFF4518D),
+                                        ),
+                                      ),
+                                      Text(
+                                        job.companyName, // Menggunakan companyName dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        job.location, // Menggunakan location dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      Text(
+                                        job.publishedAt, // Menggunakan publishedAt dari data pekerjaan
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      }
+                    },
+                  ),
+                ],
               ),
               SizedBox(height: 7),
             ],

@@ -119,7 +119,7 @@ class _DetailJobState extends State<DetailJob> {
                           Text(
                             '501 - 1000 employees | Human Resources', // Ganti dengan teks yang diinginkan
                             style: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 14.0,
                               color: Color(0xFFF646464)
                             ),
                           ),
