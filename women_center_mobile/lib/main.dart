@@ -6,7 +6,7 @@ import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi
 import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
-import 'package:women_center_mobile/View/profil_page/profil_page.dart';
+import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
