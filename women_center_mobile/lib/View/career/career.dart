@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/career/detail_job.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
+import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
@@ -27,6 +28,7 @@ class _CareerState extends State<Career> {
   Color _textColor8 = Color.fromARGB(255, 245, 67, 132);
   int _selectedIndex = 0;
   late JobViewModel _jobViewModel;
+  
 
   @override
   void initState() {
@@ -188,11 +190,11 @@ class _CareerState extends State<Career> {
                           itemBuilder: (context, index) {
                             final job = jobViewModel.jobs[index];
                             return GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailJob(),
+                                    builder: (context) => DetailJob(jobId: job.id,),
                                   ),
                                 );
                               },
@@ -284,12 +286,6 @@ class _CareerState extends State<Career> {
                             return GestureDetector(
                               onTap: () {
                                 // Logika yang dijalankan saat item ditekan
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailJob(),
-                                  ),
-                                );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,

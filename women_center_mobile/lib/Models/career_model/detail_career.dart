@@ -1,8 +1,8 @@
 class JobDetail {
   final String titleJob;
   final String logo;
-  final String companyName;
   final String publishedAt;
+  final String companyName;
   final String cover;
   final String linkedinUrl;
   final String location;
