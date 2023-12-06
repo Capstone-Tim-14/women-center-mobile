@@ -194,7 +194,7 @@ class _CareerState extends State<Career> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailJob(jobId: job.id,),
+                                    builder: (context) => DetailJob(jobId: job.id),
                                   ),
                                 );
                               },
