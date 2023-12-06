@@ -70,8 +70,8 @@ class _DetailJobState extends State<DetailJob> {
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20),
                               ),
-                              child: Image.asset(
-                                'Assets/images/detail-karir1.png',
+                              child: Image.network(
+                                '${jobDetail.cover}',
                                 width: 1025,
                                 height: 75,
                               ),
@@ -82,8 +82,8 @@ class _DetailJobState extends State<DetailJob> {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'Assets/images/career1.png',
+                                    child: Image.network(
+                                      '${jobDetail.logo}',
                                       width: 50,
                                       height: 50,
                                       fit: BoxFit.cover,
@@ -156,11 +156,15 @@ class _DetailJobState extends State<DetailJob> {
                                   SizedBox(width: 15),
                                   Image.asset('Assets/images/checklist.png', scale: 3),
                                   SizedBox(width: 10),
-                                  Text(
-                                    'Skils : ${jobDetail.requiredSkill}', // Ganti dengan teks yang diinginkan
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: Color(0xFFF646464)
+                                  Expanded(
+                                    child: Text(
+                                      'Skills: ${jobDetail.requiredSkill}', // Ganti dengan teks yang diinginkan
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis, // Gunakan ellipsis untuk menambahkan titik-titik jika melebihi batas
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Color(0xFFF646464),
+                                      ),
                                     ),
                                   ),
                                 ],

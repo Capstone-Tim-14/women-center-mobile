@@ -14,7 +14,7 @@ class JobViewModel extends ChangeNotifier {
         Uri.parse('https://api-ferminacare.tech/api/v1/careers'),
         headers: {
           'Authorization':
-              'Bearer Haiya'
+              'Bearer '
         },
       );
 

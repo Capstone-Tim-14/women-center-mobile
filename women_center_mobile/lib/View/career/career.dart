@@ -28,7 +28,7 @@ class _CareerState extends State<Career> {
   Color _textColor8 = Color.fromARGB(255, 245, 67, 132);
   int _selectedIndex = 0;
   late JobViewModel _jobViewModel;
-  
+  bool isFilter = false;
 
   @override
   void initState() {
