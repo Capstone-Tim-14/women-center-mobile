@@ -13,7 +13,7 @@ class DetailJobViewModel extends ChangeNotifier {
       final response = await http.get(
         Uri.parse('https://api-ferminacare.tech/api/v1/career/$jobId'),
         headers: {
-          'Authorization': 'Bearer ',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDE4OTQ4MzZ9.pDAcpiU9vFwca7b1VDmbNNN_Kaw_BWMGJQ8cQM5btNU',
         },
       );
 
