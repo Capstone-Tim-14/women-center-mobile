@@ -114,7 +114,7 @@ class _buat_artikelState extends State<buat_artikel> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Widget untuk menampilkan gambar yang diunggah (jika ada)
+                    // Widget untuk menampilkan gambar yang diunggah (jika ada)s
                     _imageFile != null
                         ? Image.file(
                             _imageFile!,
