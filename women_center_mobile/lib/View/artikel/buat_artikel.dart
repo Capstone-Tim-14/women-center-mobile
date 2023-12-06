@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class buat_artikel extends StatefulWidget {
@@ -8,6 +10,7 @@ class buat_artikel extends StatefulWidget {
 class _buat_artikelState extends State<buat_artikel> {
   TextEditingController _judulController = TextEditingController();
   TextEditingController _isiController = TextEditingController();
+  File? _imageFile;
   Color _warna1 = Colors.white;
   Color _textColor1 = Colors.black;
   Color _warna2 = Colors.white;
@@ -20,6 +23,21 @@ class _buat_artikelState extends State<buat_artikel> {
   Color _textColor5 = Colors.black;
   Color _warna6 = Colors.white;
   Color _textColor6 = Colors.black;
+
+  Future<void> _pickImage() async {
+    // Implementasi pembukaan galeri di sini
+    // Pastikan untuk memperbarui nilai _imageFile dengan file yang dipilih
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+
+    if (result != null) {
+      setState(() {
+        _imageFile = File(result.files.single.path!);
+      });
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,26 +111,41 @@ class _buat_artikelState extends State<buat_artikel> {
                     )
                   ]
                 ),
-                child: TextFormField(
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: 'Upload foto disini...',
-                    suffixIcon: InkWell(
-                      onTap: () {
-                        
-                      },
-                      child: Icon(
-                        Icons.upload_file,
-                        color: Color(0xFF979797),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Widget untuk menampilkan gambar yang diunggah (jika ada)
+                    _imageFile != null
+                        ? Image.file(
+                            _imageFile!,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(),
+                    SizedBox(height: 16),
+                    TextFormField(
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        hintText: 'Upload foto disini...',
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            // Panggil fungsi untuk membuka galeri dan memilih gambar
+                            _pickImage();
+                          },
+                          child: Icon(
+                            Icons.upload_file,
+                            color: Color(0xFF979797),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
+                  ],
                 ),
               ),
               SizedBox(height: 16),

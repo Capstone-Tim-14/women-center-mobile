@@ -12,7 +12,7 @@ import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
-import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
+// import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
@@ -41,18 +41,20 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/artikel2',
+        // initialRoute: '/artikel2',
+        initialRoute: '/',
         routes: {
-          '/': (context) => const Splashscreen(),
-          '/login': (context) => const LoginView(),
-          '/register': (context) => const Register(),
-          '/onboarding': (context) => const Onboarding(),
-          '/notifikasi': (context) => const HomepageNotifikasi(),
-          '/artikel2': (context) => const Artikel2(),
-          '/homepageview': (context) => const HomepageSection(),
-          '/homepagenotif3': (context) => HomepageNotifikasi3(),
-          '/artikelku': (context) => const ArtikelKu(),
-          '/artikel': (context) => const Artikel(),
+          // '/': (context) => const Splashscreen(),
+          '/': (context) => buat_artikel(),
+          // '/login': (context) => const LoginView(),
+          // '/register': (context) => const Register(),
+          // '/onboarding': (context) => const Onboarding(),
+          // '/notifikasi': (context) => const HomepageNotifikasi(),
+          // '/artikel2': (context) => const Artikel2(),
+          // '/homepageview': (context) => const HomepageSection(),
+          // '/homepagenotif3': (context) => HomepageNotifikasi3(),
+          // '/artikelku': (context) => const ArtikelKu(),
+          // '/artikel': (context) => const Artikel(),
         },
       ),
     );

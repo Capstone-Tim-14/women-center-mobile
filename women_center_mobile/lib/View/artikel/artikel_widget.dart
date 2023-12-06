@@ -182,7 +182,7 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
                         shrinkWrap: true,
                         itemCount: widget.artikelList.length,
                         itemBuilder: (context, index) {
-                          return buildArtikelCard(widget.artikelList[index]);
+                          // return buildArtikelCard(widget.artikelList[index]);
                         },
                       ),
                     ),
@@ -196,42 +196,42 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
     );
   }
 
-  Widget buildArtikelCard(ArtikelModel artikel) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.asset(
-            artikel.gambar,
-            fit: BoxFit.cover,
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Oleh: ${artikel.nama}"),
-                    Text("${artikel.waktu}"),
-                  ],
-                ),
-                Text(
-                  artikel.keterangan,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(height: 5.0), // Spacer between title and subtitle
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget buildArtikelCard(ArtikelModel artikel) {
+  //   return Container(
+  //     margin: EdgeInsets.symmetric(vertical: 10.0),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.stretch,
+  //       children: [
+  //         Image.asset(
+  //           artikel.gambar,
+  //           fit: BoxFit.cover,
+  //         ),
+  //         Padding(
+  //           padding: EdgeInsets.all(10.0),
+  //           child: Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Row(
+  //                 crossAxisAlignment: CrossAxisAlignment.start,
+  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                 children: [
+  //                   Text("Oleh: ${artikel.nama}"),
+  //                   Text("${artikel.waktu}"),
+  //                 ],
+  //               ),
+  //               Text(
+  //                 artikel.keterangan,
+  //                 style: TextStyle(
+  //                   fontWeight: FontWeight.bold,
+  //                   fontSize: 20,
+  //                 ),
+  //               ),
+  //               SizedBox(height: 5.0), // Spacer between title and subtitle
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
