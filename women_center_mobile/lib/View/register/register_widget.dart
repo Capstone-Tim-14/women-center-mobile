@@ -120,16 +120,22 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             Provider.of<RegisterProvider>(context,
                                     listen: false)
                                 .register();
-                            Navigator.pushNamed(context, '/login');
-                            print(response.statusCode);
+                            Navigator.of(context).pop();
                           } else if (response.statusCode == 409) {
-                            print('eror 409');
                             final errorMessage = response.data['message'];
-                            // Show SnackBar for conflict (e.g., email already exists)
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Error'),
                                 content: Text(errorMessage),
-                                duration: const Duration(seconds: 10),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ],
                               ),
                             );
                           } else {
@@ -138,18 +144,28 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 "Unexpected status code: ${response.statusCode}");
                           }
 
+                          // Check username and email availability
                           final isAvailable = await isUsernameEmailAvailable(
                             _usernameController.text,
                             _emailController.text,
                           );
-                          print('chek data email $isAvailable');
+                          print('check data email $isAvailable');
                           if (!isAvailable) {
-                            // Show SnackBar if username or email is not available
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                            // Show AlertDialog if username or email is not available
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Error'),
                                 content:
                                     Text('Username or email is not available'),
-                                duration: const Duration(seconds: 10),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ],
                               ),
                             );
                           }
@@ -160,7 +176,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             print("DioError details: ${error.response?.data}");
                           }
                         }
-
                       }
                     },
                     child: const Center(
