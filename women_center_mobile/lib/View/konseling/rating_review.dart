@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 void main(List<String> args) {
   runApp(const Review());
@@ -33,12 +34,12 @@ class _ReviewState extends State<Review> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ImageContainer(),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 38),
                   DownloadHasilTes(),
                   const SizedBox(height: 24),
                   Kolom(),
                   const SizedBox(
-                    height: 12,
+                    height: 15,
                   ),
                   Button()
                 ],
@@ -60,7 +61,7 @@ class ImageContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 80),
+            padding: const EdgeInsets.only(top: 60),
             child: Container(
               // padding: EdgeInsets.only(top: 200),
               width: 136,
@@ -177,7 +178,7 @@ class _KolomState extends State<Kolom> {
       children: [
         Container(
           width: 345,
-          height: 390,
+          height: 410,
           padding: const EdgeInsets.all(6),
           decoration: ShapeDecoration(
             color: Colors.white,
@@ -198,8 +199,8 @@ class _KolomState extends State<Kolom> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 170,
-                padding: const EdgeInsets.all(12),
+                height: 190,
+                padding: const EdgeInsets.only(left: 12, top: 12, right: 12),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -242,7 +243,7 @@ class _KolomState extends State<Kolom> {
                     ),
                     const SizedBox(height: 24),
                     Container(
-                      height: 80,
+                      height: 50,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -270,7 +271,7 @@ class _KolomState extends State<Kolom> {
                                 SizedBox(
                                   width: 302,
                                   child: Text(
-                                    'Berapa tingkat kepuasan anda terhadap konselor?',
+                                    ' Berapa tingkat kepuasan anda terhadap konselor?',
                                     style: TextStyle(
                                       color: Color(0xFF939393),
                                       fontSize: 12,
@@ -283,70 +284,51 @@ class _KolomState extends State<Kolom> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 12),
-                          Container(
-                            width: 302,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: const BoxDecoration(),
-                                  child: const Stack(children: []),
-                                ),
-                                const SizedBox(width: 24),
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: const BoxDecoration(),
-                                  child: const Stack(children: []),
-                                ),
-                                const SizedBox(width: 24),
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: const BoxDecoration(),
-                                  child: const Stack(children: []),
-                                ),
-                                const SizedBox(width: 24),
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: const BoxDecoration(),
-                                  child: const Stack(children: []),
-                                ),
-                                const SizedBox(width: 24),
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: const BoxDecoration(),
-                                  child: const Stack(children: []),
-                                ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Container(
+                      width: 300,
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: RatingBar.builder(
+                          initialRating: 5,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 9),
+                          itemCount: 5,
+                          itemSize: 40,
+                          // unratedColor: Colors.red,
+                          itemBuilder: (context, index) {
+                            return Icon(
+                              index < 5
+                                  ? Icons.star
+                                  : Icons
+                                      .star_border, // Menentukan apakah bintang dipilih atau tidak
+                              color: index < 5
+                                  ? Color(0xFFFCD509)
+                                  : Colors
+                                      .grey, // Warna bintang dipilih dan tidak dipilih
+                              size: 40,
+                            );
+                          },
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
               Container(
                 height: 208,
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -418,6 +400,14 @@ class _KolomState extends State<Kolom> {
                               ),
                               border: InputBorder.none,
                             ),
+                            style: TextStyle(
+                              // Gaya teks ketika mengisi TextField
+                              color: Colors.black, // Warna teks saat diisi
+                              fontSize: 12, // Ukuran teks
+                              fontFamily: 'Raleway',
+                              fontWeight: FontWeight.w600,
+                              height: 1.2,
+                            ),
                           ),
                         ],
                       ),
@@ -450,7 +440,7 @@ class Button extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             'Kirim Review',
             style: TextStyle(
@@ -485,7 +475,7 @@ class Button extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 'Berhasil Memberikan Rating & Review',
                 textAlign: TextAlign.center,
@@ -504,3 +494,37 @@ class Button extends StatelessWidget {
     );
   }
 }
+
+
+
+//  Container(
+//                             width: 302,
+//                             // height: 50,
+//                             // padding: const EdgeInsets.symmetric(horizontal: 16),
+//                             decoration: ShapeDecoration(
+//                               shape: RoundedRectangleBorder(
+//                                   borderRadius: BorderRadius.circular(8)),
+//                             ),
+//                             child: Row(
+//                               mainAxisSize: MainAxisSize.min,
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 RatingBar.builder(
+//                                   itemBuilder: (context, _) => Icon(
+//                                     Icons.star,
+//                                     color: Colors.amber,
+//                                   ),
+//                                   onRatingUpdate: (rating) {
+//                                     print(rating);
+//                                   },
+//                                 )
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
