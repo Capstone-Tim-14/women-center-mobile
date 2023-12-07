@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:glass_kit/glass_kit.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -14,25 +16,73 @@ class Welcome extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.cover),
           Padding(
-            padding: const EdgeInsets.only(left: 100, right: 100, bottom: 50),
+            padding: const EdgeInsets.only(left: 100, right: 100, bottom: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('Women Center'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 250),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                    child: Stack(
+                      children: <Widget>[
+                        // Stroked text as a background
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0, top: 2.0),
+                          child: Text(
+                            'Women Center',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.raleway(
+                              fontSize: 45,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 2
+                                ..color = Color(
+                                    0xFFF2BED1), // Warna stroke yang diinginkan
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Women Center',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.raleway(
+                            fontSize: 45,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Expanded(child: SizedBox()),
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: BorderSide(color: Colors.white),
+                GlassContainer(
+                  width: 300,
+                  height: 50,
+                  borderRadius: BorderRadius.circular(10),
+                  blur: 10,
+                  alignment: Alignment.center,
+                  frostedOpacity: 0.1,
+                  color: Colors.white
+                      .withOpacity(0.2), // Atur warna latar belakang di sini
+                  borderGradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.white.withOpacity(0.2),
+                      Colors.white.withOpacity(0.2),
+                    ],
                   ),
-                  onPressed: () {},
-                  // child: BackdropFilter(
-                  //   filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
+                  child: MaterialButton(
+                    onPressed: () {
+                      // Aksi yang akan dijalankan saat tombol ditekan
+                    },
+                    child: Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                  // ),
                 ),
                 Row(
                   children: [
@@ -42,7 +92,10 @@ class Welcome extends StatelessWidget {
                         endIndent: 10,
                       ),
                     ),
-                    Text('Or', style: TextStyle(color: Color(0XFFF2BED1)),),
+                    Text(
+                      'Or',
+                      style: TextStyle(color: Color(0XFFF2BED1)),
+                    ),
                     Expanded(
                       child: Divider(
                         color: Color(0XFFF2BED1),
@@ -51,24 +104,28 @@ class Welcome extends StatelessWidget {
                     ),
                   ],
                 ),
-                 MaterialButton(
+                MaterialButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(6),
                     side: BorderSide(color: Colors.white),
                   ),
                   onPressed: () {},
                   color: Color(0XFF483E42),
                   child: Row(
                     children: [
-                      Image.asset('Assets/images/google.png', width: 25,),
-                      SizedBox(width: 10,),
+                      Image.asset(
+                        'Assets/images/google.png',
+                        width: 25,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         'Login With Google',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
-                 
                 ),
               ],
             ),
