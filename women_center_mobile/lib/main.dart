@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
 import 'package:women_center_mobile/View/homepage/homepage_view.dart';
 import 'package:women_center_mobile/View/FAQ/bantuan.dart';
+import 'package:women_center_mobile/View/konseling/konseling_pilihan_konselor_1.dart';
 import 'package:women_center_mobile/View/konseling/konseling_pilihan_konselor_2.dart';
 import 'package:women_center_mobile/View/artikel/artikel_view.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
@@ -12,6 +13,7 @@ import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/ViewModel/konseling/konseling_pilihan_konselor_1_viewmodel.dart';
 import 'View/bottomnavigationbar/main_page.dart';
 import 'View/homepage/homepage_section3.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ArtikelViewModel()),
+        ChangeNotifierProvider(create: (context) => listkonselorViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -45,10 +48,11 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
         initialRoute: '/',
         routes: {
-          '/': (context) => const Welcome(),
+          // '/': (context) => const Welcome(),
+          '/': (context) => konseling_pilihan_konselor_1(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
-          '/onboarding': (context) => const Onboarding(),
+          '/onboarding': (context) => Onboarding(),
           '/notifikasi': (context) => const HomepageNotifikasi(),
           '/artikel2': (context) => const Artikel2(),
           '/homepageview': (context) => const HomepageSection(),

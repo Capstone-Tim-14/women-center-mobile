@@ -202,10 +202,10 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.asset(
-            artikel.gambar,
-            fit: BoxFit.cover,
-          ),
+          // Image.asset(
+          //   artikel.gambar,
+          //   fit: BoxFit.cover,
+          // ),
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
@@ -215,17 +215,17 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Oleh: ${artikel.nama}"),
-                    Text("${artikel.waktu}"),
+                    // Text("Oleh: ${artikel.nama}"),
+                    // Text("${artikel.waktu}"),
                   ],
                 ),
-                Text(
-                  artikel.keterangan,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
+                // Text(
+                //   artikel.keterangan,
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 20,
+                //   ),
+                // ),
                 SizedBox(height: 5.0), // Spacer between title and subtitle
               ],
             ),

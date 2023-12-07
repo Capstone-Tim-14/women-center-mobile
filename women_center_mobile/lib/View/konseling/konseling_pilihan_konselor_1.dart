@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:women_center_mobile/ViewModel/konseling/konseling_pilihan_konselor_1_viewmodel.dart';
 
 class konseling_pilihan_konselor_1 extends StatefulWidget {
   @override
@@ -7,7 +9,7 @@ class konseling_pilihan_konselor_1 extends StatefulWidget {
 }
 
 class _konseling_pilihan_konselor_1State
-    extends State<konseling_pilihan_konselor_1> {
+  extends State<konseling_pilihan_konselor_1> {
   Color _warna1 = Colors.white;
   Color _textColor1 = Colors.black;
   Color _warna2 = Colors.white;
@@ -20,6 +22,14 @@ class _konseling_pilihan_konselor_1State
   Color _textColor5 = Colors.black;
   Color _warna6 = Colors.white;
   Color _textColor6 = Colors.black;
+  late listkonselorViewModel _listViewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _listViewModel = Provider.of<listkonselorViewModel>(context, listen: false);
+    _listViewModel.fetchJobs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +92,30 @@ class _konseling_pilihan_konselor_1State
                   ),
                 ],
               ),
+              Consumer<listkonselorViewModel>(
+                builder: (context, counselorViewModel, child) {
+                  if (counselorViewModel.jobs.isEmpty) {
+                    // Menampilkan indikator loading jika data masih dimuat
+                    return CircularProgressIndicator();
+                  } else {
+                    // Menggunakan ListView.builder untuk menampilkan daftar konselor
+                    return ListView.builder(
+                      itemCount: counselorViewModel.jobs.length,
+                      itemBuilder: (context, index) {
+                        final counselor = counselorViewModel.jobs[index];
+                        return Column(
+                          children: [
+                            Text(counselor.firstName),
+                            // Tambahkan widget lain yang ingin Anda tampilkan untuk setiap konselor
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+
+
               SizedBox(height: 25.0),
               Align(
                 alignment: Alignment.centerLeft,

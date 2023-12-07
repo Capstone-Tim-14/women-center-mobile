@@ -8,18 +8,18 @@ class Artikel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ArtikelModel> artikelList = [
-      ArtikelModel(
-        "assets/images/artikel2.png",
-        "Dian Safitri",
-        "2 Jam yang lalu",
-        "Tanda Kekerasan Seksual pada Anak: Wajib Dikenali",
-      ),
-      ArtikelModel(
-        "assets/images/artikel1.png",
-        "Syifa Nur Rahmawati",
-        "1 hari yang lalu",
-        "Jadi Wanita Karir, Gimana Cara Hadapi Stres?",
-      ),
+      // ArtikelModel(
+      //   "assets/images/artikel2.png",
+      //   "Dian Safitri",
+      //   "2 Jam yang lalu",
+      //   "Tanda Kekerasan Seksual pada Anak: Wajib Dikenali",
+      // ),
+      // ArtikelModel(
+      //   "assets/images/artikel1.png",
+      //   "Syifa Nur Rahmawati",
+      //   "1 hari yang lalu",
+      //   "Jadi Wanita Karir, Gimana Cara Hadapi Stres?",
+      // ),
       // Add more ArtikelModel objects as needed
     ];
     return Scaffold(
