@@ -22,13 +22,13 @@ class _konseling_pilihan_konselor_1State
   Color _textColor5 = Colors.black;
   Color _warna6 = Colors.white;
   Color _textColor6 = Colors.black;
-  late listkonselorViewModel _listViewModel;
+ late CounselorViewModel _counselorViewModel;
 
   @override
   void initState() {
     super.initState();
-    _listViewModel = Provider.of<listkonselorViewModel>(context, listen: false);
-    _listViewModel.fetchJobs();
+    _counselorViewModel = Provider.of<CounselorViewModel>(context, listen: false);
+    _counselorViewModel.fetchCounselors();
   }
 
   @override
@@ -92,30 +92,6 @@ class _konseling_pilihan_konselor_1State
                   ),
                 ],
               ),
-              Consumer<listkonselorViewModel>(
-                builder: (context, counselorViewModel, child) {
-                  if (counselorViewModel.jobs.isEmpty) {
-                    // Menampilkan indikator loading jika data masih dimuat
-                    return CircularProgressIndicator();
-                  } else {
-                    // Menggunakan ListView.builder untuk menampilkan daftar konselor
-                    return ListView.builder(
-                      itemCount: counselorViewModel.jobs.length,
-                      itemBuilder: (context, index) {
-                        final counselor = counselorViewModel.jobs[index];
-                        return Column(
-                          children: [
-                            Text(counselor.firstName),
-                            // Tambahkan widget lain yang ingin Anda tampilkan untuk setiap konselor
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-
-
               SizedBox(height: 25.0),
               Align(
                 alignment: Alignment.centerLeft,
