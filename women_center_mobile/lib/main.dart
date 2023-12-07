@@ -12,6 +12,8 @@ import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'View/bottomnavigationbar/main_page.dart';
+import 'View/homepage/homepage_section3.dart';
 import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
@@ -20,6 +22,7 @@ import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
 import 'View/login/login_view.dart';
 import 'View/register/register.dart';
+import 'View/welcome_page/welcome_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
         initialRoute: '/artikel2',
         routes: {
-          '/': (context) => const Splashscreen(),
+          '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),

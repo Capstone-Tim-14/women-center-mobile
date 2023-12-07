@@ -8,12 +8,12 @@ import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
 
 class ArtikelViewModel extends ChangeNotifier {
   final String _baseUrl = "https://api-ferminacare.tech/api/v1";
-  
+
   // TODO: uncomment
   // List<ArtikelModel> _listArtikel = [];
   // TODO: dihapus atau comment
   List<ArtikelModel> _listArtikel = [DummyArtikel.artikelUntukmu];
-  
+
   List<ArtikelModel> get listArtikel => _listArtikel;
 
   // TODO: token sementara
@@ -24,6 +24,7 @@ class ArtikelViewModel extends ChangeNotifier {
     const endpoint = "/articles";
 
     try {
+
       final response =
           await http.get(Uri.parse("$_baseUrl$endpoint"), headers: {
         "Authorization": "Bearer $token",
