@@ -22,18 +22,18 @@ class _buat_artikelState extends State<buat_artikel> {
     'Teks ketiga',
   ];
 
-  Color _warna1 = Colors.white;
-  Color _textColor1 = Colors.black;
-  Color _warna2 = Colors.white;
-  Color _textColor2 = Colors.black;
-  Color _warna3 = Colors.white;
-  Color _textColor3 = Colors.black;
-  Color _warna4 = Colors.white;
-  Color _textColor4 = Colors.black;
-  Color _warna5 = Colors.white;
-  Color _textColor5 = Colors.black;
-  Color _warna6 = Colors.white;
-  Color _textColor6 = Colors.black;
+  // Color _warna1 = Colors.white;
+  // Color _textColor1 = Colors.black;
+  // Color _warna2 = Colors.white;
+  // Color _textColor2 = Colors.black;
+  // Color _warna3 = Colors.white;
+  // Color _textColor3 = Colors.black;
+  // Color _warna4 = Colors.white;
+  // Color _textColor4 = Colors.black;
+  // Color _warna5 = Colors.white;
+  // Color _textColor5 = Colors.black;
+  // Color _warna6 = Colors.white;
+  // Color _textColor6 = Colors.black;
 
   @override
   Widget build(BuildContext context) {
