@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:women_center_mobile/View/register/register_widget.dart';
 
 class Register extends StatefulWidget {
@@ -19,7 +20,7 @@ class _RegisterState extends State<Register> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/registerimage.png'),
+                    image: AssetImage('Assets/images/register2.png'),
                     fit: BoxFit.cover),
               ),
             ),
@@ -29,6 +30,7 @@ class _RegisterState extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RegisterWidget(),
+                    SizedBox(height: 55),
                     AlreadyHaveAccount(),
                   ],
                 ),

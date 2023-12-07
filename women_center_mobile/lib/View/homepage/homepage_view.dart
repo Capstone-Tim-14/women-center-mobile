@@ -20,7 +20,7 @@ class _HomepageSectionState extends State<HomepageSection> {
             children: [
                 //homepage 1
                 //homepage 2
-                Home2(),
+                // Home2(),
                 //homepage 3
                 Home3(),
             ],

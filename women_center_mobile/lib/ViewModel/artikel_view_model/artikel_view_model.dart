@@ -24,12 +24,11 @@ class ArtikelViewModel extends ChangeNotifier {
     const endpoint = "/articles";
 
     try {
-      final response = await http.get(
-        Uri.parse("$_baseUrl$endpoint"),
-        headers: {
-          "Authorization": "Bearer $token",
-        },
-      );
+
+      final response =
+          await http.get(Uri.parse("$_baseUrl$endpoint"), headers: {
+        "Authorization": "Bearer $token",
+      },);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body)["data"] as List;
         _listArtikel = jsonData.map((e) => ArtikelModel.fromJson(e)).toList();
