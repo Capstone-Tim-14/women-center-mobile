@@ -14,7 +14,6 @@ import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'View/bottomnavigationbar/main_page.dart';
 import 'View/homepage/homepage_section3.dart';
-import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/artikel2',
+        initialRoute: '/',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
