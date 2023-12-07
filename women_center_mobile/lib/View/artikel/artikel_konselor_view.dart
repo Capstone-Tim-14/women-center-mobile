@@ -1,6 +1,7 @@
 //create artikel konselor
 
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 import 'artikel_konselor_widget.dart';
 import 'dart:ui';
 
@@ -22,11 +23,15 @@ class _artikelKonselorState extends State<artikelKonselor> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink[100],
+          elevation: 0,
           title: const Center(
               child: Text(
             'Artikel',
             style: TextStyle(
-              color: Colors.black,
+              color: Color(0xFF0B0B0B),
+              fontSize: 18,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w500,
             ),
           )),
           automaticallyImplyLeading: false,
@@ -42,18 +47,22 @@ class _artikelKonselorState extends State<artikelKonselor> {
                 SizedBox(
                   height: 20,
                 ),
-                StatusContainer(),
+                Kotak(),
                 SizedBox(
                   height: 25,
                 ),
                 CustomButton(),
                 SizedBox(
-                  height: 25,
+                  height: 21.8,
                 ),
                 ArtikelCardScrollable(),
               ],
             ),
           ),
+        ),
+        bottomNavigationBar: MyBottomNavigationBar(
+          onItemTapped: (int) {},
+          selectedIndex: 1,
         ),
       ),
     );

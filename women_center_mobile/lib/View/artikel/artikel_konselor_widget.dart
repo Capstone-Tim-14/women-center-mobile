@@ -87,129 +87,6 @@ class _SearchState extends State<Search> {
   }
 }
 
-class StatusContainer extends StatefulWidget {
-  @override
-  _StatusContainerState createState() => _StatusContainerState();
-}
-
-class _StatusContainerState extends State<StatusContainer> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 251,
-      height: 82,
-      padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        shadows: [
-          BoxShadow(
-            color: Color(0x26000000),
-            blurRadius: 3,
-            offset: Offset(0, 1),
-            spreadRadius: 1,
-          ),
-          BoxShadow(
-            color: Color(0x4C000000),
-            blurRadius: 2,
-            offset: Offset(0, 1),
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 25),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            StatusItem(
-              value: '15',
-              label: 'Publish',
-            ),
-            const SizedBox(width: 27),
-            StatusItem(
-              value: '5',
-              label: 'Process',
-              hasRightBorder: true,
-              hasLeftBorder: true,
-              // horizontalPadding: 10,
-            ),
-            const SizedBox(width: 27),
-            StatusItem(
-              value: '3',
-              label: 'Reject',
-              // horizontalPadding: 10,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class StatusItem extends StatelessWidget {
-  final String value;
-  final String label;
-  final bool hasLeftBorder;
-  final bool hasRightBorder;
-  final double horizontalPadding;
-
-  const StatusItem({
-    required this.value,
-    required this.label,
-    this.hasLeftBorder = false,
-    this.hasRightBorder = false,
-    this.horizontalPadding = 0,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          left: hasLeftBorder
-              ? BorderSide(color: Colors.grey, width: 1.0)
-              : BorderSide.none,
-          right: hasRightBorder
-              ? BorderSide(color: Colors.grey, width: 1.0)
-              : BorderSide.none,
-        ),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            value,
-            style: TextStyle(
-              color: Color(0xFFF4518D),
-              fontSize: 32,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w700,
-              height: 0.02,
-            ),
-          ),
-          const SizedBox(height: 9),
-          Text(
-            label,
-            style: TextStyle(
-              color: Color(0xFF1F1F1F),
-              fontSize: 16,
-              fontFamily: 'Raleway',
-              fontWeight: FontWeight.w400,
-              height: 0,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class CustomButton extends StatefulWidget {
   const CustomButton({Key? key}) : super(key: key);
 
@@ -421,6 +298,209 @@ class _ArtikelCardScrollableState extends State<ArtikelCardScrollable> {
           );
         }).toList(),
       ),
+    );
+  }
+}
+
+class Kotak extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 251,
+          height: 82,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            shadows: [
+              BoxShadow(
+                color: Color(0x26000000),
+                blurRadius: 3,
+                offset: Offset(0, 1),
+                spreadRadius: 1,
+              ),
+              BoxShadow(
+                color: Color(0x4C000000),
+                blurRadius: 2,
+                offset: Offset(0, 1),
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 25,
+                  ), // Tambahkan padding untuk garis batas di sebelah kanan
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(
+                        color:
+                            Colors.black, // Ubah warna garis sesuai keinginan
+                        width: 1.5, // Ubah ketebalan garis sesuai keinginan
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // Aksi yang ingin dilakukan saat teks diklik
+                          print('Teks1 diklik!');
+                          // Tambahkan aksi yang diinginkan di sini
+                        },
+                        child: Text(
+                          '15',
+                          style: TextStyle(
+                            color: Color(0xFFF4518D),
+                            fontSize: 32,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700,
+                            height: 0.02,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 9),
+                      GestureDetector(
+                        onTap: () {
+                          // Aksi yang ingin dilakukan saat teks diklik
+                          print('Teks diklik!');
+                          // Tambahkan aksi yang diinginkan di sini
+                        },
+                        child: Text(
+                          'Publish',
+                          style: TextStyle(
+                            color: Color(0xFF1F1F1F),
+                            fontSize: 16,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 25,
+                  ), // Tambahkan padding untuk garis batas di sebelah kanan
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(
+                        color:
+                            Colors.black, // Ubah warna garis sesuai keinginan
+                        width: 1.5, // Ubah ketebalan garis sesuai keinginan
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // Aksi yang ingin dilakukan saat teks diklik
+                          print('Teks1 diklik!');
+                          // Tambahkan aksi yang diinginkan di sini
+                        },
+                        child: Text(
+                          '5',
+                          style: TextStyle(
+                            color: Color(0xFFF4518D),
+                            fontSize: 32,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700,
+                            height: 0.02,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 9),
+                      GestureDetector(
+                        onTap: () {
+                          // Aksi yang ingin dilakukan saat teks diklik
+                          print('Teks diklik!');
+                          // Tambahkan aksi yang diinginkan di sini
+                        },
+                        child: Text(
+                          'Proses',
+                          style: TextStyle(
+                            color: Color(0xFF1F1F1F),
+                            fontSize: 16,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 25,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // Aksi yang ingin dilakukan saat teks diklik
+                          print('Teks1 diklik!');
+                          // Tambahkan aksi yang diinginkan di sini
+                        },
+                        child: Text(
+                          '3',
+                          style: TextStyle(
+                            color: Color(0xFFF4518D),
+                            fontSize: 32,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700,
+                            height: 0.02,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 9),
+                      GestureDetector(
+                        onTap: () {
+                          // Aksi yang ingin dilakukan saat teks diklik
+                          print('Teks diklik!');
+                          // Tambahkan aksi yang diinginkan di sini
+                        },
+                        child: Text(
+                          'Reject',
+                          style: TextStyle(
+                            color: Color(0xFF1F1F1F),
+                            fontSize: 16,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
