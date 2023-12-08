@@ -1,7 +1,13 @@
 class KarirModel {
+  final int id;
   final String gambar;
   final String judul;
   final String keterangan;
 
-  KarirModel(this.gambar, this.judul, this.keterangan);
+  KarirModel({
+    required this.gambar,
+    required this.judul,
+    required this.keterangan,
+    required this.id,
+  });
 }

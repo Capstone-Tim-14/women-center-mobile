@@ -4,7 +4,6 @@ import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
 import 'package:women_center_mobile/Models/karir_model/karir_model.dart';
 import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
 
-
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
 
@@ -18,6 +17,7 @@ class _MyWidgetState extends State<MyWidget> {
     return const Placeholder();
   }
 }
+
 class Home2 extends StatefulWidget {
   const Home2({super.key});
 
@@ -27,9 +27,24 @@ class Home2 extends StatefulWidget {
 
 class _Home2State extends State<Home2> {
   List<KarirModel> listKarir = [
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
+    KarirModel(
+      id: 0,
+      gambar: "Assets/images/home_3.jpg",
+      judul: "judul",
+      keterangan: "keterangan",
+    ),
+    KarirModel(
+      id: 0,
+      gambar: "Assets/images/home_3.jpg",
+      judul: "judul",
+      keterangan: "keterangan",
+    ),
+    KarirModel(
+      id: 0,
+      gambar: "Assets/images/home_3.jpg",
+      judul: "judul",
+      keterangan: "keterangan",
+    ),
   ];
 
   @override
@@ -62,7 +77,7 @@ class _Home2State extends State<Home2> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           Text('Artikel Untukmu'),
+            Text('Artikel Untukmu'),
             TextButton(onPressed: () {}, child: Text('Selengkapnya')),
           ],
         ),

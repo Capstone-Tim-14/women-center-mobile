@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:women_center_mobile/View/login/login_view.dart';
+import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
   const AlreadyHaveAccount({super.key});
@@ -21,7 +23,15 @@ class AlreadyHaveAccount extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () async {},
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginView(),
+                ),
+                (route) => false,
+              );
+            },
             child: const Text(
               'Login',
               style: TextStyle(
@@ -543,19 +553,28 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               ),
               child: InkWell(
                 onTap: () async {
-                  var response = await register(
-                      _firstnameController.text,
-                      _lastnameController.text,
-                      _usernameController.text,
-                      _phoneController.text,
-                      _emailController.text,
-                      _passwordController.text);
-                  if (response.statusCode == 201) {
-                    Navigator.pushNamed(context, '/login');
-                    print(response.statusCode);
-                  } else {
-                    // maka akan keluar notifikasi
-                  }
+                  // juhar edit
+
+                  // var response = await register(
+                  //     _firstnameController.text,
+                  //     _lastnameController.text,
+                  //     _usernameController.text,
+                  //     _phoneController.text,
+                  //     _emailController.text,
+                  //     _passwordController.text);
+                  // if (response.statusCode == 201) {
+                  //   Navigator.pushNamed(context, '/login');
+                  //   print(response.statusCode);
+                  // } else {
+                  //   // maka akan keluar notifikasi
+                  // }
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Onboarding(),
+                    ),
+                  );
                 },
                 child: const Center(
                   child: Padding(

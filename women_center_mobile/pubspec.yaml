@@ -63,9 +63,6 @@ flutter:
   uses-material-design: true
   assets:
     - Assets/images/
-    - Assets/images/backgroud_loginPage.jpeg
-    - Assets/images/note_alt.png
-    - Assets/images/mdi_work.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

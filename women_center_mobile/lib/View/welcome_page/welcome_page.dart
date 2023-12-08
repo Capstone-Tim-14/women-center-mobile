@@ -77,6 +77,7 @@ class Welcome extends StatelessWidget {
                   child: MaterialButton(
                     onPressed: () {
                       // Aksi yang akan dijalankan saat tombol ditekan
+                      Navigator.pushNamed(context, "/login");
                     },
                     child: Text(
                       'Login',
