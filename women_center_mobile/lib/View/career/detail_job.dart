@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/career_model/detail_career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class DetailJob extends StatefulWidget {
   final int jobId;
@@ -91,24 +94,28 @@ class _DetailJobState extends State<DetailJob> {
                                   ),
                                   SizedBox(width: 15.0),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '${jobDetail.titleJob}',
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${jobDetail.titleJob}',
+                                      style: TextStyle(
+                                        fontSize: 17.0,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      Text(
-                                        '${jobDetail.companyName}',
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.grey,
-                                        ),
+                                      maxLines: 2, // Jumlah baris maksimum
+                                      overflow: TextOverflow.ellipsis, // Overflow treatment
+                                      softWrap: true, // Membuat teks pindah baris secara otomatis
+                                    ),
+                                    Text(
+                                      '${jobDetail.companyName}',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Colors.grey,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
+                                ),
+
                                 ],
                               ),
                             ),
@@ -179,8 +186,10 @@ class _DetailJobState extends State<DetailJob> {
                                   Row(
                                     children: [
                                       ElevatedButton(
-                                        onPressed: () {
-                                          // Handle button tap
+                                        onPressed: () async {
+                                          String url = jobDetail.linkedinUrl;
+                                          _launchURL(url);
+
                                         },
                                         style: ElevatedButton.styleFrom(
                                           primary: Color(0xFFF4518D), // Warna latar belakang tombol
@@ -402,5 +411,25 @@ class _DetailJobState extends State<DetailJob> {
         }
       ),
     );
+  }
+  _launchURL(String url) async {
+    try {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        // Fallback: Buka dengan package uni_links jika tidak bisa diluncurkan
+        await launchWithUniLinks(url);
+      }
+    } catch (e) {
+      print('Error launching URL: $e');
+    }
+  }
+
+  Future<void> launchWithUniLinks(String url) async {
+    try {
+      await launch(url, forceWebView: false);
+    } catch (e) {
+      print('Error launching URL with uni_links: $e');
+    }
   }
 }
