@@ -1,7 +1,8 @@
 //punya juhar
 import 'package:flutter/material.dart';
-import '../../Models/artikel_model/artikel_model.dart';
-import '../../Models/karir_model/karir_model.dart';
+import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
+import 'package:women_center_mobile/Models/karir_model/karir_model.dart';
+import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -16,6 +17,7 @@ class _MyWidgetState extends State<MyWidget> {
     return const Placeholder();
   }
 }
+
 class Home2 extends StatefulWidget {
   const Home2({super.key});
 
@@ -25,12 +27,25 @@ class Home2 extends StatefulWidget {
 
 class _Home2State extends State<Home2> {
   List<KarirModel> listKarir = [
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
+    KarirModel(
+      id: 0,
+      gambar: "Assets/images/home_3.jpg",
+      judul: "judul",
+      keterangan: "keterangan",
+    ),
+    KarirModel(
+      id: 0,
+      gambar: "Assets/images/home_3.jpg",
+      judul: "judul",
+      keterangan: "keterangan",
+    ),
+    KarirModel(
+      id: 0,
+      gambar: "Assets/images/home_3.jpg",
+      judul: "judul",
+      keterangan: "keterangan",
+    ),
   ];
-
-  ArtikelModel artikelUntukmu = ArtikelModel("Assets/images/home_3.jpg", "nama", "waktu", "keterangan");
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +77,19 @@ class _Home2State extends State<Home2> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           Text('Rekomendasi Karir'),
+            Text('Artikel Untukmu'),
             TextButton(onPressed: () {}, child: Text('Selengkapnya')),
           ],
         ),
-        Image.asset(artikelUntukmu.gambar),
+        Image.network(DummyArtikel.artikelUntukmu.thumbnail),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(artikelUntukmu.nama),
-            Text(artikelUntukmu.waktu),
+            Text(DummyArtikel.artikelUntukmu.author.name),
+            Text(DummyArtikel.artikelUntukmu.formatJam()),
           ],
         ),
-        Text(artikelUntukmu.keterangan),
+        Text(DummyArtikel.artikelUntukmu.title),
       ],
     );
   }
