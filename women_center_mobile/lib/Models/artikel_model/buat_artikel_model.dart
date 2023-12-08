@@ -1,19 +1,19 @@
 class Article {
-  String title;
-  String photoUrl;
-  String content;
+  final String title;
+  final String content;
+  final String thumbnail;
 
   Article({
     required this.title,
-    required this.photoUrl,
     required this.content,
+    required this.thumbnail,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'title': title,
-      'photoUrl': photoUrl,
       'content': content,
+      'thumbnail': thumbnail,
     };
   }
 }

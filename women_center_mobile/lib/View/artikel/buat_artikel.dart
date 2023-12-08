@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:women_center_mobile/Models/artikel_model/buat_artikel_model.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/buat_artikel_viewmodel.dart';
 
 class buat_artikel extends StatefulWidget {
   @override
@@ -8,9 +11,9 @@ class buat_artikel extends StatefulWidget {
 }
 
 class _buat_artikelState extends State<buat_artikel> {
-  TextEditingController _judulController = TextEditingController();
-  TextEditingController _isiController = TextEditingController();
-  File? _imageFile;
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _thumbnailController = TextEditingController();
   Color _warna1 = Colors.white;
   Color _textColor1 = Colors.black;
   Color _warna2 = Colors.white;
@@ -23,21 +26,6 @@ class _buat_artikelState extends State<buat_artikel> {
   Color _textColor5 = Colors.black;
   Color _warna6 = Colors.white;
   Color _textColor6 = Colors.black;
-
-  Future<void> _pickImage() async {
-    // Implementasi pembukaan galeri di sini
-    // Pastikan untuk memperbarui nilai _imageFile dengan file yang dipilih
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-    );
-
-    if (result != null) {
-      setState(() {
-        _imageFile = File(result.files.single.path!);
-      });
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +69,7 @@ class _buat_artikelState extends State<buat_artikel> {
                   ]
                 ),
                 child: TextFormField(
-                  controller: _judulController,
+                  controller: _titleController,
                   decoration: InputDecoration(
                     hintText: 'Ketik Judul artikel disini...',
                     filled: true,
@@ -115,18 +103,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     // Widget untuk menampilkan gambar yang diunggah (jika ada)s
-                    _imageFile != null
-                        ? Image.file(
-                            _imageFile!,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(),
-                    SizedBox(height: 16),
                     TextFormField(
                       readOnly: true,
+                      controller: _thumbnailController, 
                       decoration: InputDecoration(
-                        hintText: 'Upload foto disini...',
+                        hintText: 'Upload foto di sini...',
                         suffixIcon: InkWell(
                           onTap: () {
                             // Panggil fungsi untuk membuka galeri dan memilih gambar
@@ -167,7 +148,7 @@ class _buat_artikelState extends State<buat_artikel> {
                   ]
                 ),
                 child: TextFormField(
-                  controller: _isiController,
+                  controller: _contentController,
                   decoration: InputDecoration(
                     hintText: 'Ketik Artikel Anda disini...',
                     filled: true,
@@ -276,6 +257,7 @@ class _buat_artikelState extends State<buat_artikel> {
                     onPressed: () {
                       setState(() {
                         // Tindakan yang diambil saat tombol ditekan
+                        _createArticle(context);
                       });
                     },
                     child: Text('Pilih Paket', style: TextStyle(color: Colors.white)),
@@ -294,5 +276,60 @@ class _buat_artikelState extends State<buat_artikel> {
         ),
       ),
     );
+  }
+
+  Future<void> _pickImage() async {
+    // Implementasi pembukaan galeri di sini
+    // Pastikan untuk memperbarui nilai _thumbnailController dengan file yang dipilih
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+
+    if (result != null && result.files.isNotEmpty) {
+      setState(() {
+        String fileName = result.files.first.name;
+        _thumbnailController.text = fileName;
+      });
+    }
+  }
+
+  void _createArticle(BuildContext context) async {
+    final articleViewModel = Provider.of<ArticleViewModel>(context, listen: false);
+
+    // Validasi sederhana, pastikan semua field diisi
+    if (_titleController.text.isNotEmpty &&
+        _contentController.text.isNotEmpty &&
+        _thumbnailController.text.isNotEmpty) {
+      // Buat objek Article
+      final newArticle = Article(
+        title: _titleController.text,
+        content: _contentController.text,
+        thumbnail: _thumbnailController.text,
+      );
+
+      try {
+        // Panggil fungsi createArticle dari viewModel
+        await articleViewModel.createArticle(newArticle);
+
+        // Artikel berhasil dibuat, mungkin Anda ingin menavigasi kembali atau melakukan tindakan lainnya
+        Navigator.pop(context);
+
+      } catch (error) {
+        // Handle error jika ada kesalahan selama proses pembuatan artikel
+        print('Error creating article: $error');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to create article. Please try again.'),
+          ),
+        );
+      }
+    } else {
+      // Tampilkan pesan jika ada field yang belum diisi
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fill in all fields.'),
+        ),
+      );
+    }
   }
 }
