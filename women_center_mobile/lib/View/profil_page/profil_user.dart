@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui';
+
+import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
 class CustomShapeClipper extends CustomClipper<Path> {
   @override
@@ -18,25 +22,36 @@ class CustomShapeClipper extends CustomClipper<Path> {
   }
 }
 
-class ProfilPage extends StatelessWidget {
+class ProfilPage extends StatefulWidget {
+  @override
+  _ProfilPageState createState() => _ProfilPageState();
+}
+
+class _ProfilPageState extends State<ProfilPage> {
+  int _selectedIndex = 0;
+  bool isNotificationEnabled = true;
+  Color iconColor = const Color(0xFFF4518D);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFFDCEDF),
-        toolbarHeight: 96,
-        leading: Padding(
-          padding: const EdgeInsets.only(top: 30.0),
+        toolbarHeight: 80,
+        leading: 
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 4.0),
           child: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {},
           ),
         ),
-        title: Center(
-          child: Align(
-            alignment: Alignment(-0.22, 0),
-            child: Transform.translate(
-              offset: Offset(0.0, -12.0),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+          padding: const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 3.0),
               child: Text(
                 'Profil',
                 style: GoogleFonts.roboto(
@@ -45,17 +60,26 @@ class ProfilPage extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          ],
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_none_outlined), // Ganti dengan ikon notifikasi yang diinginkan
+            onPressed: () {
+              // Aksi yang ingin diambil ketika tombol notifikasi ditekan
+            },
+          ),
+        ],
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
         // mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           ClipPath(
             clipper: CustomShapeClipper(),
             child: Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.24,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
@@ -66,17 +90,17 @@ class ProfilPage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 6),
+                    padding: EdgeInsets.only(top: 0),
                     child: CircleAvatar(
                       backgroundImage: AssetImage('assets/images/Ellipse.png'),
-                      radius: 55,
+                      radius: 50,
                     ),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 8),
                   Text(
                     'Sherly Prameswari',
                     style: GoogleFonts.roboto(
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -84,7 +108,7 @@ class ProfilPage extends StatelessWidget {
                   Text(
                     'sherly.prameswari@gmail.com',
                     style: GoogleFonts.roboto(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
                     ),
@@ -100,7 +124,7 @@ class ProfilPage extends StatelessWidget {
     child: Padding(
       padding: EdgeInsets.only(top: 1),
       child: Container(
-        margin: EdgeInsets.only(top: 1.0, bottom: 5.0, right: 10.0, left: 10.0),
+        margin: EdgeInsets.only(top: 1.0, bottom: 0.0),
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
@@ -117,30 +141,46 @@ class ProfilPage extends StatelessWidget {
           Column(
   children: [
     Card(
-      margin: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 16.0, left: 16.0), // Sesuaikan nilai margin sesuai kebutuhan
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
+  margin: EdgeInsets.only(top: 1.0, bottom: 3.0, right: 16.0, left: 16.0),
+  child: Container(
+    color: Color(0xFFFCFCFC), // Ganti dengan warna yang diinginkan
+    padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 16.0),
+    child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            buildOption(context, Icons.home, 'Beranda', '/beranda'),
-            buildOption(context, Icons.person, 'Profil', '/profil'),
-            buildOption(context, Icons.settings, 'Pengaturan', '/pengaturan'),
-            buildOption(context, Icons.notifications, 'Notifikasi', '/notifikasi'),
-            buildOption(context, Icons.exit_to_app, 'Keluar', '/keluar'),
+            buildOption(context, Icons.history, 'Riwayat Konseling', '/riwayat'),
+            buildOption(context, CupertinoIcons.bell, 'Notifikasi', '/notifikasi'),
+            buildOption(context, CupertinoIcons.checkmark_shield, 'Pengaturan Privasi', '/pengaturan'),
+            buildOption(context, Icons.language, 'Bahasa', '/bahasa'),
+            buildOption(context, Icons.favorite_outline, 'Favorit', '/favorit'),
           ],
         ),
       ),
     ),
     Card(
-      margin: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 16.0, left: 16.0), 
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.only(top: 1.0, bottom: 3.0, right: 16.0, left: 16.0), 
+      child: Container(
+    color: Color(0xFFFCFCFC),
+        padding: EdgeInsets.only(top: 2.0, bottom: 2.0, right: 16.0, left: 16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            buildOption(context, Icons.star, 'Favorit', '/favorit'),
-            buildOption(context, Icons.info, 'Tentang Kami', '/tentang'),
+            buildOption(context, Icons.feedback_outlined, 'Tentang Kami', '/tentang'),
+            buildOption(context, Icons.live_help_outlined, 'Bantuan dan FAQ', '/bantuan'),
+            buildOption(context, Icons.headset_mic_outlined, 'Layanan Pelanggan', '/layanan'),
+          ],
+        ),
+      ),
+    ),
+  Card(
+      margin: EdgeInsets.only(top: 2.0, bottom: 3.0, right: 16.0, left: 16.0), 
+      child: Container(
+    color: Color(0xFFFCFCFC),
+        padding: EdgeInsets.only(top: 2.0, bottom: 2.0, right: 16.0, left: 16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            buildOption(context, Icons.logout_outlined, 'Keluar', '/favorit'),
           ],
         ),
       ),
@@ -149,24 +189,55 @@ class ProfilPage extends StatelessWidget {
 ),
         ],
       ),
+      ),
+      bottomNavigationBar: MyBottomNavigationBar(
+      selectedIndex: _selectedIndex,
+        onItemTapped: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+    ),
     );
   }
 
   Widget buildOption(BuildContext context, IconData icon, String label, String route) {
-    return InkWell(
-      onTap: () {
+  return InkWell(
+    onTap: () {
+      if (route == '/notifikasi') {
+        // Tambahkan aksi untuk menangani ketika bagian notifikasi ditekan
+        // Anda dapat menampilkan dialog atau halaman pengaturan notifikasi di sini
+      } else {
         Navigator.pushNamed(context, route);
-      },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          children: [
-            Icon(icon),
-            SizedBox(width: 16.0),
-            Text(label),
+      }
+    },
+    child: Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
+            icon,
+            color: iconColor,
+          ),
+          SizedBox(width: 16.0),
+          Text(label),
+          if (route == '/notifikasi') ...[
+            Spacer(),
+            Switch(
+  value: isNotificationEnabled,
+  onChanged: (value) {
+    setState(() {
+      isNotificationEnabled = value;
+    });
+  },
+  activeTrackColor: Color(0xFFF4518D), // Warna track switch saat aktif
+  activeColor: Colors.white, // Warna switch saat aktif
+),
           ],
-        ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }
