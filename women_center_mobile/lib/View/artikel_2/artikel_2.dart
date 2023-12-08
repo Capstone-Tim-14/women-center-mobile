@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
-import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 
 class Artikel2 extends StatefulWidget {
-  const Artikel2({super.key});
+  final ArtikelModel model;
+  const Artikel2({super.key, required this.model});
 
   @override
   State<Artikel2> createState() => _Artikel2State();
@@ -20,7 +20,7 @@ class _Artikel2State extends State<Artikel2> {
     // final ArtikelModel model = ModalRoute.of(context)!.settings.arguments as ArtikelModel;
 
     // TODO: kalo halaman artikel 1 udah pake model, ini dihapus atau dicomment
-    final ArtikelModel model = DummyArtikel.artikelUntukmu;
+    // final ArtikelModel model = DummyArtikel.artikelUntukmu;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,11 +31,11 @@ class _Artikel2State extends State<Artikel2> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(model.title),
+            Text(widget.model.title),
             Row(
               children: [
-                Text(model.author.name),
-                Text(model.formatJam()),
+                Text(widget.model.author.name),
+                Text(widget.model.formatJam()),
               ],
             ),
             Align(
@@ -45,8 +45,8 @@ class _Artikel2State extends State<Artikel2> {
                 onPressed: () {},
               ),
             ),
-            Image.network(model.thumbnail),
-            Content(model: model),
+            Image.network(widget.model.thumbnail),
+            Content(model: widget.model),
           ],
         ),
       ),

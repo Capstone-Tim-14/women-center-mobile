@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/login/login_widget.dart';
 
-void main() {
-  runApp(const LoginView());
-}
-
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 

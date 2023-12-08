@@ -14,6 +14,7 @@ import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
+import 'View/bottomnavigationbar/main_page.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
 import 'View/login/login_view.dart';
@@ -48,7 +49,6 @@ class MyApp extends StatelessWidget {
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),
           '/notifikasi': (context) => const HomepageNotifikasi(),
-          '/artikel2': (context) => const Artikel2(),
           '/homepageview': (context) => const HomepageSection(),
           '/homepagenotif3': (context) => HomepageNotifikasi3(),
           '/artikelku': (context) => const ArtikelKu(),
