@@ -284,8 +284,13 @@ class _CareerState extends State<Career> {
                           itemBuilder: (context, index) {
                             final job = jobViewModel.jobs[index];
                             return GestureDetector(
-                              onTap: () {
-                                // Logika yang dijalankan saat item ditekan
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailJob(jobId: job.id),
+                                  ),
+                                );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
