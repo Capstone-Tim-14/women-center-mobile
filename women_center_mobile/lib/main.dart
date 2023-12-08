@@ -9,6 +9,9 @@ import 'package:women_center_mobile/View/artikel/artikel_view.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/artikel/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_1.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_2.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/profil_page/profil_user.dart';
@@ -22,7 +25,6 @@ import 'View/login/login_view.dart';
 import 'View/register/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'View/welcome_page/welcome_page.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -55,6 +57,8 @@ class MyApp extends StatelessWidget {
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),
           '/profil_user':(context) => ProfilPage(),
+          '/payment': (context) => HomePage(),
+          '/pembayaran1': (context) => const MetodePembayaran1(),
         },
       ),
     );
