@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        initialRoute: '/profil_user',
+        initialRoute: '/',
         routes: {
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
