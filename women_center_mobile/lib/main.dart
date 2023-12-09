@@ -1,5 +1,6 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
@@ -44,9 +45,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'women center',
         theme: ThemeData(
+            fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/chatbotcs',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
@@ -57,10 +59,11 @@ class MyApp extends StatelessWidget {
           '/homepagenotif3': (context) => HomepageNotifikasi3(),
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),
-          '/profil_user':(context) => ProfilPage(),
+          '/profil_user': (context) => ProfilPage(),
           '/payment': (context) => HomePage(),
           '/pembayaran1': (context) => const MetodePembayaran1(),
           '/editprofile': (context) => EditProfile(),
+          '/chatbotcs': (context) => ChatBotScreen(),
         },
       ),
     );
