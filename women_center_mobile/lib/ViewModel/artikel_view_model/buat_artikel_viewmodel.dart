@@ -10,10 +10,9 @@ class ArticleViewModel extends ChangeNotifier {
   Future<void> createArticle(Article article) async {
     try {
       final response = await http.post(
-        Uri.parse('api-ferminacare.tech/api/v1/counselor/articles'),
+        Uri.parse('https://api-ferminacare.tech/api/v1/counselor/articles'),
         headers: <String, String>{
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZnVsbF9uYW1lIjoiSWdlciBCb2IiLCJlbWFpbCI6IklnZXIxMjNAZ21haWwuY29tIiwicm9sZSI6ImNvdW5zZWxvciIsImV4cCI6MTcwMjE1MTgzNn0.E72cjbyRbmXZVgZW44Sp9tqT3G-VLh02at6x5FgrOgs',
         },
         body: jsonEncode(article.toJson()),
       );

@@ -70,6 +70,8 @@ class _buat_artikelState extends State<buat_artikel> {
                 ),
                 child: TextFormField(
                   controller: _titleController,
+                  maxLines: null,
+                  minLines: 1,
                   decoration: InputDecoration(
                     hintText: 'Ketik Judul artikel disini...',
                     filled: true,
@@ -143,12 +145,14 @@ class _buat_artikelState extends State<buat_artikel> {
                       color: Colors.grey.withOpacity(0.7),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3)
+                      offset: Offset(0, 3),
                     )
-                  ]
+                  ],
                 ),
                 child: TextFormField(
                   controller: _contentController,
+                  maxLines: null, // Atur nilai null agar widget dapat tumbuh sesuai kebutuhan
+                  minLines: 1,    // Atur nilai minimum baris yang ditampilkan
                   decoration: InputDecoration(
                     hintText: 'Ketik Artikel Anda disini...',
                     filled: true,
@@ -160,6 +164,7 @@ class _buat_artikelState extends State<buat_artikel> {
                   ),
                 ),
               ),
+
               SizedBox(height: 115),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -327,7 +332,7 @@ class _buat_artikelState extends State<buat_artikel> {
       // Tampilkan pesan jika ada field yang belum diisi
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please fill in all fields.'),
+          content: Text('Tolong isi Semua colom'),
         ),
       );
     }
