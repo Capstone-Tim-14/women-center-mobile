@@ -12,7 +12,7 @@ class ArticleViewModel extends ChangeNotifier {
       final response = await http.post(
         Uri.parse('https://api-ferminacare.tech/api/v1/counselor/articles'),
         headers: <String, String>{
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZnVsbF9uYW1lIjoiSWdlciBCb2IiLCJlbWFpbCI6IklnZXIxMjNAZ21haWwuY29tIiwicm9sZSI6ImNvdW5zZWxvciIsImV4cCI6MTcwMjE1MTgzNn0.E72cjbyRbmXZVgZW44Sp9tqT3G-VLh02at6x5FgrOgs',
+          'Authorization': 'Bearer ',
         },
         body: jsonEncode(article.toJson()),
       );
