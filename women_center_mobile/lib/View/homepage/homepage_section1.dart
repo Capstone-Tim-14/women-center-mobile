@@ -167,88 +167,97 @@ class _WidgetHome1State extends State<WidgetHome1> {
                   // AnimatedSlideColumn()
                   Padding(
                     padding: const EdgeInsets.only(top: 19, left: 6),
-                    child: Container(
-                      width: 74,
-                      height: 106,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: ShapeDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment(0, 7),
-                          colors: [
-                            Color(0xFFF2F2F2),
-                            Color(0xFF9747FF),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => NewPage()),
+                        );
+                      },
+                      child: Container(
+                        width: 74,
+                        height: 106,
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: ShapeDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment(0, 7),
+                            colors: [
+                              Color(0xFFF2F2F2),
+                              Color(0xFF9747FF),
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x19212121),
+                              blurRadius: 24,
+                              offset: Offset(0, 4),
+                              spreadRadius: 0,
+                            )
                           ],
                         ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x19212121),
-                            blurRadius: 24,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: const Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              // textDirection: TextDirection.ltr,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 9),
-                                  child: Text(
-                                    'Jumat',
-                                    style: TextStyle(
-                                      color: Color(0xFFF4518D),
-                                      fontSize: 10,
-                                      fontFamily: 'Raleway',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: const Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                // textDirection: TextDirection.ltr,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 9),
+                                    child: Text(
+                                      'Jumat',
+                                      style: TextStyle(
+                                        color: Color(0xFFF4518D),
+                                        fontSize: 10,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w400,
+                                        height: 0,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 9),
-                                  child: Text(
-                                    '15',
-                                    style: TextStyle(
-                                      color: Color(0xFFF4518D),
-                                      fontSize: 40,
-                                      fontFamily: 'Raleway',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 9),
+                                    child: Text(
+                                      '15',
+                                      style: TextStyle(
+                                        color: Color(0xFFF4518D),
+                                        fontSize: 40,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 14,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 9),
-                                  child: Text(
-                                    'September',
-                                    style: TextStyle(
-                                      color: Color(0xFFF4518D),
-                                      fontSize: 10,
-                                      fontFamily: 'Raleway',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.18,
+                                  SizedBox(
+                                    height: 14,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 9),
+                                    child: Text(
+                                      'September',
+                                      style: TextStyle(
+                                        color: Color(0xFFF4518D),
+                                        fontSize: 10,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w400,
+                                        height: 0.18,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -280,11 +289,11 @@ class _WidgetHome1State extends State<WidgetHome1> {
                                 height: 50,
                                 decoration: ShapeDecoration(
                                   gradient: const LinearGradient(
-                                    begin: Alignment(1.00, -0.07),
-                                    end: Alignment(-1, 0.07),
+                                    begin: Alignment(0.00, -16),
+                                    end: Alignment.centerRight,
                                     colors: [
                                       Color(0xFF9747FF),
-                                      Color(0xFFF4518D),
+                                      Color(0xFFFDCEDF)
                                     ],
                                   ),
                                   shape: RoundedRectangleBorder(
@@ -395,11 +404,11 @@ class _WidgetHome1State extends State<WidgetHome1> {
                                 height: 50,
                                 decoration: ShapeDecoration(
                                   gradient: const LinearGradient(
-                                    begin: Alignment(1.00, -0.07),
-                                    end: Alignment(-1, 0.07),
+                                    begin: Alignment(0.00, -16),
+                                    end: Alignment.centerRight,
                                     colors: [
                                       Color(0xFF9747FF),
-                                      Color(0xFFF4518D),
+                                      Color(0xFFFDCEDF)
                                     ],
                                   ),
                                   shape: RoundedRectangleBorder(
