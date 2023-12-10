@@ -7,14 +7,15 @@ class ArticleViewModel extends ChangeNotifier {
   final String apiUrl = 'https://api-ferminacare.tech/api/v1/counselor/articles';
   List<Article> articles = [];
 
-  Future<void> createArticle(Article article) async {
+  Future<void> createArticle(Article article, BuildContext context) async {
     try {
       final response = await http.post(
         Uri.parse('https://api-ferminacare.tech/api/v1/counselor/articles'),
         headers: <String, String>{
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZnVsbF9uYW1lIjoiSWdlciBCb2IiLCJlbWFpbCI6IklnZXIxMjNAZ21haWwuY29tIiwicm9sZSI6ImNvdW5zZWxvciIsImV4cCI6MTcwMjE4NTQ4Nn0.jKu4JsYjayKSzw2-KX5bFdG_mgbESs_-POiw5452xo8',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZnVsbF9uYW1lIjoiSWdlciBCb2IiLCJlbWFpbCI6IklnZXIxMjNAZ21haWwuY29tIiwicm9sZSI6ImNvdW5zZWxvciIsImV4cCI6MTcwMjIzNDg2NH0.6rT1Hz3DNsGk5rN9kb1ci8_O7RzYTTXLOnO9DF2oX8c',
+          'Content-Type': 'application/json', // Tambahkan header Content-Type
         },
-        body: jsonEncode(article.toJson()),
+        body: jsonEncode(article.toJson()), // Ubah objek menjadi JSON
       );
 
       if (response.statusCode == 201) {

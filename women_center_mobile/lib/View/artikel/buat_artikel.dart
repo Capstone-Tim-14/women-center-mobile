@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -284,37 +287,35 @@ class _buat_artikelState extends State<buat_artikel> {
   }
 
   Future<void> _pickImage() async {
-    // Implementasi pembukaan galeri di sini
-    // Pastikan untuk memperbarui nilai _thumbnailController dengan file yang dipilih
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image,
     );
 
     if (result != null && result.files.isNotEmpty) {
+      File file = File(result.files.first.path!); // Peroleh objek File dari jalur file
       setState(() {
-        String fileName = result.files.first.name;
-        _thumbnailController.text = fileName;
+        _thumbnailController.text = file.path; // Set nilai _thumbnailController dengan jalur file
       });
     }
   }
 
-  void _createArticle(BuildContext context) async {
+  Future<void> _createArticle(BuildContext context) async {
     final articleViewModel = Provider.of<ArticleViewModel>(context, listen: false);
-    
+
     // Validasi sederhana, pastikan semua field diisi
     if (_titleController.text.isNotEmpty &&
         _contentController.text.isNotEmpty &&
         _thumbnailController.text.isNotEmpty) {
-      // Buat objek Article
-      final newArticle = Article(
-        title: _titleController.text,
-        content: _contentController.text,
-        thumbnail: _thumbnailController.text,
-      );
-
       try {
-        // Panggil fungsi createArticle dari viewModel
-        await articleViewModel.createArticle(newArticle);
+        // Buat objek Article
+        final newArticle = Article(
+          title: _titleController.text,
+          content: _contentController.text,
+          thumbnail: _thumbnailController.text,
+        );
+
+        // Panggil fungsi createArticle dari viewModel dengan tambahan context
+        await articleViewModel.createArticle(newArticle, context);
 
         // Artikel berhasil dibuat, mungkin Anda ingin menavigasi kembali atau melakukan tindakan lainnya
         Navigator.pop(context);
@@ -332,9 +333,12 @@ class _buat_artikelState extends State<buat_artikel> {
       // Tampilkan pesan jika ada field yang belum diisi
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Tolong isi Semua colom'),
+          content: Text('Tolong isi Semua kolom'),
         ),
       );
     }
   }
+
+
+
 }
