@@ -62,31 +62,6 @@ class _buat_artikelState extends State<buat_artikel> {
           },
         ),
       ),
-      // appBar: AppBar(
-      //   backgroundColor: Colors.pink[100],
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.arrow_back),
-      //     color: Colors.black,
-      //     onPressed: () {},
-      //   ),
-      //   title: const Row(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Text(
-      //         "Edit Artikel",
-      //         style: TextStyle(
-      //           color: Color(0xFF0B0B0B),
-      //           fontSize: 14,
-      //           // fontFamily: 'Roboto',
-      //           fontWeight: FontWeight.w500,
-      //           // height: 0.10,
-      //           // letterSpacing: 0.14,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      //   centerTitle: true,
-      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, top: 20),
@@ -333,7 +308,7 @@ class _buat_artikelState extends State<buat_artikel> {
                 const SizedBox(
                   height: 20,
                 ),
-                TeksListWidget(),
+                ColorChangeButtons(),
                 const SizedBox(
                   height: 17,
                 ),
@@ -386,107 +361,206 @@ class _buat_artikelState extends State<buat_artikel> {
   }
 }
 
-class TeksListWidget extends StatefulWidget {
-  @override
-  _TeksListWidgetState createState() => _TeksListWidgetState();
-}
+// class TeksListWidget extends StatefulWidget {
+//   @override
+//   _TeksListWidgetState createState() => _TeksListWidgetState();
+// }
 
-class _TeksListWidgetState extends State<TeksListWidget> {
-  List<String> teksList = [
-    'Teks 1',
-    'Teks 2',
-    'Teks 3',
-    // ... tambahkan teks lainnya di sini
-  ];
+// class _TeksListWidgetState extends State<TeksListWidget> {
+//   List<String> teksList = [
+//     'Teks 1',
+//     'Teks 2',
+//     'Teks 3',
+//     // ... tambahkan teks lainnya di sini
+//   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.only(
-                right: 10), // Sesuaikan dengan jarak yang diinginkan
-            child: _buildColumn(teksList, Colors.red),
-          ),
-        ),
-        SizedBox(
-          width: 7,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(
-                right: 10), // Sesuaikan dengan jarak yang diinginkan
-            child: _buildColumn(teksList, Colors.pink),
-          ),
-        ),
-      ],
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.start,
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         _buildColumn(teksList, Colors.red),
+//         SizedBox(width: 7),
+//         Expanded(
+//           child: _buildColumn(teksList, Colors.pink),
+//         ),
+//       ],
+//     );
+//   }
 
-  Column _buildColumn(List<String> teksList, Color color) {
-    return Column(
-      children: List.generate(
-        teksList.length,
-        (index) {
-          bool isTapped = false;
+//   Column _buildColumn(List<String> teksList, Color color) {
+//     return Column(
+//       children: List.generate(
+//         teksList.length,
+//         (index) {
+//           bool isTapped = false;
 
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                isTapped = !isTapped;
-              });
-            },
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 17),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        isTapped = !isTapped;
-                      });
-                    },
-                    child: Container(
-                      width: 117,
-                      height: 31,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color:
-                            isTapped ? color : Color.fromARGB(255, 0, 255, 89),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 7),
-                        child: Column(
-                          children: [
-                            Text(
-                              teksList[index],
-                              style: TextStyle(
-                                color: isTapped
-                                    ? Colors.white
-                                    : const Color(0xFF636363),
-                                fontSize: 14,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w700,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
+//           return GestureDetector(
+//             onTap: () {
+//               setState(() {
+//                 isTapped = !isTapped;
+//               });
+//             },
+//             child: Container(
+//               margin: const EdgeInsets.only(bottom: 17),
+//               child: Row(
+//                 children: [
+//                   InkWell(
+//                     onTap: () {
+//                       setState(() {
+//                         isTapped = !isTapped;
+//                       });
+//                     },
+//                     child: Container(
+//                       width: 117,
+//                       height: 31,
+//                       clipBehavior: Clip.antiAlias,
+//                       decoration: ShapeDecoration(
+//                         color:
+//                             isTapped ? color : Color.fromARGB(255, 0, 255, 89),
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(100),
+//                         ),
+//                       ),
+//                       child: Padding(
+//                         padding: const EdgeInsets.only(top: 7),
+//                         child: Column(
+//                           children: [
+//                             Text(
+//                               teksList[index],
+//                               style: TextStyle(
+//                                 color:
+//                                     isTapped ? Colors.white : Color(0xFF636363),
+//                                 fontSize: 14,
+//                                 fontFamily: 'Raleway',
+//                                 fontWeight: FontWeight.w700,
+//                                 height: 0,
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+
+// class ColorChangeButtons extends StatefulWidget {
+//   @override
+//   _ColorChangeButtonsState createState() => _ColorChangeButtonsState();
+// }
+
+// class _ColorChangeButtonsState extends State<ColorChangeButtons> {
+//   Color _warna1 = Colors.white;
+//   Color _warna2 = Colors.white;
+//   Color _warna3 = Colors.white;
+//   Color _warna4 = Colors.white;
+//   Color _warna5 = Colors.white;
+//   Color _warna6 = Colors.white;
+
+//   Color _textColor1 = Colors.black;
+//   Color _textColor2 = Colors.black;
+//   Color _textColor3 = Colors.black;
+//   Color _textColor4 = Colors.black;
+//   Color _textColor5 = Colors.black;
+//   Color _textColor6 = Colors.black;
+
+//   void _changeColor(int buttonNumber) {
+//     setState(() {
+//       switch (buttonNumber) {
+//         case 1:
+//           _warna1 = (_warna1 == Colors.white)
+//               ? const Color.fromRGBO(244, 81, 141, 1)
+//               : Colors.white;
+//           _textColor1 =
+//               (_textColor1 == Colors.black) ? Colors.white : Colors.black;
+//           break;
+//         case 2:
+//           _warna2 = (_warna2 == Colors.white)
+//               ? const Color.fromRGBO(244, 81, 141, 1)
+//               : Colors.white;
+//           _textColor2 =
+//               (_textColor2 == Colors.black) ? Colors.white : Colors.black;
+//           break;
+//         case 3:
+//           _warna3 = (_warna3 == Colors.white)
+//               ? const Color.fromRGBO(244, 81, 141, 1)
+//               : Colors.white;
+//           _textColor3 =
+//               (_textColor3 == Colors.black) ? Colors.white : Colors.black;
+//           break;
+//         case 4:
+//           _warna4 = (_warna4 == Colors.white)
+//               ? const Color.fromRGBO(244, 81, 141, 1)
+//               : Colors.white;
+//           _textColor4 =
+//               (_textColor4 == Colors.black) ? Colors.white : Colors.black;
+//           break;
+//         case 5:
+//           _warna5 = (_warna5 == Colors.white)
+//               ? const Color.fromRGBO(244, 81, 141, 1)
+//               : Colors.white;
+//           _textColor5 =
+//               (_textColor5 == Colors.black) ? Colors.white : Colors.black;
+//           break;
+//         case 6:
+//           _warna6 = (_warna6 == Colors.white)
+//               ? const Color.fromRGBO(244, 81, 141, 1)
+//               : Colors.white;
+//           _textColor6 =
+//               (_textColor6 == Colors.black) ? Colors.white : Colors.black;
+//           break;
+//         default:
+//           break;
+//       }
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       // mainAxisAlignment: MainAxisAlignment.start,
+//       children: [
+//         _buildButton(1, 'Berita Wanita', _warna1, _textColor1),
+//         SizedBox(height: 1),
+//         _buildButton(2, 'Teknologi', _warna2, _textColor2),
+//         // SizedBox(height: 15),
+//         // _buildButton(3, 'Karier', _warna3, _textColor3),
+//         // SizedBox(height: 15),
+//         // _buildButton(4, 'Seni & Kreatifitas', _warna4, _textColor4),
+//         // SizedBox(height: 15),
+//         // _buildButton(5, 'Gaya hidup', _warna5, _textColor5),
+//         // SizedBox(height: 15),
+//         // _buildButton(6, 'Mental Health', _warna6, _textColor6),
+//       ],
+//     );
+//   }
+
+//   Widget _buildButton(
+//       int buttonNumber, String text, Color bgColor, Color textColor) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.start,
+//       children: [
+//         ElevatedButton(
+//           onPressed: () => _changeColor(buttonNumber),
+//           child: Text(
+//             text,
+//             style: TextStyle(color: textColor, fontSize: 14),
+//           ),
+//           style: ElevatedButton.styleFrom(
+//             primary: bgColor,
+//           ),
+//         ),
+//         SizedBox(width: 10),
+//       ],
+//     );
+//   }
+// }
