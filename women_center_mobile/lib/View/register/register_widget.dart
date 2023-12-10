@@ -1,18 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:async';
-
-class RegisterProvider extends ChangeNotifier {
-  bool _isRegistered = false;
-
-  bool get isRegistered => _isRegistered;
-
-  void register() {
-    _isRegistered = true;
-    notifyListeners();
-  }
-}
+import 'package:women_center_mobile/ViewModel/register_view_model/register_view_model.dart';
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -32,49 +21,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final TextEditingController _confirmpasswordController =
       TextEditingController();
   bool _obscureText = true;
-  final Dio _dio = Dio();
-
-  Future<Response> register(String firstname, String lastname, String username,
-      String phone, String email, String password) async {
-    try {
-      print('cek method regis');
-      Response response = await _dio.post(
-        'http://api-ferminacare.tech/api/v1/users/register',
-        data: {
-          "first_name": firstname,
-          "last_name": lastname,
-          "username": username,
-          "email": email,
-          "password": password,
-          "phone_number": phone,
-          "address": "null"
-        },
-      );
-      return response;
-    } catch (error, stacktrace) {
-      print("Exception occurred: $error stackTrace: $stacktrace");
-      // You can handle the exception as per your application's requirements.
-      // For now, you can rethrow the exception or return an error response.
-      throw Exception("Failed to register user: $error");
-    }
-  }
-
-  Future<bool> isUsernameEmailAvailable(String username, String email) async {
-    final response = await _dio.post(
-      'http://api-ferminacare.tech/api/v1/users/register',
-      data: {
-        "username": username,
-        "email": email,
-      },
-    );
-
-    return response.data['available'];
-  }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => RegisterProvider(),
+      create: (context) => RegisterViewModel(),
       child: Center(
         child: Form(
           key: _formKey,
@@ -98,28 +49,23 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   ),
                   child: InkWell(
                     onTap: () async {
-                      print('cek tab');
                       if (_formKey.currentState!.validate()) {
-                        print('cek validasi');
-                        // ... Your previous code ...
-
                         try {
-                          print('cek respon1');
-                          var response = await register(
-                            _firstnameController.text,
-                            _lastnameController.text,
-                            _usernameController.text,
-                            _phoneController.text,
-                            _emailController.text,
-                            _passwordController.text,
+                          var viewModel = Provider.of<RegisterViewModel>(
+                              context,
+                              listen: false);
+
+                          var response = await viewModel.registerUser(
+                            firstname: _firstnameController.text,
+                            lastname: _lastnameController.text,
+                            username: _usernameController.text,
+                            phone: _phoneController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text,
                           );
-                          // Move print statement here
-                          print('cek register');
+
                           if (response.statusCode == 201) {
-                            print('cek respon2');
-                            Provider.of<RegisterProvider>(context,
-                                    listen: false)
-                                .register();
+                            viewModel.register();
                             Navigator.of(context).pop();
                           } else if (response.statusCode == 409) {
                             final errorMessage = response.data['message'];
@@ -143,34 +89,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             print(
                                 "Unexpected status code: ${response.statusCode}");
                           }
-
-                          // Check username and email availability
-                          final isAvailable = await isUsernameEmailAvailable(
-                            _usernameController.text,
-                            _emailController.text,
-                          );
-                          print('check data email $isAvailable');
-                          if (!isAvailable) {
-                            // Show AlertDialog if username or email is not available
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text('Error'),
-                                content:
-                                    Text('Username or email is not available'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }
                         } catch (error) {
-                          // Handle general errors during the request
                           print("Error: $error");
                           if (error is DioError) {
                             print("DioError details: ${error.response?.data}");
@@ -205,7 +124,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     );
   }
 
-  Container widgetForm() {
+  Widget widgetForm() {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -224,15 +143,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
             ),
           ),
           const SizedBox(height: 12),
-          //------------------------ FIRST NAME & LAST NAME ----------------------------
-          Container(
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //-------------FIRST NAME------------
-                Container(
-                  width: 180,
+          Row(
+            children: [
+              Expanded(
+                child: Container(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -253,41 +167,45 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         width: double.infinity,
                         height: 48,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 10),
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
                         decoration: ShapeDecoration(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
                         child: TextFormField(
                           controller: _firstnameController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your name';
-                            }
-                            if (!RegExp(r'^[A-Z][a-z]*$').hasMatch(value)) {
-                              return 'Name must start with an uppercase letter';
+                              return 'First Name wajib diisi';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "First Name",
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontFamily: 'Raleway',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500)),
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontFamily: 'Raleway',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                           style: const TextStyle(
-                              color: Colors.black, fontFamily: 'Raleway'),
+                            color: Colors.black,
+                            fontFamily: 'Raleway',
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                //---------------LAST NAME-----------------
-                Container(
-                  width: 180,
+              ),
+              SizedBox(width: 16),
+              Expanded(
+                child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -308,43 +226,47 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         width: double.infinity,
                         height: 48,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 10),
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
                         decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            color: Colors.white),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          color: Colors.white,
+                        ),
                         child: TextFormField(
                           controller: _lastnameController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your name';
-                            }
-                            if (!RegExp(r'^[A-Z][a-z]*$').hasMatch(value)) {
-                              return 'Name must start with an uppercase letter';
+                              return 'Nama wajib diisi';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Last Name",
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontFamily: 'Raleway',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500)),
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontFamily: 'Raleway',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                           style: const TextStyle(
                             color: Colors.black,
                             fontFamily: 'Raleway',
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          SizedBox(height: 12),
+
+          SizedBox(height: 20),
           //------------------------ USERNAME ----------------------------
           Container(
             width: double.infinity,
@@ -383,16 +305,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: _usernameController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter a username';
+                              return 'Username wajib diisi';
                             }
-                            if (!RegExp(r'^[a-z]+$').hasMatch(value)) {
-                              return 'Username must be in lowercase and without spaces';
+                            if (value.contains(' ')) {
+                              return 'Username tanpa spasi';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Masukkan Username",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontFamily: 'Raleway',
@@ -451,16 +372,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: _phoneController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your phone number';
+                              return 'Nomor wajib diisi';
                             }
-                            if (!RegExp(r'^62\d{9,}$').hasMatch(value)) {
-                              return 'Invalid phone number format';
+                            if (!RegExp(r'^08\d{9,}$').hasMatch(value)) {
+                              return 'Nomor dimulai dari 0';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Masukkan nomor telpon",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontFamily: 'Raleway',
@@ -519,18 +439,17 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: _emailController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your email';
+                              return 'Email wajib diisi';
                             }
                             if (!RegExp(
                                     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
                                 .hasMatch(value)) {
-                              return 'Invalid email format';
+                              return 'Format email';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Masukkan Email",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontFamily: 'Raleway',
@@ -587,16 +506,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: _passwordController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your password';
+                              return 'Password wajib diisi';
                             }
                             if (!RegExp(r'^(?=.*[A-Z])').hasMatch(value)) {
-                              return 'Password must contain at least one uppercase letter';
+                              return 'Password harus mengandung huruf besar';
                             }
                             if (!RegExp(r'^(?=.*[a-z])').hasMatch(value)) {
-                              return 'Password must contain at least one lowercase letter';
+                              return 'Password harus mengandung huruf kecil';
                             }
                             if (!RegExp(r'^(?=.*\d)').hasMatch(value)) {
-                              return 'Password must contain at least one digit';
+                              return 'Password harus mengandung angka';
                             }
 
                             return null;
@@ -604,7 +523,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           obscureText: _obscureText,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Masukkan Password",
                             hintStyle: const TextStyle(
                               color: Colors.grey,
                               fontFamily: 'Raleway',
@@ -675,17 +593,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: _confirmpasswordController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please confirm your password';
+                              return 'Konfirmasi password kosong';
                             }
                             if (value != _passwordController.text) {
-                              return 'Passwords do not match';
+                              return 'Password tidak sesuai';
                             }
                             return null;
                           },
                           obscureText: _obscureText,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Konfirmasi Password",
                             hintStyle: const TextStyle(
                               color: Colors.grey,
                               fontFamily: 'Raleway',

@@ -8,6 +8,7 @@ import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/register/register_widget.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
+import 'package:women_center_mobile/ViewModel/register_view_model/register_view_model.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
 import 'View/login/login_view.dart';
@@ -17,7 +18,7 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => RegisterProvider(),
+      create: (context) => RegisterViewModel(),
       child: const MyApp(),
     ),
   );
