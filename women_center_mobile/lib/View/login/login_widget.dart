@@ -1,8 +1,12 @@
 //Rafi Taufiqurahman Create LoginWidget
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/login_model/model_login.dart';
+import 'package:women_center_mobile/View/bottomnavigationbar/main_page.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/View/register/register.dart';
 import 'package:women_center_mobile/ViewModel/api_login/login_api.dart';
+
+import '../homepage/homepage_view.dart';
 
 //widget tidak punya akun
 class DonTHaveAnAccountSignUp extends StatelessWidget {
@@ -22,7 +26,14 @@ class DonTHaveAnAccountSignUp extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () async {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Register(),
+                ),
+              );
+            },
             child: const Text(
               'Sign Up',
               style: TextStyle(
@@ -273,7 +284,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Onboarding()),
+                          MaterialPageRoute(builder: (context) => const MainPage()),
                         );
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal

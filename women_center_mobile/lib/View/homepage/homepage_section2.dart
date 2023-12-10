@@ -1,23 +1,10 @@
 //punya juhar
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
-import 'package:women_center_mobile/Models/karir_model/karir_model.dart';
-import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
+import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 
-
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
-
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
-}
-
-class _MyWidgetState extends State<MyWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
 class Home2 extends StatefulWidget {
   const Home2({super.key});
 
@@ -26,21 +13,27 @@ class Home2 extends StatefulWidget {
 }
 
 class _Home2State extends State<Home2> {
-  List<KarirModel> listKarir = [
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-  ];
+  void fetchCareers() {
+    context.read<CareerViewModel>().fetchAllCareer();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCareers();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final listKarir = context.watch<CareerViewModel>().listKarir;
+
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Rekomendasi Karir'),
-            TextButton(onPressed: () {}, child: Text('Selengkapnya')),
+            const Text('Rekomendasi Karir'),
+            TextButton(onPressed: () {}, child: const Text('Selengkapnya')),
           ],
         ),
         SizedBox(
@@ -52,44 +45,30 @@ class _Home2State extends State<Home2> {
             itemBuilder: (context, index) {
               final model = listKarir[index];
               return KarirItem(
-                gambar: model.gambar,
-                judul: model.judul,
-                keterangan: model.keterangan,
+                titleJob: model.titleJob,
+                logo: model.logo,
+                companyName: model.companyName,
               );
             },
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-           Text('Artikel Untukmu'),
-            TextButton(onPressed: () {}, child: Text('Selengkapnya')),
-          ],
-        ),
-        Image.network(DummyArtikel.artikelUntukmu.thumbnail),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(DummyArtikel.artikelUntukmu.author.name),
-            Text(DummyArtikel.artikelUntukmu.formatJam()),
-          ],
-        ),
-        Text(DummyArtikel.artikelUntukmu.title),
+        const LatestArtikel(),
       ],
     );
   }
 }
 
 class KarirItem extends StatelessWidget {
-  final String gambar;
-  final String judul;
-  final String keterangan;
+  final String titleJob;
+  final String logo;
+  final String companyName;
 
-  const KarirItem(
-      {super.key,
-      required this.gambar,
-      required this.judul,
-      required this.keterangan});
+  const KarirItem({
+    super.key,
+    required this.titleJob,
+    required this.logo,
+    required this.companyName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -99,16 +78,68 @@ class KarirItem extends StatelessWidget {
       },
       child: Column(
         children: [
-          Image.asset(
-            gambar,
+          Image.network(
+            logo,
             height: 130,
           ),
-          Text(judul),
-          Text(keterangan),
+          Text(titleJob),
+          Text(companyName),
         ],
       ),
     );
   }
 }
 
-//jika gambar dari API 
+class LatestArtikel extends StatefulWidget {
+  const LatestArtikel({super.key});
+
+  @override
+  State<LatestArtikel> createState() => _LatestArtikelState();
+}
+
+class _LatestArtikelState extends State<LatestArtikel> {
+  ArtikelModel? _artikel;
+
+  void fetchLatestArtikel() async {
+    final artikel = await context.read<ArtikelViewModel>().fetchLatestArtikel();
+    setState(() => _artikel = artikel);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchLatestArtikel();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Artikel Untukmu'),
+            TextButton(onPressed: () {}, child: const Text('Selengkapnya')),
+          ],
+        ),
+        fromAPI(),
+      ],
+    );
+  }
+
+  Widget fromAPI() {
+    if (_artikel == null) return const SizedBox();
+    return Column(
+      children: [
+        Image.network(_artikel!.thumbnail),
+        Row(
+          children: [
+            Text(_artikel!.author.name),
+            Text(_artikel!.formatJam()),
+          ],
+        ),
+        Text(_artikel!.title),
+      ],
+    );
+  }
+}

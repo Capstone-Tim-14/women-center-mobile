@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
+import 'package:women_center_mobile/View/career/career.dart';
+import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 
+import '../artikel/artikel_view.dart';
 import '../homepage/homepage_view.dart';
+import '../konseling/konseling_page_pilihan_paket.dart';
+import 'bottom_navigation_bar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,30 +16,49 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
-  final List screens = [
-    HomepageSection(),
+  String? appbarTitle = null;
 
-    const Center(
-      child: Text('artikel'),
-    ),
-    const Center(
-      child: Text('karir'),
-    ),
-    const Center(
-      child: Text('order'),
-    ),
-    const Center(
-      child: Text('profile'),
-    ),
+  PreferredSizeWidget? get appBar {
+    if (appbarTitle == null) return null;
+    return AppBar(
+      backgroundColor: Colors.pink[100],
+      title: Center(child: Text(appbarTitle ?? "")),
+      automaticallyImplyLeading: false,
+    );
+  }
+
+  final List screens = [
+    const HomepageSection(),
+    const Artikel(),
+    Career(),
+    const PilihanPaket(),
+    ProfilPage(),
     //kalau halaman sudah siap, setiap nama di ganti ke halaman aslinya
   ];
+
+  List<String?> listAppBarTitle = [
+    null,
+    "Artikel",
+    "Karir",
+    "Konseling",
+    "Profil"
+  ];
+
+  void pindahHalaman(index) {
+    setState(() {
+      selectedIndex = index;
+      appbarTitle = listAppBarTitle[selectedIndex];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: selectedIndex == 4 ? ProfilPage.getAppBar : appBar,
       body: screens[selectedIndex],
       bottomNavigationBar: MyBottomNavigationBar(
         selectedIndex: selectedIndex,
-        onItemTapped: (index) => setState(() => selectedIndex = index),
+        onItemTapped: pindahHalaman,
       ),
       // backgroundColor: const Color(0xFFF9F5F6),
       // appBar: AppBar(
