@@ -300,7 +300,7 @@ class _buat_artikelState extends State<buat_artikel> {
 
   void _createArticle(BuildContext context) async {
     final articleViewModel = Provider.of<ArticleViewModel>(context, listen: false);
-
+    
     // Validasi sederhana, pastikan semua field diisi
     if (_titleController.text.isNotEmpty &&
         _contentController.text.isNotEmpty &&
