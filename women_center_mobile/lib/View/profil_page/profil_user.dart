@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
-import '../bottomnavigationbar/bottom_navigation_bar.dart';
+import '../../ViewModel/api_profil_user/profil_user_api_get.dart';
 
 class CustomShapeClipper extends CustomClipper<Path> {
   @override
@@ -28,9 +28,28 @@ class ProfilPage extends StatefulWidget {
 }
 
 class _ProfilPageState extends State<ProfilPage> {
-  int _selectedIndex = 0;
   bool isNotificationEnabled = true;
   Color iconColor = const Color(0xFFF4518D);
+  final ApiProfil _apiProfil = ApiProfil();
+  Map<String, dynamic> _userProfile = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile();
+  }
+
+  Future<void> _fetchUserProfile() async {
+    try {
+      final response = await _apiProfil.getUserProfile();
+      print('Profile Picture URL: ${_userProfile['profile_picture']}');
+      setState(() {
+        _userProfile = response['data'];
+      });
+    } catch (error) {
+      print('Error fetching user profile: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,16 +108,19 @@ class _ProfilPageState extends State<ProfilPage> {
               ),
               child: Column(
                 children: [
+
                   Padding(
                     padding: EdgeInsets.only(top: 0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/Ellipse.png'),
-                      radius: 50,
-                    ),
+  child: Image.network(
+    _userProfile['profile_picture']?.toString() ?? '',
+),
+                    )
+
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Sherly Prameswari',
+                    _userProfile['full_name'] ?? 'User Name',
                     style: GoogleFonts.roboto(
                       fontSize: 18,
                       color: Colors.black,
@@ -106,7 +128,7 @@ class _ProfilPageState extends State<ProfilPage> {
                     ),
                   ),
                   Text(
-                    'sherly.prameswari@gmail.com',
+                    _userProfile['email'] ?? 'user@example.com',
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                       color: Colors.black,
@@ -190,14 +212,6 @@ class _ProfilPageState extends State<ProfilPage> {
         ],
       ),
       ),
-      bottomNavigationBar: MyBottomNavigationBar(
-      selectedIndex: _selectedIndex,
-        onItemTapped: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-    ),
     );
   }
 
