@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 import 'artikel_konselor_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
 void main(List<String> args) {
@@ -24,13 +25,12 @@ class _artikelKonselorState extends State<artikelKonselor> {
         appBar: AppBar(
           backgroundColor: Colors.pink[100],
           elevation: 0,
-          title: const Center(
+          title: Center(
               child: Text(
             'Artikel',
-            style: TextStyle(
+            style: GoogleFonts.roboto(
               color: Color(0xFF0B0B0B),
               fontSize: 18,
-              fontFamily: 'Roboto',
               fontWeight: FontWeight.w500,
             ),
           )),

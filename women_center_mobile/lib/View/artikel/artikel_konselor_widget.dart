@@ -378,10 +378,10 @@ class Kotak extends StatelessWidget {
                         child: Text(
                           'Publish',
                           style: TextStyle(
-                            color: Color(0xFF1F1F1F),
+                            color: Color(0xff34c759),
                             fontSize: 16,
                             fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             height: 0,
                           ),
                         ),
@@ -436,10 +436,10 @@ class Kotak extends StatelessWidget {
                         child: Text(
                           'Proses',
                           style: TextStyle(
-                            color: Color(0xFF1F1F1F),
+                            color: Color(0xfffbd23f),
                             fontSize: 16,
                             fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             height: 0,
                           ),
                         ),
@@ -485,10 +485,10 @@ class Kotak extends StatelessWidget {
                         child: Text(
                           'Reject',
                           style: TextStyle(
-                            color: Color(0xFF1F1F1F),
+                            color: Color(0xfff30000),
                             fontSize: 16,
                             fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             height: 0,
                           ),
                         ),
