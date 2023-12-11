@@ -1,12 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:file_picker/file_picker.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_model/buat_artikel_model.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/buat_artikel_viewmodel.dart';
+import 'package:file_picker/file_picker.dart';
 
 class buat_artikel extends StatefulWidget {
   @override
@@ -67,9 +67,9 @@ class _buat_artikelState extends State<buat_artikel> {
                       color: Colors.grey.withOpacity(0.7),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3)
+                      offset: Offset(0, 3),
                     )
-                  ]
+                  ],
                 ),
                 child: TextFormField(
                   controller: _titleController,
@@ -100,22 +100,20 @@ class _buat_artikelState extends State<buat_artikel> {
                       color: Colors.grey.withOpacity(0.7),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3)
+                      offset: Offset(0, 3),
                     )
-                  ]
+                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Widget untuk menampilkan gambar yang diunggah (jika ada)s
                     TextFormField(
                       readOnly: true,
-                      controller: _thumbnailController, 
+                      controller: _thumbnailController,
                       decoration: InputDecoration(
                         hintText: 'Upload foto di sini...',
                         suffixIcon: InkWell(
                           onTap: () {
-                            // Panggil fungsi untuk membuka galeri dan memilih gambar
                             _pickImage();
                           },
                           child: Icon(
@@ -154,8 +152,8 @@ class _buat_artikelState extends State<buat_artikel> {
                 ),
                 child: TextFormField(
                   controller: _contentController,
-                  maxLines: null, // Atur nilai null agar widget dapat tumbuh sesuai kebutuhan
-                  minLines: 1,    // Atur nilai minimum baris yang ditampilkan
+                  maxLines: null,
+                  minLines: 1,
                   decoration: InputDecoration(
                     hintText: 'Ketik Artikel Anda disini...',
                     filled: true,
@@ -167,12 +165,14 @@ class _buat_artikelState extends State<buat_artikel> {
                   ),
                 ),
               ),
-
               SizedBox(height: 115),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Katgori', style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)
+                  Text(
+                    'Katgori',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
               SizedBox(height: 5),
@@ -182,10 +182,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _warna1 = (_warna1 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
-                        _textColor1 = (_textColor1 == Colors.black) ? Colors.white : Colors.black; 
+                        _warna1 =
+                            (_warna1 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
+                        _textColor1 = (_textColor1 == Colors.black) ? Colors.white : Colors.black;
                       });
-                    }, 
+                    },
                     child: Text('Berita Wanita', style: TextStyle(color: _textColor1, fontSize: 14)),
                     style: ElevatedButton.styleFrom(primary: _warna1),
                   ),
@@ -193,10 +194,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _warna2 = (_warna2 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
-                        _textColor2 = (_textColor2 == Colors.black) ? Colors.white : Colors.black; 
+                        _warna2 =
+                            (_warna2 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
+                        _textColor2 = (_textColor2 == Colors.black) ? Colors.white : Colors.black;
                       });
-                    }, 
+                    },
                     child: Text('Teknologi', style: TextStyle(color: _textColor2, fontSize: 14)),
                     style: ElevatedButton.styleFrom(primary: _warna2),
                   ),
@@ -209,10 +211,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _warna3 = (_warna3 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
-                        _textColor3 = (_textColor3 == Colors.black) ? Colors.white : Colors.black; 
+                        _warna3 =
+                            (_warna3 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
+                        _textColor3 = (_textColor3 == Colors.black) ? Colors.white : Colors.black;
                       });
-                    }, 
+                    },
                     child: Text('Karier', style: TextStyle(color: _textColor3, fontSize: 14)),
                     style: ElevatedButton.styleFrom(primary: _warna3),
                   ),
@@ -220,10 +223,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _warna4 = (_warna4 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
-                        _textColor4 = (_textColor4 == Colors.black) ? Colors.white : Colors.black; 
+                        _warna4 =
+                            (_warna4 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
+                        _textColor4 = (_textColor4 == Colors.black) ? Colors.white : Colors.black;
                       });
-                    }, 
+                    },
                     child: Text('Seni & Kreatifitas', style: TextStyle(color: _textColor4, fontSize: 14)),
                     style: ElevatedButton.styleFrom(primary: _warna4),
                   ),
@@ -236,10 +240,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _warna5 = (_warna5 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
-                        _textColor5 = (_textColor5 == Colors.black) ? Colors.white : Colors.black; 
+                        _warna5 =
+                            (_warna5 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
+                        _textColor5 = (_textColor5 == Colors.black) ? Colors.white : Colors.black;
                       });
-                    }, 
+                    },
                     child: Text('Gaya hidup', style: TextStyle(color: _textColor5, fontSize: 14)),
                     style: ElevatedButton.styleFrom(primary: _warna5),
                   ),
@@ -247,10 +252,11 @@ class _buat_artikelState extends State<buat_artikel> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _warna6 = (_warna6 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
-                        _textColor6 = (_textColor6 == Colors.black) ? Colors.white : Colors.black; 
+                        _warna6 =
+                            (_warna6 == Colors.white) ? const Color.fromRGBO(244, 81, 141, 1) : Colors.white;
+                        _textColor6 = (_textColor6 == Colors.black) ? Colors.white : Colors.black;
                       });
-                    }, 
+                    },
                     child: Text('Mental Health', style: TextStyle(color: _textColor6, fontSize: 14)),
                     style: ElevatedButton.styleFrom(primary: _warna6),
                   ),
@@ -259,22 +265,21 @@ class _buat_artikelState extends State<buat_artikel> {
               SizedBox(height: 15),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max, // Lebar maksimum
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        // Tindakan yang diambil saat tombol ditekan
                         _createArticle(context);
                       });
                     },
-                    child: Text('Pilih Paket', style: TextStyle(color: Colors.white)),
+                    child: Text('Post', style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(244, 81, 141, 1), // Warna latar belakang
+                      primary: Color.fromRGBO(244, 81, 141, 1),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // Mengatur sudut tombol
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      minimumSize: Size(double.infinity, 40), // Lebar maksimum dan tinggi tombol
+                      minimumSize: Size(double.infinity, 40),
                     ),
                   ),
                 ],
@@ -292,9 +297,9 @@ class _buat_artikelState extends State<buat_artikel> {
     );
 
     if (result != null && result.files.isNotEmpty) {
-      File file = File(result.files.first.path!); // Peroleh objek File dari jalur file
+      File file = File(result.files.first.path!);
       setState(() {
-        _thumbnailController.text = file.path; // Set nilai _thumbnailController dengan jalur file
+        _thumbnailController.text = file.path;
         print(file.path);
       });
     }
@@ -302,27 +307,21 @@ class _buat_artikelState extends State<buat_artikel> {
 
   Future<void> _createArticle(BuildContext context) async {
     final articleViewModel = Provider.of<ArticleViewModel>(context, listen: false);
-    
-    // Validasi sederhana, pastikan semua field diisi
+
     if (_titleController.text.isNotEmpty &&
         _contentController.text.isNotEmpty &&
-        _thumbnailController.text.isEmpty) {
+        _thumbnailController.text.isNotEmpty) {
       try {
-        // Buat objek Article
         final newArticle = Article(
           title: _titleController.text,
           content: _contentController.text,
           thumbnail: _thumbnailController.text,
         );
 
-        // Panggil fungsi createArticle dari viewModel dengan tambahan context
-        await articleViewModel.createArticle(newArticle, context);
+        await articleViewModel.createArticle(newArticle, 'Token');
 
-        // Artikel berhasil dibuat, mungkin Anda ingin menavigasi kembali atau melakukan tindakan lainnya
-        Navigator.pop(context);
-
+        _showSuccessDialog(context);
       } catch (error) {
-        // Handle error jika ada kesalahan selama proses pembuatan artikel
         print('Error creating article: $error');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -331,15 +330,31 @@ class _buat_artikelState extends State<buat_artikel> {
         );
       }
     } else {
-      // Tampilkan pesan jika ada field yang belum diisi
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Tolong isi Semua kolom'),
+          content: Text('Harap isi semua kolom'),
         ),
       );
     }
   }
 
-
-
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Berhasil diposting'),
+          content: Text('Artikel Anda berhasil diposting.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
