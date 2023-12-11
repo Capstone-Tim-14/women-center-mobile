@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/paket_model/paket.dart';
 
+import 'konseling_view.dart';
+
 class PilihanPaket extends StatefulWidget {
-  
   const PilihanPaket({super.key});
 
   @override
@@ -10,7 +11,6 @@ class PilihanPaket extends StatefulWidget {
 }
 
 class _PilihanPaketState extends State<PilihanPaket> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,16 +146,18 @@ class Paket extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          Text("${model.sesi}x Sesi",
-           style: TextStyle(
-                    color: Color(0xFFF4518D),
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
+          Text(
+            "${model.sesi}x Sesi",
+            style: TextStyle(
+                color: Color(0xFFF4518D),
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold,
+                fontSize: 15),
           ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: model.daftar.length,
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.only(top: 15),
@@ -165,9 +167,7 @@ class Paket extends StatelessWidget {
                     SizedBox(width: 11.0),
                     Text(
                       model.daftar[index],
-                      style: TextStyle(
-                        fontFamily:'Raleway-medium/Medium 14' 
-                      ),
+                      style: TextStyle(fontFamily: 'Raleway-medium/Medium 14'),
                     ),
                   ],
                 ),
@@ -199,7 +199,14 @@ class Paket extends StatelessWidget {
                     fontSize: 20),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => KonselingSection(),
+                    ),
+                  );
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
                 color: Color(0xFFF4518D),
