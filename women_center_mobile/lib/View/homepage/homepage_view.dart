@@ -11,6 +11,10 @@ import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 
+void main() {
+  runApp(HomepageSection());
+}
+
 class HomepageSection extends StatefulWidget {
   @override
   _HomepageSectionState createState() => _HomepageSectionState();
