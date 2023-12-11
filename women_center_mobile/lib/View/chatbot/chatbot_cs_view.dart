@@ -1,105 +1,238 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:dio/dio.dart';
 
-class ChatBotScreen extends StatefulWidget {
-  @override
-  _ChatBotScreenState createState() => _ChatBotScreenState();
+class UserProfile {
+  final String username;
+  final String profilePictureUrl;
+
+  UserProfile({required this.username, required this.profilePictureUrl});
 }
 
-class _ChatBotScreenState extends State<ChatBotScreen> {
-  TextEditingController messageController = TextEditingController();
-  List<ChatMessage> chatMessages = [];
-  bool isHelperGreeting = true;
-
-  Future<String> getOpenAIResponse(String userInput) async {
-    // Ganti 'YOUR_OPENAI_API_KEY' dengan API key yang valid dari OpenAI
-    String apiKey = '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';
-    String endpoint =
-        'https://api.openai.com/v1/engines/davinci-codex/completions';
-    Map<String, String> headers = {
-      'Authorization': 'Bearer $apiKey',
-      'Content-Type': 'application/json',
-    };
-
-    // Buat payload untuk permintaan kepada OpenAI
-    Map<String, dynamic> requestBody = {
-      'prompt': userInput,
-      'max_tokens': 50, // Jumlah token maksimum untuk respons
-    };
-
-    // Kirim permintaan ke OpenAI API
-    var response = await http.post(Uri.parse(endpoint),
-        headers: headers, body: json.encode(requestBody));
-
-    if (response.statusCode == 200) {
-      // Parsing respons dari OpenAI
-      Map<String, dynamic> data = json.decode(response.body);
-      return data['choices'][0]['text'].toString();
-    } else {
-      // Jika permintaan gagal, kembalikan pesan kesalahan
-      return 'Maaf, ada masalah dalam mengambil respons.';
-    }
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ChatScreen(),
+    );
   }
+}
 
-  void _addChatMessage(String text, {bool isBotResponse = false}) {
-    ChatMessage message = ChatMessage(text: text, isBotResponse: isBotResponse);
-    setState(() {
-      chatMessages.add(message);
+class ChatScreen extends StatefulWidget {
+  @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final TextEditingController _questionController = TextEditingController();
+  List<Map<String, String>> chatHistory = [];
+  UserProfile userProfile =
+      UserProfile(username: 'Pengguna', profilePictureUrl: '');
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserProfile().then((userProfileData) {
+      setState(() {
+        userProfile = userProfileData;
+        _addToChatHistory(
+          "Bot",
+          "Hai ${userProfile.username}. Kenalin aku Helper yang akan membantu kamu. Apakah ada yang bisa aku bantu?",
+        );
+      });
     });
   }
 
-  Future<void> _getChatBotResponse(String query) async {
-    String response;
+  Future<UserProfile> fetchUserProfile() async {
+    String apiUrl = 'https://api-ferminacare.tech/api/v1/users/profile';
+    String token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDIzMzA2MDF9.7-jerT-AfBuiDo4dufWDlqC6e6Daba4xUdOrut0T2F8'; // Ganti dengan token bearer Anda
 
-    if (query.toLowerCase().contains('cara memperbarui kata sandi')) {
-      response = await getOpenAIResponse(query);
-    } else if (query.toLowerCase().contains('terimakasih')) {
-      response = 'Sama-sama. Apakah ada pertanyaan lain lagi?';
-    } else if (query.toLowerCase().contains('cara membeli paket konseling')) {
-      response = await getOpenAIResponse(query);
-    } else if (query.toLowerCase().contains('tidak ada lagi')) {
-      response = 'Baik, jika tidak ada lagi. Senang bisa membantu kamu.';
-    } else {
-      response = 'Maaf, saya belum paham pertanyaan kamu.';
+    try {
+      Response response = await Dio().get(
+        apiUrl,
+        options: Options(headers: {
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      Map<String, dynamic> userData = response.data['data'];
+
+      return UserProfile(
+        username: userData['username'],
+        profilePictureUrl: userData['profile_picture'],
+      );
+    } catch (e) {
+      print('Error fetching user profile: $e');
+      return UserProfile(username: 'Pengguna', profilePictureUrl: '');
     }
-
-    _addChatMessage(response, isBotResponse: true);
   }
 
-  void _handleSubmittedMessage(String text) {
-    if (text.isNotEmpty) {
-      if (isHelperGreeting) {
-        _addChatMessage(
-            'Hai $text. Kenalin aku Helper yang akan membantu kamu. Apakah ada yang bisa aku bantu?',
-            isBotResponse: true);
-        isHelperGreeting = false;
-      } else {
-        _addChatMessage('$text', isBotResponse: false);
-        _getChatBotResponse(text);
-      }
-      messageController.clear();
+  Future<void> _askGPT() async {
+    String apiKey = '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';
+    Dio dio = Dio(BaseOptions(
+      baseUrl: 'https://api.openai.com/v1',
+      headers: {
+        'Authorization': 'Bearer $apiKey',
+        'Content-Type': 'application/json',
+      },
+    ));
+
+    String question = _questionController.text;
+    _addToChatHistory("User", question);
+
+    Map<String, dynamic> data = {
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        {
+          "role": "system",
+          "content":
+              "You are a helpful assistant. dengan data berikut Tentang aplikasi Femina Care : Femina care adalah sebuah aplikasi yang bergerak untuk masalah kesehatan mental dan rekomendasi karir untuk wanita. jika anda lupa password atau lupa kata sandi silahkan Yang pertama harus kamu lakukan yaitu pergi ke halaman profil terlebih dahulu, kemudian klik pengaturan akun lalu pilih perbarui kata sandi. jika user mengatakan baik atau terimakasih atas bantuannya maka anda akan menjawab Sama-sama. Apakah ada pertanyaan lain?. jika user menjawab Tidak ada lagi Helper. maka kamu akan menjawab Baik jika tidak ada. Senang bisa membantu kamu. Bagaiaman cara membeli paket konseling? Kamu pergi ke menu order kemudia pilih paket konseling yang diinginkan, setelah itu pilih konselor dan jadwal yang tertera langkah terakhir lakukan pembayaran"
+        },
+        {
+          "role": "user",
+          "content": question,
+        }
+      ]
+    };
+
+    try {
+      Response response = await dio
+          .post('https://api.openai.com/v1/chat/completions', data: data);
+      setState(() {
+        String answer = response.data['choices'][0]['message']['content'];
+        _addToChatHistory("Bot", answer);
+      });
+      print('Response: $answer');
+    } catch (e) {
+      print(e);
     }
+  }
+
+  void _addToChatHistory(String sender, String message) {
+    setState(() {
+      if (message.length > 1000) {
+        message = message.substring(0, 50) + "...";
+      }
+      chatHistory.add({
+        'sender': sender,
+        'message': message,
+      });
+    });
+  }
+
+  Widget _buildChatBubble(String sender, String message) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment:
+            sender == "Bot" ? MainAxisAlignment.start : MainAxisAlignment.end,
+        children: <Widget>[
+          sender == "Bot"
+              ? Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('Assets/images/bot.png'),
+                    ),
+                    const SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(
+                            maxWidth: 200.0,
+                          ),
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF4518D),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Text(
+                            message,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : Row(
+                  children: [
+                    Container(
+                      constraints: const BoxConstraints(
+                        maxWidth: 200.0,
+                      ),
+                      padding: const EdgeInsets.all(12.0),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(179, 195, 195, 195),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Text(
+                        message,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(userProfile.profilePictureUrl),
+                    ),
+                  ],
+                ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Customer Service Chat'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Tambahkan fungsi untuk kembali ke layar sebelumnya
+          },
+        ),
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: AssetImage('Assets/images/bot.png'),
+            ),
+            SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Bot Customer Service',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  'Online',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: ListView.builder(
-              itemCount: chatMessages.length,
-              itemBuilder: (context, index) {
-                final message = chatMessages[index];
-                final isBotMessage = message.isBotResponse;
-
-                return ChatBubble(
-                  message: message,
-                  isBot: isBotMessage,
+              itemCount: chatHistory.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _buildChatBubble(
+                  chatHistory[index]['sender']!,
+                  chatHistory[index]['message']!,
                 );
               },
             ),
@@ -110,21 +243,52 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    controller: messageController,
-                    onSubmitted: _handleSubmittedMessage,
+                    controller: _questionController,
                     decoration: InputDecoration(
-                      labelText: 'Send a message...',
-                      border: OutlineInputBorder(),
+                      hintText: 'Enter your question...',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.mic),
+                        onPressed: () {
+                          // Tambahkan logika untuk speech-to-text di sini
+                        },
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () {
-                    _handleSubmittedMessage(messageController.text);
-                  },
-                ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFFF4518D),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Transform.rotate(
+                        angle: 315 * 3.14159265359 / 180,
+                        child: Icon(Icons.send),
+                      ),
+                      onPressed: () {
+                        if (_questionController.text.isNotEmpty) {
+                          _askGPT();
+                          _questionController.clear();
+                        }
+                      },
+                      color: Colors.white,
+                      iconSize: 30,
+                    )
+                  ],
+                )
               ],
             ),
           ),
@@ -134,71 +298,4 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   }
 }
 
-class ChatMessage {
-  final String text;
-  final bool isBotResponse;
-
-  ChatMessage({required this.text, this.isBotResponse = false});
-}
-
-class ChatBubble extends StatelessWidget {
-  final ChatMessage message;
-  final bool isBot;
-
-  ChatBubble({required this.message, required this.isBot});
-
-  @override
-  Widget build(BuildContext context) {
-    Color botTextColor = Colors.white;
-
-    return Row(
-      mainAxisAlignment:
-          isBot ? MainAxisAlignment.start : MainAxisAlignment.end,
-      children: <Widget>[
-        isBot ? _buildProfileAvatar() : SizedBox(),
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-            child: Column(
-              crossAxisAlignment:
-                  isBot ? CrossAxisAlignment.start : CrossAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: Text(
-                    isBot ? 'Helper' : 'You',
-                    style: TextStyle(fontSize: 15, color: Colors.grey[600]),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: isBot ? Color(0xFFF4518D) : Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    message.text,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: isBot ? botTextColor : Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        !isBot ? _buildProfileAvatar() : SizedBox(),
-      ],
-    );
-  }
-
-  Widget _buildProfileAvatar() {
-    return CircleAvatar(
-      radius: 16,
-      backgroundImage: isBot
-          ? AssetImage('assets/bot_profile.jpg')
-          : AssetImage('assets/user_profile.jpg'),
-    );
-  }
-}
+mixin answer {}

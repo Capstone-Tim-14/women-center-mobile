@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
           '/payment': (context) => HomePage(),
           '/pembayaran1': (context) => const MetodePembayaran1(),
           '/editprofile': (context) => EditProfile(),
-          '/chatbotcs': (context) => ChatBotScreen(),
+          '/chatbotcs': (context) => ChatScreen(),
         },
       ),
     );
