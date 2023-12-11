@@ -14,7 +14,7 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
           height: 15,
         ),
         Container(
-          width: 329,
+          width: 357,
           height: 169,
           padding: const EdgeInsets.all(12),
           decoration: ShapeDecoration(
@@ -43,7 +43,7 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 311,
+                      width: 333,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +60,7 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
                               height: 0,
                             ),
                           ),
-                          const SizedBox(width: 6),
+                          const SizedBox(width: 10),
                           Container(
                             width: 140,
                             child: const Row(
@@ -118,7 +118,7 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
               ),
               const SizedBox(height: 12),
               Container(
-                width: 311,
+                width: 357,
                 decoration: const ShapeDecoration(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
@@ -138,22 +138,20 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 20,
-                            height: 20,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(),
-                            child: const Stack(
-                              children: [],
-                            ),
+                          Icon(
+                            Icons
+                                .date_range, // Ganti dengan ikon yang diinginkan
+                            size: 20,
+                            color: Colors
+                                .black, // Sesuaikan dengan warna ikon yang diinginkan
                           ),
-                          const SizedBox(width: 6),
-                          const Text(
+                          SizedBox(width: 6),
+                          Text(
                             'Senin, 6 Oktober 2023',
                             style: TextStyle(
                               color: Color(0xFF1F1F1F),
@@ -168,29 +166,20 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
                     ),
                     const SizedBox(height: 6),
                     Container(
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 20,
-                            height: 20,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(),
-                            child: const Stack(children: [
-                              Center(
-                                child: Icon(
-                                  Icons
-                                      .date_range, // Ganti dengan ikon yang diinginkan
-                                  color: Colors.white, // Sesuaikan warna ikon
-                                  size: 16, // Sesuaikan ukuran ikon
-                                ),
-                              ),
-                            ]),
+                          Icon(
+                            Icons
+                                .access_time, // Ganti dengan ikon yang diinginkan
+                            size: 20,
+                            color: Colors
+                                .black, // Sesuaikan dengan warna ikon yang diinginkan
                           ),
-                          const SizedBox(width: 6),
-                          const Text(
+                          SizedBox(width: 6),
+                          Text(
                             '09:oo-11:00',
                             style: TextStyle(
                               color: Color(0xFFF4518D),
@@ -215,40 +204,40 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
-                      width: 305,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            // width: 20,
-                            // height: 20,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(),
-                            child: const Stack(children: [
-                              // Add your widgets here
-                            ]),
-                          ),
-                          const SizedBox(width: 6),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 247),
-                            child: SizedBox(
-                              width: 50,
-                              child: Text(
-                                'Selesai',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF31D06C),
-                                  fontSize: 14,
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeight.w500,
-                                  height: 0,
+                      width: 333,
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 260),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons
+                                  .check_circle, // Ganti dengan ikon yang diinginkan
+                              size: 20,
+                              color: Colors
+                                  .green, // Sesuaikan dengan warna ikon yang diinginkan
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 3),
+                              child: SizedBox(
+                                width: 50,
+                                child: Text(
+                                  'Selesai',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF31D06C),
+                                    fontSize: 14,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -261,24 +250,3 @@ class _RiwayatKonselorSelesaiState extends State<RiwayatKonselorSelesai> {
     );
   }
 }
-
-// Container(
-//   width: 20,
-//   height: 20,
-//   clipBehavior: Clip.antiAlias,
-//   decoration: BoxDecoration(
-//     borderRadius: BorderRadius.circular(4), // Ubah sesuai kebutuhan
-//     color: Colors.blue, // Ubah warna sesuai kebutuhan
-//   ),
-//   child: Stack(
-//     children: [
-//       Center(
-//         child: Icon(
-//           Icons.date_range, // Ganti dengan ikon yang diinginkan
-//           color: Colors.white, // Sesuaikan warna ikon
-//           size: 16, // Sesuaikan ukuran ikon
-//         ),
-//       ),
-//     ],
-//   ),
-// ),
