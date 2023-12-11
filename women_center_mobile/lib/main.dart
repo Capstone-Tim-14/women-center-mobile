@@ -56,14 +56,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/main_page',
+        initialRoute: '/',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),
           '/notifikasi': (context) => const HomepageNotifikasi(),
-          '/homepageview': (context) => const HomepageSection(),
+          '/homepageview': (context) => HomepageSection(),
           '/homepagenotif3': (context) => HomepageNotifikasi3(),
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/login_model/model_login.dart';
 import 'package:women_center_mobile/View/bottomnavigationbar/main_page.dart';
+import 'package:women_center_mobile/View/bottomnavigationbar/main_page_konselor.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/register/register.dart';
 import 'package:women_center_mobile/ViewModel/api_login/login_api.dart';
@@ -282,9 +283,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                       if (isLoginSuccessful) {
                         print('ke halaman on boarding');
 
+                        //homepage user
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => const MainPage()),
+                        // );
+
+                        //homepage konseling
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => const MainPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const MainPageKonselor()),
                         );
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal
