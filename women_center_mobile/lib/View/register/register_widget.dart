@@ -22,7 +22,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final TextEditingController _confirmpasswordController =
       TextEditingController();
   bool _obscureText = true;
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -73,6 +72,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 MaterialPageRoute(
                                     builder: (context) => Onboarding()));
                           } else if (response.statusCode == 409) {
+                            print('email sama');
                             final errorMessage = response.data['message'];
                             showDialog(
                               context: context,
