@@ -22,6 +22,38 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       TextEditingController();
   bool _obscureText = true;
 
+  late FocusNode focusNode1;
+  late FocusNode focusNode2;
+  final field1Key = GlobalKey<FormFieldState>();
+  final field2Key = GlobalKey<FormFieldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    print('cobaaa');
+    focusNode1 = FocusNode();
+    focusNode2 = FocusNode();
+    focusNode1.addListener(() {
+      print('coba');
+      if (!focusNode1.hasFocus) {
+        field1Key.currentState?.validate();
+      }
+    });
+    focusNode2.addListener(() {
+      if (!focusNode2.hasFocus) {
+        field2Key.currentState?.validate();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    print('dispose');
+    focusNode1.dispose();
+    focusNode2.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -178,9 +210,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         ),
                         child: TextFormField(
                           controller: _firstnameController,
+                          key: field1Key,
+                          focusNode: focusNode1,
                           validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'First Name wajib diisi';
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a value.';
                             }
                             return null;
                           },
