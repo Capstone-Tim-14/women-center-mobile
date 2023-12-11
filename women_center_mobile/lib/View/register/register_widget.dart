@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/ViewModel/register_view_model/register_view_model.dart';
 
 class RegisterWidget extends StatefulWidget {
@@ -21,38 +22,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final TextEditingController _confirmpasswordController =
       TextEditingController();
   bool _obscureText = true;
-
-  late FocusNode focusNode1;
-  late FocusNode focusNode2;
-  final field1Key = GlobalKey<FormFieldState>();
-  final field2Key = GlobalKey<FormFieldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    print('cobaaa');
-    focusNode1 = FocusNode();
-    focusNode2 = FocusNode();
-    focusNode1.addListener(() {
-      print('coba');
-      if (!focusNode1.hasFocus) {
-        field1Key.currentState?.validate();
-      }
-    });
-    focusNode2.addListener(() {
-      if (!focusNode2.hasFocus) {
-        field2Key.currentState?.validate();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    print('dispose');
-    focusNode1.dispose();
-    focusNode2.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +67,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
                           if (response.statusCode == 201) {
                             viewModel.register();
-                            Navigator.of(context).pop();
+                            // Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Onboarding()));
                           } else if (response.statusCode == 409) {
                             final errorMessage = response.data['message'];
                             showDialog(
@@ -158,11 +131,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
   Widget widgetForm() {
     return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
           const SizedBox(height: 170),
           const Text(
             'Create Account',
@@ -177,134 +150,95 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(
-                child: Container(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'First Name',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
-                        ),
+              //-------------FIRST NAME--------------
+              Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'First Name',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
                       ),
-                      const SizedBox(height: 4),
-                      Container(
-                        width: double.infinity,
-                        height: 48,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 10,
+                    ),
+                    const SizedBox(height: 4),
+                    Container(
+                      width: 180,
+                      // height: 48,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide.none),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: TextFormField(
-                          controller: _firstnameController,
-                          key: field1Key,
-                          focusNode: focusNode1,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a value.';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
-                          ),
-                        ),
+                        controller: _firstnameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Wajib diisi';
+                          }
+                          return null;
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(width: 16),
-              Expanded(
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Last Name',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
-                        ),
+              //-------------LAST NAME--------------
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Last Name',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
                       ),
-                      const SizedBox(height: 4),
-                      Container(
-                        width: double.infinity,
-                        height: 48,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 10,
+                    ),
+                    const SizedBox(height: 4),
+                    Container(
+                      width: 180,
+                      // height: 48,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide.none),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: TextFormField(
-                          controller: _lastnameController,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Nama wajib diisi';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
-                          ),
-                        ),
+                        controller: _lastnameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Wajib diisi';
+                          }
+                          return null;
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-
           SizedBox(height: 20),
           //------------------------ USERNAME ----------------------------
           Container(
             width: double.infinity,
-            height: 68,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -323,45 +257,35 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 const SizedBox(height: 4),
                 Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 250,
-                        height: 28,
-                        child: TextFormField(
-                          controller: _usernameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Username wajib diisi';
-                            }
-                            if (value.contains(' ')) {
-                              return 'Username tanpa spasi';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
-                          ),
-                        ),
+                  child: Container(
+                    width: 250,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
-                    ],
+                      controller: _usernameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Username wajib diisi';
+                        }
+
+                        // Check for whitespace
+                        if (value.contains(RegExp(r'\s'))) {
+                          return 'Username tidak boleh mengandung spasi';
+                        }
+
+                        // Check for uppercase letters
+                        if (value != value.toLowerCase()) {
+                          return 'Username harus menggunakan huruf kecil semua';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
                 )
               ],
@@ -371,7 +295,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           //------------------------ PHONE NUMBER ----------------------------
           Container(
             width: double.infinity,
-            height: 68,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -390,45 +313,28 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 const SizedBox(height: 4),
                 Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 250,
-                        height: 28,
-                        child: TextFormField(
-                          controller: _phoneController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Nomor wajib diisi';
-                            }
-                            if (!RegExp(r'^08\d{9,}$').hasMatch(value)) {
-                              return 'Nomor dimulai dari 0';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
-                          ),
-                        ),
+                  child: Container(
+                    width: 250,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
-                    ],
+                      controller: _phoneController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Nomor telepon wajib diisi';
+                        }
+                        if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'Nomor telepon hanya boleh berisi angka';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
                 )
               ],
@@ -438,7 +344,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           //------------------------ EMAIL ----------------------------
           Container(
             width: double.infinity,
-            height: 68,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -457,47 +362,31 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 const SizedBox(height: 4),
                 Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 250,
-                        height: 28,
-                        child: TextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Email wajib diisi';
-                            }
-                            if (!RegExp(
-                                    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-                                .hasMatch(value)) {
-                              return 'Format email';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
-                          ),
-                        ),
+                  child: Container(
+                    width: 250,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
-                    ],
+                      controller: _emailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Alamat email wajib diisi';
+                        }
+
+                        // Check if the value is a valid email address
+                        if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
+                            .hasMatch(value)) {
+                          return 'Masukkan alamat email yang valid';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
                 )
               ],
@@ -506,7 +395,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           const SizedBox(height: 12),
           //------------------------ PASSWORD ----------------------------
           Container(
-            height: 68,
+            width: double.infinity,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -524,143 +413,108 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
                 const SizedBox(height: 4),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 345,
-                        height: 28,
-                        child: TextFormField(
-                          controller: _passwordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Password wajib diisi';
-                            }
-                            if (!RegExp(r'^(?=.*[A-Z])').hasMatch(value)) {
-                              return 'Password harus mengandung huruf besar';
-                            }
-                            if (!RegExp(r'^(?=.*[a-z])').hasMatch(value)) {
-                              return 'Password harus mengandung huruf kecil';
-                            }
-                            if (!RegExp(r'^(?=.*\d)').hasMatch(value)) {
-                              return 'Password harus mengandung angka';
-                            }
-
-                            return null;
+                  width: double.infinity,
+                  child: Container(
+                    width: 250,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none),
+                        filled: true,
+                        fillColor: Colors.white,
+                        suffixIcon: IconButton(
+                          padding: const EdgeInsets.only(),
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
                           },
-                          obscureText: _obscureText,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: const TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            suffixIcon: IconButton(
-                              padding: const EdgeInsets.only(),
-                              icon: Icon(
-                                _obscureText
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.grey,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
-                          ),
                         ),
                       ),
-                    ],
+                      controller: _passwordController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password wajib diisi';
+                        }
+                        if (!RegExp(r'^(?=.*[A-Z])').hasMatch(value)) {
+                          return 'Password harus mengandung huruf besar';
+                        }
+                        if (!RegExp(r'^(?=.*[a-z])').hasMatch(value)) {
+                          return 'Password harus mengandung huruf kecil';
+                        }
+                        if (!RegExp(r'^(?=.*\d)').hasMatch(value)) {
+                          return 'Password harus mengandung angka';
+                        }
+                        return null;
+                      },
+                      obscureText: _obscureText,
+                    ),
                   ),
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          //--------------------------- CONFIRM PASSWORD --------------------------
-          Container(
-            height: 68,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Confirm Password',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w500,
-                    height: 0,
-                  ),
-                ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 12),
+                //--------------------------- CONFIRM PASSWORD --------------------------
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const Text(
+                        'Confirm Password',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Raleway',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
                       Container(
-                        width: 345,
-                        height: 28,
-                        child: TextFormField(
-                          controller: _confirmpasswordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Konfirmasi password kosong';
-                            }
-                            if (value != _passwordController.text) {
-                              return 'Password tidak sesuai';
-                            }
-                            return null;
-                          },
-                          obscureText: _obscureText,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: const TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'Raleway',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            suffixIcon: IconButton(
-                              padding: const EdgeInsets.only(),
-                              icon: Icon(
-                                _obscureText
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.grey,
+                        width: double.infinity,
+                        child: Container(
+                          width: 250,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none),
+                              filled: true,
+                              fillColor: Colors.white,
+                              suffixIcon: IconButton(
+                                padding: const EdgeInsets.only(),
+                                icon: Icon(
+                                  _obscureText
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
                             ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Raleway',
+                            controller: _confirmpasswordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Konfirmasi password kosong';
+                              }
+                              if (value != _passwordController.text) {
+                                return 'Password tidak sesuai';
+                              }
+                              return null;
+                            },
+                            obscureText: _obscureText,
                           ),
                         ),
                       ),
@@ -669,9 +523,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        ]));
   }
 }
