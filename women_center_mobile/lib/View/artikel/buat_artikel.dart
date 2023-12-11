@@ -295,17 +295,18 @@ class _buat_artikelState extends State<buat_artikel> {
       File file = File(result.files.first.path!); // Peroleh objek File dari jalur file
       setState(() {
         _thumbnailController.text = file.path; // Set nilai _thumbnailController dengan jalur file
+        print(file.path);
       });
     }
   }
 
   Future<void> _createArticle(BuildContext context) async {
     final articleViewModel = Provider.of<ArticleViewModel>(context, listen: false);
-
+    
     // Validasi sederhana, pastikan semua field diisi
     if (_titleController.text.isNotEmpty &&
         _contentController.text.isNotEmpty &&
-        _thumbnailController.text.isNotEmpty) {
+        _thumbnailController.text.isEmpty) {
       try {
         // Buat objek Article
         final newArticle = Article(
