@@ -1,3 +1,5 @@
+//created by rafi
+//halaman homepage konselor
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
@@ -12,15 +14,16 @@ import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_mo
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 
 void main() {
-  runApp(HomepageSection());
+  runApp(HomepageSectionKonselor());
 }
 
-class HomepageSection extends StatefulWidget {
+class HomepageSectionKonselor extends StatefulWidget {
   @override
-  _HomepageSectionState createState() => _HomepageSectionState();
+  _HomepageSectionKonselorState createState() =>
+      _HomepageSectionKonselorState();
 }
 
-class _HomepageSectionState extends State<HomepageSection> {
+class _HomepageSectionKonselorState extends State<HomepageSectionKonselor> {
   String getGreeting() {
     var currentTime = DateTime.now();
     var formattedTime = DateFormat.H().format(currentTime);
@@ -127,9 +130,10 @@ class _HomepageSectionState extends State<HomepageSection> {
                   SizedBox(
                     height: 100,
                   ),
-                  WidgetHome1(),
-                  Home2(),
-                  Home3()
+                  WidgetHomeKonselor(),
+                  LatestArtikel(),
+                  // Home2(),
+                  // Home3()
                 ],
               ),
             ),

@@ -62,7 +62,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/
+    - Assets/images/
+    - Assets/images/background_loginPage.png
+    - Assets/images/note_alt.png
+    - Assets/images/mdi_work.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
