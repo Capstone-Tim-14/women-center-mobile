@@ -64,15 +64,6 @@ class _LoginWidgetState extends State<LoginWidget> {
   String _massageError = '';
 
   final LoginViewModel _loginViewModel = LoginViewModel(); //import login api
-
-  @override
-  void initState() {
-    super.initState();
-    // TODO: tes login akun konselor
-    _emailController.text = "iger123@gmail.com";
-    _passwordController.text = "iger123";
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(

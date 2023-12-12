@@ -13,10 +13,6 @@ import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 
-void main() {
-  runApp(HomepageSectionKonselor());
-}
-
 class HomepageSectionKonselor extends StatefulWidget {
   @override
   _HomepageSectionKonselorState createState() =>
