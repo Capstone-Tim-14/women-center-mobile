@@ -293,7 +293,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MainPageKonselor()),
+                              builder: (context) => const Onboarding()),
                         );
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal

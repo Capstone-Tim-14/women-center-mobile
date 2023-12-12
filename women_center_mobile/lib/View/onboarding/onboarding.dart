@@ -47,12 +47,12 @@ class _OnboardingState extends State<Onboarding> {
               left: 300,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MainPage(),
-                    ),
-                  );
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const MainPage(),
+                  //   ),
+                  // );
                 },
                 child: Text(
                   'Lanjutkan >>',
