@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
 import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
-import 'package:women_center_mobile/View/artikel/artikel_widget.dart';
+import 'package:women_center_mobile/View/artikel/artikel_user/artikel_widget.dart';
 
 class Artikel extends StatelessWidget {
   const Artikel({Key? key}) : super(key: key);
