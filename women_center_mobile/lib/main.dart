@@ -1,5 +1,6 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/artikel/hapus_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/hapus_artikel',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
@@ -88,6 +89,7 @@ class MyApp extends StatelessWidget {
           '/pengaturan': (context) => const PengaturanPrivasi(),
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
+          '/hapus_artikel': (context) => ArticleListPage(),
         },
       ),
     );
