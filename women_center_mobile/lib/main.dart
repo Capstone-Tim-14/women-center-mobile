@@ -1,5 +1,6 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         title: 'women center',
         navigatorKey: NavigationService.navigatorKey,
         theme: ThemeData(
+            fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
         initialRoute: '/',
@@ -74,6 +76,7 @@ class MyApp extends StatelessWidget {
           '/pembayaran1': (context) => const MetodePembayaran1(),
           '/pembayaran2': (context) => const Payment2(),
           '/editprofile': (context) => EditProfile(),
+          '/chatbotcs': (context) => ChatScreen(),
           '/topik_konseling': (context) => KonselingTopikKonseling(),
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
           '/booking': (context) => const Booking(),
