@@ -4,12 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:women_center_mobile/Models/login_model/model_login.dart';
 
 class LoginViewModel {
-  Future<bool> loginUser(LoginData loginData) async {
+  Future<LoginResponse> loginUser(LoginData loginData) async {
     print(loginData.email);
     print(loginData.password);
     String email = loginData.email;
     String password = loginData.password;
-    String token = '';
+    // String token = '';
     // token = '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'
     try {
       Map<String, String> data = {
@@ -20,7 +20,7 @@ class LoginViewModel {
       final response = await http.post(
         Uri.parse('https://api-ferminacare.tech/api/v1/auth'),
         headers: <String, String>{
-          'Authorization': 'Bearer $token',
+          // 'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
         },
         body: jsonEncode(data),
@@ -35,7 +35,7 @@ class LoginViewModel {
             responseData['message'] == 'Authentication Success') {
           // Ambil data dari respons
           String fullName = responseData['data']['fullname'];
-          String role = responseData['data']['role'];
+          String role = responseData['data']['role'] ?? "user";
           String email = responseData['data']['email'];
           String token = responseData['data']['token'];
 
@@ -43,22 +43,22 @@ class LoginViewModel {
           await saveToSharedPreferences(fullName, role, email, token);
 
           // Kembalikan true karena login berhasil
-          return true;
+          return LoginResponse(sucess: true, token: token, role: role);
         } else {
           // Jika verifikasi gagal
           print('salah email dan password');
-          return false;
+          return LoginResponse(sucess: true, token: "", role: "");
         }
       } else {
         // Penanganan jika status code bukan 200
         print(
             'Response Status code bukan 200: tapi bernilai ${response.statusCode}');
-        return false;
+        return LoginResponse(sucess: true, token: "", role: "");
       }
     } catch (e) {
       // Tangani error yang terjadi selama pemanggilan API
       print('Error: $e');
-      return false;
+      return LoginResponse(sucess: true, token: "", role: "");
     }
   }
 
@@ -76,6 +76,18 @@ class LoginViewModel {
     await prefs.setString('email', email);
     await prefs.setString('token', token);
   }
+}
+
+class LoginResponse {
+  final bool sucess;
+  final String token;
+  final String role;
+
+  LoginResponse({
+    required this.sucess,
+    required this.token,
+    required this.role,
+  });
 }
 
 // //

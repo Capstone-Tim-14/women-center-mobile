@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
+import 'package:women_center_mobile/View/bottomnavigationbar/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
 import 'package:provider/provider.dart';
@@ -81,8 +82,9 @@ class MyApp extends StatelessWidget {
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
           '/booking': (context) => const Booking(),
           '/riwayat_batal': (context) => const RiwayatBatal(),
-          '/chat_konseling': (context) => const ChatKonseling(),
+          '/chat_konseling': (context) => ChatKonseling(),
           '/main_page': (context) => const MainPage(),
+          '/main_page_konselor': (context) => const MainPageKonselor(),
           '/pengaturan': (context) => const PengaturanPrivasi(),
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),

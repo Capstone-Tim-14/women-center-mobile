@@ -7,6 +7,7 @@ import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/register/register.dart';
 import 'package:women_center_mobile/ViewModel/api_login/login_api.dart';
 
+import '../../Models/utils/auth_service.dart';
 import '../homepage/homepage_view.dart';
 
 //widget tidak punya akun
@@ -63,6 +64,14 @@ class _LoginWidgetState extends State<LoginWidget> {
   String _massageError = '';
 
   final LoginViewModel _loginViewModel = LoginViewModel(); //import login api
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: tes login akun konselor
+    _emailController.text = "iger123@gmail.com";
+    _passwordController.text = "iger123";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -277,24 +286,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                     // Buat objek LoginData dari input pengguna
                     LoginData loginData =
                         LoginData(email: email, password: password);
-                    _loginViewModel
-                        .loginUser(loginData)
-                        .then((isLoginSuccessful) {
-                      if (isLoginSuccessful) {
+                    _loginViewModel.loginUser(loginData).then((loginResponse) {
+                      if (loginResponse.sucess) {
                         print('ke halaman on boarding');
+                        AuthService.token = loginResponse.token;
+                        AuthService.role = loginResponse.role;
 
-                        //homepage user
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => const MainPage()),
-                        // );
-
-                        //homepage konseling
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainPageKonselor()),
-                        );
+                        if (loginResponse.role == "user") {
+                          Navigator.pushReplacementNamed(context, "/main_page");
+                        } else if (loginResponse.role == "counselor") {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            "/main_page_konselor",
+                          );
+                        }
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal
                         setState(() {
