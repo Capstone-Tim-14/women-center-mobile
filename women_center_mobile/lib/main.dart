@@ -1,6 +1,6 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
-import 'package:women_center_mobile/View/artikel/hapus_artikel.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
