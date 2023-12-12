@@ -22,6 +22,7 @@ import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/pengaturan_privasi.dart';
 import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/perbarui_kata_sandi.dart';
+import 'package:women_center_mobile/View/profil_page/profil_konselor.dart';
 import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konseling.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
@@ -88,6 +89,7 @@ class MyApp extends StatelessWidget {
           '/pengaturan': (context) => const PengaturanPrivasi(),
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
+          // '/profil_konselor':(context) => ProfilKonselor()
         },
       ),
     );
