@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
   table_calendar: ^3.0.9
-  calendar_calendar: ^1.0.0
 
 dev_dependencies:
   flutter_test:
