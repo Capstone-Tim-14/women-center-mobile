@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/career_model/detail_career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
-import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -273,7 +272,7 @@ class _DetailJobState extends State<DetailJob> {
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
-                  JobDetail jobDetail = _detailJobViewModel.jobDetail!;
+                  // JobDetail jobDetail = _detailJobViewModel.jobDetail!;
                   return Card(
                     color: Color(0xFFF8E8EE),
                     margin: EdgeInsets.all(24.0),
