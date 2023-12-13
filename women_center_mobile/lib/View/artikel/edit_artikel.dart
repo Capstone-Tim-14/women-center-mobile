@@ -2,26 +2,30 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: buat_artikel(),
+    home: Edit_Artikel(),
   ));
 }
 
-class buat_artikel extends StatefulWidget {
+class Edit_Artikel extends StatefulWidget {
   @override
-  _buat_artikelState createState() => _buat_artikelState();
+  _Edit_ArtikelState createState() => _Edit_ArtikelState();
 }
 
-class _buat_artikelState extends State<buat_artikel> {
+class _Edit_ArtikelState extends State<Edit_Artikel> {
   //input text
   TextEditingController _judulController = TextEditingController();
   TextEditingController _isiController = TextEditingController();
 
-  //list teks
-  List<String> teksList = [
-    'Teks pertama',
-    'Teks kedua',
-    'Teks ketiga',
-  ];
+  //defaut teks
+  String JudulArtikel = 'Cinta Beda Usia';
+  String IsiArtikel = 'Di tempat ysabfbas aku ingin   safsaf sfsafsasa';
+
+  @override
+  void initState() {
+    super.initState();
+    _judulController = TextEditingController(text: JudulArtikel);
+    _isiController = TextEditingController(text: IsiArtikel);
+  }
 
   //color kategori
   Color _containerColor1 = Color(0xFFF9F5F6);
@@ -157,14 +161,15 @@ class _buat_artikelState extends State<buat_artikel> {
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3) // Perpindahan bayangan (x, y)
-                          ),
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
                     ],
                   ),
                   child: TextFormField(
+                    controller: _judulController,
                     style: const TextStyle(
                       color: Color(0xFF1F1F1F),
                       fontSize: 14,
@@ -174,7 +179,8 @@ class _buat_artikelState extends State<buat_artikel> {
                     ),
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Type here...',
+                      // hintText:
+                      //     'Enter text here', // Ganti dengan teks yang diinginkan
                       hintStyle: TextStyle(
                         color: const Color(0xFF1F1F1F).withOpacity(0.5),
                         fontSize: 14,
@@ -316,32 +322,40 @@ class _buat_artikelState extends State<buat_artikel> {
                                 ),
                           ],
                         ),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Cinta Beda Usia \n',
-                              style: TextStyle(
-                                color: Color(0xFF4B4B4B),
+                            TextFormField(
+                              controller: _judulController,
+                              style: const TextStyle(
+                                color: Color(0xFF1F1F1F),
                                 fontSize: 16,
                                 fontFamily: 'Raleway',
                                 fontWeight: FontWeight.w700,
                                 height: 0,
                               ),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
                             ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Text(
-                              'hai selamat siang semunya. apa kabar hari ini? semoga sehat selalu',
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                color: Color(0xFF4B4B4B),
-                                fontSize: 14,
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w400,
-                                // height: 0.11,
+                            Container(
+                              height: 200,
+                              width: 333,
+                              child: TextFormField(
+                                controller: _isiController,
+                                style: TextStyle(
+                                  color: Color(0xFF1F1F1F),
+                                  fontSize: 14,
+                                  fontFamily: 'Raleway',
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.7,
+                                ),
+                                textAlign: TextAlign.left,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
                           ],
@@ -405,7 +419,7 @@ class _buat_artikelState extends State<buat_artikel> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'Karier',
+                                  'Teknologi',
                                   style: TextStyle(
                                     color: _textColor2,
                                     fontSize: 14,
@@ -433,7 +447,7 @@ class _buat_artikelState extends State<buat_artikel> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'Gaya Hidup',
+                                  'Karier',
                                   style: TextStyle(
                                     color: _textColor3,
                                     fontSize: 14,
@@ -455,7 +469,7 @@ class _buat_artikelState extends State<buat_artikel> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'Some Text',
+                                  'Seni & Kreativitas',
                                   style: TextStyle(
                                     color: _textColor4,
                                     fontSize: 14,
@@ -506,7 +520,7 @@ class _buat_artikelState extends State<buat_artikel> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'Some Text',
+                                  'Mental Health',
                                   style: TextStyle(
                                     color: _textColor6,
                                     fontSize: 14,
@@ -523,7 +537,7 @@ class _buat_artikelState extends State<buat_artikel> {
                   ),
                 ),
                 const SizedBox(
-                  height: 17,
+                  height: 24,
                 ),
                 GestureDetector(
                   onTap: () {
