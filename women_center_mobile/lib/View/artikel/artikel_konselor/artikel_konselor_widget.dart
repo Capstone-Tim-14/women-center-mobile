@@ -224,7 +224,7 @@ class ArtikelCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 90),
+                      const SizedBox(width: 135),
                       Expanded(
                         child: SizedBox(
                           child: Text(

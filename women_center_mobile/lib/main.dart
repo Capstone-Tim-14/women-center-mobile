@@ -4,7 +4,7 @@ import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/main_page_konselor.dart';
+import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +29,7 @@ import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 import 'package:women_center_mobile/ViewModel/register_view_model/register_view_model.dart';
-import 'View/bottomnavigationbar/main_page.dart';
+import 'View/widgets/main_page.dart';
 import 'View/konseling/konseling_topik_konseling.dart';
 import 'View/register/register.dart';
 import 'View/welcome_page/welcome_page.dart';
