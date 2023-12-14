@@ -9,23 +9,26 @@ class DetailJobViewModel extends ChangeNotifier {
   JobDetail? get jobDetail => _jobDetail;
 
   Future<void> fetchJobDetail(int jobId) async {
-    try {
-      final response = await http.get(
-        Uri.parse('https://api-ferminacare.tech/api/v1/career/$jobId'),
-        headers: {
-          'Authorization': 'Bearer ',
-        },
-      );
+  try {
+    final response = await http.get(
+      Uri.parse('https://api-ferminacare.tech/api/v1/career/$jobId'),
+      headers: {
+        'Authorization': 'Bearer token',
+      },
+    );
 
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
-        _jobDetail = JobDetail.fromJson(data['data']);
-        notifyListeners();
-      } else {
-        throw Exception('Failed to load job detail');
-      }
-    } catch (error) {
-      print('Error fetching job detail: $error');
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      _jobDetail = JobDetail.fromJson(data['data']);
+      notifyListeners();
+      
+      // Tambahkan baris ini untuk mencetak respons API
+    } else {
+      throw Exception('Failed to load job detail');
     }
+  } catch (error) {
+    print('Error fetching job detail: $error');
   }
+}
+
 }

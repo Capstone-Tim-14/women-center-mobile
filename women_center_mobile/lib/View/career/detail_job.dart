@@ -22,7 +22,7 @@ class _DetailJobState extends State<DetailJob> {
   void initState() {
     super.initState();
     _detailJobViewModel = Provider.of<DetailJobViewModel>(context, listen: false);
-    _detailJobViewModel.fetchJobDetail(widget.jobId);
+
   }
 
   @override
@@ -33,7 +33,7 @@ class _DetailJobState extends State<DetailJob> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-
+            Navigator.pop(context);
           },
         ),
         title: Center(
@@ -95,15 +95,18 @@ class _DetailJobState extends State<DetailJob> {
                                   Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      '${jobDetail.titleJob}',
-                                      style: TextStyle(
-                                        fontSize: 17.0,
-                                        fontWeight: FontWeight.bold,
+                                    Container(
+                                      width: 200.0, // atur lebar sesuai kebutuhan
+                                      child: Text(
+                                        '${jobDetail.titleJob}', 
+                                        style: TextStyle( 
+                                          fontSize: 17.0, 
+                                          fontWeight: FontWeight.bold, 
+                                        ), 
+                                        maxLines: 2, // Maksimal dua baris 
+                                        overflow: TextOverflow.ellipsis, // Menambahkan elipsis jika teks terlalu panjang 
+                                        softWrap: true, // Membuat teks pindah baris secara otomatis 
                                       ),
-                                      maxLines: 2, // Jumlah baris maksimum
-                                      overflow: TextOverflow.ellipsis, // Overflow treatment
-                                      softWrap: true, // Membuat teks pindah baris secara otomatis
                                     ),
                                     Text(
                                       '${jobDetail.companyName}',
@@ -348,6 +351,8 @@ class _DetailJobState extends State<DetailJob> {
                                   style: TextStyle(
                                     fontSize: 16.0,
                                   ),
+                                  maxLines: 2, // Atur jumlah baris maksimum
+                                  overflow: TextOverflow.ellipsis, // Gunakan ellipsis jika melebihi batas
                                 ),
                               ],
                             ),

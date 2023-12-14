@@ -11,7 +11,7 @@ class JobDetail {
   final String requiredSkill;
   final String companyIndustry;
   final int sizeCompanyEmployee;
-  final List<Map<String, dynamic>> jobType;
+  // final List<Map<String, dynamic>> jobType;
   final String createdAt;
   final String updatedAt;
 
@@ -28,7 +28,7 @@ class JobDetail {
     required this.requiredSkill,
     required this.companyIndustry,
     required this.sizeCompanyEmployee,
-    required this.jobType,
+    // required this.jobType,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -47,7 +47,7 @@ class JobDetail {
       requiredSkill: json['required_skill'],
       companyIndustry: json['company_industry'],
       sizeCompanyEmployee: json['size_company_employee'],
-      jobType: List<Map<String, dynamic>>.from(json['job_type']),
+      // jobType: List<Map<String, dynamic>>.from(json['job_type']),
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
     );

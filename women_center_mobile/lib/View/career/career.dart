@@ -44,7 +44,9 @@ class _CareerState extends State<Career> {
         backgroundColor: Colors.pink[100],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Center(
           child: Text(
@@ -218,7 +220,7 @@ class _CareerState extends State<Career> {
                                       Text(
                                         job.title, // Menggunakan title dari data pekerjaan
                                         style: TextStyle(
-                                          fontSize: 16.0,
+                                          fontSize: 14.0,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFFF4518D),
                                         ),
@@ -312,7 +314,7 @@ class _CareerState extends State<Career> {
                                       Text(
                                         job.title, // Menggunakan title dari data pekerjaan
                                         style: TextStyle(
-                                          fontSize: 16.0,
+                                          fontSize: 14.0,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFFF4518D),
                                         ),
