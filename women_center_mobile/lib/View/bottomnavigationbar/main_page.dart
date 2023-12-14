@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/career/career.dart';
+import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 
-import '../artikel/artikel_view.dart';
+import '../artikel/artikel_user/artikel_view.dart';
 import '../homepage/homepage_view.dart';
 import '../konseling/konseling_page_pilihan_paket.dart';
 import 'bottom_navigation_bar.dart';
@@ -16,27 +17,27 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
   String? appbarTitle = null;
-  
+
   PreferredSizeWidget? get appBar {
     if (appbarTitle == null) return null;
     return AppBar(
-        backgroundColor: Colors.pink[100],
-        title: Center(child: Text(appbarTitle ?? "")),
-        automaticallyImplyLeading: false,
-      );
+      backgroundColor: Colors.pink[100],
+      title: Center(child: Text(appbarTitle ?? "")),
+      automaticallyImplyLeading: false,
+    );
   }
 
-  final List screens = [
-    const HomepageSection(),
-    const Artikel(),
-    Career(),
-    const PilihanPaket(),
-    const Center(
-      child: Text('profile'),
-    ),
-    //kalau halaman sudah siap, setiap nama di ganti ke halaman aslinya
-  ];
-  
+  List get screens => [
+        HomepageSection(
+          pindahHalaman: pindahHalaman,
+        ), // 0
+        const Artikel(), // 1
+        Career(), // 2
+        const PilihanPaket(), // 3
+        ProfilPage(), // 4
+        //kalau halaman sudah siap, setiap nama di ganti ke halaman aslinya
+      ];
+
   List<String?> listAppBarTitle = [
     null,
     "Artikel",
@@ -55,7 +56,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
+      appBar: selectedIndex == 4 ? ProfilPage.getAppBar : appBar,
       body: screens[selectedIndex],
       bottomNavigationBar: MyBottomNavigationBar(
         selectedIndex: selectedIndex,
