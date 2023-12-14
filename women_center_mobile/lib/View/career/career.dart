@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/career/detail_job.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
+import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
 
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
@@ -12,29 +13,19 @@ class Career extends StatefulWidget {
 }
 
 class _CareerState extends State<Career> {
-  Color _warna1 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor1 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna2 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor2 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna3 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor3 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna4 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor4 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna6 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor6 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna7 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor7 = Color.fromARGB(255, 245, 67, 132);
-  Color _warna8 = Color.fromARGB(255, 240, 192, 209);
-  Color _textColor8 = Color.fromARGB(255, 245, 67, 132);
+  bool isButtonPressed = false;
   int _selectedIndex = 0;
   late JobViewModel _jobViewModel;
   bool isFilter = false;
-
+  late FilterJobTypesViewModel _filterjobtypesviewmodel;
   @override
   void initState() {
     super.initState();
     _jobViewModel = Provider.of<JobViewModel>(context, listen: false);
     _jobViewModel.fetchJobs();
+
+    _filterjobtypesviewmodel = Provider.of<FilterJobTypesViewModel>(context, listen: false);
+    _filterjobtypesviewmodel.fetchFilterJobTypes();
   }
 
   @override
@@ -74,94 +65,44 @@ class _CareerState extends State<Career> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 15.0),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna1 = (_warna1 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor1 = (_textColor1 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132); 
-                            });
-                          }, 
-                          child: Text('On Side', style: TextStyle(color: _textColor1, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna1),
+                  Consumer<FilterJobTypesViewModel>(
+                    builder: (context, filterJobTypesViewModel, _) {
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: filterJobTypesViewModel.filterjob.map((filter) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    // Perform actions when the button is pressed
+                                    // Misalnya, toggle filter pada view model
+                                    filterJobTypesViewModel.toggleFilter(filter.name);
+                                    isButtonPressed = !isButtonPressed;
+                                    print(filter.name);
+                                  });
+                                },
+                                child: Text(
+                                  filter.name,
+                                  style: TextStyle(
+                                    color: isButtonPressed ? Colors.white : Color(0xFFF4518D),
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: isButtonPressed ? Color(0xFFF4518D) : null,
+                                  onPrimary: Colors.white, // Warna teks ketika tombol ditekan
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ),
-                        SizedBox(width: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna2 = (_warna2 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor2 = (_textColor2 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132);
-                            });
-                          }, 
-                          child: Text('Full time', style: TextStyle(color: _textColor2, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna2),
-                        ),
-                        SizedBox(width: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna3 = (_warna3 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor3 = (_textColor3 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132);
-                            });
-                          }, 
-                          child: Text('Off side', style: TextStyle(color: _textColor3, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna3),
-                        ),
-                        SizedBox(width: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna4 = (_warna4 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor4 = (_textColor4 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132);
-                            });
-                          }, 
-                          child: Text('Half time', style: TextStyle(color: _textColor4, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna4),
-                        ),
-                        SizedBox(width: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna6 = (_warna6 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor6 = (_textColor6 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132);
-                            });
-                          }, 
-                          child: Text('Medium level', style: TextStyle(color: _textColor6, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna6),
-                        ),
-                        SizedBox(width: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna7 = (_warna7 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor7 = (_textColor7 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132);
-                            });
-                          }, 
-                          child: Text('Advance level', style: TextStyle(color: _textColor7, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna7),
-                        ),
-                        SizedBox(width: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _warna8 = (_warna8 == Color.fromARGB(255, 240, 192, 209)) ? const Color.fromRGBO(244, 81, 141, 1) : Color.fromARGB(255, 240, 192, 209);
-                              _textColor8 = (_textColor8 == Color.fromARGB(255, 245, 67, 132)) ? Colors.white : Color.fromARGB(255, 245, 67, 132);
-                            });
-                          }, 
-                          child: Text('Entry level', style: TextStyle(color: _textColor8, fontSize: 14)),
-                          style: ElevatedButton.styleFrom(primary: _warna8),
-                        ),
-                      ],
-                    ),
+                      );
+                    },
                   )
                 ],
               ),
-              SizedBox(height: 15),
               Divider(),
               Align(
                 alignment: Alignment.centerLeft,
