@@ -17,6 +17,7 @@ import 'package:women_center_mobile/View/artikel/artikel_user/artikel_view.dart'
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi.dart';
 import 'package:women_center_mobile/View/artikel/artikel_user/artikel_ku.dart';
 import 'package:women_center_mobile/View/homepage/notifikasi/homepage_notifikasi_3.dart';
+import 'package:women_center_mobile/View/konseling/konseling_view.dart';
 import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_1.dart';
 import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_2.dart';
 import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/konseling_view',
         routes: {
           // '/': (context) => Home3(),
           '/': (context) => const Welcome(),
@@ -73,7 +74,6 @@ class MyApp extends StatelessWidget {
           '/register': (context) => const Register(),
           '/onboarding': (context) => const Onboarding(),
           '/notifikasi': (context) => const HomepageNotifikasi(),
-          '/homepageview': (context) => HomepageSection(),
           '/homepagenotif3': (context) => HomepageNotifikasi3(),
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),
@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
           '/pembayaran1': (context) => const MetodePembayaran1(),
           '/pembayaran2': (context) => const Payment2(),
           '/editprofile': (context) => EditProfile(),
-          '/chatbotcs': (context) => ChatScreen(),
+          '/chatbots': (context) => ChatScreen(),
           '/topik_konseling': (context) => KonselingTopikKonseling(),
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
           '/booking': (context) => const Booking(),
@@ -94,6 +94,8 @@ class MyApp extends StatelessWidget {
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
           '/hapus_artikel': (context) => ArticleListPage(),
+          '/bantuan': (context) => FAQ(),
+          '/konseling_view': (context) => KonselingSection(),
         },
       ),
     );
