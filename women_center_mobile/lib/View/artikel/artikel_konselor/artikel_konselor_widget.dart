@@ -1,5 +1,6 @@
 //create artikel konselor widget
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/buat_artikel.dart';
 
 //widget serach
 class Search extends StatefulWidget {
@@ -99,7 +100,10 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        // Tambahkan aksi yang ingin dilakukan ketika tombol ditekan di sini
+        Navigator.push(
+          context, 
+          MaterialPageRoute(builder: (context) => buat_artikel())
+        );
       },
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 105, vertical: 1),
