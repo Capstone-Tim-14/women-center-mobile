@@ -26,6 +26,7 @@ import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/pengatur
 import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/perbarui_kata_sandi.dart';
 import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konseling.dart';
+import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ArtikelViewModel()),
         ChangeNotifierProvider(create: (context) => CareerViewModel()),
         ChangeNotifierProvider(create: (context) => RegisterViewModel()),
+        ChangeNotifierProvider(create: (context) => ArtikelKonselorProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
