@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:women_center_mobile/View/metode_pembayaran/1.dart';
+// import 'package:women_center_mobile/View/metode_pembayaran/1.dart';
 
 void main() {
   runApp(PembayaranSukses());
