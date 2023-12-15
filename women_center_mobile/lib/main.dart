@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
+import 'package:women_center_mobile/View/edit_profile/profile_edit.dart';
 import 'package:women_center_mobile/View/homepage/homepage_view.dart';
 import 'package:women_center_mobile/View/FAQ/bantuan.dart';
 import 'package:women_center_mobile/View/konseling/konseling_pilihan_konselor_2.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
           '/profil_user': (context) => ProfilPage(),
           '/payment': (context) => HomePage(),
           '/pembayaran1': (context) => const MetodePembayaran1(),
-          '/editprofile': (context) => EditProfile(),
+          '/editprofile': (context) => ProfileEdit(),
         },
       ),
     );
