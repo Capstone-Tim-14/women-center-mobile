@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 
+import '../../Models/utils/auth_service.dart';
+
 class KonselingPilihanKonselor2 extends StatefulWidget {
   @override
   _KonselingPilihanKonselor2State createState() =>
@@ -17,12 +19,11 @@ class _KonselingPilihanKonselor2State extends State<KonselingPilihanKonselor2> {
     super.initState();
     fetchData(); // Panggil fungsi untuk memuat data ketika widget pertama kali dibuat
   }
+ String get token => AuthService.token;
 
   Future<void> fetchData() async {
     final url = Uri.parse('https://api-ferminacare.tech/api/v1/counselors');
-    final token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbF9uYW1lIjoiYWd1bmdiaGFza2FyYSIsImVtYWlsIjoiYWd1bmcxMjNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI1OTAzODl9.kNGLrfNeXjpBkUAjdpHjTGyQkRnBQfOWREvR4OLlZFw';
-
+   
     final response = await http.get(
       url,
       headers: {'Authorization': 'Bearer $token'},
