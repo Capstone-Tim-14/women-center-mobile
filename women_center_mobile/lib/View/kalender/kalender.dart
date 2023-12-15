@@ -58,8 +58,17 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kalender'),
-      ),
+  backgroundColor: Color(0xFFFDCEDF), // Ganti dengan warna yang diinginkan
+  title: Text(
+    'Kalender',
+    style: TextStyle(
+      color: Colors.black, // Ganti dengan warna teks yang diinginkan
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  centerTitle: true,
+  iconTheme: IconThemeData(color: Colors.black), // Ganti dengan warna ikon yang diinginkan
+),
       backgroundColor: Color(0xFFF8E8EE),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,7 +96,8 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
                   ),
                 ],
               ),
-              Divider(),
+                if (!isEditing)
+  Divider(),
             SizedBox(height: 16),
             if (isEditing)
               Column(
@@ -112,7 +122,7 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
                         onPressed: () {
                           setState(() {});
                         },
-                        child: Text('Save'),
+                        child: Text('Save', style: TextStyle(color: Color(0xFFf4518d))),
                       ),
                     ],
                   ),
@@ -123,7 +133,7 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
       padding: EdgeInsets.only(left: 55),
                       child: Text(
                         'Depart - Return Dates',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                        style: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.normal),
                       ),
                       ),
                     ],
@@ -135,7 +145,7 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
       padding: EdgeInsets.only(left: 55),
                       child: Text(
                         '${DateFormat('MMM d').format(dummyEvents[0])} - ${DateFormat('MMM d').format(dummyEvents[1])}',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                        style: GoogleFonts.roboto(fontSize: 26, fontWeight: FontWeight.w400),
                       ),
                       ),
                       IconButton(
@@ -154,100 +164,87 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
                   ? CalendarDatePicker2(
                 config: CalendarDatePicker2Config(
                   calendarType: CalendarDatePicker2Type.range,
-                  selectedDayHighlightColor: Colors.pink
+                  selectedDayHighlightColor: Color(0xFFf4518d),
                 ),
                 value: dummyEvents,
               )
                   : CalendarDatePicker2(
                 config: CalendarDatePicker2Config(
                   calendarType: CalendarDatePicker2Type.single,
-                  selectedDayHighlightColor: Colors.pink
+                  selectedDayHighlightColor: Color(0xFFf4518d),
                 ),
                 value: [dummyEvents[0]],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 10),
             Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   mainAxisAlignment: MainAxisAlignment.start,
   children: [
-    if (!isEditing)  // Tampilkan teks acara hanya jika bukan mode editing
-      Padding(
-        padding: EdgeInsets.only(left: 15),
-        child: Text(
-          'Acara',
-          style: GoogleFonts.raleway(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
-          ),
-        ),
+   if (!isEditing)
+  Padding(
+    padding: EdgeInsets.only(left: 15, top: 0, bottom: 0), // Sesuaikan nilai top dan bottom sesuai kebutuhan
+    child: Text(
+      'Acara',
+      style: GoogleFonts.raleway(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        color: Colors.black,
       ),
-  ],
-),
-    SizedBox(height: 8),
-            if (!isEditing) // Show ListView only when not editing
-              Expanded(
-                child: 
-                ListView.builder(
-                  itemCount: acara.length,
-                  itemBuilder: (context, index) {
-                    Acara currentAcara = acara[index];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // ListTile(
-                        //   title: Column(
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-                        //       Text(
-                        //         currentAcara.jam1,
-                        //         style: TextStyle(
-                        //           fontSize: 12,
-                        //           fontWeight: FontWeight.bold,
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                        // Divider(), // Divider between time and event details
-ListTile(
-  title: Row(
-    children: [
-      // SizedBox(width: 8), // Adjust the width based on your preference
-      Text(
-        currentAcara.jam1,
-        style: TextStyle(fontSize: 13),
-      ),
-      SizedBox(width: 30), // Adjust the width based on your preference
-      Text(
-        currentAcara.judul,
-        style: TextStyle(fontSize: 13),
-      ),
-    ],
+    ),
   ),
-  subtitle: Row(
-    children: [
-      // SizedBox(width: 8), // Adjust the width based on your preference
-      Text(
-        currentAcara.jam2,
-        style: TextStyle(fontSize: 13),
-      ),
-      SizedBox(width: 30), // Adjust the width based on your preference
-      Text(
-        currentAcara.lokasi,
-        style: TextStyle(fontSize: 13),
-      ),
-    ],
-  ),
+],
 ),
-Divider(),
+if (!isEditing)
+  Expanded(
+    child: Padding(
+      padding: const EdgeInsets.only(top: 0), // Sesuaikan nilai top sesuai kebutuhan
+      child: ListView.builder(
+        itemCount: acara.length,
+        itemBuilder: (context, index) {
+          Acara currentAcara = acara[index];
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                title: Row(
+                  children: [
+                    Text(
+                      currentAcara.jam1,
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    SizedBox(width: 15),
+                    Text(
+                      currentAcara.judul,
+                      style: TextStyle(fontSize: 13),
+                    ),
+                  ],
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      currentAcara.jam2,
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    SizedBox(width: 15),
+                    Text(
+                      currentAcara.lokasi,
+                      style: TextStyle(fontSize: 13),
+                    ),
+                  ],
+                ),
+              ),
+              Divider(
+                color: Color(0xFFf4518d),
+                height: 0,
+              ),
 
                       ],
                     );
                   },
                 ),
               ),
+  ),
           ],
         ),
       ),
