@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginView(),
         '/register': (context) => const Register(),
         '/onboarding': (context) => Onboarding(),
-        '/kalender':(context) => EventCalendar()
+        '/kalender':(context) => YourCalendarScreen()
       },
     );
   }

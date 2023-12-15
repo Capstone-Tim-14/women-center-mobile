@@ -1,175 +1,256 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
+class Acara {
+  String jam1;
+  String jam2;
+  String judul;
+  String lokasi;
 
-class EventCalendar extends StatefulWidget {
-  @override
-  _EventCalendarState createState() => _EventCalendarState();
+  Acara({
+    required this.jam1,
+    required this.jam2,
+    required this.judul,
+    required this.lokasi,
+  });
 }
 
-class _EventCalendarState extends State<EventCalendar> {
-  late final ValueNotifier<List<Event>> _selectedEvents;
-  late final Map<DateTime, List<Event>> _events;
-  late DateTime _selectedDate;
+class YourCalendarScreen extends StatefulWidget {
+  @override
+  _YourCalendarScreenState createState() => _YourCalendarScreenState();
+}
 
-  final TextEditingController _eventTitleController = TextEditingController();
+class _YourCalendarScreenState extends State<YourCalendarScreen> {
+  List<DateTime> selectedDates = [];
+  bool isEditing = false;
+
+  List<DateTime> dummyEvents = [
+    DateTime(2023, 8, 17),
+    DateTime(2023, 8, 23),
+  ];
+
+  List<Acara> acara = [];
 
   @override
   void initState() {
     super.initState();
-    _events = {
-      DateTime.now(): [
-        Event('Event A', DateTime.now().add(Duration(hours: 2))),
-      ],
-      DateTime.now().add(Duration(days: 2)): [
-        Event('Event B', DateTime.now().add(Duration(hours: 10))),
-        Event('Event C', DateTime.now().add(Duration(hours: 14))),
-      ],
-    };
-    _selectedEvents = ValueNotifier(_getEventsForSelectedDay(DateTime.now()));
-    _selectedDate = DateTime.now();
+    acara.add(
+      Acara(
+        jam1: "10:30",
+        jam2: "12:00",
+        judul: "Lawan kekerasan dan pelecehan perempuan",
+        lokasi: "Freware Space",
+      ),
+    );
+    acara.add(
+      Acara(
+        jam1: "18:30",
+        jam2: "21:00",
+        judul: "Konselingl Jadwal Koseling Hari ini",
+        lokasi: "zoommtg://zoom.us/join?confno=852901544pwd",
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Event Calendar'),
+        title: Text('Kalender'),
       ),
-      body: Column(
-        children: [
-          TableCalendar(
-            focusedDay: _selectedDate,
-            firstDay: DateTime(2021),
-            lastDay: DateTime(2030),
-            eventLoader: _getEventsForDay,
-            onDaySelected: (selectedDay, focusedDay) {
-              _selectedDate = selectedDay;
-              _selectedEvents.value = _getEventsForSelectedDay(selectedDay);
-            },
-          ),
-          SizedBox(height: 20),
-          _buildEventForm(),
-          SizedBox(height: 20),
-          Expanded(
-            child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, selectedEvents, _) {
-                return ListView(
-                  children: _buildEventWidgets(selectedEvents),
-                );
-              },
-            ),
-          ),
-        ],
+      backgroundColor: Color(0xFFF8E8EE),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (!isEditing)
+              Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    Padding(
+      padding: EdgeInsets.only(left: 25), // Sesuaikan padding seperti yang Anda butuhkan
+      child: Text(
+        'Mon, ${DateFormat('MMM d').format(dummyEvents[0])}',
+        style: GoogleFonts.roboto(fontSize: 32, fontWeight: FontWeight.w400),
       ),
-    );
-  }
-
-  List<Widget> _buildEventWidgets(List<Event> events) {
-    List<Widget> eventWidgets = [];
-
-    for (Event event in events) {
-      eventWidgets.add(
-        Card(
-          child: ListTile(
-            title: Text(event.title),
-            subtitle: Text(event.date.toString()),
-          ),
-        ),
-      );
-    }
-
-    if (events.isEmpty) {
-      eventWidgets.add(
-        Center(
-          child: Text('No events for selected day'),
-        ),
-      );
-    }
-
-    return eventWidgets;
-  }
-
-  Widget _buildEventForm() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _eventTitleController,
-              decoration: InputDecoration(
-                hintText: 'Event Title',
+    ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isEditing = !isEditing;
+                      });
+                    },
+                    icon: Icon(Icons.edit),
+                  ),
+                ],
+              ),
+              Divider(),
+            SizedBox(height: 16),
+            if (isEditing)
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() {
+                                isEditing = false;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        child: Text('Save'),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+      padding: EdgeInsets.only(left: 55),
+                      child: Text(
+                        'Depart - Return Dates',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                      ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+      padding: EdgeInsets.only(left: 55),
+                      child: Text(
+                        '${DateFormat('MMM d').format(dummyEvents[0])} - ${DateFormat('MMM d').format(dummyEvents[1])}',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                      ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          print('Edit Button Pressed');
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: isEditing
+                  ? CalendarDatePicker2(
+                config: CalendarDatePicker2Config(
+                  calendarType: CalendarDatePicker2Type.range,
+                  selectedDayHighlightColor: Colors.pink
+                ),
+                value: dummyEvents,
+              )
+                  : CalendarDatePicker2(
+                config: CalendarDatePicker2Config(
+                  calendarType: CalendarDatePicker2Type.single,
+                  selectedDayHighlightColor: Colors.pink
+                ),
+                value: [dummyEvents[0]],
               ),
             ),
+            SizedBox(height: 16),
+            Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    if (!isEditing)  // Tampilkan teks acara hanya jika bukan mode editing
+      Padding(
+        padding: EdgeInsets.only(left: 15),
+        child: Text(
+          'Acara',
+          style: GoogleFonts.raleway(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
           ),
-          SizedBox(width: 16),
-          ElevatedButton(
-            onPressed: () {
-              _selectDate(context);
-            },
-            child: Text('Select Date'),
-          ),
-          SizedBox(width: 16),
-          ElevatedButton(
-            onPressed: () {
-              _addEvent();
-            },
-            child: Text('Add Event'),
-          ),
-        ],
+        ),
+      ),
+  ],
+),
+    SizedBox(height: 8),
+            if (!isEditing) // Show ListView only when not editing
+              Expanded(
+                child: 
+                ListView.builder(
+                  itemCount: acara.length,
+                  itemBuilder: (context, index) {
+                    Acara currentAcara = acara[index];
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // ListTile(
+                        //   title: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       Text(
+                        //         currentAcara.jam1,
+                        //         style: TextStyle(
+                        //           fontSize: 12,
+                        //           fontWeight: FontWeight.bold,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // Divider(), // Divider between time and event details
+ListTile(
+  title: Row(
+    children: [
+      // SizedBox(width: 8), // Adjust the width based on your preference
+      Text(
+        currentAcara.jam1,
+        style: TextStyle(fontSize: 13),
+      ),
+      SizedBox(width: 30), // Adjust the width based on your preference
+      Text(
+        currentAcara.judul,
+        style: TextStyle(fontSize: 13),
+      ),
+    ],
+  ),
+  subtitle: Row(
+    children: [
+      // SizedBox(width: 8), // Adjust the width based on your preference
+      Text(
+        currentAcara.jam2,
+        style: TextStyle(fontSize: 13),
+      ),
+      SizedBox(width: 30), // Adjust the width based on your preference
+      Text(
+        currentAcara.lokasi,
+        style: TextStyle(fontSize: 13),
+      ),
+    ],
+  ),
+),
+Divider(),
+
+                      ],
+                    );
+                  },
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
-
-  List<Event> _getEventsForDay(DateTime day) {
-    return _getEventsForSelectedDay(day);
-  }
-
-  List<Event> _getEventsForSelectedDay(DateTime selectedDay) {
-    return _events[selectedDay] ?? [];
-  }
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate,
-      firstDate: DateTime(2021),
-      lastDate: DateTime(2030),
-    );
-
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-      });
-    }
-  }
-
-  void _addEvent() {
-    final newEventTitle = _eventTitleController.text;
-
-    if (newEventTitle.isNotEmpty) {
-      final newEvent = Event(newEventTitle, _selectedDate);
-
-      setState(() {
-        _events.update(_selectedDate, (existingEvents) {
-          existingEvents.add(newEvent);
-          return existingEvents;
-        }, ifAbsent: () => [newEvent]);
-
-        _selectedEvents.value = _getEventsForSelectedDay(_selectedDate);
-      });
-
-      // Bersihkan input setelah menambahkan event
-      _eventTitleController.clear();
-    }
-  }
-}
-
-class Event {
-  final String title;
-  final DateTime date;
-
-  Event(this.title, this.date);
 }
