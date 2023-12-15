@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:women_center_mobile/View/widgets/bottom_navigation_bar.dart';
+import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 
 class SesiKonseling extends StatefulWidget {
   @override
@@ -7,6 +7,7 @@ class SesiKonseling extends StatefulWidget {
 }
 
 class _SesiKonselingState extends State<SesiKonseling> {
+
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,13 +32,17 @@ class _SesiKonselingState extends State<SesiKonseling> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: Row(
-                    children: [Text('Jadwal Terdekat')],
+                    children: [
+                      Text('Jadwal Terdekat')
+                    ],
                   ),
                 )
               ],
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+
+              },
               child: Card(
                 color: Colors.white,
                 margin: EdgeInsets.only(left: 13, right: 13),
@@ -56,14 +61,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                                   Text(
                                     'Booking id:',
                                     style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: 16.0, fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     ' 8912yv12v',
                                     style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xFFF4518D)),
+                                        fontSize: 16.0, color: Color(0xFFF4518D)),
                                   ),
                                   SizedBox(width: 130),
                                   Text(
@@ -84,14 +87,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Nama:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Nama:', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 5),
                               Text(
-                                'Aurel Adisti',
+                                'Aurel Adisti', 
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -104,14 +105,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Paket:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Paket:', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 5),
                               Text(
-                                'All in One',
+                                'All in One', 
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -125,10 +124,8 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Senin, 3 Oktober 2023',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Senin, 3 Oktober 2023', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -139,35 +136,29 @@ class _SesiKonselingState extends State<SesiKonseling> {
                           Row(
                             children: [
                               Text(
-                                '09.00 - 10.00',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFF4518D)),
+                                '09.00 - 10.00', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFFF4518D)),
                               ),
                               SizedBox(width: 138),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon chat ditekan
                                 },
-                                child: Icon(Icons.chat_bubble,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.chat_bubble, color: Color(0xFFF4518D), size: 27),
                               ),
                               SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon videocam ditekan
                                 },
-                                child: Icon(Icons.videocam,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.videocam, color: Color(0xFFF4518D), size: 27),
                               ),
                               SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon call ditekan
                                 },
-                                child: Icon(Icons.call,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.call, color: Color(0xFFF4518D), size: 27),
                               ),
                             ],
                           )
@@ -179,7 +170,9 @@ class _SesiKonselingState extends State<SesiKonseling> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+
+              },
               child: Card(
                 color: Colors.white,
                 margin: EdgeInsets.only(left: 13, right: 13, top: 15),
@@ -198,14 +191,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                                   Text(
                                     'Booking id:',
                                     style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: 16.0, fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     ' s124hdgsf3',
                                     style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xFFF4518D)),
+                                        fontSize: 16.0, color: Color(0xFFF4518D)),
                                   ),
                                   SizedBox(width: 104),
                                   Text(
@@ -226,14 +217,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Nama:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Nama:', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 5),
                               Text(
-                                'Aurel Adisti',
+                                'Aurel Adisti', 
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -246,14 +235,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Paket:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Paket:', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 5),
                               Text(
-                                'Video Call',
+                                'Video Call', 
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -267,10 +254,8 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Senin, 12 Oktober 2023',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Senin, 12 Oktober 2023', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -281,35 +266,29 @@ class _SesiKonselingState extends State<SesiKonseling> {
                           Row(
                             children: [
                               Text(
-                                '13.00 - 14.00',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFF4518D)),
+                                '13.00 - 14.00', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFFF4518D)),
                               ),
                               SizedBox(width: 138),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon chat ditekan
                                 },
-                                child: Icon(Icons.chat_bubble,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.chat_bubble, color: Color(0xFFF4518D), size: 27),
                               ),
                               SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon videocam ditekan
                                 },
-                                child: Icon(Icons.videocam,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.videocam, color: Color(0xFFF4518D), size: 27),
                               ),
                               SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon call ditekan
                                 },
-                                child: Icon(Icons.call,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.call, color: Color(0xFFF4518D), size: 27),
                               ),
                             ],
                           )
@@ -321,7 +300,9 @@ class _SesiKonselingState extends State<SesiKonseling> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                
+              },
               child: Card(
                 color: Colors.white,
                 margin: EdgeInsets.only(left: 13, right: 13, top: 15),
@@ -340,14 +321,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                                   Text(
                                     'Booking id:',
                                     style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: 16.0, fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     ' jasd73284',
                                     style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xFFF4518D)),
+                                        fontSize: 16.0, color: Color(0xFFF4518D)),
                                   ),
                                   SizedBox(width: 104),
                                   Text(
@@ -368,14 +347,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Nama:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Nama:', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 5),
                               Text(
-                                'Aurel Adisti',
+                                'Aurel Adisti', 
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -388,14 +365,12 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Paket:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Paket:', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 5),
                               Text(
-                                'Video Call',
+                                'Video Call', 
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
@@ -409,10 +384,8 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Senin, 3 Oktober 2023',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
+                                'Senin, 3 Oktober 2023', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -423,35 +396,29 @@ class _SesiKonselingState extends State<SesiKonseling> {
                           Row(
                             children: [
                               Text(
-                                '09.00 - 10.00',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFF4518D)),
+                                '09.00 - 10.00', 
+                                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFFF4518D)),
                               ),
                               SizedBox(width: 138),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon chat ditekan
                                 },
-                                child: Icon(Icons.chat_bubble,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.chat_bubble, color: Color(0xFFF4518D), size: 27),
                               ),
                               SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon videocam ditekan
                                 },
-                                child: Icon(Icons.videocam,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.videocam, color: Color(0xFFF4518D), size: 27),
                               ),
                               SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   // Tindakan ketika ikon call ditekan
                                 },
-                                child: Icon(Icons.call,
-                                    color: Color(0xFFF4518D), size: 27),
+                                child: Icon(Icons.call, color: Color(0xFFF4518D), size: 27),
                               ),
                             ],
                           )
@@ -466,12 +433,13 @@ class _SesiKonselingState extends State<SesiKonseling> {
         ),
       ),
       bottomNavigationBar: MyBottomNavigationBar(
-          selectedIndex: _selectedIndex,
-          onItemTapped: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          }),
+        selectedIndex: _selectedIndex, 
+        onItemTapped: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        }
+      ),
     );
   }
 }
