@@ -68,6 +68,7 @@ flutter:
     - Assets/images/background_loginPage.png
     - Assets/images/note_alt.png
     - Assets/images/mdi_work.png
+    - Assets/images/centang_ijo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

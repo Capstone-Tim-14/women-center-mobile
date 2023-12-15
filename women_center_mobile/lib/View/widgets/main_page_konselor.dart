@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/artikel_konselor_view.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar_konselor.dart';
+import 'package:women_center_mobile/View/widgets/bottom_navigation_bar_konselor.dart';
 import 'package:women_center_mobile/View/homepage/homepage_konselor.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 

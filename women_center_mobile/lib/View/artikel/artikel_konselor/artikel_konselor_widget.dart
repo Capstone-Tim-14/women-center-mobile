@@ -106,10 +106,7 @@ class _CustomButtonState extends State<CustomButton> {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => buat_artikel())
-
-        );
+            context, MaterialPageRoute(builder: (context) => buat_artikel()));
       },
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 105, vertical: 1),
@@ -140,7 +137,7 @@ class ArtikelCardScrollable extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
+      child: Column(
         children: artikelProvider.articles.map((article) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -227,7 +224,7 @@ class ArtikelCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 90),
+                      const SizedBox(width: 135),
                       Expanded(
                         child: SizedBox(
                           child: Text(
