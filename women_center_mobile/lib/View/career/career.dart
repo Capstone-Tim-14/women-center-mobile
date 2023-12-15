@@ -5,7 +5,8 @@ import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
 
-import '../bottomnavigationbar/bottom_navigation_bar.dart';
+import '../widgets/bottom_navigation_bar.dart';
+import 'detail_job.dart';
 
 class Career extends StatefulWidget {
   @override
@@ -111,11 +112,34 @@ class _CareerState extends State<Career> {
                   style: TextStyle(
                     fontSize: 16.0,
                   ),
+                )
+              ],
+            ),
+            SizedBox(height: 15),
+            Divider(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "For you",
+                style: TextStyle(
+                  fontSize: 16.0,
                 ),
               ),
-              SizedBox(height: 7),
-              Divider(),
-              Column(
+            ),
+            SizedBox(height: 7),
+            Divider(),
+
+            // setiap job dipasang inkwell seperti ini ya, juhar
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailJob(),
+                  ),
+                );
+              },
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Widget Consumer yang menampilkan daftar pekerjaan
@@ -311,14 +335,6 @@ class _CareerState extends State<Career> {
             Text('Center', style: TextStyle(color: Colors.white)),
           ],
         ),
-      ),
-      bottomNavigationBar: MyBottomNavigationBar(
-        selectedIndex: _selectedIndex, 
-        onItemTapped: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        }
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Models/artikel_model/artikelku_model.dart';
+import '../../../Models/artikel_model/artikelku_model.dart';
 
 class ArtikelKu extends StatelessWidget {
   const ArtikelKu({Key? key}) : super(key: key);
@@ -42,25 +42,26 @@ class ArtikelKu extends StatelessWidget {
     ];
 
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Color(0xFFFDCEDF),
         toolbarHeight: 96,
         leading: Padding(
           padding: const EdgeInsets.only(top: 30.0),
           child: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {
-            },
+            onPressed: () {},
           ),
         ),
         title: Center(
           child: Transform.translate(
             offset: Offset(0.0, 10.0), // Adjust the value to move the text down
-            child: Text('Publish',
-            style: GoogleFonts.roboto( // Use the Google Fonts class
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+            child: Text(
+              'Publish',
+              style: GoogleFonts.roboto(
+                // Use the Google Fonts class
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
@@ -142,7 +143,8 @@ class ArtikelKu extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10), // Adjust the horizontal spacing here
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10), // Adjust the horizontal spacing here
                       child: Row(
                         children: [
                           Icon(
@@ -160,7 +162,8 @@ class ArtikelKu extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10), // Adjust the horizontal spacing here
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10), // Adjust the horizontal spacing here
                       child: Row(
                         children: [
                           Icon(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
+import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
 
 class ArtikelWidget extends StatefulWidget {
   final List<ArtikelModel> artikelList;
@@ -180,6 +181,7 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
                     SizedBox(
                       child: ListView.builder(
                         shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: widget.artikelList.length,
                         itemBuilder: (context, index) {
                           return buildArtikelCard(widget.artikelList[index]);
@@ -197,40 +199,51 @@ class _ArtikelWidgetState extends State<ArtikelWidget> {
   }
 
   Widget buildArtikelCard(ArtikelModel artikel) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.asset(
-            artikel.gambar,
-            fit: BoxFit.cover,
+    // ini ditambahin si juhar
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Artikel2(model: artikel),
           ),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Oleh: ${artikel.nama}"),
-                    Text("${artikel.waktu}"),
-                  ],
-                ),
-                Text(
-                  artikel.keterangan,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(height: 5.0), // Spacer between title and subtitle
-              ],
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image.network( // diubah ke network image, bukan asset image
+              artikel.thumbnail,
+              fit: BoxFit.cover,
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Oleh: ${artikel.author.name}"),
+                      Text("${artikel.publishedAt}"),
+                    ],
+                  ),
+                  Text(
+                    artikel.title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(height: 5.0), // Spacer between title and subtitle
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -5,7 +5,6 @@ import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dar
 import '../bottomnavigationbar/bottom_navigation_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class DetailJob extends StatefulWidget {
   final int jobId;
   DetailJob({required this.jobId, Key? key}) : super(key: key);
@@ -407,13 +406,12 @@ class _DetailJobState extends State<DetailJob> {
         ),
       ),
       bottomNavigationBar: MyBottomNavigationBar(
-        selectedIndex: _selectedIndex, 
-        onItemTapped: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        }
-      ),
+          selectedIndex: _selectedIndex,
+          onItemTapped: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          }),
     );
   }
   _launchURL(String url) async {
