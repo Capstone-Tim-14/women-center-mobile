@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../bottomnavigationbar/bottom_navigation_bar.dart';
+import '../widgets/bottom_navigation_bar.dart';
 
 class DetailJob extends StatefulWidget {
   @override
@@ -17,9 +17,7 @@ class _DetailJobState extends State<DetailJob> {
         backgroundColor: Colors.pink[100],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {
-
-          },
+          onPressed: () {},
         ),
         title: Center(
           child: Text(
@@ -101,9 +99,7 @@ class _DetailJobState extends State<DetailJob> {
                           Text(
                             'On site | Full time | Entry level', // Ganti dengan teks yang diinginkan
                             style: TextStyle(
-                              fontSize: 16.0,
-                              color: Color(0xFFF646464)
-                            ),
+                                fontSize: 16.0, color: Color(0xFFF646464)),
                           ),
                         ],
                       ),
@@ -114,14 +110,14 @@ class _DetailJobState extends State<DetailJob> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(width: 15),
-                          Image.asset('Assets/images/building.columns.circle.png', scale: 3),
+                          Image.asset(
+                              'Assets/images/building.columns.circle.png',
+                              scale: 3),
                           SizedBox(width: 10),
                           Text(
                             '501 - 1000 employees | Human Resources', // Ganti dengan teks yang diinginkan
                             style: TextStyle(
-                              fontSize: 15.0,
-                              color: Color(0xFFF646464)
-                            ),
+                                fontSize: 15.0, color: Color(0xFFF646464)),
                           ),
                         ],
                       ),
@@ -137,9 +133,7 @@ class _DetailJobState extends State<DetailJob> {
                           Text(
                             'Skils : Cascading Style Sheets (CSS)', // Ganti dengan teks yang diinginkan
                             style: TextStyle(
-                              fontSize: 16.0,
-                              color: Color(0xFFF646464)
-                            ),
+                                fontSize: 16.0, color: Color(0xFFF646464)),
                           ),
                         ],
                       ),
@@ -147,7 +141,7 @@ class _DetailJobState extends State<DetailJob> {
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start, 
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(width: 3),
                           Row(
@@ -157,10 +151,12 @@ class _DetailJobState extends State<DetailJob> {
                                   // Handle button tap
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Color(0xFFF4518D), // Warna latar belakang tombol
+                                  primary: Color(
+                                      0xFFF4518D), // Warna latar belakang tombol
                                   onPrimary: Colors.white, // Warna teks tombol
                                 ),
-                                child: Text('Visit Linkedln', style: TextStyle(fontSize: 16)),
+                                child: Text('Visit Linkedln',
+                                    style: TextStyle(fontSize: 16)),
                               ),
                               SizedBox(width: 5),
                               ElevatedButton(
@@ -168,15 +164,13 @@ class _DetailJobState extends State<DetailJob> {
                                   // Handle button tap
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Color(0xFFF4518D),
-                                  elevation: 0,
-                                  side: const BorderSide(
-                                    width: 1.0,
-                                    color: Color(0xFFF4518D)
-                                  )
-                                ),
-                                child: Text('Save', style: TextStyle(fontSize: 16)),
+                                    backgroundColor: Colors.transparent,
+                                    foregroundColor: Color(0xFFF4518D),
+                                    elevation: 0,
+                                    side: const BorderSide(
+                                        width: 1.0, color: Color(0xFFF4518D))),
+                                child: Text('Save',
+                                    style: TextStyle(fontSize: 16)),
                               )
                             ],
                           ),
@@ -199,7 +193,9 @@ class _DetailJobState extends State<DetailJob> {
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('About the Job', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        child: Text('About the Job',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
                       SizedBox(height: 8),
                       Text(
@@ -244,7 +240,8 @@ class _DetailJobState extends State<DetailJob> {
                       children: [
                         Text(
                           'Set alert for similar jobs',
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 8.0),
                         Text(
@@ -258,14 +255,11 @@ class _DetailJobState extends State<DetailJob> {
                         // Handle button tap
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Color(0xFFF4518D),
-                        elevation: 0,
-                        side: const BorderSide(
-                          width: 1.0,
-                          color: Color(0xFFF4518D)
-                        )
-                      ),
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: Color(0xFFF4518D),
+                          elevation: 0,
+                          side: const BorderSide(
+                              width: 1.0, color: Color(0xFFF4518D))),
                       child: Text('Set Alert', style: TextStyle(fontSize: 16)),
                     )
                   ],
@@ -280,13 +274,16 @@ class _DetailJobState extends State<DetailJob> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                      padding:
+                          EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Align(
                             alignment: Alignment.centerLeft,
-                            child: Text('About the Job', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            child: Text('About the Job',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                           ),
                           SizedBox(height: 8),
                           Text(
@@ -329,11 +326,14 @@ class _DetailJobState extends State<DetailJob> {
                             child: Text('See More'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFFDCEDF),
-                              minimumSize: Size(double.infinity, 48), // Lebar tombol mengisi card penuh
+                              minimumSize: Size(double.infinity,
+                                  48), // Lebar tombol mengisi card penuh
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(12.0), // Mengotak bagian bawah kiri
-                                  bottomRight: Radius.circular(12.0), // Mengotak bagian bawah kanan
+                                  bottomLeft: Radius.circular(
+                                      12.0), // Mengotak bagian bawah kiri
+                                  bottomRight: Radius.circular(
+                                      12.0), // Mengotak bagian bawah kanan
                                 ),
                               ),
                             ),
@@ -363,13 +363,12 @@ class _DetailJobState extends State<DetailJob> {
         ),
       ),
       bottomNavigationBar: MyBottomNavigationBar(
-        selectedIndex: _selectedIndex, 
-        onItemTapped: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        }
-      ),
+          selectedIndex: _selectedIndex,
+          onItemTapped: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          }),
     );
   }
 }
