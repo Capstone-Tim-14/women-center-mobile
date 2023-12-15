@@ -47,13 +47,12 @@ class MyApp extends StatelessWidget {
           // initialRoute: '/onboarding',
           initialRoute: '/',
           routes: {
-            '/': (context) => Career(),
-            // '/login': (context) => const LoginView(),
-            // '/register': (context) => const Register(),
-            // '/onboarding': (context) => Onboarding(),
-            // '/homepagenotif3': (context) => HomepageNotifikasi3(),
-            // '/artikelku': (context) => const ArtikelKu(),
-            // '/artikel': (context) => const Artikel(),
+            '/login': (context) => const LoginView(),
+            '/register': (context) => const Register(),
+            '/onboarding': (context) => Onboarding(),
+            '/homepagenotif3': (context) => HomepageNotifikasi3(),
+            '/artikelku': (context) => const ArtikelKu(),
+            '/artikel': (context) => const Artikel(),
           }),
     );
   }
