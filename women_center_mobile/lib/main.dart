@@ -1,5 +1,10 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
+import 'package:women_center_mobile/View/edit_profile/edit_form.dart';
+import 'package:women_center_mobile/View/edit_profile/profile_edit.dart';
+import 'package:women_center_mobile/View/homepage/homepage_view.dart';
 import 'package:women_center_mobile/View/kalender/kalender.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
@@ -89,6 +94,8 @@ class MyApp extends StatelessWidget {
           '/profil_user': (context) => ProfilPage(),
           '/payment': (context) => HomePage(),
           '/pembayaran1': (context) => const MetodePembayaran1(),
+          '/editprofile': (context) => ProfileEdit(),
+          '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),
           '/editprofile': (context) => EditProfile(),
           '/chatbots': (context) => ChatScreen(),
