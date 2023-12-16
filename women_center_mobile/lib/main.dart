@@ -89,7 +89,7 @@ class MyApp extends StatelessWidget {
           '/pengaturan': (context) => const PengaturanPrivasi(),
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
-          // '/profil_konselor':(context) => ProfilKonselor()
+          '/profil_konselor':(context) => ProfilKonselor()
         },
       ),
     );
