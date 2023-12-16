@@ -4,6 +4,8 @@ import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
+import 'package:women_center_mobile/View/profil_page/favorit/favorit_view.dart';
+import 'package:women_center_mobile/View/profil_page/favorit/konselor_favorit.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
@@ -101,6 +103,8 @@ class MyApp extends StatelessWidget {
           '/sesi_konseling': (context) => SesiKonseling(),
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
+          '/konseling_view': (context) => const KonselingSection(),
+          '/konselorfav':(context) => FavoritView()
           '/about': (context) => const TentangKami(),
         },
       ),
