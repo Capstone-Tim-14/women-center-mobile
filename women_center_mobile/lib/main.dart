@@ -104,7 +104,7 @@ class MyApp extends StatelessWidget {
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
           '/konseling_view': (context) => const KonselingSection(),
-          '/konselorfav':(context) => FavoritView()
+          '/konselorfav':(context) => FavoritView(),
           '/about': (context) => const TentangKami(),
         },
       ),
