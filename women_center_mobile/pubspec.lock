@@ -17,14 +17,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  calendar_date_picker2:
-    dependency: "direct main"
-    description:
-      name: calendar_date_picker2
-      sha256: b91d51b8d0928f9745e0113e86d06b161ac48c52b7530337a3b77283cbc6be27
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.3"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -49,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  calendar_date_picker2:
+    dependency: "direct main"
+    description:
+      name: calendar_date_picker2
+      sha256: b91d51b8d0928f9745e0113e86d06b161ac48c52b7530337a3b77283cbc6be27
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
   characters:
     dependency: transitive
     description:
@@ -176,7 +176,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-
   glass_kit:
     dependency: "direct main"
     description:
@@ -353,14 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
-  simple_gesture_detector:
-    dependency: transitive
-    description:
-      name: simple_gesture_detector
-      sha256: "86d08f85f1f58583b7b4b941d989f48ea6ce08c1724a1d10954a277c2ec36592"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   provider:
     dependency: "direct main"
     description:
@@ -433,6 +424,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  simple_gesture_detector:
+    dependency: transitive
+    description:
+      name: simple_gesture_detector
+      sha256: "86d08f85f1f58583b7b4b941d989f48ea6ce08c1724a1d10954a277c2ec36592"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -494,14 +493,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  table_calendar:
-    dependency: "direct main"
-    description:
-      name: table_calendar
-      sha256: "1e3521a3e6d3fc7f645a58b135ab663d458ab12504f1ea7f9b4b81d47086c478"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.9"
   synchronized:
     dependency: transitive
     description:
@@ -510,6 +501,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
+  table_calendar:
+    dependency: "direct main"
+    description:
+      name: table_calendar
+      sha256: "1e3521a3e6d3fc7f645a58b135ab663d458ab12504f1ea7f9b4b81d47086c478"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.9"
   term_glyph:
     dependency: transitive
     description:
@@ -562,7 +561,6 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-
       sha256: "75f2846facd11168d007529d6cd8fcb2b750186bea046af9711f10b907e1587e"
       url: "https://pub.dev"
     source: hosted
@@ -571,7 +569,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_android
-
       sha256: dd729390aa936bf1bdf5cd1bc7468ff340263f80a2c4f569416507667de8e3c8
       url: "https://pub.dev"
     source: hosted
@@ -580,7 +577,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_ios
-
       sha256: bb328b24d3bccc20bdf1024a0990ac4f869d57663660de9c936fb8c043edefe3
       url: "https://pub.dev"
     source: hosted
@@ -589,7 +585,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_linux
-
       sha256: "207f4ddda99b95b4d4868320a352d374b0b7e05eefad95a4a26f57da413443f5"
       url: "https://pub.dev"
     source: hosted
@@ -598,7 +593,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_macos
-
       sha256: "91ee3e75ea9dadf38036200c5d3743518f4a5eb77a8d13fda1ee5764373f185e"
       url: "https://pub.dev"
     source: hosted
@@ -607,7 +601,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_platform_interface
-
       sha256: "6c9ca697a5ae218ce56cece69d46128169a58aa8653c1b01d26fcd4aad8c4370"
       url: "https://pub.dev"
     source: hosted
@@ -616,7 +609,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_web
-
       sha256: "81fe91b6c4f84f222d186a9d23c73157dc4c8e1c71489c4d08be1ad3b228f1aa"
       url: "https://pub.dev"
     source: hosted
@@ -625,7 +617,6 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_windows
-
       sha256: "254708f17f7c20a9c8c471f67d86d76d4a3f9c1591aad1e15292008aceb82771"
       url: "https://pub.dev"
     source: hosted
@@ -664,5 +655,4 @@ packages:
     version: "1.0.3"
 sdks:
   dart: ">=3.0.1 <4.0.0"
-
   flutter: ">=3.0.0"

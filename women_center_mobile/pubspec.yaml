@@ -42,7 +42,6 @@ dependencies:
   table_calendar: ^3.0.9
   clean_calendar: ^1.1.0
   calendar_date_picker2: ^0.5.3
-  dio: ^5.4.0
   http: ^1.1.0
   intl: ^0.18.1
   provider: ^6.1.1

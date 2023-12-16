@@ -1,8 +1,6 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/kalender/kalender.dart';
-import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
-import 'View/homepage/homepage_section3.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
@@ -106,7 +104,6 @@ class MyApp extends StatelessWidget {
           '/sesi_konseling': (context) => SesiKonseling(),
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
-          '/konseling_view': (context) => const KonselingSection(),
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
           '/kalender':(context) => KalenderEvent()
