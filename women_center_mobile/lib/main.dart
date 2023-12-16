@@ -33,6 +33,7 @@ import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dar
 import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
 import 'package:women_center_mobile/ViewModel/konselor_view_model/konselor_view_model.dart';
 import 'package:women_center_mobile/ViewModel/paket_view_model/paket_view_model.dart';
+import 'package:women_center_mobile/ViewModel/sesi_konseling_view_mdoel/sesi_konseling.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
 import 'View/login/login_view.dart';
@@ -42,6 +43,7 @@ import 'View/widgets/main_page.dart';
 import 'View/konseling/konseling_topik_konseling.dart';
 import 'View/register/register.dart';
 import 'View/welcome_page/welcome_page.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,6 +65,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
         ChangeNotifierProvider(create: (context) => PaketViewModel()),
         ChangeNotifierProvider(create: (context) => KonselorViewModel()),
+        ChangeNotifierProvider(create: (context) => CounselingSessionViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
