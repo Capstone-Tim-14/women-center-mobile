@@ -1,10 +1,14 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/kalender/kalender.dart';
+import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
+import 'View/homepage/homepage_section3.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/event/event.dart';
+import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
@@ -28,6 +32,14 @@ import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_kon
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
+import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
+import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
+import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
+import 'package:women_center_mobile/ViewModel/konselor_view_model/konselor_view_model.dart';
+import 'package:women_center_mobile/ViewModel/paket_view_model/paket_view_model.dart';
+import 'View/career/detail_job.dart';
+import 'View/career/career.dart';
+import 'View/login/login_view.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 import 'package:women_center_mobile/ViewModel/register_view_model/register_view_model.dart';
 import 'View/widgets/main_page.dart';
@@ -50,6 +62,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CareerViewModel()),
         ChangeNotifierProvider(create: (context) => RegisterViewModel()),
         ChangeNotifierProvider(create: (context) => ArtikelKonselorProvider()),
+        ChangeNotifierProvider(create: (context) => JobViewModel()),
+        ChangeNotifierProvider(create: (context) => DetailJobViewModel()),
+        ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
+        ChangeNotifierProvider(create: (context) => PaketViewModel()),
+        ChangeNotifierProvider(create: (context) => KonselorViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -91,6 +108,8 @@ class MyApp extends StatelessWidget {
           '/konseling_view': (context) => const KonselingSection(),
           '/detail_event': (context) => DetailEvent(),
           '/ChatScreen': (context) => ChatScreen(),
+          '/about': (context) => const TentangKami(),
+          '/kalender': (context) => KalenderEvent()
         },
       ),
     );
