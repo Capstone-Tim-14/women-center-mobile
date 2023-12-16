@@ -33,11 +33,15 @@ class _ProfileEditState extends State<ProfileEdit> {
   final ApiProfil _apiProfil = ApiProfil();
   Map<String, dynamic> _userProfile = {};
 
+  
+
   @override
   void initState() {
     super.initState();
     _fetchUserProfile();
   }
+
+  
 
   Future<void> _fetchUserProfile() async {
     try {
@@ -51,6 +55,27 @@ class _ProfileEditState extends State<ProfileEdit> {
       print('Error fetching user profile: $error');
     }
   }
+
+  // Future<void> _navigateToEditProfile() async {
+  //   var updatedData = await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => EditDataProfile(),
+  //     ),
+  //   );
+
+  //   // Print updatedData for debugging
+
+  //   if (updatedData != null) {
+  //     _fetchUserProfile();
+  //     // setState(() {
+  //     //   _userProfile = updatedData;
+  //     // });
+  //     print('Received Updated Data: $updatedData');
+  //   } else {
+  //     print('No updated data received.');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

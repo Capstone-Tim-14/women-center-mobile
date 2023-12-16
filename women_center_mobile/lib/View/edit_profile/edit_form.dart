@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:women_center_mobile/View/edit_profile/profile_edit.dart';
 import 'package:women_center_mobile/ViewModel/profie_edit/profile_edit.dart';
 import 'package:intl/intl.dart';
 
@@ -29,8 +30,15 @@ class EditDataProfile extends StatefulWidget {
 class _EditDataProfileState extends State<EditDataProfile> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _lastNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _birthdayController = TextEditingController();
+
+  String _usernameError = '';
+  String _fullnameError = '';
+  String _emailError = '';
+  String _birthdayError = '';
 
   Color iconColor = const Color(0xFFF4518D);
   final ApiProfil _apiProfil = ApiProfil();
@@ -52,7 +60,21 @@ class _EditDataProfileState extends State<EditDataProfile> {
         _usernameController.text = _userProfile['username'] ?? '';
         _fullNameController.text = _userProfile['full_name'] ?? '';
         _emailController.text = _userProfile['email'] ?? '';
-        _birthdayController.text = _userProfile['birthday'] ?? '';
+// Parse the birthday to a DateTime object and format it to 'yyyy-mm-dd'
+        var birthday = _userProfile['birthday'];
+        print('tampilkan birthday1: $birthday');
+        if (birthday != null) {
+          var inputFormat = DateFormat(
+              'dd MMM yyyy'); // Replace 'dd MMM yyyy' with the format of your date string
+          var parsedDate = inputFormat.parse(birthday);
+          var formattedDate = DateFormat('yyyy-MM-dd').format(parsedDate);
+          _birthdayController.text = formattedDate;
+          print('tampilkan birthday2: $_birthdayController');
+        } else {
+          print('tampilkan birthday3');
+
+          _birthdayController.text = '';
+        }
       });
     } catch (error) {
       print('Error fetching user profile: $error');
@@ -76,16 +98,60 @@ class _EditDataProfileState extends State<EditDataProfile> {
   }
 
   Future<void> _saveChanges() async {
-    print('update data');
+    var fullName = _fullNameController.text;
+    var nameParts = fullName.split(' ');
+    var firstName = nameParts[0];
+
+    // Mengambil semua elemen mulai dari indeks ke-1 dan menggabungkannya menjadi satu string
+    String birthday = _birthdayController.text;
+    String formatedBirthday = birthday.replaceAll(' ', '-');
+
+    var lastName = nameParts.sublist(1).join(' ');
+
+    var username = _usernameController.text;
+    if (username.isEmpty) {
+      setState(() {
+        _usernameError = 'Username tidak boleh kosong';
+      });
+      return; // Menghentikan eksekusi metode jika ada kesalahan
+    }
+
+    var email = _emailController.text;
+    if (email.isEmpty) {
+      setState(() {
+        _emailError = 'Email tidak boleh kosong';
+      });
+      return; // Menghentikan eksekusi metode jika ada kesalahan
+    }
+
+    if (fullName.isEmpty) {
+      setState(() {
+        _fullnameError = 'Full Name tidak boleh kosong';
+      });
+      return; // Menghentikan eksekusi metode jika ada kesalahan
+    }
+
+    if (birthday.isEmpty) {
+      setState(() {
+        _birthdayError = 'Birthday tidak boleh kosong';
+      });
+      return; // Menghentikan eksekusi metode jika ada kesalahan
+    }
+
     Map<String, dynamic> updatedData = {
-      'username': _usernameController.text,
-      'full_name': _fullNameController.text,
-      'email': _emailController.text,
-      'birthday': _birthdayController.text,
+      'Username': username,
+      'first_name': firstName,
+      'Last_name': lastName,
+      'Email': email,
+      'birthday': formatedBirthday,
     };
-    print('update data2');
     await _apiProfil.updateUserProfile(updatedData);
-    print('update data 3');
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileEdit(),
+      ),
+    );
   }
 
   @override
@@ -242,6 +308,9 @@ class _EditDataProfileState extends State<EditDataProfile> {
                             fontWeight: FontWeight.bold,
                           ),
                           onChanged: (value) {
+                            setState(() {
+                              _usernameError = '';
+                            });
                             // Handle perubahan teks pada username
                           },
                           decoration: InputDecoration(
@@ -249,6 +318,17 @@ class _EditDataProfileState extends State<EditDataProfile> {
                           ),
                         ),
                       ),
+                      if (_usernameError.isNotEmpty)
+                        Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(
+                            _usernameError,
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
                       //--------------------FULL NAME------------------
                       SizedBox(height: 15),
                       Text(
@@ -273,13 +353,26 @@ class _EditDataProfileState extends State<EditDataProfile> {
                             fontWeight: FontWeight.bold,
                           ),
                           onChanged: (value) {
-                            // Handle perubahan teks pada full name
+                            setState(() {
+                              _fullnameError = '';
+                            });
                           },
                           decoration: InputDecoration(
                             border: InputBorder.none, // hilangkan border
                           ),
                         ),
                       ),
+                      if (_fullnameError.isNotEmpty)
+                        Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(
+                            _fullnameError,
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
                       //--------------------EMAIL----------------
                       SizedBox(height: 15),
                       Text(
@@ -304,13 +397,26 @@ class _EditDataProfileState extends State<EditDataProfile> {
                             fontWeight: FontWeight.bold,
                           ),
                           onChanged: (value) {
-                            // Handle perubahan teks pada email
+                            setState(() {
+                              _emailError = '';
+                            });
                           },
                           decoration: InputDecoration(
                             border: InputBorder.none, // hilangkan border
                           ),
                         ),
                       ),
+                      if (_emailError.isNotEmpty)
+                        Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(
+                            _emailError,
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
                       //-------------BIRTHDAY----------
                       SizedBox(height: 15),
                       Text(
@@ -337,9 +443,7 @@ class _EditDataProfileState extends State<EditDataProfile> {
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                                onChanged: (value) {
-                                  // Handle perubahan teks pada birthday
-                                },
+                                onChanged: (value) {},
                                 decoration: InputDecoration(
                                   border: InputBorder.none, // hilangkan border
                                 ),

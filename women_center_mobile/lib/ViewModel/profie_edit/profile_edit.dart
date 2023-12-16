@@ -36,16 +36,24 @@ class ApiProfil {
   }
 
   Future<void> updateUserProfile(Map<String, dynamic> updatedData) async {
-    print(updatedData);
+    print("Updating user profile with data: $updatedData");
     try {
       print('tambah update1');
       final responseUpdate = await _dio.put(
         'https://api-ferminacare.tech/api/v1/users/profile',
         data: updatedData,
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImZ1bGxfbmFtZSI6InB1dHJpZGlhbmEiLCJlbWFpbCI6InB1dHJpZGlhbmFoZnN5d3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI3NTQ3Mjh9.dQfM-AJC2CV4S71uQ39GLz-R2Yxx09VvFPVRLmdL8DU',
+          },
+        ),
       );
-      print('tambah updata2');
+      print('Response from updateUserProfile: $responseUpdate');
+
       if (responseUpdate.statusCode == 201) {
         print('Perubahan profil disimpan dengan sukses');
+        
       } else {
         print(
             'Gagal menyimpan perubahan profil. Status code: ${responseUpdate.statusCode}');
