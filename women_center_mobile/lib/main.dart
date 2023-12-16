@@ -7,6 +7,7 @@ import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
+import 'package:women_center_mobile/View/event/event.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/detail_event',
         routes: {
           // '/': (context) => Home3(),
           '/': (context) => const Welcome(),
@@ -105,6 +106,8 @@ class MyApp extends StatelessWidget {
           '/sesi_konseling': (context) => SesiKonseling(),
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
+          '/konseling_view': (context) => const KonselingSection(),
+          '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
           '/kalender':(context) => KalenderEvent()
         },
