@@ -29,15 +29,6 @@ class ProfileEdit extends StatefulWidget {
 }
 
 class _ProfileEditState extends State<ProfileEdit> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _fullnameController = TextEditingController();
-  TextEditingController _firstnameController = TextEditingController();
-  TextEditingController _lastnameController = TextEditingController();
-  TextEditingController myController = TextEditingController();
-  DateTime _tanggalController = DateTime.now();
-
-  
-
   Color iconColor = const Color(0xFFF4518D);
   final ApiProfil _apiProfil = ApiProfil();
   Map<String, dynamic> _userProfile = {};
@@ -71,7 +62,9 @@ class _ProfileEditState extends State<ProfileEdit> {
           padding: const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 4.0),
           child: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         title: Row(
@@ -93,8 +86,7 @@ class _ProfileEditState extends State<ProfileEdit> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons
-                .notifications_none_outlined), // Ganti dengan ikon notifikasi yang diinginkan
+            icon: Icon(Icons.ios_share_outlined),
             onPressed: () {
               // Aksi yang ingin diambil ketika tombol notifikasi ditekan
             },
@@ -137,7 +129,12 @@ class _ProfileEditState extends State<ProfileEdit> {
                           right: 5,
                           child: InkWell(
                             onTap: () {
-                              // Aksi yang ingin diambil ketika lingkaran edit ditekan
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditDataProfile(),
+                                ),
+                              );
                             },
                             child: Container(
                               width: 30,
@@ -187,45 +184,111 @@ class _ProfileEditState extends State<ProfileEdit> {
               ),
               child: Column(
                 children: [
-                  TextFormField(
-                    controller: myController,
-                    // initialValue: _userProfile['email'],
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.pink),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //-------------------- USERNAME--------------------
+                      Text(
+                        'Username:',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.pink),
+                      SizedBox(height: 5),
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        width: 357,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                        child: Text(
+                          _userProfile['username'] ?? 'username',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
+                      //--------------------FULL NAME------------------
+                      SizedBox(height: 15),
+                      Text(
+                        'Full Name:',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        width: 357,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                        child: Text(
+                          _userProfile['full_name'] ?? 'full name',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      //--------------------EMAIL----------------
+                      SizedBox(height: 15),
+                      Text(
+                        'Email:',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        width: 357,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                        child: Text(
+                          _userProfile['email'] ?? 'examp@le.com',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      //-------------BIRTHDAY----------
+                      SizedBox(height: 15),
+                      Text(
+                        'Birthday:',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        width: 357,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                        child: Text(
+                          _userProfile['birthday'] ?? 'dd/mm/yy',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Align(
-              alignment: Alignment.center,
-              child: Transform.translate(
-                offset: Offset(0.0, -20.0),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 1),
-                  child: Container(
-                    margin: EdgeInsets.only(top: 1.0, bottom: 0.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Handle button press, you can access the form data using
-                        // _usernameController.text, _firstnameController.text, etc.
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.pink,
-                        onPrimary: Colors.white,
-                      ),
-                      child: Text('Simpan Perubahan'),
-                    ),
-                  ),
-                ),
               ),
             ),
           ],

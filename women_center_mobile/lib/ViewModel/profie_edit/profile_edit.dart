@@ -3,8 +3,7 @@ import 'package:dio/dio.dart';
 class ApiProfil {
   final Dio _dio = Dio();
   String _authToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbF9uYW1lIjoiYWd1bmdiaGFza2FyYSIsImVtYWlsIjoiYWd1bmcxMjNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI2MDk0MDV9.P1RgiD-Tk6CdkqwhQwJgI3jHfERG0nIjH1swK7nOx1Y';
-
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImZ1bGxfbmFtZSI6InB1dHJpZGlhbmEiLCJlbWFpbCI6InB1dHJpZGlhbmFoZnN5d3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI3NTQ3Mjh9.dQfM-AJC2CV4S71uQ39GLz-R2Yxx09VvFPVRLmdL8DU';
   // Set the authentication token
   void setAuthToken(String token) {
     _authToken = token;
@@ -33,6 +32,27 @@ class ApiProfil {
       }
     } catch (error) {
       throw Exception('Failed to load user profile: $error');
+    }
+  }
+
+  Future<void> updateUserProfile(Map<String, dynamic> updatedData) async {
+    print(updatedData);
+    try {
+      print('tambah update1');
+      final responseUpdate = await _dio.put(
+        'https://api-ferminacare.tech/api/v1/users/profile',
+        data: updatedData,
+      );
+      print('tambah updata2');
+      if (responseUpdate.statusCode == 201) {
+        print('Perubahan profil disimpan dengan sukses');
+      } else {
+        print(
+            'Gagal menyimpan perubahan profil. Status code: ${responseUpdate.statusCode}');
+        // Tambahkan log atau tanggapan lainnya jika perlu
+      }
+    } catch (error) {
+      print('Error updating user profile: $error');
     }
   }
 }
