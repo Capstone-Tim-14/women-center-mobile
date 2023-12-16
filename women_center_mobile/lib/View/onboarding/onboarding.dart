@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/auth_service.dart';
 import 'package:women_center_mobile/View/widgets/main_page.dart';
-import 'package:women_center_mobile/View/homepage/homepage_view.dart';
+import 'package:women_center_mobile/ViewModel/api_onboarding/onboarding_api.dart';
+// import 'package:women_center_mobile/View/homepage/homepage_view.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -28,6 +29,27 @@ class _OnboardingState extends State<Onboarding> {
   ];
 
   Set<String> selectedTopics = Set();
+  
+  final ApiOnboarding _apiOnboarding = ApiOnboarding();
+  Map<String, dynamic> _userProfile = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile();
+  }
+
+  Future<void> _fetchUserProfile() async {
+    try {
+      final response = await _apiOnboarding.getUserProfile();
+      // print('Profile Picture URL: ${_userProfile['profile_picture']}');
+      setState(() {
+        _userProfile = response['data'];
+      });
+    } catch (error) {
+      print('Error fetching user profile: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +94,7 @@ class _OnboardingState extends State<Onboarding> {
               top: 160,
               left: 16,
               child: Text(
-                'Hallo kak, Sherly Prameswari',
+                'Hallo kak, ${_userProfile['full_name']}',
                 style: GoogleFonts.raleway(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

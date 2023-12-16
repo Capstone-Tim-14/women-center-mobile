@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/onboarding',
         routes: {
           // '/': (context) => Home3(),
           '/': (context) => const Welcome(),
