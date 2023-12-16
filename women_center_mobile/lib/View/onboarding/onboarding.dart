@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/auth_service.dart';
 import 'package:women_center_mobile/View/widgets/main_page.dart';
 import 'package:women_center_mobile/View/homepage/homepage_view.dart';
+import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -56,9 +57,11 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     );
                   } else if (AuthService.role == "counselor") {
-                    Navigator.pushReplacementNamed(
+                    Navigator.push(
                       context,
-                      '/main_page_konselor',
+                      MaterialPageRoute(
+                        builder: (context) => MainPageKonselor(),
+                      ),
                     );
                   }
                 },

@@ -18,20 +18,20 @@ class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
   String? appbarTitle = null;
 
-  PreferredSizeWidget? get appBar {
-    if (appbarTitle == null) return null;
-    return AppBar(
-      backgroundColor: Colors.pink[100],
-      title: Center(child: Text(appbarTitle ?? "")),
-      automaticallyImplyLeading: false,
-    );
-  }
+  // PreferredSizeWidget? get appBar {
+  //   if (appbarTitle == null) return null;
+  //   return AppBar(
+  //     backgroundColor: Colors.pink[100],
+  //     title: Center(child: Text(appbarTitle ?? "")),
+  //     automaticallyImplyLeading: false,
+  //   );
+  // }
 
   List get screens => [
         HomepageSection(
           pindahHalaman: pindahHalaman,
         ), // 0
-        const Artikel(), // 1
+        Artikel(), // 1
         // Career(), // 2
         const PilihanPaket(), // 3
         ProfilPage(), // 4
@@ -56,7 +56,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: selectedIndex == 4 ? ProfilPage.getAppBar : appBar,
+      // appBar: selectedIndex == 4 ? ProfilPage.getAppBar : appBar,
       body: screens[selectedIndex],
       bottomNavigationBar: MyBottomNavigationBar(
         selectedIndex: selectedIndex,
