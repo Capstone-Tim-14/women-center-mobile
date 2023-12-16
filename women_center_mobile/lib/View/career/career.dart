@@ -35,7 +35,7 @@ class _CareerState extends State<Career> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.grey[200],
+          color: Color(0xFFF8E8EE),
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: [
