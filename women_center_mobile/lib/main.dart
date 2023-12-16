@@ -1,5 +1,8 @@
 // JUHARMAN YANG MINTA
 import 'package:flutter/material.dart';
+import 'package:women_center_mobile/View/kalender/kalender.dart';
+import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
+import 'View/homepage/homepage_section3.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
@@ -52,6 +55,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ArtikelViewModel()),
@@ -102,6 +106,7 @@ class MyApp extends StatelessWidget {
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
           '/about': (context) => const TentangKami(),
+          '/kalender':(context) => KalenderEvent()
         },
       ),
     );
