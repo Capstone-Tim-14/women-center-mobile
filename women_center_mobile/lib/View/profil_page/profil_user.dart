@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
+import '../../ViewModel/api_profil_user/profil_user_api_get.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 
 class CustomShapeClipper extends CustomClipper<Path> {
@@ -69,15 +70,69 @@ class ProfilPage extends StatefulWidget {
 }
 
 class _ProfilPageState extends State<ProfilPage> {
-  int _selectedIndex = 0;
   bool isNotificationEnabled = true;
   Color iconColor = const Color(0xFFF4518D);
+  final ApiProfil _apiProfil = ApiProfil();
+  Map<String, dynamic> _userProfile = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile();
+  }
+
+  Future<void> _fetchUserProfile() async {
+    try {
+      final response = await _apiProfil.getUserProfile();
+      print('Profile Picture URL: ${_userProfile['profile_picture']}');
+      setState(() {
+        _userProfile = response['data'];
+      });
+    } catch (error) {
+      print('Error fetching user profile: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFDCEDF),
+        toolbarHeight: 80,
+        leading: 
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 4.0),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {},
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+          padding: const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 3.0),
+              child: Text(
+                'Profil',
+                style: GoogleFonts.roboto(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_none_outlined), // Ganti dengan ikon notifikasi yang diinginkan
+            onPressed: () {
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
         children: <Widget>[
           ClipPath(
             clipper: CustomShapeClipper(),
@@ -93,16 +148,20 @@ class _ProfilPageState extends State<ProfilPage> {
               ),
               child: Column(
                 children: [
+
                   Padding(
                     padding: EdgeInsets.only(top: 0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/Ellipse.png'),
-                      radius: 50,
-                    ),
+                              radius: 50,
+                              backgroundImage: NetworkImage(
+                                _userProfile['profile_picture']?.toString() ?? '',
+                              ),
+                            ),
+
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Sherly Prameswari',
+                    _userProfile['full_name'] ?? 'User Name',
                     style: GoogleFonts.roboto(
                       fontSize: 18,
                       color: Colors.black,
@@ -110,7 +169,7 @@ class _ProfilPageState extends State<ProfilPage> {
                     ),
                   ),
                   Text(
-                    'sherly.prameswari@gmail.com',
+                    _userProfile['email'] ?? 'user@example.com',
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                       color: Colors.black,
@@ -211,7 +270,7 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
         ],
       ),
-      // Bottomnya juhar yg pasang
+      ),
     );
   }
 
