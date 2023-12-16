@@ -4,6 +4,7 @@ import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
+import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
@@ -30,6 +31,7 @@ import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
+import 'package:women_center_mobile/ViewModel/konselor_view_model/konselor_view_model.dart';
 import 'package:women_center_mobile/ViewModel/paket_view_model/paket_view_model.dart';
 import 'View/career/detail_job.dart';
 import 'View/career/career.dart';
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => DetailJobViewModel()),
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
         ChangeNotifierProvider(create: (context) => PaketViewModel()),
+        ChangeNotifierProvider(create: (context) => KonselorViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -98,7 +101,7 @@ class MyApp extends StatelessWidget {
           '/sesi_konseling': (context) => SesiKonseling(),
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
-          '/konseling_view': (context) => const KonselingSection(),
+          '/about': (context) => const TentangKami(),
         },
       ),
     );

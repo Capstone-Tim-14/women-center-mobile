@@ -68,8 +68,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   void initState() {
     super.initState();
-    _emailController.text = "agung123@gmail.com";
-    _passwordController.text = "agung123";
+    _emailController.text = "arman123@gmail.com";
+    _passwordController.text = "Arman123";
   }
 
   @override
