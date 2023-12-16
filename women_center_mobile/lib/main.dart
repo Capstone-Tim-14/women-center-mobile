@@ -54,7 +54,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ArtikelViewModel()),
@@ -106,7 +105,7 @@ class MyApp extends StatelessWidget {
           '/bantuan': (context) => FAQ(),
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
-          '/kalender':(context) => KalenderEvent()
+          '/kalender': (context) => KalenderEvent()
         },
       ),
     );
