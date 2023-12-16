@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/paket_model/paket.dart';
-import '../bottomnavigationbar/bottom_navigation_bar.dart';
 
-class PilihanPaket extends StatelessWidget {
+import '../../ViewModel/paket_view_model/paket_view_model.dart';
+import 'konseling_view.dart';
+
+class PilihanPaket extends StatefulWidget {
   const PilihanPaket({super.key});
 
   @override
+  State<PilihanPaket> createState() => _PilihanPaketState();
+}
+
+class _PilihanPaketState extends State<PilihanPaket> {
+  List<PaketModel> get _listPaket => context.watch<PaketViewModel>().listPaket;
+
+  @override
   Widget build(BuildContext context) {
+    context.read<PaketViewModel>().fetchAllPaket();
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F5F6),
-      appBar: AppBar(
-        title: Text("Konseling",style: TextStyle(
-                    color: Color(0xFfF1F1F1F),
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20 ),
-          ),
-        centerTitle: true,
-        backgroundColor: Color(0xFFFDCEDF),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            //tombol kembali mengarah ke home
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
       body: Column(
         children: [
           Expanded(
@@ -51,83 +45,89 @@ class PilihanPaket extends StatelessWidget {
                         fontSize: 13,
                       ),
                     ),
-                    Paket(
-                      model: PaketModel(
-                        "Paket Voice Call",
-                        3,
-                        [
-                          "Durasi Konsultasi 1 Jam/Sesi",
-                          "1on1 Dengan Konselor",
-                          "Privasi Dijamin 100% Aman",
-                          "Tes Kesehatan Mental",
-                          "Tes Kepribadian",
-                          "Tes Minat Karir",
-                          "Masa Aktif Paket Selama 1 Minggu",
-                        ],
-                        350000,
-                        250000,
-                      ),
-                    ),
-                    Paket(
-                      model: PaketModel(
-                        "Paket Video Call",
-                        3,
-                        [
-                          "Durasi Konsultasi 1 Jam/Sesi",
-                          "1on1 Dengan Konselor",
-                          "Privasi Dijamin 100% Aman",
-                          "Tes Kesehatan Mental",
-                          "Tes Kepribadian",
-                          "Tes Minat Karir",
-                          "Masa Aktif Paket Selama 2 Minggu",
-                        ],
-                        650000,
-                        550000,
-                      ),
-                    ),
-                    Paket(
-                      model: PaketModel(
-                        "Paket All In One",
-                        3,
-                        [
-                          "Durasi Konsultasi 1 Jam/Sesi",
-                          "1on1 Dengan Konselor",
-                          "Privasi Dijamin 100% Aman",
-                          "Tes Kesehatan Mental",
-                          "Tes Kepribadian",
-                          "Tes Minat Karir",
-                          "Masa Aktif Paket Selama 3 Minggu",
-                        ],
-                        850000,
-                        750000,
-                      ),
-                    ),
-                    Paket(
-                      model: PaketModel(
-                        "Paket Offline",
-                        3,
-                        [
-                          "Ruang Konseling Yang Nyaman & Aman",
-                          "Langsung Bertemu Psikolog \n & Konseling Tatap Muka",
-                          "Durasi Konsultasi 2 Jam/Sesi",
-                          "1on1 Dengan Konselor",
-                          "Privasi Dijamin 100% Aman",
-                          "Tes Kesehatan Mental",
-                          "Tes Kepribadian",
-                          "Tes Minat Karir",
-                          "Masa Aktif Paket Selama 1 Minggu",
-                        ],
-                        1050000,
-                        950000,
-                      ),
-                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _listPaket.length,
+                      itemBuilder: (context, index) {
+                        return Paket(model: _listPaket[index]);
+                      },
+                    )
+                    // Paket(
+                    //   model: PaketModel(
+                    //     "Paket Voice Call",
+                    //     3,
+                    //     [
+                    //       "Durasi Konsultasi 1 Jam/Sesi",
+                    //       "1on1 Dengan Konselor",
+                    //       "Privasi Dijamin 100% Aman",
+                    //       "Tes Kesehatan Mental",
+                    //       "Tes Kepribadian",
+                    //       "Tes Minat Karir",
+                    //       "Masa Aktif Paket Selama 1 Minggu",
+                    //     ],
+                    //     350000,
+                    //     250000,
+                    //   ),
+                    // ),
+                    // Paket(
+                    //   model: PaketModel(
+                    //     "Paket Video Call",
+                    //     3,
+                    //     [
+                    //       "Durasi Konsultasi 1 Jam/Sesi",
+                    //       "1on1 Dengan Konselor",
+                    //       "Privasi Dijamin 100% Aman",
+                    //       "Tes Kesehatan Mental",
+                    //       "Tes Kepribadian",
+                    //       "Tes Minat Karir",
+                    //       "Masa Aktif Paket Selama 2 Minggu",
+                    //     ],
+                    //     650000,
+                    //     550000,
+                    //   ),
+                    // ),
+                    // Paket(
+                    //   model: PaketModel(
+                    //     "Paket All In One",
+                    //     3,
+                    //     [
+                    //       "Durasi Konsultasi 1 Jam/Sesi",
+                    //       "1on1 Dengan Konselor",
+                    //       "Privasi Dijamin 100% Aman",
+                    //       "Tes Kesehatan Mental",
+                    //       "Tes Kepribadian",
+                    //       "Tes Minat Karir",
+                    //       "Masa Aktif Paket Selama 3 Minggu",
+                    //     ],
+                    //     850000,
+                    //     750000,
+                    //   ),
+                    // ),
+                    // Paket(
+                    //   model: PaketModel(
+                    //     "Paket Offline",
+                    //     3,
+                    //     [
+                    //       "Ruang Konseling Yang Nyaman & Aman",
+                    //       "Langsung Bertemu Psikolog \n & Konseling Tatap Muka",
+                    //       "Durasi Konsultasi 2 Jam/Sesi",
+                    //       "1on1 Dengan Konselor",
+                    //       "Privasi Dijamin 100% Aman",
+                    //       "Tes Kesehatan Mental",
+                    //       "Tes Kepribadian",
+                    //       "Tes Minat Karir",
+                    //       "Masa Aktif Paket Selama 1 Minggu",
+                    //     ],
+                    //     1050000,
+                    //     950000,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
             ),
           ),
-          // MyBottomNavigationBar(),
-          //bottom Navigation Barr
         ],
       ),
     );
@@ -160,16 +160,18 @@ class Paket extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          Text("${model.sesi}x Sesi",
-           style: TextStyle(
-                    color: Color(0xFFF4518D),
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
+          Text(
+            "${model.sesi}x Sesi",
+            style: TextStyle(
+                color: Color(0xFFF4518D),
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold,
+                fontSize: 15),
           ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: model.daftar.length,
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.only(top: 15),
@@ -179,9 +181,7 @@ class Paket extends StatelessWidget {
                     SizedBox(width: 11.0),
                     Text(
                       model.daftar[index],
-                      style: TextStyle(
-                        fontFamily:'Raleway-medium/Medium 14' 
-                      ),
+                      style: TextStyle(fontFamily: 'Raleway-medium/Medium 14'),
                     ),
                   ],
                 ),
@@ -213,7 +213,16 @@ class Paket extends StatelessWidget {
                     fontSize: 20),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => KonselingSection(
+                        idPaket: model.id,
+                      ),
+                    ),
+                  );
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
                 color: Color(0xFFF4518D),
