@@ -133,10 +133,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
                     padding: const EdgeInsets.only(top: 19, left: 6),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => NewPage()),
-                        );
+                        Navigator.pushNamed(context, '/kalender');
                       },
                       child: Container(
                         width: 74,
@@ -610,10 +607,7 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                     padding: const EdgeInsets.only(top: 19, left: 6),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => NewPage()),
-                        );
+                        Navigator.pushNamed(context, '/kalender');
                       },
                       child: Container(
                         width: 74,
@@ -714,10 +708,7 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
-                          );
+                          Navigator.pushNamed(context, '/kalender');
                         },
                         child: Stack(
                           clipBehavior: Clip.none,
@@ -829,10 +820,7 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
-                          );
+                          Navigator.pushNamed(context, '/kalender');
                         },
                         child: Stack(
                           clipBehavior: Clip.none,
