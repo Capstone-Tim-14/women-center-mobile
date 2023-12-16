@@ -112,10 +112,12 @@ class _ProfilPageState extends State<ProfilPage> {
                   Padding(
                     padding: EdgeInsets.only(top: 0),
                     child: CircleAvatar(
-  child: Image.network(
-    _userProfile['profile_picture']?.toString() ?? '',
-),
-                    )
+                              radius: 50,
+                              backgroundImage: NetworkImage(
+                                _userProfile['profile_picture']?.toString() ??
+                                    '',
+                              ),
+                            ),
 
                   ),
                   SizedBox(height: 8),
