@@ -15,7 +15,7 @@ class CounselingSessionViewModel extends ChangeNotifier {
         Uri.parse('https://api-ferminacare.tech/api/v1/counselors/counseling-session'),
         headers: {
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbF9uYW1lIjoiQm9iIE1pbGxlciIsImVtYWlsIjoiYm9iLm1pbGxlckBleGFtcGxlLmNvbSIsInJvbGUiOiJjb3Vuc2Vsb3IiLCJleHAiOjE3MDI3ODM5NzN9.ejQ3YlkWYUB0xH_qIyepmeW01xQ8NqBCgOqqkEZZ5To'
+              'Bearer '
         },
       );
 
