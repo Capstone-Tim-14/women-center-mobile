@@ -37,7 +37,9 @@ class _SesiKonselingState extends State<SesiKonseling> {
               ],
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+
+              },
               child: Card(
                 color: Colors.white,
                 margin: EdgeInsets.only(left: 13, right: 13),
@@ -60,7 +62,7 @@ class _SesiKonselingState extends State<SesiKonseling> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    ' 8912yv12v',
+                                    '8912yv12v',
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         color: Color(0xFFF4518D)),
@@ -202,7 +204,7 @@ class _SesiKonselingState extends State<SesiKonseling> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    ' s124hdgsf3',
+                                    's124hdgsf3',
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         color: Color(0xFFF4518D)),
@@ -282,148 +284,6 @@ class _SesiKonselingState extends State<SesiKonseling> {
                             children: [
                               Text(
                                 '13.00 - 14.00',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFF4518D)),
-                              ),
-                              SizedBox(width: 138),
-                              InkWell(
-                                onTap: () {
-                                  // Tindakan ketika ikon chat ditekan
-                                },
-                                child: Icon(Icons.chat_bubble,
-                                    color: Color(0xFFF4518D), size: 27),
-                              ),
-                              SizedBox(width: 15),
-                              InkWell(
-                                onTap: () {
-                                  // Tindakan ketika ikon videocam ditekan
-                                },
-                                child: Icon(Icons.videocam,
-                                    color: Color(0xFFF4518D), size: 27),
-                              ),
-                              SizedBox(width: 15),
-                              InkWell(
-                                onTap: () {
-                                  // Tindakan ketika ikon call ditekan
-                                },
-                                child: Icon(Icons.call,
-                                    color: Color(0xFFF4518D), size: 27),
-                              ),
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Card(
-                color: Colors.white,
-                margin: EdgeInsets.only(left: 13, right: 13, top: 15),
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Booking id:',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    ' jasd73284',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xFFF4518D)),
-                                  ),
-                                  SizedBox(width: 104),
-                                  Text(
-                                    '10 hari lagi',
-                                    style: TextStyle(
-                                        fontSize: 16.0, color: Colors.blue),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Nama:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(width: 5),
-                              Text(
-                                'Aurel Adisti',
-                                style: TextStyle(fontSize: 16.0),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Paket:',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(width: 5),
-                              Text(
-                                'Video Call',
-                                style: TextStyle(fontSize: 16.0),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Senin, 3 Oktober 2023',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                '09.00 - 10.00',
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
