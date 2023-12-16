@@ -42,7 +42,6 @@ class _OnboardingState extends State<Onboarding> {
   Future<void> _fetchUserProfile() async {
     try {
       final response = await _apiOnboarding.getUserProfile();
-      // print('Profile Picture URL: ${_userProfile['profile_picture']}');
       setState(() {
         _userProfile = response['data'];
       });
