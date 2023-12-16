@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class ApiOnboarding {
+class ApiOnboardingViewModel {
   final Dio _dio = Dio();
   String _authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbF9uYW1lIjoiYWd1bmdiaGFza2FyYSIsImVtYWlsIjoiYWd1bmcxMjNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI3NDI4Nzl9._wXW8vmBzueKlQy8k_unGrJ29OWOdti7e_mnF5ggb-k'; // Variable to store the authentication token
 

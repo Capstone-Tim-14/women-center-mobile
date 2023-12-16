@@ -30,7 +30,7 @@ class _OnboardingState extends State<Onboarding> {
 
   Set<String> selectedTopics = Set();
   
-  final ApiOnboarding _apiOnboarding = ApiOnboarding();
+  final ApiOnboardingViewModel _apiOnboarding = ApiOnboardingViewModel();
   Map<String, dynamic> _userProfile = {};
 
   @override

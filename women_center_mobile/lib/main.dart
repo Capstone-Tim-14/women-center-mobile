@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => JobViewModel()),
         ChangeNotifierProvider(create: (context) => DetailJobViewModel()),
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
+        // ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
