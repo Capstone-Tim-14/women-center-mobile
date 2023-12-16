@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/profil_user',
+        initialRoute: '/',
         routes: {
           // '/': (context) => Home3(),
           '/': (context) => const Welcome(),
@@ -112,6 +112,8 @@ class MyApp extends StatelessWidget {
           '/profil_konselor':(context) => ProfilKonselor()
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
+          '/konseling_view': (context) => const KonselingSection(),
+          '/konselorfav':(context) => FavoritView(),
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
           '/kalender': (context) => KalenderEvent()
