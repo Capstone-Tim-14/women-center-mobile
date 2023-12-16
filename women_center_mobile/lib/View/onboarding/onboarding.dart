@@ -50,13 +50,16 @@ class _OnboardingState extends State<Onboarding> {
                 onPressed: () {
                   if (AuthService.role == "user") {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MainPage(),
-                        ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainPage(),
+                      ),
+                    );
                   } else if (AuthService.role == "counselor") {
                     Navigator.pushReplacementNamed(
-                        context, '/main_page_konselor');
+                      context,
+                      '/main_page_konselor',
+                    );
                   }
                 },
                 child: Text(
@@ -68,6 +71,32 @@ class _OnboardingState extends State<Onboarding> {
                 ),
               ),
             ),
+
+            // Positioned(
+            //   top: 74,
+            //   left: 300,
+            //   child: TextButton(
+            //     onPressed: () {
+            //       if (AuthService.role == "user") {
+            //         Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => MainPage(),
+            //             ));
+            //       } else if (AuthService.role == "counselor") {
+            //         Navigator.pushReplacementNamed(
+            //             context, '/main_page_konselor');
+            //       }
+            //     },
+            //     child: Text(
+            //       'Lanjutkan >>',
+            //       style: GoogleFonts.raleway(
+            //         fontSize: 12,
+            //         fontWeight: FontWeight.w500,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Positioned(
               top: 160,
               left: 16,

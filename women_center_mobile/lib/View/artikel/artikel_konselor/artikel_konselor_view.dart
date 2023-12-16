@@ -27,8 +27,9 @@ class _artikelKonselorState extends State<artikelKonselor> {
   void initState() {
     super.initState();
     // Panggil fetchArticles di initState untuk mengambil data saat halaman dimuat
-    Provider.of<ArtikelKonselorProvider>(context, listen: false)
-        .fetchArticles();
+    Provider.of<ArtikelKonselorProvider>(context, listen: false).angkasebelum();
+    // Provider.of<ArtikelKonselorProvider>(context, listen: false)
+    //     .fetchArticles();
   }
 
   @override

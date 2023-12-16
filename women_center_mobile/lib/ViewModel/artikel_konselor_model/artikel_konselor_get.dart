@@ -19,7 +19,17 @@ class ArtikelKonselorProvider extends ChangeNotifier {
   // get token jwt
   String get token => AuthService.token;
 
+  void angkasebelum() async {
+    print('haid = $_articlePublish');
+    print('psd = $_articleReview');
+    print(_articleReject);
+    await fetchArticles();
+  }
+
   Future<void> fetchArticles() async {
+    print('hai = $_articlePublish');
+    print('p = $_articleReview');
+    print(_articleReject);
     final url =
         Uri.parse('https://api-ferminacare.tech/api/v1/counselor/articles');
     final headers = {
@@ -35,6 +45,10 @@ class ArtikelKonselorProvider extends ChangeNotifier {
         _articlePublish = data.articlePublish;
         _articleReview = data.articleReview;
         _articleReject = data.articleReject;
+
+        print(_articlePublish);
+        print(_articleReview);
+        print(_articleReject);
 
         notifyListeners();
       } else {

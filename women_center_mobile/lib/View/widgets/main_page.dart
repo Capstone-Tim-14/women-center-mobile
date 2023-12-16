@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
           pindahHalaman: pindahHalaman,
         ), // 0
         const Artikel(), // 1
-        Career(), // 2
+        // Career(), // 2
         const PilihanPaket(), // 3
         ProfilPage(), // 4
         //kalau halaman sudah siap, setiap nama di ganti ke halaman aslinya
@@ -62,7 +62,11 @@ class _MainPageState extends State<MainPage> {
         selectedIndex: selectedIndex,
         onItemTapped: pindahHalaman,
       ),
-      // backgroundColor: const Color(0xFFF9F5F6),
+    );
+  }
+}
+
+  // backgroundColor: const Color(0xFFF9F5F6),
       // appBar: AppBar(
       //   title: const Text(
       //     "Konseling",
@@ -83,6 +87,3 @@ class _MainPageState extends State<MainPage> {
       //     },
       //   ),
       // ),
-    );
-  }
-}
