@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/detail_event',
+        initialRoute: '/ChatScreen',
         routes: {
           // '/': (context) => Home3(),
           '/': (context) => const Welcome(),
@@ -90,6 +90,7 @@ class MyApp extends StatelessWidget {
           '/bantuan': (context) => FAQ(),
           '/konseling_view': (context) => const KonselingSection(),
           '/detail_event': (context) => DetailEvent(),
+          '/ChatScreen': (context) => ChatScreen(),
         },
       ),
     );

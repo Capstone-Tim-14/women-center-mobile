@@ -59,7 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> _askGPT() async {
-    String apiKey = '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';
+    String apiKey = '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';
     Dio dio = Dio(BaseOptions(
       baseUrl: 'https://api.openai.com/v1',
       headers: {

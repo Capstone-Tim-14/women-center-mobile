@@ -1,198 +1,229 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:dio/dio.dart';
 
-void main() {
-  runApp(ChatBotApp());
+class UserProfile {
+  final String username;
+  final String profilePictureUrl;
+
+  UserProfile({required this.username, required this.profilePictureUrl});
 }
 
-class ChatBotApp extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ChatBotScreen(),
-    );
-  }
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class ChatBotScreen extends StatefulWidget {
-  @override
-  _ChatBotScreenState createState() => _ChatBotScreenState();
-}
-
-class _ChatBotScreenState extends State<ChatBotScreen> {
-  TextEditingController messageController = TextEditingController();
-  List<ChatMessage> chatMessages = [];
+class _ChatScreenState extends State<ChatScreen> {
+  final TextEditingController _questionController = TextEditingController();
+  List<Map<String, String>> chatHistory = [];
+  UserProfile userProfile =
+      UserProfile(username: 'Pengguna', profilePictureUrl: '');
 
   @override
   void initState() {
     super.initState();
-    _getInitialBotResponse();
-  }
-
-  void _addChatMessage(String text, {bool isBotResponse = false}) {
-    ChatMessage message = ChatMessage(text: text, isBotResponse: isBotResponse);
-    setState(() {
-      chatMessages.add(message);
+    fetchUserProfile().then((userProfileData) {
+      setState(() {
+        userProfile = userProfileData;
+        _addToChatHistory(
+          "Bot",
+          "Hai ${userProfile.username}. Kenalin aku Helper yang akan membantu kamu. Apakah ada yang bisa aku bantu?",
+        );
+      });
     });
   }
 
-  void _getInitialBotResponse() {
-    _addChatMessage('Hello, I\'m AIS Bot!', isBotResponse: true);
-    _addChatMessage('How can I assist you?', isBotResponse: true);
-  }
+  Future<UserProfile> fetchUserProfile() async {
+    String apiUrl = 'https://api-ferminacare.tech/api/v1/users/profile';
+    String token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDIzMzA2MDF9.7-jerT-AfBuiDo4dufWDlqC6e6Daba4xUdOrut0T2F8'; // Ganti dengan token bearer Anda
 
-  Future<List<dynamic>> _fetchCareerData() async {
-    final response = await http
-        .get(Uri.parse('https://api-ferminacare.tech/api/v1/careers'));
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load career data');
-    }
-  }
-
-  bool _isAllowedTopic(String question, List<dynamic> careerData) {
-    if (careerData.isEmpty) return false;
-
-    for (var career in careerData) {
-      String jobTitle = career['title_job'].toString().toLowerCase();
-      String jobCompany = career['company'].toString().toLowerCase();
-
-      if (jobTitle.contains(question.toLowerCase()) ||
-          jobCompany.contains(question.toLowerCase())) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  void _getChatBotResponse(String query) async {
-    _addChatMessage('Typing...', isBotResponse: true);
     try {
-      if (_isMentalHealthQuestion(query)) {
-        _addChatMessage(
-          'Mental health is an important aspect of our well-being. If you feel stressed or anxious, try doing activities you enjoy or talk to someone close to you.',
-          isBotResponse: true,
-        );
-        _addChatMessage(
-          'If your mental health issues are serious, it\'s highly recommended to seek help from a mental health professional.',
-          isBotResponse: true,
-        );
-      } else if (_isCareerRecommendation(query)) {
-        final careerData = await _fetchCareerData();
+      Response response = await Dio().get(
+        apiUrl,
+        options: Options(headers: {
+          'Authorization': 'Bearer $token',
+        }),
+      );
 
-        if (_isAllowedTopic(query, careerData)) {
-          List<String> matchedJobs = [];
+      Map<String, dynamic> userData = response.data['data'];
 
-          for (var job in careerData) {
-            String jobTitle = job['title_job'].toString().toLowerCase();
-            String jobCompany = job['company'].toString().toLowerCase();
+      return UserProfile(
+        username: userData['username'],
+        profilePictureUrl: userData['profile_picture'],
+      );
+    } catch (e) {
+      print('Error fetching user profile: $e');
+      return UserProfile(username: 'Pengguna', profilePictureUrl: '');
+    }
+  }
 
-            if (jobTitle.contains(query.toLowerCase()) ||
-                jobCompany.contains(query.toLowerCase())) {
-              matchedJobs.add('${job['title_job']} at ${job['company']}');
-            }
-          }
+  Future<void> _askGPT() async {
+    String apiKey = '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';
+    Dio dio = Dio(BaseOptions(
+      baseUrl: 'https://api.openai.com/v1',
+      headers: {
+        'Authorization': 'Bearer $apiKey',
+        'Content-Type': 'application/json',
+      },
+    ));
 
-          if (matchedJobs.isNotEmpty) {
-            _addChatMessage(
-              'Here are some jobs related to your query:',
-              isBotResponse: true,
-            );
-            for (var job in matchedJobs) {
-              _addChatMessage(job, isBotResponse: true);
-            }
-          } else {
-            _addChatMessage(
-              'There are no jobs related to your query.',
-              isBotResponse: true,
-            );
-          }
-        } else {
-          _addChatMessage(
-            'The query does not match our career data.',
-            isBotResponse: true,
-          );
+    String question = _questionController.text;
+    _addToChatHistory("User", question);
+
+    Map<String, dynamic> data = {
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        {
+          "role": "system",
+          "content":
+              "You are a helpful assistant. dengan data berikut Tentang aplikasi Femina Care : Femina care adalah sebuah aplikasi yang bergerak untuk masalah kesehatan mental dan rekomendasi karir untuk wanita. jika anda lupa password atau lupa kata sandi silahkan Yang pertama harus kamu lakukan yaitu pergi ke halaman profil terlebih dahulu, kemudian klik pengaturan akun lalu pilih perbarui kata sandi. jika user mengatakan baik atau terimakasih atas bantuannya maka anda akan menjawab Sama-sama. Apakah ada pertanyaan lain?. jika user menjawab Tidak ada lagi Helper. maka kamu akan menjawab Baik jika tidak ada. Senang bisa membantu kamu. Bagaiaman cara membeli paket konseling? Kamu pergi ke menu order kemudia pilih paket konseling yang diinginkan, setelah itu pilih konselor dan jadwal yang tertera langkah terakhir lakukan pembayaran"
+        },
+        {
+          "role": "user",
+          "content": question,
         }
-      } else if (_isComplaint(query)) {
-        _addChatMessage(
-          'We apologize for the inconvenience. Please provide further details about your complaint so that we can assist in resolving it.',
-          isBotResponse: true,
-        );
-      } else {
-        _addChatMessage('I\'m not sure how to answer this question.',
-            isBotResponse: true);
-        _addChatMessage('Is there any other question I can help with?',
-            isBotResponse: true);
-      }
-    } catch (error) {
-      _addChatMessage('Error: $error', isBotResponse: true);
+      ]
+    };
+
+    try {
+      Response response = await dio
+          .post('https://api.openai.com/v1/chat/completions', data: data);
+      setState(() {
+        String answer = response.data['choices'][0]['message']['content'];
+        _addToChatHistory("Bot", answer);
+      });
+      print('Response: $answer');
+    } catch (e) {
+      print(e);
     }
   }
 
-  bool _isCareerRecommendation(String query) {
-    return query.toLowerCase().contains('career recommendation') ||
-        query.toLowerCase().contains('suitable career');
-  }
-
-  bool _isMentalHealthQuestion(String query) {
-    return query.toLowerCase().contains('mental health');
-  }
-
-  bool _isComplaint(String query) {
-    return query.toLowerCase().contains('complaint');
-  }
-
-  void _handleSubmittedMessage(String text) {
-    if (text.isNotEmpty) {
-      _addChatMessage('$text', isBotResponse: false);
-      _getChatBotResponse(text);
-      messageController.clear();
-    }
-  }
-
-  void _clearChat() {
+  void _addToChatHistory(String sender, String message) {
     setState(() {
-      chatMessages.clear();
+      if (message.length > 1000) {
+        message = message.substring(0, 50) + "...";
+      }
+      chatHistory.add({
+        'sender': sender,
+        'message': message,
+      });
     });
+  }
+
+  Widget _buildChatBubble(String sender, String message) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment:
+            sender == "Bot" ? MainAxisAlignment.start : MainAxisAlignment.end,
+        children: <Widget>[
+          sender == "Bot"
+              ? Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('Assets/images/bot.png'),
+                    ),
+                    const SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(
+                            maxWidth: 200.0,
+                          ),
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF4518D),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Text(
+                            message,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : Row(
+                  children: [
+                    Container(
+                      constraints: const BoxConstraints(
+                        maxWidth: 200.0,
+                      ),
+                      padding: const EdgeInsets.all(12.0),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(179, 195, 195, 195),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Text(
+                        message,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(userProfile.profilePictureUrl),
+                    ),
+                  ],
+                ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFDCEDF),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.black,
           onPressed: () {
-            Navigator.of(context).pop();
+            // Tambahkan fungsi untuk kembali ke layar sebelumnya
           },
         ),
-        title: Text(
-          'Chat Bot',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: AssetImage('Assets/images/bot.png'),
+            ),
+            SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Bot Customer Service',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  'Online',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: ListView.builder(
-              itemCount: chatMessages.length,
-              itemBuilder: (context, index) {
-                final message = chatMessages[index];
-                final isBotMessage = message.isBotResponse;
-
-                return ChatBubble(
-                  message: message,
-                  isBot: isBotMessage,
+              itemCount: chatHistory.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _buildChatBubble(
+                  chatHistory[index]['sender']!,
+                  chatHistory[index]['message']!,
                 );
               },
             ),
@@ -203,39 +234,52 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    controller: messageController,
-                    onSubmitted: _handleSubmittedMessage,
+                    controller: _questionController,
                     decoration: InputDecoration(
-                      labelText: 'Send a message...',
-                      border: OutlineInputBorder(),
+                      hintText: 'Enter your question...',
+                      hintStyle: TextStyle(color: Colors.grey),
                       suffixIcon: IconButton(
                         icon: Icon(Icons.mic),
                         onPressed: () {
-                          // Voice note logic
+                          // Tambahkan logika untuk speech-to-text di sini
                         },
                       ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10), // Spacer
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFF4518D),
-                  ),
-                  child: IconButton(
-                    icon: Transform.rotate(
-                      angle: 320 * 3.1415926535 / 180, // 30 degrees
-                      child: Icon(
-                        Icons.send,
-                        color: Colors.white,
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide.none,
                       ),
                     ),
-                    onPressed: () {
-                      _handleSubmittedMessage(messageController.text);
-                    },
                   ),
                 ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFFF4518D),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Transform.rotate(
+                        angle: 315 * 3.14159265359 / 180,
+                        child: Icon(Icons.send),
+                      ),
+                      onPressed: () {
+                        if (_questionController.text.isNotEmpty) {
+                          _askGPT();
+                          _questionController.clear();
+                        }
+                      },
+                      color: Colors.white,
+                      iconSize: 30,
+                    )
+                  ],
+                )
               ],
             ),
           ),
@@ -245,72 +289,4 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   }
 }
 
-class ChatMessage {
-  final String text;
-  final bool isBotResponse;
-
-  ChatMessage({required this.text, this.isBotResponse = false});
-}
-
-class ChatBubble extends StatelessWidget {
-  final ChatMessage message;
-  final bool isBot;
-
-  ChatBubble({required this.message, required this.isBot});
-
-  @override
-  Widget build(BuildContext context) {
-    Color botTextColor = Colors.white;
-
-    return Row(
-      mainAxisAlignment:
-          isBot ? MainAxisAlignment.start : MainAxisAlignment.end,
-      children: <Widget>[
-        isBot ? _buildProfileAvatar() : SizedBox(), // Bot avatar
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-            child: Column(
-              crossAxisAlignment:
-                  isBot ? CrossAxisAlignment.start : CrossAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: Text(
-                    isBot ? 'Chat Bot' : 'You',
-                    style: TextStyle(fontSize: 15, color: Colors.grey[600]),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: isBot ? Color(0xFFF4518D) : Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    message.text,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: isBot ? botTextColor : Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        !isBot ? _buildProfileAvatar() : SizedBox(), // User avatar
-      ],
-    );
-  }
-
-  Widget _buildProfileAvatar() {
-    return CircleAvatar(
-      radius: 16,
-      backgroundImage: isBot
-          ? AssetImage('assets/bot_profile.jpg') // Path to bot's profile image
-          : AssetImage(
-              'assets/user_profile.jpg'), // Path to user's profile image
-    );
-  }
-}
+mixin answer {}
