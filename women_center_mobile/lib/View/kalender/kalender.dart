@@ -1,58 +1,56 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:women_center_mobile/ViewModel/kalender_event/kalender_event.dart';
 
-class Acara {
-  String jam1;
-  String jam2;
-  String judul;
-  String lokasi;
+import '../../Models/event_kalender/kalender_event.dart';
 
-  Acara({
-    required this.jam1,
-    required this.jam2,
-    required this.judul,
-    required this.lokasi,
-  });
-}
-
-class YourCalendarScreen extends StatefulWidget {
+class KalenderEvent extends StatefulWidget {
   @override
-  _YourCalendarScreenState createState() => _YourCalendarScreenState();
+  _KalenderEventState createState() => _KalenderEventState();
 }
 
-class _YourCalendarScreenState extends State<YourCalendarScreen> {
+class _KalenderEventState extends State<KalenderEvent> {
   List<DateTime> selectedDates = [];
   bool isEditing = false;
-
-  List<DateTime> dummyEvents = [
-    DateTime(2023, 8, 17),
-    DateTime(2023, 8, 23),
-  ];
-
-  List<Acara> acara = [];
+  List<Event> events = [];
+   final ApiKalender _apiKalender = ApiKalender();
+  Map<String, dynamic> _userProfile = {};
 
   @override
   void initState() {
     super.initState();
-    acara.add(
-      Acara(
-        jam1: "10:30",
-        jam2: "12:00",
-        judul: "Lawan kekerasan dan pelecehan perempuan",
-        lokasi: "Freware Space",
-      ),
-    );
-    acara.add(
-      Acara(
-        jam1: "18:30",
-        jam2: "21:00",
-        judul: "Konselingl Jadwal Koseling Hari ini",
-        lokasi: "zoommtg://zoom.us/join?confno=852901544pwd",
-      ),
-    );
+    // Fetch event data from the API
+    _fetchEventData();
   }
+
+  Future<void> _fetchEventData() async {
+  try {
+    final response = await _apiKalender.getUserProfile();
+    final eventData = response['data'];
+
+    setState(() {
+      events.add(
+        Event(
+          id: eventData['id'],
+          title: eventData['title'],
+          date: eventData['date'],
+          timeStart: eventData['time_start'],
+          timeFinish: eventData['time_finish'],
+          eventUrl: eventData['event_url'],
+        ),
+      );
+      dummyEvents = [DateFormat('dd MMM yyyy').parse(eventData['date'])];
+    });
+  } catch (error) {
+    print('Error fetching user profile: $error');
+  }
+}
+
+
+  List<DateTime> dummyEvents = [];
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +80,7 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
     Padding(
       padding: EdgeInsets.only(left: 25), // Sesuaikan padding seperti yang Anda butuhkan
       child: Text(
-        'Mon, ${DateFormat('MMM d').format(dummyEvents[0])}',
+        'Wed, ${DateFormat('MMM d').format(dummyEvents[0])}',
         style: GoogleFonts.roboto(fontSize: 32, fontWeight: FontWeight.w400),
       ),
     ),
@@ -144,7 +142,7 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
                       Padding(
       padding: EdgeInsets.only(left: 55),
                       child: Text(
-                        '${DateFormat('MMM d').format(dummyEvents[0])} - ${DateFormat('MMM d').format(dummyEvents[1])}',
+                        '${DateFormat('MMM d').format(dummyEvents[0])}',
                         style: GoogleFonts.roboto(fontSize: 26, fontWeight: FontWeight.w400),
                       ),
                       ),
@@ -173,10 +171,10 @@ class _YourCalendarScreenState extends State<YourCalendarScreen> {
                   calendarType: CalendarDatePicker2Type.single,
                   selectedDayHighlightColor: Color(0xFFf4518d),
                 ),
-                value: [dummyEvents[0]],
+                value: dummyEvents,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   mainAxisAlignment: MainAxisAlignment.start,
@@ -200,9 +198,9 @@ if (!isEditing)
     child: Padding(
       padding: const EdgeInsets.only(top: 0), // Sesuaikan nilai top sesuai kebutuhan
       child: ListView.builder(
-        itemCount: acara.length,
+        itemCount: events.length,
         itemBuilder: (context, index) {
-          Acara currentAcara = acara[index];
+          Event currentEvent = events[index];
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -210,12 +208,12 @@ if (!isEditing)
                 title: Row(
                   children: [
                     Text(
-                      currentAcara.jam1,
+                      currentEvent.timeStart,
                       style: TextStyle(fontSize: 13),
                     ),
                     SizedBox(width: 15),
                     Text(
-                      currentAcara.judul,
+                      currentEvent.title,
                       style: TextStyle(fontSize: 13),
                     ),
                   ],
@@ -223,12 +221,12 @@ if (!isEditing)
                 subtitle: Row(
                   children: [
                     Text(
-                      currentAcara.jam2,
+                      currentEvent.timeFinish,
                       style: TextStyle(fontSize: 13),
                     ),
                     SizedBox(width: 15),
                     Text(
-                      currentAcara.lokasi,
+                      currentEvent.eventUrl,
                       style: TextStyle(fontSize: 13),
                     ),
                   ],
