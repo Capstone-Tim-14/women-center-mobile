@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:women_center_mobile/ViewModel/kalender_event/kalender_event.dart';
-
 import '../../Models/event_kalender/kalender_event.dart';
+import '../../ViewModel/api_kalender_event/kalender_event.dart';
 
 class KalenderEvent extends StatefulWidget {
   @override
@@ -22,7 +21,6 @@ class _KalenderEventState extends State<KalenderEvent> {
   @override
   void initState() {
     super.initState();
-    // Fetch event data from the API
     _fetchEventData();
   }
 
@@ -56,16 +54,16 @@ class _KalenderEventState extends State<KalenderEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-  backgroundColor: Color(0xFFFDCEDF), // Ganti dengan warna yang diinginkan
+  backgroundColor: Color(0xFFFDCEDF),
   title: Text(
     'Kalender',
     style: TextStyle(
-      color: Colors.black, // Ganti dengan warna teks yang diinginkan
+      color: Colors.black,
       fontWeight: FontWeight.bold,
     ),
   ),
   centerTitle: true,
-  iconTheme: IconThemeData(color: Colors.black), // Ganti dengan warna ikon yang diinginkan
+  iconTheme: IconThemeData(color: Colors.black),
 ),
       backgroundColor: Color(0xFFF8E8EE),
       body: Padding(
@@ -78,7 +76,7 @@ class _KalenderEventState extends State<KalenderEvent> {
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   children: [
     Padding(
-      padding: EdgeInsets.only(left: 25), // Sesuaikan padding seperti yang Anda butuhkan
+      padding: EdgeInsets.only(left: 25),
       child: Text(
         'Wed, ${DateFormat('MMM d').format(dummyEvents[0])}',
         style: GoogleFonts.roboto(fontSize: 32, fontWeight: FontWeight.w400),
