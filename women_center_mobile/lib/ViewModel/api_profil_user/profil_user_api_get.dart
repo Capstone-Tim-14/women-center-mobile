@@ -5,7 +5,6 @@ class ApiProfil {
   String _authToken = 
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyNzczNDgyfQ.3HK59qgOrPm_Uxx9OE_NrfoFK_UeUvpQSnsc7cxoKPc';
 
-  // Set the authentication token
   void setAuthToken(String token) {
     _authToken = token;
   }
@@ -24,8 +23,6 @@ class ApiProfil {
         print('Username: ${data['username']}');
         print('Full Name: ${data['full_name']}');
         print('Email: ${data['email']}');
-        print('Birthday: ${data['birthday']}');
-
         return data;
       } else {
         throw Exception('Failed to load user profile');

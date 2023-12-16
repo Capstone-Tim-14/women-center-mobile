@@ -85,14 +85,12 @@ class _ProfilPageState extends State<ProfilPage> {
           IconButton(
             icon: Icon(Icons.notifications_none_outlined), // Ganti dengan ikon notifikasi yang diinginkan
             onPressed: () {
-              // Aksi yang ingin diambil ketika tombol notifikasi ditekan
             },
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           ClipPath(
             clipper: CustomShapeClipper(),
@@ -114,8 +112,7 @@ class _ProfilPageState extends State<ProfilPage> {
                     child: CircleAvatar(
                               radius: 50,
                               backgroundImage: NetworkImage(
-                                _userProfile['profile_picture']?.toString() ??
-                                    '',
+                                _userProfile['profile_picture']?.toString() ?? '',
                               ),
                             ),
 
