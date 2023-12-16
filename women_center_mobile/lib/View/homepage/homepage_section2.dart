@@ -1,32 +1,37 @@
+//punya juhar
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
-import 'package:women_center_mobile/Models/karir_model/karir_model.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
+import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
+
+import '../career/detail_job.dart';
 
 class Home2 extends StatefulWidget {
-  const Home2({super.key});
+  final Function(int index) pindahHalaman;
+  const Home2({super.key, required this.pindahHalaman});
 
   @override
   State<Home2> createState() => _Home2State();
 }
 
 class _Home2State extends State<Home2> {
-  List<KarirModel> listKarir = [
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-    KarirModel("Assets/images/home_3.jpg", "judul", "keterangan"),
-  ];
-
-  ArtikelModel artikelUntukmu = ArtikelModel("Assets/images/home_3.jpg", "nama", "waktu", "keterangan");
-
   @override
   Widget build(BuildContext context) {
+    final listKarir = context.watch<CareerViewModel>().listKarir;
+
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Rekomendasi Karir'),
-            TextButton(onPressed: () {}, child: Text('Selengkapnya')),
+            const Text('Rekomendasi Karir'),
+            TextButton(
+              onPressed: () {
+                widget.pindahHalaman(2);
+              },
+              child: const Text('Selengkapnya'),
+            ),
           ],
         ),
         SizedBox(
@@ -38,63 +43,107 @@ class _Home2State extends State<Home2> {
             itemBuilder: (context, index) {
               final model = listKarir[index];
               return KarirItem(
-                gambar: model.gambar,
-                judul: model.judul,
-                keterangan: model.keterangan,
+                id: model.id,
+                titleJob: model.titleJob,
+                logo: model.logo,
+                companyName: model.companyName,
               );
             },
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-           Text('Rekomendasi Karir'),
-            TextButton(onPressed: () {}, child: Text('Selengkapnya')),
-          ],
+        LatestArtikel(
+          pindahHalaman: widget.pindahHalaman,
         ),
-        Image.asset(artikelUntukmu.gambar),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(artikelUntukmu.nama),
-            Text(artikelUntukmu.waktu),
-          ],
-        ),
-        Text(artikelUntukmu.keterangan),
       ],
     );
   }
 }
 
 class KarirItem extends StatelessWidget {
-  final String gambar;
-  final String judul;
-  final String keterangan;
+  final int id;
+  final String titleJob;
+  final String logo;
+  final String companyName;
 
-  const KarirItem(
-      {super.key,
-      required this.gambar,
-      required this.judul,
-      required this.keterangan});
+  const KarirItem({
+    super.key,
+    required this.titleJob,
+    required this.logo,
+    required this.companyName,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         //isi halaman saat di tekan gambarnya
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailJob(jobId: id),
+          ),
+        );
       },
       child: Column(
         children: [
-          Image.asset(
-            gambar,
+          Image.network(
+            logo,
             height: 130,
           ),
-          Text(judul),
-          Text(keterangan),
+          Text(titleJob),
+          Text(companyName),
         ],
       ),
     );
   }
 }
 
-//jika gambar dari API 
+class LatestArtikel extends StatefulWidget {
+  final Function(int index) pindahHalaman;
+  const LatestArtikel({super.key, required this.pindahHalaman});
+
+  @override
+  State<LatestArtikel> createState() => _LatestArtikelState();
+}
+
+class _LatestArtikelState extends State<LatestArtikel> {
+  ArtikelModel? get _artikel => context.watch<ArtikelViewModel>().latestArtikel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Artikel Untukmu'),
+            TextButton(
+              onPressed: () {
+                widget.pindahHalaman(1);
+              },
+              child: const Text('Selengkapnya'),
+            ),
+          ],
+        ),
+        fromAPI(),
+      ],
+    );
+  }
+
+  Widget fromAPI() {
+    if (_artikel == null) return const SizedBox();
+    return Column(
+      children: [
+        Image.network(_artikel!.thumbnail),
+        Row(
+          children: [
+            Text(_artikel!.author.name),
+            Text(_artikel!.formatJam()),
+          ],
+        ),
+        Text(_artikel!.title),
+      ],
+    );
+  }
+}
