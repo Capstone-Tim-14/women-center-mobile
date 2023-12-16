@@ -14,7 +14,6 @@ import 'package:women_center_mobile/View/event/event.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
-import 'package:women_center_mobile/View/edit_profile/edit_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/FAQ/bantuan.dart';
 import 'package:women_center_mobile/View/artikel/artikel_user/artikel_view.dart';
@@ -46,6 +45,7 @@ import 'View/career/career.dart';
 import 'View/login/login_view.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 import 'package:women_center_mobile/ViewModel/register_view_model/register_view_model.dart';
+import 'View/profil_page/favorit/favorit_view.dart';
 import 'View/widgets/main_page.dart';
 import 'View/konseling/konseling_topik_konseling.dart';
 import 'View/register/register.dart';
@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
           '/editprofile': (context) => ProfileEdit(),
           '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),
-          '/editprofile': (context) => EditProfile(),
+          '/editprofile': (context) => EditDataProfile(),
           '/chatbots': (context) => ChatScreen(),
           '/topik_konseling': (context) => KonselingTopikKonseling(),
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
@@ -109,10 +109,9 @@ class MyApp extends StatelessWidget {
           '/pengaturan': (context) => const PengaturanPrivasi(),
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
-          '/profil_konselor':(context) => ProfilKonselor()
+          '/profil_konselor':(context) => ProfilKonselor(),
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
-          '/konseling_view': (context) => const KonselingSection(),
           '/konselorfav':(context) => FavoritView(),
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
