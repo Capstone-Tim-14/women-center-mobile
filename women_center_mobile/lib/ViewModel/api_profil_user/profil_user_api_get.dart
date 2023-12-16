@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 
 class ApiProfil {
   final Dio _dio = Dio();
-  String _authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbF9uYW1lIjoiYWd1bmdiaGFza2FyYSIsImVtYWlsIjoiYWd1bmcxMjNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDIwODcxNzN9.tiAPexMQgpexmoLi0K0rM5c5ynxmgBzTfpVgz_486Gk'; // Variable to store the authentication token
+  String _authToken = 
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyNzczNDgyfQ.3HK59qgOrPm_Uxx9OE_NrfoFK_UeUvpQSnsc7cxoKPc';
 
   // Set the authentication token
   void setAuthToken(String token) {
