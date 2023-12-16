@@ -1,8 +1,8 @@
 //Rafi Taufiqurahman Create LoginWidget
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/login_model/model_login.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/main_page.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/main_page_konselor.dart';
+import 'package:women_center_mobile/View/widgets/main_page.dart';
+import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/register/register.dart';
 import 'package:women_center_mobile/ViewModel/api_login/login_api.dart';
@@ -64,6 +64,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   String _massageError = '';
 
   final LoginViewModel _loginViewModel = LoginViewModel(); //import login api
+
 
   @override
   Widget build(BuildContext context) {
@@ -284,14 +285,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         AuthService.token = loginResponse.token;
                         AuthService.role = loginResponse.role;
 
-                        if (loginResponse.role == "user") {
-                          Navigator.pushReplacementNamed(context, "/main_page");
-                        } else if (loginResponse.role == "counselor") {
-                          Navigator.pushReplacementNamed(
-                            context,
-                            "/main_page_konselor",
-                          );
-                        }
+                        Navigator.pushReplacementNamed(context, "/onboarding");
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal
                         setState(() {

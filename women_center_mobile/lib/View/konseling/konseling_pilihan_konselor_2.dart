@@ -1,58 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:women_center_mobile/Models/konselor_model/konselor_model.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
+import 'package:women_center_mobile/View/booking/booking.dart';
+import 'package:women_center_mobile/ViewModel/konselor_view_model/konselor_view_model.dart';
 
-class KonselingPilihanKonselor2 extends StatelessWidget {
-  const KonselingPilihanKonselor2({Key? key}) : super(key: key);
+import '../../Models/utils/auth_service.dart';
+
+class KonselingPilihanKonselor2 extends StatefulWidget {
+  final int idPaket;
+  const KonselingPilihanKonselor2({super.key, required this.idPaket});
+
+  @override
+  State<KonselingPilihanKonselor2> createState() =>
+      _KonselingPilihanKonselor2State();
+}
+
+class _KonselingPilihanKonselor2State extends State<KonselingPilihanKonselor2> {
+  List<KonselorModel> get counselorData =>
+      context.watch<KonselorViewModel>().listKonselor;
+  String get token => AuthService.token;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchData(); // Panggil fungsi untuk memuat data ketika widget pertama kali dibuat
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // appBar: AppBar(
-    //   backgroundColor: const Color(0xFF14FDCEDF),
-    //   title: const Text(
-    //     'Konseling',
-    //     style: TextStyle(
-    //       fontWeight: FontWeight.bold,
-    //       fontSize: 20,
-    //       color: Colors.black,
-    //     ),
-    //   ),
-    //   centerTitle: true,
-    // ),
-    return const Column(
-      children: [
-        CardData(
-          judul: 'Stenafie Russel, M.Psi., Psikolog',
-          subtitleKiri: 'Psikolog',
-          subtitleKanan: 'Universitas Indonesia',
-          imagePath: 'Assets/images/konselor1.png',
-          lokasi: 'Jakarta',
-        ),
-        CardData(
-          judul: 'Stenafie Russel, M.Psi., Psikolog',
-          subtitleKiri: 'Psikolog',
-          subtitleKanan: 'Universitas Indonesia',
-          imagePath: 'Assets/images/konselor2.png',
-          lokasi: 'Jakarta',
-        ),
-      ],
+    context.read<KonselorViewModel>().fetchAllKonselor();
+
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: counselorData.length,
+      itemBuilder: (context, index) {
+        final counselor = counselorData[index];
+        return CardData(konselor: counselor, idPaket: widget.idPaket);
+      },
     );
   }
 }
 
 class CardData extends StatelessWidget {
-  final String judul;
-  final String subtitleKiri;
-  final String subtitleKanan;
-  final String imagePath;
-  final String lokasi;
+  final KonselorModel konselor;
+  final int idPaket;
 
   const CardData({
     Key? key,
-    required this.judul,
-    required this.subtitleKiri,
-    required this.subtitleKanan,
-    required this.imagePath,
-    required this.lokasi,
+    required this.konselor,
+    required this.idPaket,
   }) : super(key: key);
 
   @override
@@ -62,6 +60,7 @@ class CardData extends StatelessWidget {
         Navigator.pushNamed(
           NavigationService.navigatorKey.currentContext ?? context,
           "/booking",
+          arguments: BookingArgs(konselor: konselor, idPaket: idPaket),
         );
       },
       child: SizedBox(
@@ -78,8 +77,18 @@ class CardData extends StatelessWidget {
                   width: 110,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      image: AssetImage(imagePath),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(
+                      konselor.profilePicture,
+                      loadingBuilder: (context, child, progress) {
+                        return progress == null
+                            ? child
+                            : const Center(child: CircularProgressIndicator());
+                      },
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Icon(Icons.error),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -91,7 +100,7 @@ class CardData extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        judul,
+                        konselor.firstName + konselor.lastName,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -101,27 +110,9 @@ class CardData extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              subtitleKiri,
+                              konselor.status,
                               style: const TextStyle(fontSize: 16),
                             ),
-                          ),
-                          Text(
-                            subtitleKanan,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_on,
-                            color: Color.fromARGB(255, 159, 159, 159),
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            lokasi,
-                            style: const TextStyle(fontSize: 16),
                           ),
                         ],
                       ),

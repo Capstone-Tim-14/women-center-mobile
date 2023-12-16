@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/artikel_konselor_view.dart';
 import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar_konselor.dart';
 import 'package:women_center_mobile/View/homepage/homepage_konselor.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
+
+import '../profil_page/profil_user.dart';
+import '../sesi_konseling/sesi_konseling.dart';
 
 class MainPageKonselor extends StatefulWidget {
   const MainPageKonselor({super.key});
@@ -19,25 +23,28 @@ class _MainPageKonselorState extends State<MainPageKonselor> {
     if (appbarTitle == null) return null;
     return AppBar(
       backgroundColor: Colors.pink[100],
-      title: Center(child: Text(appbarTitle ?? "")),
+      title: Center(
+        child: Text(
+          appbarTitle ?? "",
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       automaticallyImplyLeading: false,
     );
   }
 
-  final List screens = [
-    HomepageSectionKonselor(),
-    Center(
-      child: Text("Artikel"),
-    ),
-    Center(
-      child: Text("Konseling"),
-    ),
-    Center(
-      child: Text("Profil"),
-    ),
-  ];
+  List get screens => [
+        HomepageSectionKonselor(
+          pindahHalaman: pindahHalaman,
+        ), // 0
+        const artikelKonselor(), // 1
+        SesiKonseling(), // 2
+        ProfilPage(), // 3
+      ];
 
-  List<String?> listAppBarTitle = [null, "Artikel", "Konseling", "Profil"];
+  List<String?> listAppBarTitle = [null, null, "Konseling", "Profil"];
 
   void pindahHalaman(index) {
     setState(() {
