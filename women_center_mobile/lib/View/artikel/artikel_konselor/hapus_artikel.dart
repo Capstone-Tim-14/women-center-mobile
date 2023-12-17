@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+import 'package:women_center_mobile/Models/utils/auth_service.dart';
 
 class ArticleListPage extends StatefulWidget {
   @override
@@ -10,6 +12,8 @@ class ArticleListPage extends StatefulWidget {
 class _ArticleListPageState extends State<ArticleListPage> {
   late Future<List<Article>> futureArticles;
   TextEditingController searchController = TextEditingController();
+  // get token jwt
+  String get token => AuthService.token;
 
   @override
   void initState() {
@@ -21,8 +25,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
     final response = await http.get(
       Uri.parse('https://api-ferminacare.tech/api/v1/articles'),
       headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI0MTQwODZ9.KfauB8_ZBFmwvdLx5u3FDi0pS9QPoOI97fCCIDAOgCY',
+        'Authorization': 'Bearer $token',
       },
     );
 
@@ -42,8 +45,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
     final response = await http.delete(
       Uri.parse('https://api-ferminacare.tech/api/v1/articles/$id'),
       headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI0MTQwODZ9.KfauB8_ZBFmwvdLx5u3FDi0pS9QPoOI97fCCIDAOgCY',
+        'Authorization': 'Bearer $token',
       },
     );
 
@@ -179,7 +181,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
   }
 }
 
-class Article {
+class ArtikelHapus1 {
   final int id;
   final String title;
   final String thumbnail;
@@ -188,7 +190,7 @@ class Article {
   final Map<String, dynamic> author;
   final String publishedAt;
 
-  Article({
+  ArtikelHapus1({
     required this.id,
     required this.title,
     required this.thumbnail,
@@ -198,8 +200,8 @@ class Article {
     required this.publishedAt,
   });
 
-  factory Article.fromJson(Map<String, dynamic> json) {
-    return Article(
+  factory ArtikelHapus1.fromJson(Map<String, dynamic> json) {
+    return ArtikelHapus1(
       id: json['id'],
       title: json['title'],
       thumbnail: json['thumbnail'],

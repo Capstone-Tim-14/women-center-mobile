@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/artikel_konselor_view.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/proses_artikel.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/publish_artikel.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section1.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/buat_artikel.dart';
@@ -426,6 +428,9 @@ class Kotak extends StatelessWidget {
     var publish = artikelProvider.articlePublish;
     var review = artikelProvider.articleReview;
     var reject = artikelProvider.articleReject;
+    var artikelkonselor = artikelProvider.articles;
+    var jumlahArtikel = artikelkonselor.length;
+
     String ada = '';
 
     //logika if else untuk nilai null
@@ -488,11 +493,12 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => PublishArtikel()),
                           );
                         },
                         child: Text(
-                          '$publish',
+                          '$jumlahArtikel',
                           style: GoogleFonts.roboto(
                             color: Color(0xFFF4518D),
                             fontSize: 32,
@@ -506,7 +512,8 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => PublishArtikel()),
                           );
                         },
                         child: const Text(
@@ -619,7 +626,8 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => ArticleListPage()),
                           );
                         },
                         child: const Text(

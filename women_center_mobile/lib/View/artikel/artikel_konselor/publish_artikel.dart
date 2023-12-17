@@ -1,21 +1,21 @@
-//rafi
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 
 void main(List<String> args) {
-  runApp(MaterialApp(
-    home: ProsesArtikel(),
-  ));
+  runApp(PublishArtikel());
 }
 
-class ProsesArtikel extends StatefulWidget {
-  const ProsesArtikel({super.key});
+class PublishArtikel extends StatefulWidget {
+  const PublishArtikel({super.key});
 
   @override
-  State<ProsesArtikel> createState() => _ProsesArtikelState();
+  State<PublishArtikel> createState() => _PublishArtikelState();
 }
 
-class _ProsesArtikelState extends State<ProsesArtikel> {
+class _PublishArtikelState extends State<PublishArtikel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _ProsesArtikelState extends State<ProsesArtikel> {
         elevation: 0,
 
         title: Text(
-          'Process',
+          'Publish',
           style: GoogleFonts.roboto(
             color: Colors.black,
             fontSize: 16,
@@ -48,11 +48,11 @@ class _ProsesArtikelState extends State<ProsesArtikel> {
               SizedBox(
                 height: 20,
               ),
-              SearchProses(),
+              SearchPublish(),
               SizedBox(
                 height: 23,
               ),
-              ProsesContainer()
+              ArtikelCardScrollable()
               // ArtikelCardScrollable(),
             ],
           ),
@@ -63,14 +63,14 @@ class _ProsesArtikelState extends State<ProsesArtikel> {
 }
 
 //----------------------search proses-------------------//
-class SearchProses extends StatefulWidget {
-  const SearchProses({super.key});
+class SearchPublish extends StatefulWidget {
+  const SearchPublish({super.key});
 
   @override
-  State<SearchProses> createState() => _SearchProsesState();
+  State<SearchPublish> createState() => _SearchPublishState();
 }
 
-class _SearchProsesState extends State<SearchProses> {
+class _SearchPublishState extends State<SearchPublish> {
   TextEditingController _textEditingController = TextEditingController();
 
   @override
@@ -148,101 +148,101 @@ class _SearchProsesState extends State<SearchProses> {
   }
 }
 
-//container proses
-class ProsesContainer extends StatefulWidget {
-  const ProsesContainer({Key? key}) : super(key: key);
-
+//-----------------card artikel untuk publish---------------//
+class ArtikelCardScrollable extends StatelessWidget {
   @override
-  _ProsesContainerState createState() => _ProsesContainerState();
+  Widget build(BuildContext context) {
+    // Menggunakan provider untuk mengakses artikel
+    final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(
+        children: artikelProvider.articles.map((article) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: ArtikelCard(
+              artikel: article,
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
 }
 
-class _ProsesContainerState extends State<ProsesContainer> {
+class ArtikelCard extends StatelessWidget {
+  final Article artikel;
+
+  ArtikelCard({required this.artikel});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 327,
-      height: 84,
-      padding: const EdgeInsets.only(top: 14, bottom: 11.10),
-      clipBehavior: Clip.antiAlias,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        shadows: [
-          BoxShadow(
-            color: Color(0x19000000),
-            blurRadius: 14,
-            offset: Offset(0, 4),
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Row(
+      width: 328,
+      height: 280,
+      child: Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Container(
-              height: double.infinity,
-              padding: const EdgeInsets.only(left: 24, right: 15),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 58.90,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                  'Assets/images/kartini.png'), // Ganti dengan URL gambar Anda
-                              fit: BoxFit.cover, // Sesuaikan dengan kebutuhan
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+          Container(
+            width: 328,
+            height: 178,
+            decoration: ShapeDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    artikel.thumbnail), // Menggunakan URL gambar dari artikel
+                fit: BoxFit.fill,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          // const SizedBox(height: 12),
+          Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 328,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 114.04,
+                        child: Text.rich(
+                          TextSpan(
+                            children: [],
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          width: 100,
-                          height: 18,
-                          child: Text(
-                            'Hari Kartini\n',
-                            style: TextStyle(
-                              color: Color(0xFF1F1F1F),
-                              fontSize: 15,
-                              fontFamily: 'Raleway',
-                              fontWeight: FontWeight.w700,
-                              height: 0,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 135),
+                      Expanded(
+                        child: SizedBox(),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 40),
-                  Text(
-                    'Process',
-                    style: TextStyle(
-                      color: Color(0xFFFAD13F),
-                      fontSize: 15,
+                ),
+                SizedBox(
+                  width: 328,
+                  child: Text(
+                    artikel.title ?? '',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
                       fontFamily: 'Raleway',
                       fontWeight: FontWeight.w700,
-                      height: 0,
+                      height: 1.3,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
