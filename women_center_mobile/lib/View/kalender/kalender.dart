@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:women_center_mobile/View/event/event.dart';
 import '../../Models/event_kalender/kalender_event.dart';
+import '../../Models/utils/auth_service.dart';
 import '../../ViewModel/api_kalender_event/kalender_event.dart';
 
 class KalenderEvent extends StatefulWidget {
@@ -15,13 +17,16 @@ class _KalenderEventState extends State<KalenderEvent> {
   List<DateTime> selectedDates = [];
   bool isEditing = false;
   List<Event> events = [];
+  List<CounselingPackage> counseling = [];
   final ApiKalender _apiKalender = ApiKalender();
+  // final apiKalender = ApiKalender(AuthService.token);
   Map<String, dynamic> _userProfile = {};
 
   @override
   void initState() {
     super.initState();
     _fetchEventData();
+    _fetchCounselingData();
   }
 
   Future<void> _fetchEventData() async {
@@ -38,6 +43,7 @@ class _KalenderEventState extends State<KalenderEvent> {
             timeStart: eventData['time_start'],
             timeFinish: eventData['time_finish'],
             eventUrl: eventData['event_url'],
+            locations: eventData['locations']
           ),
         );
         dummyEvents = [DateFormat('dd MMM yyyy').parse(eventData['date'])];
@@ -46,6 +52,30 @@ class _KalenderEventState extends State<KalenderEvent> {
       print('Error fetching user profile: $error');
     }
   }
+
+  Future<void> _fetchCounselingData() async {
+  try {
+    final response = await _apiKalender.getCounselingPackages();
+    print('Full Response: $response');
+
+    final counselingData = response['data'];
+
+    if (counselingData != null) {
+      final List<dynamic> counselingList = counselingData as List<dynamic>;
+      print('Counseling Data: $counselingData');
+      setState(() {
+        counseling = counselingList
+            .take(1)
+            .map((counselingItem) => CounselingPackage.fromJson(counselingItem))
+            .toList();
+      });
+    } else {
+      print('No counseling data found.');
+    }
+  } catch (error) {
+    print('Error fetching counseling data: $error');
+  }
+}
 
   List<DateTime> dummyEvents = [];
 
@@ -201,59 +231,118 @@ class _KalenderEventState extends State<KalenderEvent> {
                   ),
               ],
             ),
-            if (!isEditing)
+             if (!isEditing)
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 0), // Sesuaikan nilai top sesuai kebutuhan
-                  child: ListView.builder(
-                    itemCount: events.length,
-                    itemBuilder: (context, index) {
-                      Event currentEvent = events[index];
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            title: Row(
-                              children: [
-                                Text(
-                                  currentEvent.timeStart,
-                                  style: TextStyle(fontSize: 13),
-                                ),
-                                SizedBox(width: 15),
-                                Text(
-                                  currentEvent.title,
-                                  style: TextStyle(fontSize: 13),
-                                ),
-                              ],
-                            ),
-                            subtitle: Row(
-                              children: [
-                                Text(
-                                  currentEvent.timeFinish,
-                                  style: TextStyle(fontSize: 13),
-                                ),
-                                SizedBox(width: 15),
-                                Text(
-                                  currentEvent.eventUrl,
-                                  style: TextStyle(fontSize: 13),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Divider(
-                            color: Color(0xFFf4518d),
-                            height: 0,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+  child: Padding(
+    padding: const EdgeInsets.only(
+      top: 0,
+    ),
+    child: ListView.builder(
+  itemCount: events.length + counseling.length,
+  itemBuilder: (context, index) {
+    if (index < events.length) {
+      // Display events
+      Event currentEvent = events[index];
+      return GestureDetector(
+            onTap: () {
+              // Navigasi ke halaman detail event dengan menggunakan Navigator
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailEvent(),
                 ),
-              ),
-          ],
-        ),
-      ),
+              );
+            },
+            child:
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListTile(
+            title: Row(
+              children: [
+                Text(
+                  currentEvent.timeStart,
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(width: 15),
+                Text(
+                  currentEvent.title,
+                  style: TextStyle(fontSize: 13),
+                ),
+              ],
+            ),
+            subtitle: Row(
+              children: [
+                Text(
+                  currentEvent.timeFinish,
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(width: 19),
+                Text(
+                  currentEvent.locations,
+                  style: TextStyle(fontSize: 13),
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            color: Color(0xFFf4518d),
+            height: 0,
+          ),
+        ],
+      )
+      );
+    } else if (index < events.length + counseling.length) {
+      // Display counseling
+      CounselingPackage currentCounseling = counseling[index - events.length];
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListTile(
+            title: Row(
+              children: [
+                Text(
+                  '${currentCounseling.sessionPerWeek} sesi',
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(width: 33),
+                Text(
+                  '[Konseling] ${currentCounseling.title}',
+                  style: TextStyle(fontSize: 13),
+                ),
+              ],
+            ),
+            subtitle: Row(
+              children: [
+                Text(
+                  currentCounseling.price,
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(width: 21),
+                Text(
+                  currentCounseling.description,
+                  style: TextStyle(fontSize: 13),
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            color: Color(0xFFf4518d),
+            height: 0,
+          ),
+        ],
+      );
+    } else {
+      // Handle cases where index is out of range
+      return Container();
+    }
+  },
+)
+  )
+              )
+          ]
+        )
+      )
     );
   }
 }

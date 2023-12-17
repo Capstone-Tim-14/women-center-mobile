@@ -29,7 +29,7 @@ class _DetailEventState extends State<DetailEvent> {
   Future<EventData> fetchData() async {
     final String apiUrl = 'https://api-ferminacare.tech/api/v1/event/1';
     final String bearerToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI3NTA4MDV9.iMDpdy196frh4qrbq6M5hAXzXM56Fj2aN3Zz1O9krXA';
+         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyODMwMTc2fQ.kj8dDApHRzV3WTH-m_PXpu0HNV0Sf_g5T929aeOF-S8';
 
     final response = await http.get(
       Uri.parse(apiUrl),
