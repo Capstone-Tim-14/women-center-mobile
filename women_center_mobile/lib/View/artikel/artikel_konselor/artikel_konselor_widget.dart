@@ -9,6 +9,7 @@ import 'package:women_center_mobile/View/artikel/artikel_konselor/artikel_konsel
 import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/proses_artikel.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/publish_artikel.dart';
+import 'package:women_center_mobile/View/artikel/buat_artikel.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section1.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/buat_artikel.dart';
