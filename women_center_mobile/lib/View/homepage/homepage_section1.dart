@@ -1,8 +1,9 @@
 //rafi taufiqurahman
 import 'package:flutter/material.dart';
-import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
+// import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui';
+import 'package:intl/date_symbol_data_local.dart'; // Import library untuk lokal
 
 class WidgetHome1 extends StatefulWidget {
   final Function(int index) pindahHalaman;
@@ -30,6 +31,26 @@ class _WidgetHome1State extends State<WidgetHome1> {
 
   @override
   Widget build(BuildContext context) {
+    ///method hari,tanngal dan bulan saat ini
+    initializeDateFormatting(
+        'id_ID', null); // Inisialisasi lokal bahasa Indonesia
+
+    String getCurrentDay() {
+      var format = DateFormat(
+          'EEEE', 'id_ID'); // Menggunakan lokal bahasa Indonesia (id_ID)
+      return format.format(DateTime.now());
+    }
+
+    String getCurrentDate() {
+      var format = DateFormat('d', 'id_ID');
+      return format.format(DateTime.now());
+    }
+
+    String getCurrentMonth() {
+      var format = DateFormat('MMMM', 'id_ID');
+      return format.format(DateTime.now());
+    }
+
     return Column(
       children: [
         // AppBar(
@@ -166,7 +187,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              child: const Column(
+                              child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +196,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 9),
                                     child: Text(
-                                      'Jumat',
+                                      getCurrentDay(),
                                       style: TextStyle(
                                         color: Color(0xFFF4518D),
                                         fontSize: 10,
@@ -188,7 +209,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 9),
                                     child: Text(
-                                      '15',
+                                      getCurrentDate(),
                                       style: TextStyle(
                                         color: Color(0xFFF4518D),
                                         fontSize: 40,
@@ -204,7 +225,7 @@ class _WidgetHome1State extends State<WidgetHome1> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 9),
                                     child: Text(
-                                      'September',
+                                      getCurrentMonth(),
                                       style: TextStyle(
                                         color: Color(0xFFF4518D),
                                         fontSize: 10,
@@ -503,6 +524,26 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
 
   @override
   Widget build(BuildContext context) {
+    ///method hari,tanngal dan bulan saat ini
+    initializeDateFormatting(
+        'id_ID', null); // Inisialisasi lokal bahasa Indonesia
+
+    String getCurrentDay() {
+      var format = DateFormat(
+          'EEEE', 'id_ID'); // Menggunakan lokal bahasa Indonesia (id_ID)
+      return format.format(DateTime.now());
+    }
+
+    String getCurrentDate() {
+      var format = DateFormat('d', 'id_ID');
+      return format.format(DateTime.now());
+    }
+
+    String getCurrentMonth() {
+      var format = DateFormat('MMMM', 'id_ID');
+      return format.format(DateTime.now());
+    }
+
     return Column(
       children: [
         // AppBar(
@@ -640,16 +681,16 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              child: const Column(
+                              child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 // textDirection: TextDirection.ltr,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 9),
+                                    padding: EdgeInsets.only(left: 9),
                                     child: Text(
-                                      'Jumat',
+                                      getCurrentDay(),
                                       style: TextStyle(
                                         color: Color(0xFFF4518D),
                                         fontSize: 10,
@@ -662,7 +703,7 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 9),
                                     child: Text(
-                                      '15',
+                                      getCurrentDate(),
                                       style: TextStyle(
                                         color: Color(0xFFF4518D),
                                         fontSize: 40,
@@ -678,7 +719,7 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 9),
                                     child: Text(
-                                      'September',
+                                      getCurrentMonth(),
                                       style: TextStyle(
                                         color: Color(0xFFF4518D),
                                         fontSize: 10,
