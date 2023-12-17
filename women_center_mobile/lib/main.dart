@@ -27,6 +27,7 @@ import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tab
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/ViewModel/api_profil_konselor/profil_konselor_provider.dart';
+import 'package:women_center_mobile/ViewModel/api_profil_user/profil_user_provider.dart';
 // import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
@@ -88,6 +89,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => CounselingSessionViewModel()),
         ChangeNotifierProvider(create: (context) => ProfilKonselorViewModel())
+        ChangeNotifierProvider(
+            create: (context) => ProfilUserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
