@@ -4,30 +4,29 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
-import 'package:women_center_mobile/Models/source/dummy_artikel.dart';
+import 'package:women_center_mobile/Models/utils/auth_service.dart';
 
 class ArtikelViewModel extends ChangeNotifier {
   final String _baseUrl = "https://api-ferminacare.tech/api/v1";
-  
-  // TODO: uncomment
-  // List<ArtikelModel> _listArtikel = [];
-  // TODO: dihapus atau comment
-  List<ArtikelModel> _listArtikel = [DummyArtikel.artikelUntukmu];
-  
+
+  List<ArtikelModel> _listArtikel = [];
+  ArtikelModel? _latestArtikel;
+  ArtikelModel? get latestArtikel => _latestArtikel;
+
   List<ArtikelModel> get listArtikel => _listArtikel;
 
-  // TODO: token sementara
-  final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZnVsbF9uYW1lIjoiYWd1bmdiaGFza2FyYSIsImVtYWlsIjoiYWd1bmcxMjNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDE3ODU0OTZ9.qKW40Yww31qf8-qehLyPvaRkx_0pG8RdqcoS3sJ1hIE";
+  String get token => AuthService.token;
 
   Future fetchAlllArtikel() async {
     const endpoint = "/articles";
 
     try {
-      final response =
-          await http.get(Uri.parse("$_baseUrl$endpoint"), headers: {
-        "Authorization": "Bearer $token",
-      },);
+      final response = await http.get(
+        Uri.parse("$_baseUrl$endpoint"),
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      );
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body)["data"] as List;
         _listArtikel = jsonData.map((e) => ArtikelModel.fromJson(e)).toList();
@@ -59,6 +58,30 @@ class ArtikelViewModel extends ChangeNotifier {
             return newArtikel;
           }
         }
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<ArtikelModel?> fetchLatestArtikel() async {
+    log(token);
+    try {
+      final response = await http.get(
+        Uri.parse("$_baseUrl/article/latest"),
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      );
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body)["data"];
+        ArtikelModel artikel = ArtikelModel.fromJson(jsonData);
+        _latestArtikel = artikel;
+        notifyListeners();
+        return artikel;
+      } else {
+        log(response.body);
       }
     } catch (e) {
       log(e.toString());
