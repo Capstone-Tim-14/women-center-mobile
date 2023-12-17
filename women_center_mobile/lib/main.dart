@@ -26,6 +26,11 @@ import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_2.d
 import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+// import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
+import 'package:women_center_mobile/View/riwayat/batal.dart';
+import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/buat_artikel_viewmodel.dart';
 import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/pengaturan_privasi.dart';
 import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/perbarui_kata_sandi.dart';
 import 'package:women_center_mobile/View/profil_page/profil_konselor.dart';
@@ -61,7 +66,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
+      providers: [       
         ChangeNotifierProvider(create: (context) => ArtikelViewModel()),
         ChangeNotifierProvider(create: (context) => CareerViewModel()),
         ChangeNotifierProvider(create: (context) => RegisterViewModel()),
@@ -71,6 +76,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
         ChangeNotifierProvider(create: (context) => PaketViewModel()),
         ChangeNotifierProvider(create: (context) => KonselorViewModel()),
+        ChangeNotifierProvider(create: (context) => CreateArticleViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
