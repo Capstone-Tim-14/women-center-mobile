@@ -36,6 +36,9 @@ class ArtikelKonselorProvider extends ChangeNotifier {
         _articleReview = data.articleReview;
         _articleReject = data.articleReject;
 
+        print('hai = $_articlePublish');
+        print('hai2 = $_articleReview');
+        print('hai3 = $_articleReject');
         notifyListeners();
       } else {
         print('Failed to fetch articles');

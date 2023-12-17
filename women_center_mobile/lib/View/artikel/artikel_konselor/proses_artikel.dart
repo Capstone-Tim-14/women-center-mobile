@@ -1,5 +1,6 @@
 //rafi
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main(List<String> args) {
   runApp(MaterialApp(
@@ -21,14 +22,14 @@ class _ProsesArtikelState extends State<ProsesArtikel> {
       appBar: AppBar(
         backgroundColor: Colors.pink[100],
         elevation: 0,
-        title: const Text(
+
+        title: Text(
           'Process',
-          style: const TextStyle(
-            fontFamily: "Roboto",
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: Color(0xff0b0b0b),
-            height: 20 / 14,
+          style: GoogleFonts.roboto(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            // height: 0.02,
           ),
         ),
         centerTitle: true, // Judul app bar
@@ -36,9 +37,7 @@ class _ProsesArtikelState extends State<ProsesArtikel> {
           // Tombol kembali di sebelah kiri
           icon: const Icon(Icons.arrow_back), color: Colors.black,
           onPressed: () {
-            // Aksi ketika tombol kembali ditekan
-            // Misalnya, kembali ke layar sebelumnya
-            // Navigator.pop(context);
+            Navigator.pop(context);
           },
         ),
       ),

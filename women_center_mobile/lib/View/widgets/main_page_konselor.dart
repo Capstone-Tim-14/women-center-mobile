@@ -29,7 +29,7 @@ class _MainPageKonselorState extends State<MainPageKonselor> {
         HomepageSectionKonselor(
           pindahHalaman: pindahHalaman,
         ),
-        artikelKonselor(),
+        ArtikelKonselor(),
         Center(
           child: Text("Konseling"),
         ),
