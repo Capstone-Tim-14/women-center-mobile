@@ -138,7 +138,7 @@ class MyApp extends StatelessWidget {
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
           '/kalender': (context) => KalenderEvent(),
-          '/riwayat_konselor': (context) => RiwayarKonselurView(),
+          // '/riwayat_konselor': (context) => RiwayarKonselurView(),
         },
       ),
     );
