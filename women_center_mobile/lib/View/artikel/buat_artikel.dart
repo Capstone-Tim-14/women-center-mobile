@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_model/buat_artikel_model.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/buat_artikel_viewmodel.dart';
 import 'package:file_picker/file_picker.dart';
+import '../../Models/utils/auth_service.dart';
 
 class buat_artikel extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _buat_artikelState extends State<buat_artikel> {
   Color _textColor5 = Colors.black;
   Color _warna6 = Colors.white;
   Color _textColor6 = Colors.black;
+  String get token => AuthService.token;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,9 @@ class _buat_artikelState extends State<buat_artikel> {
         backgroundColor: Colors.pink[100],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Center(
           child: Text(
@@ -315,7 +319,7 @@ class _buat_artikelState extends State<buat_artikel> {
           thumbnail: _thumbnailController.text,
         );
 
-        await articleViewModel.createArticle(newArticle, 'Token');
+        await articleViewModel.createArticle(newArticle, '$token');
 
         _showSuccessDialog(context);
       } catch (error) {

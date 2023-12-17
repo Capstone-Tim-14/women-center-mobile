@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:women_center_mobile/Models/artikel_model/buat_artikel_model.dart';
 import 'package:http_parser/http_parser.dart';
+import '../../Models/utils/auth_service.dart';
 
 class CreateArticleViewModel extends ChangeNotifier {
+  String get token => AuthService.token;
   Future<void> createArticle(Article article, String accessToken) async {
     try {
       final Uri uri = Uri.parse('https://api-ferminacare.tech/api/v1/counselor/articles');
 
       // Membuat objek MultipartRequest
       final http.MultipartRequest request = http.MultipartRequest('POST', uri)
-        ..headers['Authorization'] = 'Bearer '
+        ..headers['Authorization'] = 'Bearer $token'
         ..files.add(await http.MultipartFile.fromPath(
           'thumbnail',
           article.thumbnail, // Path gambar yang dipilih
