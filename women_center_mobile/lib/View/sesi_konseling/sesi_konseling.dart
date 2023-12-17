@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/ViewModel/konseling_konselor_view_model.dart/konseling_konselor_view_model.dart';
 
@@ -71,15 +72,19 @@ class _SesiKonselingState extends State<SesiKonseling> {
     fetchData();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFDCEDF),
-        title: const Center(
+        backgroundColor: Colors.pink[100],
+        elevation: 0,
+        title: Center(
           child: Text(
-            "Sesi Konseling",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+            'Sesi Konseling',
+            style: GoogleFonts.roboto(
+              color: Color(0xFF0B0B0B),
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         children: [

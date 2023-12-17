@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section1.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section2.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section3.dart';
+import 'package:women_center_mobile/ViewModel/api_onboarding/onboarding_api_update.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 
@@ -21,30 +22,34 @@ class HomepageSectionKonselor extends StatefulWidget {
 }
 
 class _HomepageSectionKonselorState extends State<HomepageSectionKonselor> {
+  final ApiOnboarding _apiOnboarding = ApiOnboarding();
+  Map<String, dynamic> _userProfile = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile();
+    fetchData();
+  }
+
+  //fungsi fetching userprofile
+  Future<void> _fetchUserProfile() async {
+    try {
+      final response = await _apiOnboarding.getUserProfile();
+      setState(() {
+        _userProfile = response['data'];
+      });
+    } catch (error) {
+      print('Error fetching user profile: $error');
+    }
+  }
+
   void fetchData() {
     log("Fetching data...");
     context.read<ArtikelViewModel>().fetchLatestArtikel();
     context.read<CareerViewModel>().fetchAllCareer();
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   fetchData();
-  //   return SafeArea(
-  //     child: SingleChildScrollView(
-  //       child: Column(
-  //         // panggil halaman section disini
-  //         children: [
-  //           //homepage 1
-  //           const WidgetHomeKonselor(),
-  //           //homepage 2
-  //           LatestArtikel(
-  //             pindahHalaman: widget.pindahHalaman,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
   // }
   String getGreeting() {
     var currentTime = DateTime.now();
@@ -81,6 +86,7 @@ class _HomepageSectionKonselorState extends State<HomepageSectionKonselor> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           toolbarHeight: 70,
+          automaticallyImplyLeading: false,
           flexibleSpace: ClipRect(
             child: BackdropFilter(
               filter: ImageFilter.blur(
@@ -111,8 +117,8 @@ class _HomepageSectionKonselorState extends State<HomepageSectionKonselor> {
                               height: 0,
                             ),
                           ),
-                          const Text(
-                            'Sherly Prameswari',
+                          Text(
+                            ' ${_userProfile['full_name']} ',
                             style: TextStyle(
                               color: Color(
                                   0xFF0B0B0B), // Ubah warna sesuai kebutuhan Anda
