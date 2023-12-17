@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
+
 import 'package:women_center_mobile/Models/utils/auth_service.dart';
 
 class ApiProfil {
@@ -14,16 +16,12 @@ class ApiProfil {
     try {
       final response = await _dio.get(
         'https://api-ferminacare.tech/api/v1/users/profile',
-        options: Options(headers: {'Authorization': 'Bearer $_authToken'}),
+        options: Options(headers: {'Authorization': 'Bearer ${AuthService.token}'}),
       );
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = response.data;
-        print('User Profile Data:');
-        print('ID: ${data['id']}');
-        print('Username: ${data['username']}');
-        print('Full Name: ${data['full_name']}');
-        print('Email: ${data['email']}');
+        printUserProfile(data);
         return data;
       } else {
         throw Exception('Failed to load user profile');
