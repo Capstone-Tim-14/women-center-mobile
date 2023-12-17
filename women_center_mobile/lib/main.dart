@@ -43,6 +43,7 @@ import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
+import 'package:women_center_mobile/ViewModel/konseling_konselor_view_model.dart/konseling_konselor_view_model.dart';
 import 'package:women_center_mobile/ViewModel/konselor_view_model/konselor_view_model.dart';
 import 'package:women_center_mobile/ViewModel/paket_view_model/paket_view_model.dart';
 import 'package:women_center_mobile/ViewModel/sesi_konseling_view_mdoel/sesi_konseling.dart';
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [       
+      providers: [
         ChangeNotifierProvider(create: (context) => ArtikelViewModel()),
         ChangeNotifierProvider(create: (context) => CareerViewModel()),
         ChangeNotifierProvider(create: (context) => RegisterViewModel()),
@@ -78,8 +79,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
         ChangeNotifierProvider(create: (context) => PaketViewModel()),
         ChangeNotifierProvider(create: (context) => KonselorViewModel()),
+        ChangeNotifierProvider(
+            create: (context) => KonselingKonselorViewModel()),
         ChangeNotifierProvider(create: (context) => CreateArticleViewModel()),
-        ChangeNotifierProvider(create: (context) => CounselingSessionViewModel()),
+        ChangeNotifierProvider(
+            create: (context) => CounselingSessionViewModel()),
+        ChangeNotifierProvider(
+            create: (context) => CounselingSessionViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -106,7 +112,7 @@ class MyApp extends StatelessWidget {
           '/editprofile': (context) => ProfileEdit(),
           '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),
-          '/editprofile': (context) => EditDataProfile(),
+          // '/editprofile': (context) => EditDataProfile(),
           '/chatbots': (context) => ChatScreen(),
           '/topik_konseling': (context) => KonselingTopikKonseling(),
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
@@ -118,10 +124,10 @@ class MyApp extends StatelessWidget {
           '/pengaturan': (context) => const PengaturanPrivasi(),
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
-          '/profil_konselor':(context) => ProfilKonselor(),
+          '/profil_konselor': (context) => ProfilKonselor(),
           '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
-          '/konselorfav':(context) => FavoritView(),
+          '/konselorfav': (context) => FavoritView(),
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
           '/kalender': (context) => KalenderEvent()
