@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class RiwayatKonselorBatal extends StatefulWidget {
+
+class RiwayatKonselirBatalkan extends StatefulWidget {
   @override
-  _RiwayatKonselorBatalState createState() => _RiwayatKonselorBatalState();
+  _RiwayatKonselirBatalkanState createState() =>
+      _RiwayatKonselirBatalkanState();
 }
 
-class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
+class _RiwayatKonselirBatalkanState extends State<RiwayatKonselirBatalkan> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,7 +52,7 @@ class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'Stfany Amanda Manopo',
+                            'Andika Kagen Band',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF1F1F1F),
@@ -62,7 +64,8 @@ class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
                           ),
                           const SizedBox(width: 10),
                           Container(
-                            width: 150,
+
+                            width: 140,
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -82,7 +85,8 @@ class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: '812g4b124vs',
+
+                                        text: '812jk8uhju5',
                                         style: TextStyle(
                                           color: Color(0xFFF4518D),
                                           fontSize: 12,
@@ -152,7 +156,7 @@ class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
                           ),
                           SizedBox(width: 6),
                           Text(
-                            'Senin, 6 Oktober 2023',
+                            'Senin, 2 Oktober 2023',
                             style: TextStyle(
                               color: Color(0xFF1F1F1F),
                               fontSize: 12,
@@ -180,7 +184,8 @@ class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
                           ),
                           SizedBox(width: 6),
                           Text(
-                            '09:oo-11:00',
+
+                            '10:oo-12:00',
                             style: TextStyle(
                               color: Color(0xFFF4518D),
                               fontSize: 12,
@@ -206,21 +211,24 @@ class _RiwayatKonselorBatalState extends State<RiwayatKonselorBatal> {
                     Container(
                       width: 333,
                       child: const Padding(
-                        padding: EdgeInsets.only(left: 220),
+                        padding: EdgeInsets.only(left: 240),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.cancel,
+
+                              Icons.cancel, // Ganti dengan ikon yang diinginkan
                               size: 20,
-                              color: Colors.red,
+                              color: Colors
+                                  .red, // Sesuaikan dengan warna ikon yang diinginkan
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 3),
                               child: SizedBox(
-                                width: 80,
+
+                                width: 70,
                                 child: Text(
                                   'Dibatalkan',
                                   textAlign: TextAlign.center,

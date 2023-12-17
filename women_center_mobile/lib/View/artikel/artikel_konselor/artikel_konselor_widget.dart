@@ -1,10 +1,19 @@
 //create artikel konselor widget
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/artikel_konselor_view.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/hapus_artikel.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/proses_artikel.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/publish_artikel.dart';
 import 'package:women_center_mobile/View/artikel/buat_artikel.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section1.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/buat_artikel.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 
 //widget search
 class Search extends StatefulWidget {
@@ -76,13 +85,11 @@ class _SearchState extends State<Search> {
                   ),
                   border: InputBorder.none,
                 ),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                  height: 0.15,
-                ),
+                style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    height: 0.15),
               ),
             ),
           ),
@@ -129,6 +136,7 @@ class _CustomButtonState extends State<CustomButton> {
   }
 }
 
+//-----------------card artikel untuk publish---------------//
 class ArtikelCardScrollable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -151,7 +159,6 @@ class ArtikelCardScrollable extends StatelessWidget {
   }
 }
 
-// Widget ArtikelCard yang menggunakan data dari model
 class ArtikelCard extends StatelessWidget {
   final Article artikel;
 
@@ -265,7 +272,151 @@ class ArtikelCard extends StatelessWidget {
   }
 }
 
-//widegt kotak progress
+//----------------widget card artikel konselor----------------//
+class ArtikelKonselorCard extends StatefulWidget {
+  final List<ArtikelModel>? artikelList;
+
+  ArtikelKonselorCard({required this.artikelList});
+
+  @override
+  _ArtikelKonselorCardState createState() => _ArtikelKonselorCardState();
+}
+
+class _ArtikelKonselorCardState extends State<ArtikelKonselorCard> {
+  late List<ArtikelModel>? _artikelList;
+
+  @override
+  void initState() {
+    super.initState();
+    _artikelList = widget.artikelList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // Wrap dengan Container untuk membatasi ketinggian
+      height: 450, // Atur tinggi sesuai kebutuhan atau gunakan SizedBox
+      child: ListView.builder(
+        itemCount: _artikelList?.length ?? 0,
+        itemBuilder: (context, index) {
+          final ArtikelModel artikel = _artikelList![index];
+          return _buildArtikelCard(artikel);
+        },
+      ),
+    );
+  }
+
+  Widget _buildArtikelCard(ArtikelModel artikel) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Container(
+          width: 328,
+          height: 310,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 328,
+                height: 178,
+                decoration: ShapeDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(artikel.thumbnail), fit: BoxFit.fill),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 328,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 114.04,
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: 'Oleh ',
+                                    style: TextStyle(
+                                      color: Color(0xFFA5A5A5),
+                                      fontSize: 12,
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.14,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: artikel.author.name,
+                                    style: const TextStyle(
+                                      color: Color(0xFF787878),
+                                      fontSize: 12,
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 135),
+                          Expanded(
+                            child: SizedBox(
+                              child: Text(
+                                DateFormat("dd MMM yyyy")
+                                    .format(artikel.publishedAt),
+                                style: const TextStyle(
+                                  color: Color(0xFFA5A5A5),
+                                  fontSize: 12,
+                                  fontFamily: 'Raleway',
+                                  fontWeight: FontWeight.w400,
+                                  height: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 7),
+                    SizedBox(
+                      width: 328,
+                      child: Text(
+                        artikel.title,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: 'Raleway',
+                          fontWeight: FontWeight.w700,
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//----------------------widegt kotak progress-----------------------//
 class Kotak extends StatelessWidget {
   // final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
 
@@ -278,6 +429,9 @@ class Kotak extends StatelessWidget {
     var publish = artikelProvider.articlePublish;
     var review = artikelProvider.articleReview;
     var reject = artikelProvider.articleReject;
+    var artikelkonselor = artikelProvider.articles;
+    var jumlahArtikel = artikelkonselor.length;
+
     String ada = '';
 
     //logika if else untuk nilai null
@@ -340,15 +494,15 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => PublishArtikel()),
                           );
                         },
                         child: Text(
-                          '$publish',
-                          style: const TextStyle(
+                          '$jumlahArtikel',
+                          style: GoogleFonts.roboto(
                             color: Color(0xFFF4518D),
                             fontSize: 32,
-                            fontFamily: 'Poppins',
                             fontWeight: FontWeight.w700,
                             height: 0.02,
                           ),
@@ -359,7 +513,8 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => PublishArtikel()),
                           );
                         },
                         child: const Text(
@@ -400,11 +555,12 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => ProsesArtikel()),
                           );
                         },
                         child: Text(
-                          '$review',
+                          '1',
                           style: const TextStyle(
                             color: Color(0xFFF4518D),
                             fontSize: 32,
@@ -419,7 +575,8 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => ProsesArtikel()),
                           );
                         },
                         child: const Text(
@@ -470,7 +627,8 @@ class Kotak extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
+                            MaterialPageRoute(
+                                builder: (context) => ArticleListPage()),
                           );
                         },
                         child: const Text(
