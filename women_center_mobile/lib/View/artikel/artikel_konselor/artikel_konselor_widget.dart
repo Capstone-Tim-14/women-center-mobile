@@ -612,7 +612,7 @@ class Kotak extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          '$ada',
+                          '$jumlahArtikel',
                           style: const TextStyle(
                             color: Color(0xFFF4518D),
                             fontSize: 32,
