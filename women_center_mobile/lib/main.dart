@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             create: (context) => CounselingSessionViewModel()),
         ChangeNotifierProvider(
             create: (context) => CounselingSessionViewModel()),
-        ChangeNotifierProvider(create: (context) => OnboardingViewModel())
+        ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
         ChangeNotifierProvider(create: (context) => ProfilKonselorViewModel()),
         ChangeNotifierProvider(
             create: (context) => ProfilUserViewModel()),
