@@ -1,33 +1,42 @@
-//create artikel konselor
-
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:women_center_mobile/Models/artikel_model/artikel_model.dart';
 import 'package:women_center_mobile/View/artikel/artikel_konselor/artikel_konselor_widget.dart';
-// import 'package:women_center_mobile/View/bottomnavigationbar/bottom_navigation_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
+import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 
-// import 'package:women_center_mobile/ViewModel/artikel_konselor_model/1.dart';
-
-void main(List<String> args) {
-  runApp(const artikelKonselor());
-}
-
-class artikelKonselor extends StatefulWidget {
-  const artikelKonselor({super.key});
+class ArtikelKonselor extends StatefulWidget {
+  const ArtikelKonselor({Key? key}) : super(key: key);
 
   @override
-  State<artikelKonselor> createState() => _artikelKonselorState();
+  _ArtikelKonselorState createState() => _ArtikelKonselorState();
 }
 
-class _artikelKonselorState extends State<artikelKonselor> {
+class _ArtikelKonselorState extends State<ArtikelKonselor> {
+  ArtikelViewModel _viewModel = ArtikelViewModel();
+
   @override
   void initState() {
     super.initState();
-    // Panggil fetchArticles di initState untuk mengambil data saat halaman dimuat
-    Provider.of<ArtikelKonselorProvider>(context, listen: false)
+    fetchData();
+    fetchdata2();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      await _viewModel.fetchAlllArtikel();
+      setState(() {});
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<void> fetchdata2() async {
+    await Provider.of<ArtikelKonselorProvider>(context, listen: false)
         .fetchArticles();
   }
 
@@ -40,36 +49,31 @@ class _artikelKonselorState extends State<artikelKonselor> {
           backgroundColor: Colors.pink[100],
           elevation: 0,
           title: Center(
-              child: Text(
-            'Artikel',
-            style: GoogleFonts.roboto(
-              color: Color(0xFF0B0B0B),
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+            child: Text(
+              'Artikel',
+              style: GoogleFonts.roboto(
+                color: Color(0xFF0B0B0B),
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          )),
+          ),
           automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                SizedBox(
-                  height: 17,
-                ),
+                SizedBox(height: 15),
                 Search(),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Kotak(),
-                SizedBox(
-                  height: 25,
-                ),
+                SizedBox(height: 25),
                 CustomButton(),
-                SizedBox(
-                  height: 21.8,
-                ),
-                ArtikelCardScrollable(),
+                SizedBox(height: 21.8),
+                _viewModel.listArtikel.isNotEmpty
+                    ? ArtikelKonselorCard(artikelList: _viewModel.listArtikel)
+                    : Center(child: CircularProgressIndicator()),
               ],
             ),
           ),

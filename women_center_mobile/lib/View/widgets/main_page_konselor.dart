@@ -33,7 +33,7 @@ class _MainPageKonselorState extends State<MainPageKonselor> {
         HomepageSectionKonselor(
           pindahHalaman: pindahHalaman,
         ), // 0
-        const artikelKonselor(), // 1
+        ArtikelKonselor(), // 1
         SesiKonseling(), // 2
         ProfilKonselor(), // 3
       ];
