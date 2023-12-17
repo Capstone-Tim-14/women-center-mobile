@@ -11,6 +11,8 @@ import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/event/event.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran1_update.dart';
+import 'package:women_center_mobile/View/onboarding/onboarding_update.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
@@ -26,6 +28,7 @@ import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_2.d
 import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/ViewModel/api_onboarding/onboarding_api_update.dart';
 import 'package:women_center_mobile/ViewModel/api_profil_konselor/profil_konselor_provider.dart';
 import 'package:women_center_mobile/ViewModel/api_profil_user/profil_user_provider.dart';
 // import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
@@ -62,6 +65,8 @@ import 'View/register/register.dart';
 import 'View/welcome_page/welcome_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'ViewModel/konselor_view_model/konselor_view_model_payment.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -89,6 +94,7 @@ class MyApp extends StatelessWidget {
             create: (context) => CounselingSessionViewModel()),
         ChangeNotifierProvider(
             create: (context) => CounselingSessionViewModel()),
+        ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
         ChangeNotifierProvider(create: (context) => ProfilKonselorViewModel()),
         ChangeNotifierProvider(
             create: (context) => ProfilUserViewModel()),
@@ -107,14 +113,14 @@ class MyApp extends StatelessWidget {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
-          '/onboarding': (context) => const Onboarding(),
+          '/onboarding': (context) => const OnboardingApi(),
           '/notifikasi': (context) => const HomepageNotifikasi(),
           '/homepagenotif3': (context) => HomepageNotifikasi3(),
           '/artikelku': (context) => const ArtikelKu(),
           '/artikel': (context) => const Artikel(),
           '/profil_user': (context) => ProfilPage(),
           '/payment': (context) => HomePage(),
-          '/pembayaran1': (context) => const MetodePembayaran1(),
+          '/pembayaran1': (context) => const MetodePembayaran1Update(order_id: "",),
           '/editprofile': (context) => ProfileEdit(),
           '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),
