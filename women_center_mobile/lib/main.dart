@@ -31,6 +31,7 @@ import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/perbarui
 import 'package:women_center_mobile/View/profil_page/profil_konselor.dart';
 import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konseling.dart';
+import 'package:women_center_mobile/ViewModel/api_kalender_event/kalender_event.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
         ChangeNotifierProvider(create: (context) => PaketViewModel()),
         ChangeNotifierProvider(create: (context) => KonselorViewModel()),
+        ChangeNotifierProvider(create: (context) => KalenderViewModel())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -80,7 +82,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/kalender',
+        initialRoute: '/',
         routes: {
           // '/': (context) => Home3(),
           '/': (context) => const Welcome(),

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 // import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui';
-import 'package:intl/date_symbol_data_local.dart'; // Import library untuk lokal
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:women_center_mobile/View/kalender/kalender.dart'; // Import library untuk lokal
 
 class WidgetHome1 extends StatefulWidget {
   final Function(int index) pindahHalaman;
@@ -154,8 +155,13 @@ class _WidgetHome1State extends State<WidgetHome1> {
                     padding: const EdgeInsets.only(top: 19, left: 6),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/kalender');
-                      },
+                        Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => KalenderEvent(),
+                ),
+              );
+            },
                       child: Container(
                         width: 74,
                         height: 106,
@@ -648,8 +654,13 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                     padding: const EdgeInsets.only(top: 19, left: 6),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/kalender');
-                      },
+                        Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => KalenderEvent(),
+                ),
+              );
+            },
                       child: Container(
                         width: 74,
                         height: 106,
@@ -749,8 +760,13 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.pushNamed(context, '/kalender');
-                        },
+                          Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => KalenderEvent(),
+                ),
+              );
+            },
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -861,8 +877,13 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.pushNamed(context, '/kalender');
-                        },
+                          Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => KalenderEvent(),
+                ),
+              );
+            },
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [

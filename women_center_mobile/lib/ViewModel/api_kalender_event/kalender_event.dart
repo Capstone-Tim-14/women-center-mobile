@@ -1,23 +1,22 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import '../../Models/utils/auth_service.dart';
 
+class KalenderViewModel with ChangeNotifier {
+
+  void updateToken(String newToken) {
+    AuthService.token = newToken;
+    notifyListeners();
+  }
+}
 class ApiKalender {
   final Dio _dio = Dio();
-  String _authToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyODMwMTc2fQ.kj8dDApHRzV3WTH-m_PXpu0HNV0Sf_g5T929aeOF-S8';
-
-  // Set the authentication token
-  void setAuthToken(String token) {
-    _authToken = token;
-  }
-  // String _authToken;
-
-  // ApiKalender(this._authToken);
 
   Future<Map<String, dynamic>> getUserProfile() async {
     try {
       final response = await _dio.get(
         'https://api-ferminacare.tech/api/v1/event/1',
-        options: Options(headers: {'Authorization': 'Bearer $_authToken'}),
+        options: Options(headers: {'Authorization': 'Bearer ${AuthService.token}'}),
       );
 
       if (response.statusCode == 200) {
@@ -35,7 +34,7 @@ class ApiKalender {
     try {
       final response = await _dio.get(
         'https://api-ferminacare.tech/api/v1/counseling-packages',
-        options: Options(headers: {'Authorization': 'Bearer $_authToken'}),
+        options: Options(headers: {'Authorization': 'Bearer ${AuthService.token}'}),
       );
 
       if (response.statusCode == 200) {
