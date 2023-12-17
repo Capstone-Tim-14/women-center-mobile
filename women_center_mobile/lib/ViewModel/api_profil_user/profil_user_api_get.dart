@@ -21,7 +21,7 @@ class ApiProfil {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = response.data;
-        printUserProfile(data);
+        print(data);
         return data;
       } else {
         throw Exception('Failed to load user profile');
