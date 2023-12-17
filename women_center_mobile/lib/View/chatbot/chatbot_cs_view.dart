@@ -8,15 +8,6 @@ class UserProfile {
   UserProfile({required this.username, required this.profilePictureUrl});
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ChatScreen(),
-    );
-  }
-}
-
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -189,12 +180,6 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Tambahkan fungsi untuk kembali ke layar sebelumnya
-          },
-        ),
         title: Row(
           children: [
             CircleAvatar(

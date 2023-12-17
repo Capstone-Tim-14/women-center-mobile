@@ -1,12 +1,13 @@
 //Rafi Taufiqurahman Create LoginWidget
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/login_model/model_login.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/main_page.dart';
-import 'package:women_center_mobile/View/bottomnavigationbar/main_page_konselor.dart';
+import 'package:women_center_mobile/View/widgets/main_page.dart';
+import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
 import 'package:women_center_mobile/View/register/register.dart';
 import 'package:women_center_mobile/ViewModel/api_login/login_api.dart';
 
+import '../../Models/utils/auth_service.dart';
 import '../homepage/homepage_view.dart';
 
 //widget tidak punya akun
@@ -277,24 +278,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                     // Buat objek LoginData dari input pengguna
                     LoginData loginData =
                         LoginData(email: email, password: password);
-                    _loginViewModel
-                        .loginUser(loginData)
-                        .then((isLoginSuccessful) {
-                      if (isLoginSuccessful) {
+                    _loginViewModel.loginUser(loginData).then((loginResponse) {
+                      if (loginResponse.sucess == true) {
                         print('ke halaman on boarding');
+                        AuthService.token = loginResponse.token;
+                        AuthService.role = loginResponse.role;
 
-                        //homepage user
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => const MainPage()),
-                        // );
-
-                        //homepage konseling
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainPageKonselor()),
-                        );
+                        Navigator.pushReplacementNamed(context, "/onboarding");
                       } else {
                         // Tampilkan pesan kesalahan jika login gagal
                         setState(() {

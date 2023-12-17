@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/profil_page/favorit/artikel_favorit.dart';
 
+import 'konselor_favorit.dart';
+
 void main() {
   runApp(FavoritView());
 }
@@ -8,35 +10,33 @@ void main() {
 class FavoritView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFFF9F5F6),
-          elevation: 0,
-          title: const Text('Favorit',
-              style: TextStyle(
-                color: Color(0xFF0B0B0B),
-                fontSize: 16,
-                fontFamily: 'Raleway',
-                fontWeight: FontWeight.w600,
-                height: 0,
-              )),
-          centerTitle: true, // Judul app bar
-          leading: IconButton(
-            // Tombol kembali di sebelah kiri
-            icon: const Icon(Icons.arrow_back), color: Colors.black,
-            onPressed: () {
-              // Aksi ketika tombol kembali ditekan
-              // Misalnya, kembali ke layar sebelumnya
-              // Navigator.pop(context);
-            },
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF9F5F6),
+        elevation: 0,
+        title: const Text('Favorit',
+            style: TextStyle(
+              color: Color(0xFF0B0B0B),
+              fontSize: 16,
+              fontFamily: 'Raleway',
+              fontWeight: FontWeight.w600,
+              height: 0,
+            )),
+        centerTitle: true, // Judul app bar
+        leading: IconButton(
+          // Tombol kembali di sebelah kiri
+          icon: const Icon(Icons.arrow_back), color: Colors.black,
+          onPressed: () {
+            // Aksi ketika tombol kembali ditekan
+            // Misalnya, kembali ke layar sebelumnya
+            // Navigator.pop(context);
+          },
         ),
-        body: Center(
-            child: Column(
-          children: [Choice()],
-        )),
       ),
+      body: Center(
+          child: Column(
+        children: [Choice()],
+      )),
     );
   }
 }
@@ -115,9 +115,9 @@ class ContentBasedOnDropdown extends StatelessWidget {
         child: Text('Konten untuk $dropdownValue belum diimplementasikan'),
       );
     } else if (dropdownValue == 'Konselor') {
-      return Container(
-        alignment: Alignment.center,
-        child: Text('Konten untuk $dropdownValue belum diimplementasikan'),
+  return Container(
+        height: 700,
+        child: KonselorFav(),
       );
     } else if (dropdownValue == 'Karier') {
       return Container(

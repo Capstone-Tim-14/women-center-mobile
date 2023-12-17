@@ -6,7 +6,7 @@ class UserProfile {
   final String profilePictureUrl;
 
   UserProfile({required this.username, required this.profilePictureUrl});
-}
+
 
 class ChatScreenAI extends StatefulWidget {
   @override
