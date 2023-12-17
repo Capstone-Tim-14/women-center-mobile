@@ -31,7 +31,7 @@ class FavoritView extends StatelessWidget {
           onPressed: () {
             // Aksi ketika tombol kembali ditekan
             // Misalnya, kembali ke layar sebelumnya
-            // Navigator.pop(context);
+            Navigator.pop(context);
           },
         ),
       ),
