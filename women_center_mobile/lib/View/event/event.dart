@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:women_center_mobile/Models/utils/auth_service.dart';
 
 class EventData {
   final String title;
@@ -26,15 +27,15 @@ class DetailEvent extends StatefulWidget {
 }
 
 class _DetailEventState extends State<DetailEvent> {
+  String get token => AuthService.token;
+
   Future<EventData> fetchData() async {
     final String apiUrl = 'https://api-ferminacare.tech/api/v1/event/1';
-    final String bearerToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI3NTA4MDV9.iMDpdy196frh4qrbq6M5hAXzXM56Fj2aN3Zz1O9krXA';
 
     final response = await http.get(
       Uri.parse(apiUrl),
       headers: {
-        'Authorization': 'Bearer $bearerToken',
+        'Authorization': 'Bearer $token',
       },
     );
 

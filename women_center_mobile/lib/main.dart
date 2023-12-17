@@ -29,7 +29,9 @@ import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran_2.d
 import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_widget_tabBar.dart';
 import 'package:women_center_mobile/View/login/login_view.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding.dart';
+import 'package:women_center_mobile/ViewModel/api_kalender_event/kalender_event.dart';
 import 'package:women_center_mobile/ViewModel/api_onboarding/onboarding_api_update.dart';
+import 'package:women_center_mobile/ViewModel/api_pembayaran/pembayaran_api.dart';
 import 'package:women_center_mobile/ViewModel/api_profil_konselor/profil_konselor_provider.dart';
 import 'package:women_center_mobile/ViewModel/api_profil_user/profil_user_provider.dart';
 // import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
@@ -96,6 +98,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
         ChangeNotifierProvider(create: (context) => ProfilKonselorViewModel()),
         ChangeNotifierProvider(create: (context) => ProfilUserViewModel()),
+        ChangeNotifierProvider(create: (context) => PembayaranViewModel()),
+        ChangeNotifierProvider(create: (context) => KalenderViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -105,7 +109,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/ChatScreenAI',
+        initialRoute: '/',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),

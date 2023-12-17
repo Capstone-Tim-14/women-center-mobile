@@ -80,8 +80,7 @@ class _ChatScreenAIState extends State<ChatScreenAI> {
       Dio dio = Dio();
 
       // Set the request headers
-      dio.options.headers['Authorization'] =
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyODUyMDk2fQ.t8lLoQzvI8EwxIZqOtMTDd0vWLed1NZ9WCT7tEeKpBk';
+      dio.options.headers['Authorization'] = 'Bearer $token';
 
       // Define the request body
       var data = {
@@ -219,7 +218,7 @@ class _ChatScreenAIState extends State<ChatScreenAI> {
             color: Colors.black, // Ubah warna tombol kembali menjadi hitam
           ),
           onPressed: () {
-            // Tambahkan fungsi untuk kembali ke layar sebelumnya
+            Navigator.of(context).pop();
           },
         ),
         title: Center(

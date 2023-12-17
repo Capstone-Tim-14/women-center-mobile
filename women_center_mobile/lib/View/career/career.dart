@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/career/detail_job.dart';
 import 'package:women_center_mobile/View/career/filter_item.dart';
+import 'package:women_center_mobile/View/chatbot/chatbot_recommend_view.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/filter_carrerr.dart';
@@ -148,9 +149,7 @@ class _CareerState extends State<Career> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    ChatScreen()), 
+            MaterialPageRoute(builder: (context) => ChatScreenAI()),
           );
         },
         backgroundColor: const Color.fromARGB(255, 245, 63, 126),

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 // import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui';
-import 'package:intl/date_symbol_data_local.dart'; // Import library untuk lokal
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
+import 'package:women_center_mobile/View/kalender/kalender.dart'; // Import library untuk lokal
 
 class WidgetHome1 extends StatefulWidget {
   final Function(int index) pindahHalaman;
@@ -154,7 +156,11 @@ class _WidgetHome1State extends State<WidgetHome1> {
                     padding: const EdgeInsets.only(top: 19, left: 6),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/kalender');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => KalenderEvent(),
+                            ));
                       },
                       child: Container(
                         width: 74,
@@ -367,7 +373,11 @@ class _WidgetHome1State extends State<WidgetHome1> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.pushNamed(context, '/chatbots');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatScreen(),
+                              ));
                         },
                         child: Stack(
                           clipBehavior: Clip.none,

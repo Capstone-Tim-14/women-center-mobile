@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:women_center_mobile/View/riwayat/riwayat_konseling.dart';
 import 'dart:ui';
 
 import '../../ViewModel/api_profil_user/profil_user_api_get.dart';
@@ -286,6 +287,11 @@ class _ProfilPageState extends State<ProfilPage> {
         if (route == '/notifikasi') {
           // Tambahkan aksi untuk menangani ketika bagian notifikasi ditekan
           // Anda dapat menampilkan dialog atau halaman pengaturan notifikasi di sini
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RiwayatKonseling(),
+              ));
         } else if (route != null) {
           Navigator.pushNamed(
             NavigationService.navigatorKey.currentContext ?? context,

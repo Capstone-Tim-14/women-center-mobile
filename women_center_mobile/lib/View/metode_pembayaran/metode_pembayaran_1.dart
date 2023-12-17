@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:women_center_mobile/Models/metodepembayaran_model/metodepembayaran1_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
+import 'package:women_center_mobile/ViewModel/api_pembayaran/pembayaran_api.dart';
 
 class MetodePembayaran1 extends StatefulWidget {
   const MetodePembayaran1({super.key});
@@ -11,6 +12,8 @@ class MetodePembayaran1 extends StatefulWidget {
 }
 
 class _MetodePembayaran1State extends State<MetodePembayaran1> {
+  final ApiPembayaran _apiPembayaran = ApiPembayaran();
+  Map<String, dynamic> _userProfile = {};
   int? selectedPaymentIndex;
   List<PaymentMethod> paymentMethods = [
     PaymentMethod(
@@ -54,6 +57,24 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
       name: 'Bank Nasional Indonesia',
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile();
+  }
+
+  Future<void> _fetchUserProfile() async {
+    try {
+      final response = await _apiPembayaran.getUserProfile();
+      print('Profile Picture URL: ${_userProfile['profile_picture']}');
+      setState(() {
+        _userProfile = response['data'];
+      });
+    } catch (error) {
+      print('Error fetching user profile: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +161,9 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                       SizedBox(height: 8),
                       Row(
                         children: [
-                          Text('Sherly Praweswari'),
+                          Text(
+                            _userProfile['full_name'] ?? 'User Name',
+                          ),
                         ],
                       ),
                       SizedBox(height: 8),
@@ -158,7 +181,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                       Row(
                         children: [
                           Text(
-                            'sherlypraweswari@gmail.com',
+                            _userProfile['email'] ?? 'user@example.com',
                           ),
                         ],
                       ),
@@ -177,7 +200,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                       Row(
                         children: [
                           Text(
-                            'Paket All in One',
+                            'Paket Video Call',
                           ),
                         ],
                       ),
@@ -196,7 +219,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                       Row(
                         children: [
                           Text(
-                            'Stenafie Russel, M.Psi. Psikolog',
+                            'Bob Miller',
                           ),
                         ],
                       ),
@@ -214,23 +237,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                       Row(
                         children: [
                           Text(
-                            'Sesi 1: Senin. 2 Oktober 2023, Jam 09.00',
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text(
-                            'Sesi 2: Senin. 9 Oktober 2023, Jam 15.00',
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text(
-                            'Sesi 3: Jumat, 20 Oktober 2023. Jam 13.00',
+                            'Sesi 1: Rabu. 31 Januari 2024, Jam 09.00',
                           ),
                         ],
                       ),
@@ -411,7 +418,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
               Padding(
                 padding: EdgeInsets.only(right: 16),
                 child: Text(
-                  'Rp850.000',
+                  'Rp500.000',
                   style: TextStyle(
                     fontSize: 14,
                     // fontWeight: FontWeight.bold,
@@ -439,7 +446,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
               Padding(
                 padding: EdgeInsets.only(right: 16),
                 child: Text(
-                  '-Rp100.000',
+                  '-Rp500.000',
                   style: TextStyle(
                     fontSize: 14,
                     // fontWeight: FontWeight.bold,
@@ -467,7 +474,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
               Padding(
                 padding: EdgeInsets.only(right: 16),
                 child: Text(
-                  'Rp750.000',
+                  'Rp500.000',
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -508,7 +515,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'Rp750.000',
+                    'Rp500.000',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
