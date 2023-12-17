@@ -11,6 +11,7 @@ import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/event/event.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayar1_api.dart';
 import 'package:women_center_mobile/View/metode_pembayaran/metode_pembayaran1_update.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding_update.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
@@ -120,7 +121,7 @@ class MyApp extends StatelessWidget {
           '/artikel': (context) => const Artikel(),
           '/profil_user': (context) => ProfilPage(),
           '/payment': (context) => HomePage(),
-          '/pembayaran1': (context) => const MetodePembayaran1Update(order_id: "",),
+          '/pembayaran1': (context) => const MetodePembayaran1(),
           '/editprofile': (context) => ProfileEdit(),
           '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),
