@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/profil_page/favorit/artikel_favorit.dart';
+import 'package:women_center_mobile/View/riwayat/riwayat_konselor/riwayat_konselor_dibatalkan.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konselor/riwayat_konselor_selesai.dart';
 
 class RiwayarKonselurView extends StatelessWidget {
@@ -121,10 +122,7 @@ class ContentBasedOnDropdown extends StatelessWidget {
     } else if (dropdownValue == 'Selesai') {
       return RiwayatKonselorSelesai();
     } else if (dropdownValue == 'Dibatalkan') {
-      return Container(
-        alignment: Alignment.center,
-        child: Text('Konten untuk $dropdownValue belum diimplementasikan'),
-      );
+      return RiwayatKonselorBatal();
     } else {
       return Container(
         alignment: Alignment.center,
