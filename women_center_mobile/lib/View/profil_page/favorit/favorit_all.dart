@@ -22,7 +22,10 @@ class FavoritAll extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             SizedBox(height: 8),
-            // KonselorFav(),
+            Container(
+        height: 280,
+        child: KonselorFav(),
+      ),
             SizedBox(height: 8),
             Text(
               'Artikel',
