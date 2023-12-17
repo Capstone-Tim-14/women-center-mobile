@@ -131,6 +131,7 @@ class ContentBasedOnDropdown extends StatelessWidget {
     } else if (dropdownValue == 'Selesai') {
       return RiwayatKonselorSelesai();
     } else if (dropdownValue == 'Dibatalkan') {
+      return RiwayatKonselorBatal();
       return RiwayatKonselirBatalkan();
     } else {
       return Container(

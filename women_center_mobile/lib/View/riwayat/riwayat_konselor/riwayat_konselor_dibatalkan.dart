@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class RiwayatKonselirBatalkan extends StatefulWidget {
   @override
   _RiwayatKonselirBatalkanState createState() =>
@@ -63,6 +64,7 @@ class _RiwayatKonselirBatalkanState extends State<RiwayatKonselirBatalkan> {
                           ),
                           const SizedBox(width: 10),
                           Container(
+
                             width: 140,
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
@@ -83,6 +85,7 @@ class _RiwayatKonselirBatalkanState extends State<RiwayatKonselirBatalkan> {
                                         ),
                                       ),
                                       TextSpan(
+
                                         text: '812jk8uhju5',
                                         style: TextStyle(
                                           color: Color(0xFFF4518D),
@@ -181,6 +184,7 @@ class _RiwayatKonselirBatalkanState extends State<RiwayatKonselirBatalkan> {
                           ),
                           SizedBox(width: 6),
                           Text(
+
                             '10:oo-12:00',
                             style: TextStyle(
                               color: Color(0xFFF4518D),
@@ -214,6 +218,7 @@ class _RiwayatKonselirBatalkanState extends State<RiwayatKonselirBatalkan> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
+
                               Icons.cancel, // Ganti dengan ikon yang diinginkan
                               size: 20,
                               color: Colors
@@ -222,6 +227,7 @@ class _RiwayatKonselirBatalkanState extends State<RiwayatKonselirBatalkan> {
                             Padding(
                               padding: EdgeInsets.only(left: 3),
                               child: SizedBox(
+
                                 width: 70,
                                 child: Text(
                                   'Dibatalkan',

@@ -12,6 +12,7 @@ import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/event/event.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding_update.dart';
+import 'package:women_center_mobile/View/riwayat/riwayat_konselor/riwayat_konselor_view.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
 import 'package:women_center_mobile/View/chat_konseling/chat_konseling.dart';
@@ -93,8 +94,7 @@ class MyApp extends StatelessWidget {
             create: (context) => CounselingSessionViewModel()),
         ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
         ChangeNotifierProvider(create: (context) => ProfilKonselorViewModel()),
-        ChangeNotifierProvider(
-            create: (context) => ProfilUserViewModel()),
+        ChangeNotifierProvider(create: (context) => ProfilUserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -104,9 +104,8 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/',
+        initialRoute: '/riwayat_konselor',
         routes: {
-          // '/': (context) => Home3(),
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
           '/register': (context) => const Register(),
@@ -121,7 +120,6 @@ class MyApp extends StatelessWidget {
           '/editprofile': (context) => ProfileEdit(),
           '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),
-          // '/editprofile': (context) => EditDataProfile(),
           '/chatbots': (context) => ChatScreen(),
           '/topik_konseling': (context) => KonselingTopikKonseling(),
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
@@ -139,7 +137,8 @@ class MyApp extends StatelessWidget {
           '/konselorfav': (context) => FavoritView(),
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
-          '/kalender': (context) => KalenderEvent()
+          '/kalender': (context) => KalenderEvent(),
+          '/riwayat_konselor': (context) => RiwayarKonselurView(),
         },
       ),
     );
