@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/View/artikel_2/artikel_2.dart';
+import 'package:women_center_mobile/View/chatbot/chatbot_recommend_view.dart';
 import 'package:women_center_mobile/View/edit_profile/edit_form.dart';
 import 'package:women_center_mobile/View/edit_profile/profile_edit.dart';
 import 'package:women_center_mobile/View/homepage/homepage_view.dart';
@@ -104,7 +105,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/riwayat_konselor',
+        initialRoute: '/ChatScreenAI',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
@@ -138,6 +139,7 @@ class MyApp extends StatelessWidget {
           '/detail_event': (context) => DetailEvent(),
           '/about': (context) => const TentangKami(),
           '/kalender': (context) => KalenderEvent(),
+          '/ChatScreenAI': (context) => ChatScreenAI(),
           // '/riwayat_konselor': (context) => RiwayarKonselurView(),
         },
       ),
