@@ -22,39 +22,32 @@ class ArtikelFav extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 10),
                     Row(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 18),
-                          child: Text(
-                            'Julia Amailia',
-                            style: TextStyle(
-                              color: Color(0xFFF4518D),
-                              fontSize: 12,
-                              fontFamily: 'Raleway',
-                              fontWeight: FontWeight.w600,
-                              height: 0,
-                            ),
+                        Text(
+                          'Julia Amailia',
+                          style: TextStyle(
+                            color: Color(0xFFF4518D),
+                            fontSize: 12,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
                           ),
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        Padding(
-                            padding: EdgeInsets.only(top: 25),
-                            child: Opacity(
-                              opacity: 0.50,
-                              child: Text(
-                                '• 20 Oktober 2023',
-                                style: TextStyle(
-                                  color: Color(0xFF393938),
-                                  fontSize: 12,
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.14,
-                                ),
-                              ),
-                            )),
+                        Text(
+                          '• 20 Oktober 2023',
+                          style: TextStyle(
+                            color: Color(0xFF393938),
+                            fontSize: 12,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w400,
+                            height: 0.14,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(

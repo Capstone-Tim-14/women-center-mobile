@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Raleway',
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink)),
-        initialRoute: '/ChatScreenAI',
+        initialRoute: '/konselorfav',
         routes: {
           '/': (context) => const Welcome(),
           '/login': (context) => const LoginView(),
