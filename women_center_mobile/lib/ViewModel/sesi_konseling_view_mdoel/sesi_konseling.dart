@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import '../../Models/utils/auth_service.dart';
 import 'package:women_center_mobile/Models/sesi_konseling_model/sesi_konseling.dart';
 
 class CounselingSessionViewModel extends ChangeNotifier {
   List<CounselingSession> _counselingsession = [];
-
+  String get token => AuthService.token;
   List<CounselingSession> get conseling => _counselingsession;
 
   Future<void> fetchcounselingsession() async {
@@ -15,7 +15,7 @@ class CounselingSessionViewModel extends ChangeNotifier {
         Uri.parse('https://api-ferminacare.tech/api/v1/counselors/counseling-session'),
         headers: {
           'Authorization':
-              'Bearer '
+              'Bearer $token'
         },
       );
 
