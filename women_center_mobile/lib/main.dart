@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ArticleViewModel()),
+        ChangeNotifierProvider(create: (context) => CreateArticleViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -45,16 +45,16 @@ class MyApp extends StatelessWidget {
         // initialRoute: '/artikel2',
         initialRoute: '/',
         routes: {
-          '/': (context) => const Splashscreen(),
-          '/login': (context) => const LoginView(),
-          '/register': (context) => const Register(),
-          '/onboarding': (context) => const Onboarding(),
-          '/notifikasi': (context) => const HomepageNotifikasi(),
-          '/artikel2': (context) => const Artikel2(),
-          '/homepageview': (context) => const HomepageSection(),
-          '/homepagenotif3': (context) => HomepageNotifikasi3(),
-          '/artikelku': (context) => const ArtikelKu(),
-          '/artikel': (context) => const Artikel(),
+          // '/': (context) => const Splashscreen(),
+          // '/login': (context) => const LoginView(),
+          // '/register': (context) => const Register(),
+          // '/onboarding': (context) => const Onboarding(),
+          // '/notifikasi': (context) => const HomepageNotifikasi(),
+          // '/artikel2': (context) => const Artikel2(),
+          // '/homepageview': (context) => const HomepageSection(),
+          // '/homepagenotif3': (context) => HomepageNotifikasi3(),
+          // '/artikelku': (context) => const ArtikelKu(),
+          // '/artikel': (context) => const Artikel(),
         },
       ),
     );

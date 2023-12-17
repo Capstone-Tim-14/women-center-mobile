@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:women_center_mobile/Models/artikel_model/buat_artikel_model.dart';
 import 'package:http_parser/http_parser.dart';
 
-class ArticleViewModel extends ChangeNotifier {
+class CreateArticleViewModel extends ChangeNotifier {
   Future<void> createArticle(Article article, String accessToken) async {
     try {
       final Uri uri = Uri.parse('https://api-ferminacare.tech/api/v1/counselor/articles');

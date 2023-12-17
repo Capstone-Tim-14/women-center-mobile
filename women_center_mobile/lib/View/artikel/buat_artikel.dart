@@ -303,7 +303,7 @@ class _buat_artikelState extends State<buat_artikel> {
   }
 
   Future<void> _createArticle(BuildContext context) async {
-    final articleViewModel = Provider.of<ArticleViewModel>(context, listen: false);
+    final articleViewModel = Provider.of<CreateArticleViewModel>(context, listen: false);
 
     if (_titleController.text.isNotEmpty &&
         _contentController.text.isNotEmpty &&
