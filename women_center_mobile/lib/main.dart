@@ -31,6 +31,7 @@ import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/perbarui
 import 'package:women_center_mobile/View/profil_page/profil_konselor.dart';
 import 'package:women_center_mobile/View/profil_page/profil_user.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konseling.dart';
+import 'package:women_center_mobile/ViewModel/api_profil_user/profil_user_api_get.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/View/riwayat/batal.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FilterJobTypesViewModel()),
         ChangeNotifierProvider(create: (context) => PaketViewModel()),
         ChangeNotifierProvider(create: (context) => KonselorViewModel()),
+        ChangeNotifierProvider(create: (context) => ProfilUserViewModel())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
