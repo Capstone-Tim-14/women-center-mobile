@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:women_center_mobile/Models/utils/auth_service.dart';
 
 class UserProfile {
   final String username;
@@ -7,6 +8,8 @@ class UserProfile {
 
   UserProfile({required this.username, required this.profilePictureUrl});
 }
+
+String get token => AuthService.token;
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -35,8 +38,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Future<UserProfile> fetchUserProfile() async {
     String apiUrl = 'https://api-ferminacare.tech/api/v1/users/profile';
-    String token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDIzMzA2MDF9.7-jerT-AfBuiDo4dufWDlqC6e6Daba4xUdOrut0T2F8'; // Ganti dengan token bearer Anda
 
     try {
       Response response = await Dio().get(

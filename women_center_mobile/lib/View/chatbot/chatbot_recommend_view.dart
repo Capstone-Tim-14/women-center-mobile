@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:women_center_mobile/Models/utils/auth_service.dart';
 
 class UserProfile {
   final String username;
@@ -7,6 +8,8 @@ class UserProfile {
 
   UserProfile({required this.username, required this.profilePictureUrl});
 }
+
+String get token => AuthService.token;
 
 class ChatScreenAI extends StatefulWidget {
   @override
@@ -44,8 +47,7 @@ class _ChatScreenAIState extends State<ChatScreenAI> {
       // Buat objek Dio
       Dio dio = Dio();
       // Pasang header Authorization pada request
-      dio.options.headers['Authorization'] =
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyODUyMDk2fQ.t8lLoQzvI8EwxIZqOtMTDd0vWLed1NZ9WCT7tEeKpBk';
+      dio.options.headers['Authorization'] = 'Bearer $token';
       // Panggil API dengan method GET
       Response response = await dio.get(
           'https://api-ferminacare.tech/api/v1/career/get-all-history-chat');
@@ -111,8 +113,6 @@ class _ChatScreenAIState extends State<ChatScreenAI> {
 
   Future<UserProfile> fetchUserProfile() async {
     String apiUrl = 'https://api-ferminacare.tech/api/v1/users/profile';
-    String token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImZ1bGxfbmFtZSI6ImFndW5nYmhhc2thcmEiLCJlbWFpbCI6ImFndW5nMTIzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzAyODUyMDk2fQ.t8lLoQzvI8EwxIZqOtMTDd0vWLed1NZ9WCT7tEeKpBk'; // Ganti dengan token bearer Anda
 
     try {
       Response response = await Dio().get(
