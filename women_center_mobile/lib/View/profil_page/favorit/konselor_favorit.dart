@@ -15,18 +15,18 @@ class KonselorFav extends StatelessWidget {
       titleAndUniversity: 'Psikolog  •  Universitas gunadarma',
       location: 'Jakarta',
     ),
-    KonselorFavModel(
-      imageAsset: "Assets/images/konselor3.png",
-      name: 'Janetta Rotolo, M.Psi., Psikolo',
-      titleAndUniversity: 'Psikolog  •  Universitas gunadarma',
-      location: 'Bogor',
-    ),
-    KonselorFavModel(
-      imageAsset: "Assets/images/konselor4.png",
-      name: 'Phyllis Godley, M.Psi., Psikolog',
-      titleAndUniversity: 'Psikolog  •  Universitas tarumanegara',
-      location: 'Medan',
-    ),
+    // KonselorFavModel(
+    //   imageAsset: "Assets/images/konselor3.png",
+    //   name: 'Janetta Rotolo, M.Psi., Psikolo',
+    //   titleAndUniversity: 'Psikolog  •  Universitas gunadarma',
+    //   location: 'Bogor',
+    // ),
+    // KonselorFavModel(
+    //   imageAsset: "Assets/images/konselor4.png",
+    //   name: 'Phyllis Godley, M.Psi., Psikolog',
+    //   titleAndUniversity: 'Psikolog  •  Universitas tarumanegara',
+    //   location: 'Medan',
+    // ),
   ];
 
   @override

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:women_center_mobile/View/profil_page/favorit/artikel_favorit.dart';
+import 'package:women_center_mobile/View/profil_page/favorit/favorit_all.dart';
+import 'package:women_center_mobile/View/profil_page/favorit/karier_favorit.dart';
 
 import 'konselor_favorit.dart';
 
@@ -110,20 +112,14 @@ class ContentBasedOnDropdown extends StatelessWidget {
     if (dropdownValue == 'Artikel') {
       return ArtikelFav();
     } else if (dropdownValue == 'Semua') {
-      return Container(
-        alignment: Alignment.center,
-        child: Text('Konten untuk $dropdownValue belum diimplementasikan'),
-      );
+      return FavoritAll();
     } else if (dropdownValue == 'Konselor') {
-  return Container(
+      return Container(
         height: 700,
         child: KonselorFav(),
       );
     } else if (dropdownValue == 'Karier') {
-      return Container(
-        alignment: Alignment.center,
-        child: Text('Konten untuk $dropdownValue belum diimplementasikan'),
-      );
+      return KarirFav();
     } else {
       return Container(
         alignment: Alignment.center,
