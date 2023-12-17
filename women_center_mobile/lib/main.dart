@@ -144,6 +144,7 @@ class MyApp extends StatelessWidget {
           '/about': (context) => const TentangKami(),
           '/kalender': (context) => KalenderEvent(),
           '/ChatScreenAI': (context) => ChatScreenAI(),
+          '/RiwayatKonselor': (context) => RiwayatKonselorView(),
           // '/riwayat_konselor': (context) => RiwayarKonselurView(),
         },
       ),

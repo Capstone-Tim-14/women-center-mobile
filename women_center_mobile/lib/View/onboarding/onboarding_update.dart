@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/auth_service.dart';
 import 'package:women_center_mobile/View/widgets/main_page.dart';
+import 'package:women_center_mobile/ViewModel/api_profil_konselor/profil_konselor_provider.dart';
 import '../../ViewModel/api_onboarding/onboarding_api_update.dart';
 // import 'package:women_center_mobile/View/homepage/homepage_view.dart';
 
@@ -29,10 +30,11 @@ class _OnboardingApiState extends State<OnboardingApi> {
   ];
 
   Set<String> selectedTopics = Set();
-  
+
   final ApiOnboarding _apiOnboarding = ApiOnboarding();
   Map<String, dynamic> _userProfile = {};
-
+  final ApiProfilKonselor _apiProfilKonselor = ApiProfilKonselor();
+  // final ApiProfilKonselor _apiProfilKonselor = ApiProfilKonselor();
   @override
   void initState() {
     super.initState();
@@ -41,10 +43,17 @@ class _OnboardingApiState extends State<OnboardingApi> {
 
   Future<void> _fetchUserProfile() async {
     try {
-      final response = await _apiOnboarding.getUserProfile();
-      setState(() {
-        _userProfile = response['data'];
-      });
+      if (AuthService.role == "user") {
+        final response = await _apiOnboarding.getUserProfile();
+        setState(() {
+          _userProfile = response['data'];
+        });
+      } else if (AuthService.role == "counselor") {
+        final response = await _apiProfilKonselor.getUserProfile();
+        setState(() {
+          _userProfile = response['data'];
+        });
+      }
     } catch (error) {
       print('Error fetching user profile: $error');
     }

@@ -58,20 +58,14 @@ class _ProfilKonselorState extends State<ProfilKonselor> {
       appBar: AppBar(
         backgroundColor: Color(0xFFFDCEDF),
         toolbarHeight: 80,
-        leading: Padding(
-          padding: const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 4.0),
-          child: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {},
-          ),
-        ),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 10.0, right: 16.0, left: 3.0),
+              padding: const EdgeInsets.only(bottom: 10.0, left: 40),
               child: Text(
                 'Profil',
                 style: GoogleFonts.roboto(
@@ -172,8 +166,8 @@ class _ProfilKonselorState extends State<ProfilKonselor> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        buildOption(
-                            context, Icons.history, 'Riwayat User', '/riwayat'),
+                        buildOption(context, Icons.history, 'Riwayat User',
+                            '/RiwayatKonselor'),
                         buildOption(context, CupertinoIcons.bell, 'Notifikasi',
                             '/notifikasi'),
                         buildOption(context, CupertinoIcons.checkmark_shield,
@@ -195,11 +189,11 @@ class _ProfilKonselorState extends State<ProfilKonselor> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         buildOption(context, Icons.feedback_outlined,
-                            'Tentang Kami', '/tentang'),
+                            'Tentang Kami', '/about'),
                         buildOption(context, Icons.live_help_outlined,
                             'Bantuan dan FAQ', '/bantuan'),
                         buildOption(context, Icons.headset_mic_outlined,
-                            'Layanan Pelanggan', '/layanan'),
+                            'Layanan Pelanggan', '/chatbots'),
                       ],
                     ),
                   ),
@@ -214,8 +208,8 @@ class _ProfilKonselorState extends State<ProfilKonselor> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        buildOption(context, Icons.logout_outlined, 'Keluar',
-                            '/favorit'),
+                        buildOption(
+                            context, Icons.logout_outlined, 'Keluar', '/'),
                       ],
                     ),
                   ),

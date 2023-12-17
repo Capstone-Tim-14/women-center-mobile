@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:women_center_mobile/View/artikel/buat_artikel.dart';
 import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
-import 'package:women_center_mobile/View/kalender/kalender.dart'; // Import library untuk lokal
+import 'package:women_center_mobile/View/kalender/kalender.dart';
+import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart'; // Import library untuk lokal
 
 class WidgetHome1 extends StatefulWidget {
   final Function(int index) pindahHalaman;
@@ -759,7 +761,11 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.pushNamed(context, '/kalender');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => buat_artikel(),
+                              ));
                         },
                         child: Stack(
                           clipBehavior: Clip.none,
@@ -871,7 +877,11 @@ class _WidgetHomeKonselorState extends State<WidgetHomeKonselor> {
                       GestureDetector(
                         onTap: () {
                           // Navigasi ke halaman baru ketika kontainer 1 ditekan
-                          Navigator.pushNamed(context, '/kalender');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SesiKonseling(),
+                              ));
                         },
                         child: Stack(
                           clipBehavior: Clip.none,

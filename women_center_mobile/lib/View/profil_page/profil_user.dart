@@ -220,7 +220,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         buildOption(context, Icons.history, 'Riwayat Konseling',
-                            '/riwayat', null),
+                            '/riwayat_konseling', null),
                         buildOption(context, CupertinoIcons.bell, 'Notifikasi',
                             '/notifikasi', null),
                         buildOption(context, CupertinoIcons.checkmark_shield,
@@ -228,8 +228,20 @@ class _ProfilPageState extends State<ProfilPage> {
                         buildOption(
                             context, Icons.language, 'Bahasa', '/bahasa', null),
                         buildOption(context, Icons.favorite_outline, 'Favorit',
-                            '/favorit', null),
+                            '/konselorfav', null),
                       ],
+                      // children: [
+                      //   buildOption(context, Icons.history, 'Riwayat Konseling',
+                      //       '/riwayat', null),
+                      //   buildOption(context, CupertinoIcons.bell, 'Notifikasi',
+                      //       '/notifikasi', null),
+                      //   buildOption(context, CupertinoIcons.checkmark_shield,
+                      //       'Pengaturan Privasi', '/pengaturan', null),
+                      //   buildOption(
+                      //       context, Icons.language, 'Bahasa', '/bahasa', null),
+                      //   buildOption(context, Icons.favorite_outline, 'Favorit',
+                      //       '/favorit', null),
+                      // ],
                     ),
                   ),
                 ),

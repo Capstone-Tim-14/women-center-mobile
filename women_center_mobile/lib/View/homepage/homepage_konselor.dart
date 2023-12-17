@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:women_center_mobile/Models/utils/auth_service.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section1.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section2.dart';
 import 'package:women_center_mobile/View/homepage/homepage_section3.dart';
 import 'package:women_center_mobile/ViewModel/api_onboarding/onboarding_api_update.dart';
+import 'package:women_center_mobile/ViewModel/api_profil_konselor/profil_konselor_provider.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
 import 'package:women_center_mobile/ViewModel/career_view_model/career_view_model.dart';
 
@@ -23,6 +25,7 @@ class HomepageSectionKonselor extends StatefulWidget {
 
 class _HomepageSectionKonselorState extends State<HomepageSectionKonselor> {
   final ApiOnboarding _apiOnboarding = ApiOnboarding();
+  final ApiProfilKonselor _apiProfilKonselor = ApiProfilKonselor();
   Map<String, dynamic> _userProfile = {};
 
   @override
@@ -32,13 +35,19 @@ class _HomepageSectionKonselorState extends State<HomepageSectionKonselor> {
     fetchData();
   }
 
-  //fungsi fetching userprofile
   Future<void> _fetchUserProfile() async {
     try {
-      final response = await _apiOnboarding.getUserProfile();
-      setState(() {
-        _userProfile = response['data'];
-      });
+      if (AuthService.role == "user") {
+        final response = await _apiOnboarding.getUserProfile();
+        setState(() {
+          _userProfile = response['data'];
+        });
+      } else if (AuthService.role == "counselor") {
+        final response = await _apiProfilKonselor.getUserProfile();
+        setState(() {
+          _userProfile = response['data'];
+        });
+      }
     } catch (error) {
       print('Error fetching user profile: $error');
     }
