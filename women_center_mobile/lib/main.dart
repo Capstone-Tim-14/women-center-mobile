@@ -140,7 +140,7 @@ class MyApp extends StatelessWidget {
           '/perbarui_kata_sandi': (context) => const PerbaruiKataSandi(),
           '/sesi_konseling': (context) => SesiKonseling(),
           '/profil_konselor': (context) => ProfilKonselor(),
-          '/hapus_artikel': (context) => ArticleListPage(),
+          // '/hapus_artikel': (context) => ArticleListPage(),
           '/bantuan': (context) => FAQ(),
           '/konselorfav': (context) => FavoritView(),
           '/detail_event': (context) => DetailEvent(),

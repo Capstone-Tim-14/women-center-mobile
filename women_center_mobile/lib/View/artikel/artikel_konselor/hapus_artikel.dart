@@ -1,177 +1,407 @@
+//rafi
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 
-class ArticleListPage extends StatefulWidget {
-  @override
-  _ArticleListPageState createState() => _ArticleListPageState();
+void main(List<String> args) {
+  runApp(MaterialApp(
+    home: RejectArtikel(),
+  ));
 }
 
-class _ArticleListPageState extends State<ArticleListPage> {
-  late Future<List<Article>> futureArticles;
-  TextEditingController searchController = TextEditingController();
-
+class RejectArtikel extends StatelessWidget {
   @override
-  void initState() {
-    super.initState();
-    futureArticles = fetchArticles();
-  }
+  Widget build(BuildContext context) {
+    final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
 
-  Future<List<Article>> fetchArticles() async {
-    final response = await http.get(
-      Uri.parse('https://api-ferminacare.tech/api/v1/articles'),
-      headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI0MTQwODZ9.KfauB8_ZBFmwvdLx5u3FDi0pS9QPoOI97fCCIDAOgCY',
-      },
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pink[100],
+        elevation: 0,
+        title: Text(
+          'Rejected',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              // ... SearchProses widget and previous SizedBox
+              SizedBox(
+                height: 20,
+              ),
+              SearchProses(),
+              SizedBox(
+                height: 23,
+              ),
+              Container(
+                width: 360,
+                // height: 100,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: artikelProvider.articles.length,
+                  itemBuilder: (context, index) {
+                    final article = artikelProvider.articles[index];
+                    if (article.status == 'REJECTED') {
+                      return ProsesContainer(artikelReview: article);
+                    } else {
+                      return SizedBox(); // If it's not an article with 'Review' status, return SizedBox
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
-
-    if (response.statusCode == 200) {
-      List<Article> articles = [];
-      final jsonData = json.decode(response.body);
-      for (var item in jsonData['data']) {
-        articles.add(Article.fromJson(item));
-      }
-      return articles;
-    } else {
-      throw Exception('Failed to load articles');
-    }
   }
+}
 
-  Future<void> deleteArticle(int id) async {
-    final response = await http.delete(
-      Uri.parse('https://api-ferminacare.tech/api/v1/articles/$id'),
-      headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI0MTQwODZ9.KfauB8_ZBFmwvdLx5u3FDi0pS9QPoOI97fCCIDAOgCY',
-      },
-    );
+class ProsesContainer extends StatelessWidget {
+  final Article artikelReview;
 
-    if (response.statusCode == 200) {
-      // Artikel berhasil dihapus, lakukan sesuatu (contoh: refresh data)
-      setState(() {
-        futureArticles = fetchArticles(); // Memuat ulang daftar artikel
-      });
-    } else {
-      throw Exception('Failed to delete article');
-    }
-  }
+  const ProsesContainer({Key? key, required this.artikelReview})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Article List',
-          style: TextStyle(fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Container(
+        width: 328,
+        height: 84,
+        padding: const EdgeInsets.only(top: 10.50, bottom: 19.73),
+        clipBehavior: Clip.antiAlias,
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shadows: [
+            BoxShadow(
+              color: Color(0x19000000),
+              blurRadius: 14,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
+            )
+          ],
         ),
-        backgroundColor: Color(0xFFFDCEDF),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                labelText: 'Search...',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: BorderSide(color: Colors.white, width: 1.0),
-                  gapPadding: 3.3,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: BorderSide(color: Colors.white, width: 1.0),
-                  gapPadding: 3.3,
-                ),
-              ),
-              onChanged: (value) {
-                // Use value for search...
-              },
-            ),
-          ),
-          Expanded(
-            child: FutureBuilder<List<Article>>(
-              future: futureArticles,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text('${snapshot.error}'),
-                  );
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(
-                    child: Text('No articles found'),
-                  );
-                }
-
-                List<Article>? articles = snapshot.data;
-                return ListView.builder(
-                  itemCount: articles!.length,
-                  itemBuilder: (context, index) {
-                    return ArticleCard(
-                      article: articles[index],
-                      onDelete: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Delete Article?'),
-                              content: Text(
-                                  'Are you sure you want to delete this article?'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('No'),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Container(
+                height: double.infinity,
+                padding: const EdgeInsets.only(left: 24, right: 15),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 53.77,
+                            decoration: ShapeDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(artikelReview.thumbnail),
+                                fit: BoxFit.cover,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          SizedBox(
+                            width: 127,
+                            height: 33,
+                            child: Text(
+                              '${artikelReview.title}\n',
+                              style: TextStyle(
+                                color: Color(0xFF1F1F1F),
+                                fontSize: 15,
+                                fontFamily: 'Raleway',
+                                fontWeight: FontWeight.w700,
+                                height: 0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    Container(
+                      height: 40,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 24,
+                                  height: 24,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(),
+                                  child: Stack(children: [
+                                    Icon(Icons.delete, color: Colors.grey),
+                                  ]),
                                 ),
-                                TextButton(
-                                  onPressed: () async {
-                                    try {
-                                      await deleteArticle(articles[index]
-                                          .id); // Menghapus artikel
-                                      Navigator.of(context).pop();
-                                    } catch (e) {
-                                      print(e.toString());
-                                      // Tampilkan pesan kesalahan jika gagal menghapus
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content:
-                                            Text('Failed to delete article'),
-                                        backgroundColor: Colors.red,
-                                      ));
-                                    }
-                                  },
-                                  child: Text('Yes'),
+                                const SizedBox(height: 2),
+                                Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    color: Color(0xFFEC5858),
+                                    fontSize: 12,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
                                 ),
                               ],
-                            );
-                          },
-                        );
-                      },
-                      onEdit: () {
-                        // Add logic for editing article here
-                      },
-                    );
-                  },
-                );
-              },
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Container(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 24,
+                                  height: 24,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(),
+                                  child: Stack(children: [
+                                    Icon(Icons.edit, color: Colors.grey),
+                                  ]),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  'Edit',
+                                  style: TextStyle(
+                                    color: Color(0xFF34C759),
+                                    fontSize: 12,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    // return Container(
+    //   width: 340,
+    //   height: 100,
+    //   padding: const EdgeInsets.only(top: 14, bottom: 11.10),
+    //   clipBehavior: Clip.antiAlias,
+    //   decoration: ShapeDecoration(
+    //     color: Colors.white,
+    //     shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.circular(8),
+    //     ),
+    //     shadows: [
+    //       BoxShadow(
+    //         color: Color(0x19000000),
+    //         blurRadius: 14,
+    //         offset: Offset(0, 4),
+    //         spreadRadius: 0,
+    //       ),
+    //     ],
+    //   ),
+    //   child: Row(
+    //     mainAxisSize: MainAxisSize.min,
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     crossAxisAlignment: CrossAxisAlignment.center,
+    //     children: [
+    //       Expanded(
+    //         child: Container(
+    //           height: double.infinity,
+    //           padding: const EdgeInsets.only(left: 24, right: 15),
+    //           child: Row(
+    //             mainAxisSize: MainAxisSize.min,
+    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //             crossAxisAlignment: CrossAxisAlignment.end,
+    //             children: [
+    //               Container(
+    //                 child: Row(
+    //                   mainAxisSize: MainAxisSize.min,
+    //                   mainAxisAlignment: MainAxisAlignment.start,
+    //                   crossAxisAlignment: CrossAxisAlignment.center,
+    //                   children: [
+    //                     Padding(
+    //                       padding: const EdgeInsets.only(bottom: 10),
+    //                       child: Container(
+    //                         width: 50,
+    //                         height: 58.90,
+    //                         decoration: ShapeDecoration(
+    //                           image: DecorationImage(
+    //                             image: NetworkImage(artikelReview.thumbnail),
+    //                             fit: BoxFit.cover,
+    //                           ),
+    //                           shape: RoundedRectangleBorder(
+    //                             borderRadius: BorderRadius.circular(10),
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ),
+    //                     const SizedBox(width: 10),
+    //                     SizedBox(
+    //                       width: 200,
+    //                       height: 80,
+    //                       child: Text(
+    //                         '${artikelReview.title}\n',
+    //                         style: TextStyle(
+    //                           color: Color(0xFF1F1F1F),
+    //                           fontSize: 15,
+    //                           fontFamily: 'Raleway',
+    //                           fontWeight: FontWeight.w700,
+    //                           height: 0,
+    //                         ),
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ),
+    //               const SizedBox(width: 0),
+    //               Text(
+    //                 'Process',
+    //                 style: TextStyle(
+    //                   color: Color(0xFFFAD13F),
+    //                   fontSize: 15,
+    //                   fontFamily: 'Raleway',
+    //                   fontWeight: FontWeight.w700,
+    //                   height: 0,
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
+  }
+}
+
+//----------------------search proses-------------------//
+class SearchProses extends StatefulWidget {
+  const SearchProses({super.key});
+
+  @override
+  State<SearchProses> createState() => _SearchProsesState();
+}
+
+class _SearchProsesState extends State<SearchProses> {
+  TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 328,
+      height: 42,
+      padding: const EdgeInsets.all(10),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x19000000),
+            blurRadius: 14,
+            offset: Offset(0, 4),
+            spreadRadius: 0,
+          )
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 20,
+            height: 20,
+            clipBehavior: Clip.antiAlias,
+            decoration: const BoxDecoration(),
+            child: const Stack(
+              children: [
+                Icon(
+                  Icons.search, // Menambahkan icon search di sini
+                  size: 20,
+                  color: Color(0xFFA5A5A5),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: TextField(
+                controller: _textEditingController,
+                decoration: const InputDecoration(
+                  hintText: 'Cari artikel',
+                  hintStyle: TextStyle(
+                    color: Color(0xFFA5A5A5),
+                    fontSize: 12,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    height: 0.15,
+                  ),
+                  border: InputBorder.none,
+                ),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400,
+                  height: 0.15,
+                ),
+              ),
             ),
           ),
         ],
@@ -179,6 +409,188 @@ class _ArticleListPageState extends State<ArticleListPage> {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
+// import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+
+// class ArticleListPage extends StatefulWidget {
+//   @override
+//   _ArticleListPageState createState() => _ArticleListPageState();
+// }
+
+// class _ArticleListPageState extends State<ArticleListPage> {
+//   late Future<List<Article>> futureArticles;
+//   TextEditingController searchController = TextEditingController();
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     futureArticles = fetchArticles();
+//   }
+
+//   Future<List<Article>> fetchArticles() async {
+//     final response = await http.get(
+//       Uri.parse('https://api-ferminacare.tech/api/v1/articles'),
+//       headers: {
+//         'Authorization':
+//             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI0MTQwODZ9.KfauB8_ZBFmwvdLx5u3FDi0pS9QPoOI97fCCIDAOgCY',
+//       },
+//     );
+
+//     if (response.statusCode == 200) {
+//       List<Article> articles = [];
+//       final jsonData = json.decode(response.body);
+//       for (var item in jsonData['data']) {
+//         articles.add(Article.fromJson(item));
+//       }
+//       return articles;
+//     } else {
+//       throw Exception('Failed to load articles');
+//     }
+//   }
+
+//   Future<void> deleteArticle(int id) async {
+//     final response = await http.delete(
+//       Uri.parse('https://api-ferminacare.tech/api/v1/articles/$id'),
+//       headers: {
+//         'Authorization':
+//             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZnVsbF9uYW1lIjoicHV0cmlkaWFuYSIsImVtYWlsIjoicHV0cmlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MDI0MTQwODZ9.KfauB8_ZBFmwvdLx5u3FDi0pS9QPoOI97fCCIDAOgCY',
+//       },
+//     );
+
+//     if (response.statusCode == 200) {
+//       // Artikel berhasil dihapus, lakukan sesuatu (contoh: refresh data)
+//       setState(() {
+//         futureArticles = fetchArticles(); // Memuat ulang daftar artikel
+//       });
+//     } else {
+//       throw Exception('Failed to delete article');
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(
+//           'Article List',
+//           style: TextStyle(fontWeight: FontWeight.bold),
+//         ),
+//         backgroundColor: Color(0xFFFDCEDF),
+//         centerTitle: true,
+//       ),
+//       body: Column(
+//         children: [
+//           Container(
+//             padding: EdgeInsets.all(8.0),
+//             child: TextField(
+//               controller: searchController,
+//               decoration: InputDecoration(
+//                 labelText: 'Search...',
+//                 prefixIcon: Icon(Icons.search),
+//                 border: OutlineInputBorder(
+//                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
+//                   borderSide: BorderSide.none,
+//                 ),
+//                 filled: true,
+//                 fillColor: Colors.grey[200],
+//                 contentPadding:
+//                     EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+//                 enabledBorder: OutlineInputBorder(
+//                   borderRadius: BorderRadius.circular(30.0),
+//                   borderSide: BorderSide(color: Colors.white, width: 1.0),
+//                   gapPadding: 3.3,
+//                 ),
+//                 focusedBorder: OutlineInputBorder(
+//                   borderRadius: BorderRadius.circular(30.0),
+//                   borderSide: BorderSide(color: Colors.white, width: 1.0),
+//                   gapPadding: 3.3,
+//                 ),
+//               ),
+//               onChanged: (value) {
+//                 // Use value for search...
+//               },
+//             ),
+//           ),
+//           Expanded(
+//             child: FutureBuilder<List<Article>>(
+//               future: futureArticles,
+//               builder: (context, snapshot) {
+//                 if (snapshot.connectionState == ConnectionState.waiting) {
+//                   return Center(
+//                     child: CircularProgressIndicator(),
+//                   );
+//                 } else if (snapshot.hasError) {
+//                   return Center(
+//                     child: Text('${snapshot.error}'),
+//                   );
+//                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+//                   return Center(
+//                     child: Text('No articles found'),
+//                   );
+//                 }
+
+//                 List<Article>? articles = snapshot.data;
+//                 return ListView.builder(
+//                   itemCount: articles!.length,
+//                   itemBuilder: (context, index) {
+//                     return ArticleCard(
+//                       article: articles[index],
+//                       onDelete: () {
+//                         showDialog(
+//                           context: context,
+//                           builder: (BuildContext context) {
+//                             return AlertDialog(
+//                               title: Text('Delete Article?'),
+//                               content: Text(
+//                                   'Are you sure you want to delete this article?'),
+//                               actions: <Widget>[
+//                                 TextButton(
+//                                   onPressed: () {
+//                                     Navigator.of(context).pop();
+//                                   },
+//                                   child: Text('No'),
+//                                 ),
+//                                 TextButton(
+//                                   onPressed: () async {
+//                                     try {
+//                                       await deleteArticle(articles[index]
+//                                           .id); // Menghapus artikel
+//                                       Navigator.of(context).pop();
+//                                     } catch (e) {
+//                                       print(e.toString());
+//                                       // Tampilkan pesan kesalahan jika gagal menghapus
+//                                       ScaffoldMessenger.of(context)
+//                                           .showSnackBar(SnackBar(
+//                                         content:
+//                                             Text('Failed to delete article'),
+//                                         backgroundColor: Colors.red,
+//                                       ));
+//                                     }
+//                                   },
+//                                   child: Text('Yes'),
+//                                 ),
+//                               ],
+//                             );
+//                           },
+//                         );
+//                       },
+//                       onEdit: () {
+//                         // Add logic for editing article here
+//                       },
+//                     );
+//                   },
+//                 );
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 // class Article {
 //   final int id;
