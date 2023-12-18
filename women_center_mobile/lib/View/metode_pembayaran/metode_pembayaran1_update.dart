@@ -66,7 +66,6 @@ class _MetodePembayaran1UpdateState extends State<MetodePembayaran1Update> {
     ),
   ];
 
-  // Tambahkan variabel berikut di _MetodePembayaran1State
   late String order_id;
   late KonselorViewModel konselorViewModel;
   late CounselingSessionModel counselingSessionModel;
