@@ -70,7 +70,7 @@ class PaymentCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.contain,
-                      image: AssetImage('assets/images/mandiribg.png'),
+                      image: AssetImage('Assets/images/mandiribg.png'),
                     ),
                   ),
                 )

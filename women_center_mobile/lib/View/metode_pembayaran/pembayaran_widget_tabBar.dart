@@ -27,18 +27,6 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    // appBar: AppBar(
-    //   backgroundColor: Colors.pink.shade200,
-    //   leading: IconButton(
-    //     icon: Icon(Icons.arrow_back),
-    //     onPressed: () {},
-    //   ),
-    //   title: Text(
-    //     'Pembayaran',
-    //     textAlign: TextAlign.center,
-    //   ),
-    //   centerTitle: true,
-    // ),
     return Column(
       children: [
         PaymentCard(),
@@ -53,7 +41,10 @@ class _HomePageState extends State<HomePage>
                 children: [
                   Text(
                     'Pilih Pembayaran',
-                    style: TextStyle(),
+                    style: TextStyle(
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
                   ),
                 ],
               ),
@@ -92,7 +83,9 @@ class _HomePageState extends State<HomePage>
             children: [
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/pembayaranSukses');
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.pink[300],
                     shape: RoundedRectangleBorder(
@@ -113,102 +106,211 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _mBanking() {
-    return Scaffold(
-      body: Container(
+    return SingleChildScrollView(
+      child: Container(
         padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
-        child: Text('//ambil dari api?'),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'LANGKAH 1 : MASUK KE AKUN ANDA',
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            SizedBox(height: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '  1. Buka aplikasi Livin by Mandiri atau M-Banking',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  2. Pilih menu "Pembayaran" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  3. Pilih "Pembayaran Baru" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  4. Pilih "Multi Payment" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  5. Klik "Penyedia Jasa" atau "Service Provider" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
+            Text(
+              'LANGKAH 2 : DETAIL PEMBAYARAN',
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            SizedBox(height: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '  6. Pilih kode perusahaan',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  7. Pilih "Nomor Virtual" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  8. Masukkan Nomor Virtual Account 017412481241 ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  9. Konfirmasi detail VA dan klik "Lanjut"',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  10. Masukkan nominal yang ingin dibayarkan',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '      (jika tidak terisi secara otomatis)',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
+            Text(
+              'LANGKAH 3 : TRANSAKSI BERHASIL',
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            SizedBox(height: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '  11. Setelah transaksi pembayaran anda selesai,',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '        simpan bukti pembayaran',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  12. Invoice ini akan diperbarui secara otomatis ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
+          ],
+        ),
       ),
     );
   }
 
   Widget _atm() {
-    return Scaffold(
-      body: Container(
+    return SingleChildScrollView(
+      child: Container(
         padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
-        child: Text('Ambil dariApi?'),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'LANGKAH 1 : MASUK KE AKUN ANDA',
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            SizedBox(height: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '  1. Masukkan kartu ATM Mandiri',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  2. Pilih menu Bayar/Beli ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  3. Pilih "Multi Payment" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
+            Text(
+              'LANGKAH 2 : DETAIL PEMBAYARAN',
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            SizedBox(height: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '  4. Masukkan Nomor Virtual Account 017412481241',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  5. Konfirmasi detail VA dan klik "Continue" ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  6. Masukkan nominal yang ingin dibayarkan ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '      (jika tidak terisi secara otomatis)',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '  7. Konfirmasi tagihan Anda. Jika sudah sesuai ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '      tekan "Ya"',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
+            Text(
+              'LANGKAH 3 : TRANSAKSI BERHASIL',
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            SizedBox(height: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '  8. Setelah melakukan transaksi pembayaran Anda  ',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+                Text(
+                  '     selesai,(simpan struk sebagai bukti pembayaran)',
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
-
-// class PaymentCard extends StatelessWidget {
-//   const PaymentCard({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.only(top: 20, left: 23, right: 23, bottom: 20),
-//       width: MediaQuery.of(context).size.width,
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         border: Border.all(
-//           color: Colors.pink.shade100,
-//           width: 2,
-//         ),
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           //---------ROW TEXT LEFT--------------
-//           Container(
-//             padding: EdgeInsets.all(10),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Text(
-//                   'Virtual Account',
-//                   style: defaultB.copyWith(fontWeight: FontWeight.bold),
-//                 ),
-//                 Row(
-//                   children: [
-//                     Text(
-//                       '123456789',
-//                       style: defaultB,
-//                     ),
-//                     IconButton(
-//                       onPressed: () {},
-//                       icon: Icon(Icons.copy),
-//                     ),
-//                   ],
-//                 ),
-//                 Text(
-//                   'Virtual Account Name',
-//                   style: defaultB.copyWith(fontWeight: FontWeight.bold),
-//                 ),
-//                 Text('Femina Care'),
-//                 SizedBox(height: 5),
-//                 Text(
-//                   'Total',
-//                   style: defaultB.copyWith(fontWeight: FontWeight.bold),
-//                 ),
-//                 Text('Rp. 750.000', style: defaultB),
-//               ],
-//             ),
-//           ),
-//           //----------------- ROW IMAGE ---------------
-//           Container(
-//             padding: EdgeInsets.only(right: 15, bottom: 20),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Container(
-//                   width: 150,
-//                   height: 80,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       fit: BoxFit.contain,
-//                       image: AssetImage('assets/images/mandiribg.png'),
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

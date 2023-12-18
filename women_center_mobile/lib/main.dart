@@ -12,6 +12,7 @@ import 'package:women_center_mobile/View/chatbot/chatbot_cs_view.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/event/event.dart';
+import 'package:women_center_mobile/View/metode_pembayaran/pembayaran_sukses.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding_update.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konseling/batal.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konseling/riwayat_konseling_view.dart';
@@ -148,6 +149,8 @@ class MyApp extends StatelessWidget {
           '/kalender': (context) => KalenderEvent(),
           '/ChatScreenAI': (context) => ChatScreenAI(),
           '/RiwayatKonselor': (context) => RiwayatKonselorView(),
+          '/pembayaranSukses': (context) => PembayaranSukses(),
+
           // '/riwayat_konselor': (context) => RiwayarKonselurView(),
         },
       ),
