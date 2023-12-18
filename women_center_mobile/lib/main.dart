@@ -121,7 +121,7 @@ class MyApp extends StatelessWidget {
           '/artikel': (context) => const Artikel(),
           '/profil_user': (context) => ProfilPage(),
           '/payment': (context) => HomePage(),
-          '/pembayaran1': (context) => const MetodePembayaran1(),
+          '/pembayaran1': (context) => const MetodePembayaran1Update(order_id: "",),
           '/editprofile': (context) => ProfileEdit(),
           '/editdataprofile': (context) => EditDataProfile(),
           '/pembayaran2': (context) => const Payment2(),

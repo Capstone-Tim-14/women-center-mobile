@@ -92,6 +92,7 @@ class KonselorViewModel extends ChangeNotifier {
         // final responseData = jsonDecode(response.body);
         // processBookingResponse(responseData);
         // simpan ke variabel order_id
+        await fetchCounselingSessionData();
         final newOrderId = jsonDecode(response.body)["data"]["order_id"];
         _order_id = newOrderId;
 
@@ -118,15 +119,11 @@ class KonselorViewModel extends ChangeNotifier {
   return false;
 }
 
-  Future<void> bayar(int payment_code) async {
+  Future<void> bayar(int paymentCode) async {
   try {
-    // Dapatkan data order_id dari variabel _order_id
-    final order_id = _order_id;
+    final orderId = order_id;
+    final paymentUrl = "$_baseUrl/charge-payment?order_id=$orderId&payment_code=$paymentCode";
 
-    // Bangun URL untuk pembayaran
-    final paymentUrl = "$_baseUrl/charge-payment?order_id=$order_id&payment_code=$payment_code";
-
-    // Kirim permintaan pembayaran
     final response = await http.get(
       Uri.parse(paymentUrl),
       headers: {'Authorization': 'Bearer $token'},
@@ -135,32 +132,46 @@ class KonselorViewModel extends ChangeNotifier {
     log(response.statusCode.toString());
 
     if (response.statusCode == 200) {
-      // Pembayaran berhasil
-      log("Pembayaran berhasil");
-
-      // Cetak informasi pembayaran
+      log("Payment successful");
       final Map<String, dynamic> responseData = jsonDecode(response.body)["data"];
-      print("ID Transaksi: ${responseData['transaction_id']}");
-      print("ID Order: ${responseData['order_id']}");
-      print("Jumlah Bruto: ${responseData['gross_amount']}");
-      print("Tipe Pembayaran: ${responseData['payment_type']}");
-      // ... Cetak informasi lain sesuai kebutuhan ...
+      print("Transaction ID: ${responseData['transaction_id']}");
+      print("Order ID: ${responseData['order_id']}");
+      print("Gross Amount: ${responseData['gross_amount']}");
+      print("Payment Type: ${responseData['payment_type']}");
 
-      // Lakukan tindakan tambahan atau navigasi ke halaman berhasil
     } else {
-      // Pembayaran gagal
-      log("Pembayaran gagal");
-
-      // Ambil data order_id dari penyimpanan lokal
+      log("Payment failed");
       final prefs = await SharedPreferences.getInstance();
       final storedOrderId = prefs.getString("order_id");
-
-      // ... Implementasi tindakan setelah pembayaran gagal ...
-
       log(response.body);
     }
   } catch (e) {
     log(e.toString());
   }
 }
+
+KonselorModel? _counselingSessionData;
+
+  KonselorModel? get counselingSessionData => _counselingSessionData;
+
+  Future<void> fetchCounselingSessionData() async {
+    final endpoint = "/counselors/counseling-session/$_order_id";
+
+    try {
+      final response = await http.get(
+        Uri.parse("$_baseUrl$endpoint"),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body)["data"];
+        _counselingSessionData = KonselorModel.fromJson(jsonData);
+        notifyListeners();
+      } else {
+        log(response.body);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 }

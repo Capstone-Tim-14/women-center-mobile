@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:provider/provider.dart';
 
+import '../../Models/event_kalender/counseling_model.dart';
+import '../../Models/konselor_model/konselor_model.dart';
 import '../../ViewModel/konselor_view_model/konselor_view_model_payment.dart';
 
 class MetodePembayaran1Update extends StatefulWidget {
@@ -18,6 +20,7 @@ class MetodePembayaran1Update extends StatefulWidget {
 }
 
 class _MetodePembayaran1UpdateState extends State<MetodePembayaran1Update> {
+  // CounselingSessionData? _counselingSessionData;
   int? selectedPaymentIndex;
   
   List<PaymentMethod> paymentMethods = [
@@ -62,36 +65,19 @@ class _MetodePembayaran1UpdateState extends State<MetodePembayaran1Update> {
       name: 'Bank Nasional Indonesia',
     ),
   ];
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   final konselorViewModel = Provider.of<KonselorViewModel>(context, listen: false);
-  //   // Initialize your state variables here
-  //   // ...
-  //     final orderId = konselorViewModel.order_id;
-
-  //   // You can also perform asynchronous operations here if needed
-  // }
-
 
   // Tambahkan variabel berikut di _MetodePembayaran1State
-late String transaction_id;
-late String order_id;
-late String grossAmount;
-late String paymentType;
-late String transactionTime;
-late String transactionStatus;
-late String fraudStatus;
-late String currency;
-late String bank;
-late String vaNumber;
-late String expiryTime;
+  late String order_id;
+  late KonselorViewModel konselorViewModel;
+  late CounselingSessionModel counselingSessionModel;
 
 @override
 void initState() {
-    super.initState();
-    loadOrderId(); // Memanggil metode untuk memuat order_id dari SharedPreferences
-  }
+  super.initState();
+  konselorViewModel = Provider.of<KonselorViewModel>(context, listen: false);
+  loadOrderId(); // Memanggil metode untuk memuat order_id dari SharedPreferences
+  konselorViewModel.fetchCounselingSessionData();
+}
 
 Future<void> loadOrderId() async {
     final prefs = await SharedPreferences.getInstance();
@@ -103,17 +89,6 @@ Future<void> loadOrderId() async {
     }
   }
 
-  Future<void> fetchPaymentDetails() async {
-    // Assuming you have a method in KonselorViewModel to fetch payment details
-    final konselorViewModel =
-        Provider.of<KonselorViewModel>(context, listen: false);
-    // Replace the below line with your API call
-    // await konselorViewModel.fetchPaymentDetails(order_id);
-    // Update the paymentMethods based on the response from the API
-    setState(() {
-      paymentMethods = konselorViewModel.paymentMethods;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +107,7 @@ Future<void> loadOrderId() async {
         title: Center(
           child: Transform.translate(
             offset: Offset(0.0, 10.0), // Adjust the value to move the text down
+            
             child: Text(
               'Metode Pembayaran',
               style: GoogleFonts.roboto(
@@ -157,6 +133,7 @@ Future<void> loadOrderId() async {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              
               Card(
                 child: Container(
                   decoration: BoxDecoration(
@@ -173,6 +150,12 @@ Future<void> loadOrderId() async {
                     children: [
                       Row(
                         children: [
+                           if (konselorViewModel.counselingSessionData != null)
+              _buildCounselingSessionData(konselorViewModel.counselingSessionData!),
+
+            SizedBox(
+              height: 20,
+            ),
                           Text(
                             'Booking Id',
                             style: TextStyle(
@@ -184,7 +167,7 @@ Future<void> loadOrderId() async {
                       SizedBox(height: 8),
                       Row(
                         children: [
-                          Text('Order ID: $orderIdFromWidget'),
+                          Text('${order_id ?? ''}'),
                         ],
                       ),
                       SizedBox(height: 8),
@@ -610,4 +593,21 @@ Future<void> loadOrderId() async {
       ),
     );
   }
+
+  Widget _buildCounselingSessionData(KonselorModel counselingSessionData) {
+  // Use the counselingSessionData to display relevant information
+  return Card(
+    child: Container(
+      // Existing code...
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Display relevant data from counselingSessionData
+          // For example: Text('Booking Id: ${counselingSessionData.bookingId}'),
+        ],
+      ),
+    ),
+  );
+}
+
 }
