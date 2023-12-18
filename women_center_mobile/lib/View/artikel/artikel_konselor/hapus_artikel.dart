@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/edit_artikel.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 
 void main(List<String> args) {
@@ -190,7 +191,16 @@ class ProsesContainer extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 10),
-                          Container(
+                          InkWell(
+                            onTap: () {
+                              // Tindakan yang ingin dilakukan saat ikon edit ditekan
+                              // Misalnya:
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Edit_Artikel()),
+                              );
+                            },
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -201,9 +211,11 @@ class ProsesContainer extends StatelessWidget {
                                   height: 24,
                                   clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(),
-                                  child: Stack(children: [
-                                    Icon(Icons.edit, color: Colors.grey),
-                                  ]),
+                                  child: Stack(
+                                    children: [
+                                      Icon(Icons.edit, color: Colors.grey),
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
@@ -219,6 +231,35 @@ class ProsesContainer extends StatelessWidget {
                               ],
                             ),
                           ),
+                          // Container(
+                          //   child: Column(
+                          //     mainAxisSize: MainAxisSize.min,
+                          //     mainAxisAlignment: MainAxisAlignment.start,
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Container(
+                          //         width: 24,
+                          //         height: 24,
+                          //         clipBehavior: Clip.antiAlias,
+                          //         decoration: BoxDecoration(),
+                          //         child: Stack(children: [
+                          //           Icon(Icons.edit, color: Colors.grey),
+                          //         ]),
+                          //       ),
+                          //       const SizedBox(height: 2),
+                          //       Text(
+                          //         'Edit',
+                          //         style: TextStyle(
+                          //           color: Color(0xFF34C759),
+                          //           fontSize: 12,
+                          //           fontFamily: 'Raleway',
+                          //           fontWeight: FontWeight.w700,
+                          //           height: 0,
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -230,6 +271,7 @@ class ProsesContainer extends StatelessWidget {
         ),
       ),
     );
+
     // return Container(
     //   width: 340,
     //   height: 100,
@@ -402,6 +444,96 @@ class _SearchProsesState extends State<SearchProses> {
                   height: 0.15,
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ArtikelCard extends StatelessWidget {
+  final Article artikel;
+
+  ArtikelCard({required this.artikel});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context)
+          .size
+          .width, // Sesuaikan lebar dengan lebar layar
+      height: 280,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 178,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(artikel.thumbnail),
+                fit: BoxFit.fill,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  artikel.title ?? '',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.w700,
+                    height: 1.3,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    // Tindakan yang ingin dilakukan saat ikon edit ditekan
+                    // Misalnya:
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => EditArticleScreen(article: artikel)),
+                    // );
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 24,
+                        height: 24,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(),
+                        child: Stack(
+                          children: [
+                            Icon(Icons.edit, color: Colors.grey),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        'Edit',
+                        style: TextStyle(
+                          color: Color(0xFF34C759),
+                          fontSize: 12,
+                          fontFamily: 'Raleway',
+                          fontWeight: FontWeight.w700,
+                          height: 0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
