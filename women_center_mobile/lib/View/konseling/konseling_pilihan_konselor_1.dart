@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'konseling_topik_konseling.dart';
+
 class konseling_pilihan_konselor_1 extends StatefulWidget {
   @override
   _konseling_pilihan_konselor_1State createState() =>
@@ -65,7 +67,20 @@ class _konseling_pilihan_konselor_1State
               ),
               SizedBox(width: 15.0),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        contentPadding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        content: KonselingTopikKonseling(),
+                      );
+                    },
+                  );
+                },
                 child: Container(
                   padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(

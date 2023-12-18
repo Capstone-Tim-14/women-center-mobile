@@ -404,7 +404,7 @@ class _DetailJobState extends State<DetailJob> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Handle button tap
-          Navigator.pushNamed(context, '/chatbots');
+          Navigator.pushNamed(context, '/ChatScreenAI');
         },
         backgroundColor: const Color.fromARGB(255, 245, 63, 126),
         shape: CircleBorder(),
