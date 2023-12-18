@@ -58,10 +58,12 @@ class _DetailEventState extends State<DetailEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true, // Untuk posisikan teks judul di tengah
+        centerTitle: true,
+        backgroundColor: const Color(0xffFDCEDF), // Untuk posisikan teks judul di tengah
         title: Text(
           'Event Details',
           style: TextStyle(
+            color: Colors.black,
             fontWeight: FontWeight.bold, // Untuk memberi tebal pada teks
           ),
         ),
