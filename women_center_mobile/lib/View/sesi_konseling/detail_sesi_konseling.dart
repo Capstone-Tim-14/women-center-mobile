@@ -75,27 +75,29 @@ class DetailSesiKonseling extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(width: 30),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                child: Text(
-                                  ": ${model!.id}",
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xFFF4518D),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 12),
+                                  child: Text(
+                                    ": ${model!.id}",
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      color: Color(0xFFF4518D),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text(": ${model!.nama}"),
-                              Text(": ${model!.email}"),
-                              Text(": ${model!.paket}"),
-                              Text(
-                                  ": ${model!.jadwalSesi.length - model!.jadwalSelesai().length}"),
-                              Text(": ${model!.jadwalSelesai().length}"),
-                            ],
+                                Text(": ${model!.nama}"),
+                                Text(": ${model!.email}"),
+                                Text(": ${model!.paket}"),
+                                Text(
+                                    ": ${model!.jadwalSesi.length - model!.jadwalSelesai().length}"),
+                                Text(": ${model!.jadwalSelesai().length}"),
+                              ],
+                            ),
                           )
                         ],
                       ),
