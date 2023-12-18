@@ -426,23 +426,11 @@ class Kotak extends StatelessWidget {
     final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
 
     //inisiasi objek article publish, article review dan article reject
-    var publish = artikelProvider.articlePublish;
-    var review = artikelProvider.articleReview;
-    var reject = artikelProvider.articleReject;
     var artikelkonselor = artikelProvider.articles;
     var jumlahArtikel = artikelkonselor.length;
-
-    String ada = '';
-
-    //logika if else untuk nilai null
-    if (reject == null) {
-      ada = '0';
-    }
-    if (publish == null) {
-      publish = '0';
-    } else if (review == null) {
-      review = '0';
-    }
+    var terbit = artikelProvider.artikelpublish();
+    var proses = artikelProvider.artikelpublish();
+    var tolak = artikelProvider.artikelpublish();
 
     return Column(
       children: [
@@ -499,7 +487,7 @@ class Kotak extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          '$jumlahArtikel',
+                          '2',
                           style: GoogleFonts.roboto(
                             color: Color(0xFFF4518D),
                             fontSize: 32,
@@ -612,7 +600,7 @@ class Kotak extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          '$jumlahArtikel',
+                          '2',
                           style: const TextStyle(
                             color: Color(0xFFF4518D),
                             fontSize: 32,
@@ -628,7 +616,7 @@ class Kotak extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ArticleListPage()),
+                                builder: (context) => RejectArtikel()),
                           );
                         },
                         child: const Text(

@@ -44,4 +44,21 @@ class ArtikelKonselorProvider extends ChangeNotifier {
       print('Error fetching articles: $error');
     }
   }
+
+  //mengambil data artikel dengan status
+  List<Article> getArticlesByStatus(String status) {
+    return _articles.where((article) => article.status == status).toList();
+  }
+
+  int artikelpublish() {
+    return articlePublish;
+  }
+
+  int artikelproses() {
+    return articleReview;
+  }
+
+  int artikelreject() {
+    return articleReject;
+  }
 }

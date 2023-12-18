@@ -11,8 +11,8 @@ class _Edit_ArtikelState extends State<Edit_Artikel> {
   TextEditingController _isiController = TextEditingController();
 
   //defaut teks
-  String JudulArtikel = 'Cinta Beda Usia';
-  String IsiArtikel = 'Di tempat ysabfbas aku ingin   safsaf sfsafsasa';
+  String JudulArtikel = 'judul';
+  String IsiArtikel = 'isi';
 
   @override
   void initState() {
@@ -114,7 +114,7 @@ class _Edit_ArtikelState extends State<Edit_Artikel> {
           onPressed: () {
             // Aksi ketika tombol kembali ditekan
             // Misalnya, kembali ke layar sebelumnya
-            // Navigator.pop(context);
+            Navigator.pop(context);
           },
         ),
       ),

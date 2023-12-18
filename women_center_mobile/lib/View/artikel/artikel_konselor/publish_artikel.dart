@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:women_center_mobile/Models/artikel_konselor_model/artikel_konselor_model.dart';
+import 'package:women_center_mobile/View/artikel/artikel_konselor/proses_artikel.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 
 void main(List<String> args) {
@@ -18,6 +19,7 @@ class PublishArtikel extends StatefulWidget {
 class _PublishArtikelState extends State<PublishArtikel> {
   @override
   Widget build(BuildContext context) {
+    final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink[100],
@@ -52,7 +54,22 @@ class _PublishArtikelState extends State<PublishArtikel> {
               SizedBox(
                 height: 23,
               ),
-              ArtikelCardScrollable()
+              Container(
+                width: 300,
+                // height: 100,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: artikelProvider.articles.length,
+                  itemBuilder: (context, index) {
+                    final article = artikelProvider.articles[index];
+                    if (article.status == 'PUBLISHED') {
+                      return ArtikelCardScrollable(artikel: article);
+                    } else {
+                      return SizedBox(); // If it's not an article with 'Review' status, return SizedBox
+                    }
+                  },
+                ),
+              ),
               // ArtikelCardScrollable(),
             ],
           ),
@@ -148,101 +165,44 @@ class _SearchPublishState extends State<SearchPublish> {
   }
 }
 
-//-----------------card artikel untuk publish---------------//
 class ArtikelCardScrollable extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Menggunakan provider untuk mengakses artikel
-    final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
-
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Column(
-        children: artikelProvider.articles.map((article) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: ArtikelCard(
-              artikel: article,
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class ArtikelCard extends StatelessWidget {
   final Article artikel;
 
-  ArtikelCard({required this.artikel});
+  ArtikelCardScrollable({required this.artikel});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 328,
+      width: MediaQuery.of(context)
+          .size
+          .width, // Sesuaikan lebar dengan lebar layar
       height: 280,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 328,
+            width: MediaQuery.of(context).size.width,
             height: 178,
-            decoration: ShapeDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    artikel.thumbnail), // Menggunakan URL gambar dari artikel
+                image: NetworkImage(artikel.thumbnail),
                 fit: BoxFit.fill,
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
-          // const SizedBox(height: 12),
-          Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 328,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 114.04,
-                        child: Text.rich(
-                          TextSpan(
-                            children: [],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 135),
-                      Expanded(
-                        child: SizedBox(),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 328,
-                  child: Text(
-                    artikel.title ?? '',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: 'Raleway',
-                      fontWeight: FontWeight.w700,
-                      height: 1.3,
-                    ),
-                  ),
-                ),
-              ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            child: Text(
+              artikel.title ?? '',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.w700,
+                height: 1.3,
+              ),
             ),
           ),
         ],
@@ -250,3 +210,107 @@ class ArtikelCard extends StatelessWidget {
     );
   }
 }
+
+//-----------------card artikel untuk publish---------------//
+// class ArtikelCardScrollable extends StatelessWidget {
+//   final Article artikelReview;
+
+//   const ArtikelCardScrollable({Key? key, required this.artikelReview})
+//       : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     // Menggunakan provider untuk mengakses artikel
+//     final artikelProvider = Provider.of<ArtikelKonselorProvider>(context);
+
+//     return Column(
+//       children: artikelProvider.articles.map((article) {
+//         return Padding(
+//           padding: const EdgeInsets.symmetric(vertical: 5),
+//           child: ArtikelCard(
+//             artikel: article,
+//           ),
+//         );
+//       }).toList(),
+//     );
+//   }
+// }
+
+// class ArtikelCard extends StatelessWidget {
+//   final Article artikel;
+
+//   ArtikelCard({required this.artikel});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 328,
+//       height: 280,
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         mainAxisAlignment: MainAxisAlignment.start,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Container(
+//             width: 328,
+//             height: 178,
+//             decoration: ShapeDecoration(
+//               image: DecorationImage(
+//                 image: NetworkImage(
+//                     artikel.thumbnail), // Menggunakan URL gambar dari artikel
+//                 fit: BoxFit.fill,
+//               ),
+//               shape: RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(8),
+//               ),
+//             ),
+//           ),
+//           // const SizedBox(height: 12),
+//           Container(
+//             child: Column(
+//               mainAxisSize: MainAxisSize.min,
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Container(
+//                   width: 328,
+//                   child: Row(
+//                     mainAxisSize: MainAxisSize.min,
+//                     mainAxisAlignment: MainAxisAlignment.start,
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       SizedBox(
+//                         width: 114.04,
+//                         child: Text.rich(
+//                           TextSpan(
+//                             children: [],
+//                           ),
+//                         ),
+//                       ),
+//                       const SizedBox(width: 135),
+//                       Expanded(
+//                         child: SizedBox(),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 SizedBox(
+//                   width: 328,
+//                   child: Text(
+//                     artikel.title ?? '',
+//                     style: const TextStyle(
+//                       color: Colors.black,
+//                       fontSize: 20,
+//                       fontFamily: 'Raleway',
+//                       fontWeight: FontWeight.w700,
+//                       height: 1.3,
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
