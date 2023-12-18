@@ -13,6 +13,8 @@ import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/View/booking/booking.dart';
 import 'package:women_center_mobile/View/event/event.dart';
 import 'package:women_center_mobile/View/onboarding/onboarding_update.dart';
+import 'package:women_center_mobile/View/riwayat/riwayat_konseling/batal.dart';
+import 'package:women_center_mobile/View/riwayat/riwayat_konseling/riwayat_konseling_view.dart';
 import 'package:women_center_mobile/View/riwayat/riwayat_konselor/riwayat_konselor_view.dart';
 import 'package:women_center_mobile/View/tentang_kami/tentang_kami.dart';
 import 'package:women_center_mobile/View/widgets/main_page_konselor.dart';
@@ -36,7 +38,7 @@ import 'package:women_center_mobile/ViewModel/api_profil_konselor/profil_konselo
 import 'package:women_center_mobile/ViewModel/api_profil_user/profil_user_provider.dart';
 // import 'package:women_center_mobile/View/splash_screen/splash_screen.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
-import 'package:women_center_mobile/View/riwayat/batal.dart';
+// import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/buat_artikel_viewmodel.dart';
 import 'package:women_center_mobile/View/profil_page/pengaturan_privasi/pengaturan_privasi.dart';
@@ -47,7 +49,7 @@ import 'package:women_center_mobile/View/riwayat/riwayat_konseling.dart';
 import 'package:women_center_mobile/ViewModel/api_profil_user/profil_user_api_get.dart';
 import 'package:women_center_mobile/ViewModel/artikel_konselor_model/artikel_konselor_get.dart';
 import 'package:women_center_mobile/ViewModel/artikel_view_model/artikel_view_model.dart';
-import 'package:women_center_mobile/View/riwayat/batal.dart';
+// import 'package:women_center_mobile/View/riwayat/batal.dart';
 import 'package:women_center_mobile/View/sesi_konseling/sesi_konseling.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/career.dart';
 import 'package:women_center_mobile/ViewModel/career_viewmodel/detail_career.dart';
@@ -130,6 +132,7 @@ class MyApp extends StatelessWidget {
           '/riwayat_konseling': (context) => const RiwayatKonseling(),
           '/booking': (context) => const Booking(),
           '/riwayat_batal': (context) => const RiwayatBatal(),
+          '/riwayat_konseling': (context) => RiwayatKonselingView(),
           '/chat_konseling': (context) => ChatKonseling(),
           '/main_page': (context) => const MainPage(),
           '/main_page_konselor': (context) => const MainPageKonselor(),
