@@ -453,7 +453,7 @@ class _Home3State extends State<Home3> {
                                 width: 1, // Lebar garis
                                 color: Colors.grey, // Warna garis
                                 margin: EdgeInsets.only(
-                                    left: 81,
+                                    left: 83,
                                     right: 31), // Margin antara garis dan teks
                               ),
                               Row(
