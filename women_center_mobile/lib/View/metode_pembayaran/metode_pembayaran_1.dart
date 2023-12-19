@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/ViewModel/api_pembayaran/pembayaran_api.dart';
 
+import '../../Models/metodepembayaran_model/counseling_payment_model.dart';
 import '../../ViewModel/konselor_view_model/konselor_view_model.dart';
 
 class MetodePembayaran1 extends StatefulWidget {
@@ -64,7 +65,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
 
   late String order_id;
   late KonselorViewModel konselorViewModel;
-  // late CounselingSessionModel counselingSessionModel;
+  late CounselingSessionModel counselingSessionModel;
 
   @override
   void initState() {
@@ -165,7 +166,7 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
                       SizedBox(height: 8),
                       Row(
                         children: [
-                          Text('0001'),
+                          Text('${order_id ?? ''}'),
                         ],
                       ),
                       SizedBox(height: 8),
