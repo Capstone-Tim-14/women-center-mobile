@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:women_center_mobile/Models/metodepembayaran_model/metodepembayaran1_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:women_center_mobile/Models/utils/navigation_service.dart';
 import 'package:women_center_mobile/ViewModel/api_pembayaran/pembayaran_api.dart';
+
+import '../../ViewModel/konselor_view_model/konselor_view_model.dart';
 
 class MetodePembayaran1 extends StatefulWidget {
   const MetodePembayaran1({super.key});
@@ -58,10 +62,27 @@ class _MetodePembayaran1State extends State<MetodePembayaran1> {
     ),
   ];
 
+  late String order_id;
+  late KonselorViewModel konselorViewModel;
+  // late CounselingSessionModel counselingSessionModel;
+
   @override
   void initState() {
     super.initState();
     _fetchUserProfile();
+     konselorViewModel = Provider.of<KonselorViewModel>(context, listen: false);
+     loadOrderId(); // Memanggil metode untuk memuat order_id dari SharedPreferences
+     konselorViewModel.fetchCounselingSessionData();
+  }
+
+  Future<void> loadOrderId() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedOrderId = prefs.getString("order_id");
+    if (savedOrderId != null) {
+      setState(() {
+        order_id = savedOrderId;
+      });
+    }
   }
 
   Future<void> _fetchUserProfile() async {

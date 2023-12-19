@@ -103,11 +103,59 @@ class KonselorViewModel extends ChangeNotifier {
     return false;
   }
 
-  Future bayar(int payment_code) async {
-    // ambil data order_id
-    // api-ferminacare.tech/api/v1/charge-payment?order_id=$order_id&payment_code=$payment_code
-    //ketika berhasil arahnya kemana
-    //===============kalau gak berhasil======================
-    // ambil datanya data dari local_storage dengan nama order_id
+  Future<void> bayar(int paymentCode) async {
+  try {
+    final orderId = order_id;
+    final paymentUrl = "$_baseUrl/charge-payment?order_id=$orderId&payment_code=$paymentCode";
+
+    final response = await http.get(
+      Uri.parse(paymentUrl),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+    log(response.statusCode.toString());
+
+    if (response.statusCode == 200) {
+      log("Payment successful");
+      final Map<String, dynamic> responseData = jsonDecode(response.body)["data"];
+      print("Transaction ID: ${responseData['transaction_id']}");
+      print("Order ID: ${responseData['order_id']}");
+      print("Gross Amount: ${responseData['gross_amount']}");
+      print("Payment Type: ${responseData['payment_type']}");
+
+    } else {
+      log("Payment failed");
+      final prefs = await SharedPreferences.getInstance();
+      final storedOrderId = prefs.getString("order_id");
+      log(response.body);
+    }
+  } catch (e) {
+    log(e.toString());
+  }
+}
+
+KonselorModel? _counselingSessionData;
+
+  KonselorModel? get counselingSessionData => _counselingSessionData;
+
+  Future<void> fetchCounselingSessionData() async {
+    final endpoint = "/counselors/counseling-session/$_order_id";
+
+    try {
+      final response = await http.get(
+        Uri.parse("$_baseUrl$endpoint"),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body)["data"];
+        _counselingSessionData = KonselorModel.fromJson(jsonData);
+        notifyListeners();
+      } else {
+        log(response.body);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }
